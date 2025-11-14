@@ -500,6 +500,73 @@ footer {
   text-align: center;
   line-height: 1.4;
 }
+/* Figure & figcaption styling */
+.two-pics figure {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.two-pics figure img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.two-pics figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Makes the figures sit inline like your screenshot */
+.inline-figures {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+/* Each figure stacks image + caption */
+.inline-figure {
+  flex: 1;
+  text-align: center;
+}
+
+/* Make both images equal width */
+.inline-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Caption styling to match screenshot */
+.inline-figure figcaption {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .inline-figures {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .inline-figure figcaption {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+}
+
+
 
 }
 /* -----------------------------------------------------------
@@ -676,5 +743,48 @@ footer {
 @media (max-width: 768px) {
   .btn-group {
     justify-content: center;
+  }
+}
+
+/* === Perfect side-by-side figure layout (UNBREAKABLE) === */
+
+.paired-images {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 40px !important;
+  margin: 60px 0 !important;
+  width: 100%;
+}
+
+.paired-item {
+  flex: 1 1 0 !important;
+  text-align: center !important;
+}
+
+.paired-item img {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+.paired-item figcaption {
+  margin-top: 16px !important;
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+  font-style: italic !important;
+  color: var(--text) !important;
+}
+
+/* Mobile override — stacks vertically */
+@media (max-width: 768px) {
+  .paired-images {
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  .paired-item figcaption {
+    font-size: 16px !important;
   }
 }
