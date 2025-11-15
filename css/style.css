@@ -787,4 +787,10 @@ footer {
   .paired-item figcaption {
     font-size: 16px !important;
   }
+
+  .navbar .left .logo {
+    display: none;
+  }
+}
+
 }
