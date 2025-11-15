@@ -521,7 +521,26 @@ footer {
   line-height: 1.4;
 }
 
-/* Makes the figures sit inline like your screenshot */
+/* video embed settings*/
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* for 16:9 ratio */
+  width: 100%;
+  height: 0;  /* important: height starts at zero so padding-bottom gives aspect ratio */
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+/* Makes the figures sit inline */
 .inline-figures {
   display: flex;
   justify-content: space-between;
