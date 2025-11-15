@@ -1,0 +1,146 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Experian: Financial Calculators | Amber Kumar</title> 
+  <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
+
+  <!-- ✅ Main site styles --> 
+  <link rel="stylesheet" href="../../css/style.css" /> 
+
+  <style> 
+    /* Optional: small boost for fade-in smoothness on project pages */ 
+    .project-page section { 
+      opacity: 0; 
+      transform: translateY(10px); 
+      transition: opacity 0.8s ease, transform 0.8s ease; 
+    } 
+    .project-page section.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  </style> 
+</head> 
+
+<body>
+  <!-- 🔹 Navbar (matches main site) -->
+  <header class="navbar">
+    <div class="left">
+      <a href="../../index.html">
+        <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+      </a>
+    </div>
+    <nav class="center">
+      <a class="nav-btn" href="../../index.html">Home</a>
+      <a class="nav-btn" href="../../resume.html">Resume</a>
+      <a class="nav-btn" href="../../work.html">Work</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Main Project Content --> 
+  <main class="container mt-nav project-page"> 
+
+    <!-- Section 1: Intro --> 
+    <section id="intro"> 
+      <h1>Experian: Financial Calculators</h1> 
+      <p class="muted"> 
+        I created a template for financial calculators, here is an instance of the template used for a Personal Loan Calculator. If you would like to see a live version, please <a href="https://www.experian.com/blogs/ask-experian/personal-loan-calculator/" target="_blank"
+         class="underline hover:text-white">click here!</a>
+      </p>
+      <div class="tags"> 
+        <span class="tag">UI/UX</span>
+        <span class="tag">Web Design</span>
+        <span class="tag">Fintech</span>
+      </div> 
+    </section> 
+
+    <!-- Section 2: Classic layout --> 
+    <section class="row"> 
+      <figure> 
+        <img src="/portfolio/work/experian/assets/exp-calc1.png" alt="careful-cents branding" style="width:120%">
+        <img src="/portfolio/work/experian/assets/exp-calc2.png" alt="careful-cents branding" style="width:120%">
+        <img src="/portfolio/work/experian/assets/exp-calc3.png" alt="careful-cents branding" style="width:120%">
+        <img src="/portfolio/work/experian/assets/exp-calc4.png" alt="careful-cents branding" style="width:120%">
+        <img src="/portfolio/work/experian/assets/exp-calc5.png" alt="careful-cents branding" style="width:120%"> 
+      </figure> 
+
+  </main>
+
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <div class="progress-nav bottom"> 
+    <div class="progress-track"> 
+      <div class="progress-bar"></div> 
+    </div> 
+
+    <nav class="anchor-nav"> 
+      <a href="#intro">Intro</a> 
+      <a href="#background">Background</a> 
+      <a href="#plan">The Plan</a> 
+      <a href="#process">Design Process</a> 
+      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+    </nav> 
+  </div> --> 
+
+  <!-- 🔹 Footer --> 
+  <footer> 
+     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+  </footer>
+
+  <!-- ✅ JS: navbar scroll + fade-in animation --> 
+  <script src="../../js/script.js"></script> 
+
+  <script> 
+    // Add fade-in on scroll for project sections 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const sections = document.querySelectorAll('.project-page section'); 
+
+      const observer = new IntersectionObserver( 
+        (entries, obs) => { 
+          entries.forEach(entry => { 
+            if (entry.isIntersecting) { 
+              entry.target.classList.add('visible'); 
+              obs.unobserve(entry.target); 
+            } 
+          }); 
+        }, 
+        { threshold: 0.1 } 
+      ); 
+
+      sections.forEach(section => observer.observe(section)); 
+    }); 
+  </script> 
+
+  <script> 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const progressBar = document.querySelector('.progress-bar'); 
+      const sections = document.querySelectorAll('main section[id]'); 
+      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+
+      function updateProgress() { 
+        const scrollTop = window.scrollY; 
+        const docHeight = document.body.scrollHeight - window.innerHeight; 
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
+        progressBar.style.width = `${scrollPercent}%`; 
+
+        let current = ''; 
+        sections.forEach(section => { 
+          const sectionTop = section.offsetTop - 150; 
+          if (scrollTop >= sectionTop) current = section.id; 
+        }); 
+
+        navLinks.forEach(link => { 
+          link.classList.remove('active'); 
+          if (link.getAttribute('href') === `#${current}`) { 
+            link.classList.add('active'); 
+          } 
+        }); 
+      }
+
+      window.addEventListener('scroll', updateProgress); 
+      updateProgress(); 
+    }); 
+  </script> 
+
+</body> 
+</html>
