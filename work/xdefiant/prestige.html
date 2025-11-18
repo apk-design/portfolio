@@ -1,0 +1,417 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+  <meta charset="UTF-8" /> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
+  <title>Battery Widget - Mac OS | Amber Kumar</title> 
+  <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
+
+  <!-- ✅ Main site styles --> 
+  <link rel="stylesheet" href="/portfolio/css/style.css" /> 
+
+  <style> 
+    /* Optional: small boost for fade-in smoothness on project pages */ 
+    .project-page section { 
+      opacity: 0; 
+      transform: translateY(10px); 
+      transition: opacity 0.8s ease, transform 0.8s ease; 
+    } 
+    .project-page section.visible { 
+      opacity: 1; 
+      transform: translateY(0); 
+    } 
+  </style> 
+</head> 
+
+<body>
+  <!-- 🔹 Navbar (matches main site) -->
+  <header class="navbar">
+    <div class="left">
+      <a href="/portfolio/index.html">
+        <img src="/portfolio/assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+      </a>
+    </div>
+    <nav class="center">
+      <a class="nav-btn" href="/portfolio/index.html">Home</a>
+      <a class="nav-btn" href="/portfolio/resume.html">Resume</a>
+      <a class="nav-btn" href="/portfolio/work.html">Work</a>
+    </nav>
+  </header>
+
+ <main>
+    <main class="container mt-nav project-page"> 
+
+    <!-- Section 1: Intro --> 
+    <section id="intro"> 
+      <h1>XDefiant – Prestige Meta-Progression System</h1> 
+        <p class="case-subtitle">Designing a long-term progression system that kept players engaged after “maxing out.”</p>
+      <p><strong>Role:</strong> Sr UX Designer &middot; <strong>Focus:</strong> Systems UX, interaction design, qualitative research</p>
+      <div class="tags"> 
+        <span class="tag">Mac OS</span>
+        <span class="tag">Feature Design</span>
+         <span class="tag">UI / UX</span>
+         
+      </div> 
+
+      <main class="project-page container mt-nav">
+
+  <!-- HERO -->
+  <section id="hero">
+    <header>
+      <h1>XDefiant – Prestige Meta-Progression System</h1>
+      <p class="case-subtitle">Designing a long-term progression system that kept players engaged after “maxing out.”</p>
+      <p><strong>Role:</strong> Sr UX Designer &middot; <strong>Focus:</strong> Systems UX, interaction design, qualitative research</p>
+    </header>
+
+    <figure>
+      <img 
+        src="/assets/prestige/hero/prestige-hero-placeholder.png"
+        alt="Prestige UI overview placeholder"
+      />
+      <figcaption>Hero Image Placeholder (Prestige UI Overview)</figcaption>
+    </figure>
+  </section>
+
+
+  <!-- OBJECTIVE -->
+  <section id="objective">
+    <h2>Objective</h2>
+
+    <p>
+      We identified a gap in long-term player progression. Players were hitting level caps, exhausting weapon unlocks, and losing momentum—
+      especially those coming from franchises with robust prestige or mastery systems.
+    </p>
+
+    <p>Our goal was to create a repeatable, rewarding meta-progression path that:</p>
+
+    <ul>
+      <li>Extended the life of the game for high-engagement players</li>
+      <li>Aligned with XDefiant’s pillars of longevity, personalization, and competitive pride</li>
+      <li>Felt familiar enough to be legible, but distinct enough to feel uniquely XDefiant</li>
+    </ul>
+
+    <figure>
+      <img 
+        src="/assets/prestige/research/competitive-analysis-placeholder.png"
+        alt="Competitive analysis placeholder"
+      />
+      <figcaption>Competitive Analysis & Player Segments</figcaption>
+    </figure>
+  </section>
+
+
+  <!-- TEAM & ROLE -->
+  <section id="team-role">
+    <h2>Team & My Role</h2>
+
+    <p>As the UX designer on Prestige, I partnered closely with:</p>
+
+    <ul>
+      <li><strong>System Designer</strong> – tuning, rules, and progression logic</li>
+      <li><strong>UI Artist</strong> – visual language, iconography, motion</li>
+      <li><strong>Data Analyst</strong> – progression pacing + retention models</li>
+      <li><strong>UI Tech Artists</strong> – implementation and optimization</li>
+    </ul>
+
+    <p>
+      I owned the player experience of Prestige: how it looked, how it felt, where it lived in the UI, and how well players understood
+      the trade-offs. I also led several internal research cycles, which shaped the final UX decisions.
+    </p>
+  </section>
+
+
+  <!-- FOUNDATIONS & PRINCIPLES -->
+  <section id="foundations">
+    <h2>Foundations & UX Principles</h2>
+
+    <div class="inline-pair">
+      <div class="inline-pair__media">
+        <img 
+          src="/assets/prestige/research/ux-foundations-placeholder.png"
+          alt="UX foundations placeholder"
+        />
+      </div>
+
+      <div class="inline-pair__content">
+        <h3>Where I Started</h3>
+        <p>
+          The original scope for Prestige was modest. As the system matured, I collaborated with our System Designer on competitive analysis across
+          prestige systems in Call of Duty and Overwatch.
+        </p>
+
+        <p>We compared:</p>
+        <ul>
+          <li>Entry points</li>
+          <li>XP pacing</li>
+          <li>Reward types</li>
+          <li>User motivation patterns</li>
+          <li>Navigation + space constraints in UI</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>UX Principles I Pushed For</h3>
+
+    <ul>
+      <li><strong>Hick’s Law</strong> — reduce over-choice and keep navigation focused</li>
+      <li><strong>Familiarity Bias</strong> — draw from successful prestige patterns players understand</li>
+      <li><strong>Fresh Start Bias</strong> — create a meaningful reset that feels motivating</li>
+      <li><strong>Investment</strong> — re-earning items increases emotional buy-in</li>
+      <li><strong>Temptation Bundling</strong> — pair grind with highly desirable unlocks</li>
+    </ul>
+  </section>
+
+
+  <!-- SYSTEM OVERVIEW -->
+  <section id="system-overview">
+    <h2>The System at a Glance</h2>
+
+    <div class="inline-pair">
+      <div class="inline-pair__media">
+        <img 
+          src="/assets/prestige/flows/prestige-flow-first-pass.png"
+          alt="Prestige flow placeholder"
+        />
+      </div>
+
+      <div class="inline-pair__content">
+        <h3>First Shot at the Flow</h3>
+        <p>I created the end-to-end Prestige journey and mapped where it lived in the broader UI ecosystem.</p>
+
+        <ol>
+          <li>Complete Core Challenges</li>
+          <li>Acquire XP</li>
+          <li>Acquire All Core Gear</li>
+          <li>Complete the Prestige Track</li>
+          <li>Initiate Prestige (reset + reward)</li>
+        </ol>
+      </div>
+    </div>
+
+    <figure>
+      <img 
+        src="/assets/prestige/ui/prestige-track-placeholder.png"
+        alt="Prestige track visual placeholder"
+      />
+      <figcaption>Prestige Track Layout</figcaption>
+    </figure>
+
+    <h3>How the System Worked</h3>
+
+    <p>
+      Each Prestige tier unlocked gear or a token. Tokens activated unlockable weapons from the “vault." The final unlock delivered
+      remaining owned gear so the player’s prior efforts still mattered.
+    </p>
+
+    <ul>
+      <li><strong>Familiarity</strong> — linear track, known beats</li>
+      <li><strong>Investment</strong> — offering a reset as a choice deepened commitment</li>
+      <li><strong>Fresh Start</strong> — returning to starter weapons reframed the grind</li>
+    </ul>
+  </section>
+
+
+  <!-- MAJOR ITERATION -->
+  <section id="major-iteration">
+    <h2>Major Iteration: Saying Goodbye to the Gun Vault</h2>
+
+    <h3>Design Approved… then Pulled</h3>
+
+    <p>
+      Although the initial design (including the Gun Vault) was approved, directors later removed it due to perceived complexity.
+      This forced us to rethink how unlocks surfaced within existing UI systems.
+    </p>
+
+    <h3>A Wild Obstacle Appears</h3>
+
+    <ul>
+      <li>Reused the existing Loadouts screen for unlocks</li>
+      <li>Kept Prestige Token as the unlock currency</li>
+      <li>Added CTAs on the gear track to jump into Loadouts</li>
+    </ul>
+
+    <figure>
+      <img 
+        src="/assets/prestige/iteration/revised-unlock-flow-placeholder.png"
+        alt="Revised unlock flow placeholder"
+      />
+      <figcaption>Revised Unlock Flow</figcaption>
+    </figure>
+
+    <h3>Personal Dilemma</h3>
+
+    <p>
+      I supported the compromise, but I wasn’t fully confident it was the best solution. That tension set the stage for what
+      became my favorite phase: user testing.
+    </p>
+  </section>
+
+
+  <!-- USER TESTING -->
+  <section id="user-testing">
+    <h2>User Testing</h2>
+
+    <h3>Study Design</h3>
+    <p>
+      I partnered with our Game Designer and a Tech Artist to run ten qualitative sessions with participants who understood the game
+      but not the Prestige system.
+    </p>
+
+    <h3>Key Findings</h3>
+
+    <ul>
+      <li>Prestige placement made sense in the progression area</li>
+      <li>Testers didn’t understand Prestige immediately, but found the Info screens quickly</li>
+      <li>Some wanted more explicit info on the warning screen</li>
+      <li>Unlock CTAs worked well — intuitive once found</li>
+      <li>Testers skimmed onboarding after seeing it once (clear → concise copy was critical)</li>
+      <li>“Acknowledge” CTA was legible</li>
+    </ul>
+
+    <figure>
+      <img 
+        src="/assets/prestige/testing/testing-notes-placeholder.png"
+        alt="User testing notes placeholder"
+      />
+      <figcaption>User Testing Notes</figcaption>
+    </figure>
+
+    <h3>Why Testing Was King</h3>
+
+    <p>Testing provided the evidence needed to refine copy, simplify warning flows, and defend choices under tight constraints:</p>
+
+    <ul>
+      <li>UI framework limitations (especially on consoles)</li>
+      <li>Live release deadlines forced UX trade-offs</li>
+      <li>Scope cuts shaped what could ship at launch</li>
+    </ul>
+  </section>
+
+
+  <!-- COMMUNITY RESPONSE -->
+  <section id="community">
+    <h2>Community Response</h2>
+
+    <p>
+      Ubisoft SF closed shortly before the Season 3 progression update that introduced Prestige. We couldn’t validate feedback internally,
+      but post-launch the community delivered it for us.
+    </p>
+
+    <div class="paired-images">
+      <figure class="paired-item">
+        <img 
+          src="/assets/prestige/community/community-meme-placeholder.png"
+          alt="Community meme placeholder"
+        />
+        <figcaption>Community Meme</figcaption>
+      </figure>
+
+      <figure class="paired-item">
+        <img 
+          src="/assets/prestige/community/player-feedback-placeholder.png"
+          alt="Player feedback placeholder"
+        />
+        <figcaption>Player Progression Post</figcaption>
+      </figure>
+    </div>
+
+    <p>
+      It was gratifying to see players engaging deeply, sharing strategies, and expressing pride in their prestige accomplishments.
+    </p>
+  </section>
+
+
+  <!-- REFLECTION -->
+  <section id="reflection">
+    <h2>If Given the Chance</h2>
+
+    <p>With more time, I would have loved to:</p>
+
+    <ul>
+      <li>Reevaluate UI & UX post-launch for clarity & pacing</li>
+      <li>Add new cosmetic rewards to deepen identity expression</li>
+      <li>Push for earlier external testing around celebration moments</li>
+    </ul>
+
+    <figure>
+      <img 
+        src="/assets/prestige/reflection/future-improvements-placeholder.png"
+        alt="Reflection placeholder"
+      />
+      <figcaption>Future Improvement Opportunities</figcaption>
+    </figure>
+
+    <p>
+      The process was bittersweet, but incredibly meaningful — both as a designer and someone who truly loved the game.
+    </p>
+  </section>
+
+
+</main>
+
+
+
+</main>
+
+  <!-- 🔹 Footer --> 
+  <footer> 
+     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+  </footer>
+
+  <!-- ✅ JS: navbar scroll + fade-in animation --> 
+  <script src="../../js/script.js"></script> 
+
+  <script> 
+    // Add fade-in on scroll for project sections 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const sections = document.querySelectorAll('.project-page section'); 
+
+      const observer = new IntersectionObserver( 
+        (entries, obs) => { 
+          entries.forEach(entry => { 
+            if (entry.isIntersecting) { 
+              entry.target.classList.add('visible'); 
+              obs.unobserve(entry.target); 
+            } 
+          }); 
+        }, 
+        { threshold: 0.1 } 
+      ); 
+
+      sections.forEach(section => observer.observe(section)); 
+    }); 
+  </script> 
+
+  <script> 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const progressBar = document.querySelector('.progress-bar'); 
+      const sections = document.querySelectorAll('main section[id]'); 
+      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+
+      function updateProgress() { 
+        const scrollTop = window.scrollY; 
+        const docHeight = document.body.scrollHeight - window.innerHeight; 
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
+        progressBar.style.width = `${scrollPercent}%`; 
+
+        let current = ''; 
+        sections.forEach(section => { 
+          const sectionTop = section.offsetTop - 150; 
+          if (scrollTop >= sectionTop) current = section.id; 
+        }); 
+
+        navLinks.forEach(link => { 
+          link.classList.remove('active'); 
+          if (link.getAttribute('href') === `#${current}`) { 
+            link.classList.add('active'); 
+          } 
+        }); 
+      }
+
+      window.addEventListener('scroll', updateProgress); 
+      updateProgress(); 
+    }); 
+  </script> 
+
+</body> 
+</html>
