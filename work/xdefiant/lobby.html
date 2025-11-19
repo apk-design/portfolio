@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experian: Financial Calculators | Amber Kumar</title>
+    <title>XDefiant - Lobby | Amber Kumar</title>
     <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
 
     <!-- ✅ Main site styles -->
@@ -22,7 +22,64 @@
             opacity: 1;
             transform: translateY(0);
         }
-    </style>
+  /* === Before/After Slider — Safe, Namespaced, Non-Conflicting === */
+
+  .ba-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: ew-resize;
+    user-select: none;
+  }
+
+  .ba-img {
+    width: 100%;
+    display: block;
+    pointer-events: none;
+  }
+
+  .ba-before {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    clip-path: inset(0 50% 0 0); /* start at 50/50 split */
+    transition: clip-path 0.15s ease-out;
+  }
+
+  .ba-after {
+    position: relative;
+    z-index: 1;
+  }
+
+  .ba-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: #ffffff;
+    mix-blend-mode: difference;
+    cursor: ew-resize;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ba-handle-line {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.4);
+    mix-blend-mode: normal;
+  }
+</style>
+
 </head>
 
 <body>
@@ -45,32 +102,22 @@
 
         <!-- Section 1: Intro -->
         <section id="intro">
-            <h1>Designing an On-Site Job Application & Safety Assessment Platform</h1>
+            <h1>XDefiant — Lobby Redesign Case Study</h1>
             <p class="muted">
-                This project was created for a venture capital firm's portfolio companies with high-volume
-                frontline roles. The goal was to build an on-site job application system designed for walk-in
-                candidates. The platform streamlined the application process and embedded a mandatory
-                safety-oriented quiz to help identify candidates with strong situational awareness and
-                responsibility.
+               This redesign was self-initiated after long-standing dissatisfaction with the visual clarity,
+    hierarchy, and interaction patterns of the existing XDefiant lobby. Although the lobby graph
+    was engineering-heavy and difficult to modify, I explored new UX directions emphasizing
+    modularity, scalability, reduced cognitive load, and cleaner feature growth.
             </p>
             <div class="tags">
                 <span class="tag">UI/UX</span>
-                <span class="tag">Web Design</span>
-                <span class="tag">On Site Job Applications</span>
+                <span class="tag">Gaming</span>
+                <span class="tag">Feature Design</span>
             </div>
         </section>
 
         <!-- Section 2: Classic layout -->
-      
-<section id="overview">
-  <h1>XDefiant — Lobby Redesign Case Study</h1>
-  <p>
-    This redesign was self-initiated after long-standing dissatisfaction with the visual clarity,
-    hierarchy, and interaction patterns of the existing XDefiant lobby. Although the lobby graph
-    was engineering-heavy and difficult to modify, I explored new UX directions emphasizing
-    modularity, scalability, reduced cognitive load, and cleaner feature growth.
-  </p>
-</section>
+
 
 <section id="problem">
   <h2>The Problem</h2>
@@ -83,7 +130,7 @@
   </ul>
 
   <figure>
-    <img src="/mnt/data/lobby modular proposed redesign.png"
+    <img src="/portfolio/work/xdefiant/lobby/1lobby-original.png"
          alt="Original XDefiant lobby interface"/>
     <figcaption>Original Lobby — reference for existing UX issues.</figcaption>
   </figure>
@@ -110,7 +157,7 @@
   </p>
 
   <figure>
-    <img src="/mnt/data/lobby modular proposed redesign.png"
+    <img src="/portfolio/work/xdefiant/lobby/2lobby-modular.png"
          alt="Low fidelity modular lobby redesign exploration"/>
     <figcaption>Lo-Fi modular options — pressure-tested against engineering constraints.</figcaption>
   </figure>
@@ -125,7 +172,7 @@
   </p>
 
   <figure>
-    <img src="/mnt/data/lobby modular proposed redesign.png"
+    <img src="/portfolio/work/xdefiant/lobby/3modalflyout.png"
          alt="Focus states for modular UI pieces"/>
     <figcaption>Focus mapping for modular UI components.</figcaption>
   </figure>
@@ -142,7 +189,7 @@
 
 <section id="hifi-images">
   <figure>
-    <img src="/mnt/data/lobby hifi modular.png"
+    <img src="/portfolio/work/xdefiant/lobby/4iterations.png"
          alt="Hi-fi modular lobby redesign concepts"/>
     <figcaption>Hi-Fi concepts — cleaner, more expressive, and highly modular.</figcaption>
   </figure>
@@ -175,7 +222,23 @@
   </ul>
 </section>
 
-<section id="video-demo">
+<section id="before-after-slider" class="case-study-section">
+  <h2>Lo-Fi to Hi-Fi Lobby Evolution</h2>
+
+  <figure class="before-after-wrapper">
+    <div class="ba-container">
+      <img src="/portfolio/work/xdefiant/lobby/lofi-final.png" alt="Lo-fi modular lobby wireframe" class="ba-img ba-before">
+      <img src="/portfolio/work/xdefiant/lobby/hifi-final.png" alt="Hi-fi modular lobby redesign" class="ba-img ba-after">
+      <div class="ba-handle">
+        <span class="ba-handle-line"></span>
+      </div>
+    </div>
+    <figcaption>Drag the handle to compare the modular lo-fi lobby proposal with the hi-fi vision.</figcaption>
+  </figure>
+</section>
+
+
+<!--section id="video-demo">
   <h2>Video Demonstration</h2>
   <figure>
     <iframe 
@@ -186,7 +249,7 @@
       Vimeo demo — includes start and end timestamps to focus on the lobby flows.
     </figcaption>
   </figure>
-</section>
+</section-->
 
     </main>
 
@@ -264,6 +327,57 @@
             updateProgress();
         }); 
     </script>
+
+<script>
+  // === Before/After Slider — Fully Isolated, Safe Integration ===
+  (function () {
+    const container = document.querySelector('.ba-container');
+    if (!container) return; // If slider isn't on this page, exit safely.
+
+    const beforeImg = container.querySelector('.ba-before');
+    const handle = container.querySelector('.ba-handle');
+
+    let dragging = false;
+
+    function beginDrag() { dragging = true; }
+    function endDrag() { dragging = false; }
+
+    function updateSlider(clientX) {
+      const rect = container.getBoundingClientRect();
+      let x = clientX - rect.left;
+      x = Math.max(0, Math.min(x, rect.width));
+      const percent = (x / rect.width) * 100;
+
+      beforeImg.style.clipPath = `inset(0 ${100 - percent}% 0 0)`;
+      handle.style.left = `${percent}%`;
+    }
+
+    // Mouse events
+    handle.addEventListener('mousedown', (e) => {
+      beginDrag();
+      updateSlider(e.clientX);
+    });
+
+    window.addEventListener('mouseup', endDrag);
+
+    window.addEventListener('mousemove', (e) => {
+      if (dragging) updateSlider(e.clientX);
+    });
+
+    // Touch events
+    handle.addEventListener('touchstart', (e) => {
+      beginDrag();
+      updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+    window.addEventListener('touchend', endDrag);
+
+    window.addEventListener('touchmove', (e) => {
+      if (dragging) updateSlider(e.touches[0].clientX);
+    }, { passive: true });
+
+  })();
+</script>
 
 </body>
 
