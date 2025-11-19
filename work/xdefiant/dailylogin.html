@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Experian: Financial Calculators | Amber Kumar</title>
+    <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
+
+    <!-- ✅ Main site styles -->
+    <link rel="stylesheet" href="../../css/style.css" />
+
+    <style>
+        /* Optional: small boost for fade-in smoothness on project pages */
+        .project-page section {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .project-page section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Navbar (matches main site) -->
+    <header class="navbar">
+        <div class="left">
+            <a href="../../index.html">
+                <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+            </a>
+        </div>
+        <nav class="center">
+            <a class="nav-btn" href="../../index.html">Home</a>
+            <a class="nav-btn" href="../../resume.html">Resume</a>
+            <a class="nav-btn" href="../../work.html">Work</a>
+        </nav>
+    </header>
+
+    <!-- 🔹 Main Project Content -->
+    <main class="container mt-nav project-page">
+
+        <!-- Section 1: Intro -->
+        <section id="intro">
+            <h1>Designing an On-Site Job Application & Safety Assessment Platform</h1>
+            <p class="muted">
+                This project was created for a venture capital firm's portfolio companies with high-volume
+                frontline roles. The goal was to build an on-site job application system designed for walk-in
+                candidates. The platform streamlined the application process and embedded a mandatory
+                safety-oriented quiz to help identify candidates with strong situational awareness and
+                responsibility.
+            </p>
+            <div class="tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">On Site Job Applications</span>
+            </div>
+        </section>
+
+        <!-- Section 2: Classic layout -->
+        <section id="daily-login-overview">
+            <h2>Daily Login UX — Reward Calendar</h2>
+            <p> I designed a new daily login experience for an online game in collaboration with the MTX (monetization)
+                team and the lead UI artist. MTX provided a reference reward grid focused on player retention. My role
+                was to translate that grid into an engaging, legible UX that: </p>
+            <ul>
+                <li>Clearly communicates what players get today and in the future</li>
+                <li>Encourages streaks and long-term return without feeling confusing or overwhelming</li>
+                <li>Scales to different reward campaigns (weekly / monthly)</li>
+                <li>Hands off cleanly to UI art for final visual polish</li>
+            </ul>
+            <figure> <img src="/mnt/data/xd daily login.png"
+                    alt="Top-left reference reward grid provided by MTX team, showing rows of icons for daily rewards">
+                <figcaption>MTX reference grid that defined reward cadence and retention goals.</figcaption>
+            </figure>
+        </section>
+        <section id="problem-and-constraints">
+            <h2>Problem & Constraints</h2>
+            <p> The existing daily login treatment did not clearly show progression or upcoming milestones. MTX wanted a
+                system that could support both short “bursts” of rewards and longer campaigns, while reinforcing return
+                habits through clear streaks and milestone rewards. </p>
+            <p>The main UX challenges:</p>
+            <ul>
+                <li>Represent many days of rewards without clutter</li>
+                <li>Highlight “today” and the next big milestone</li>
+                <li>Make it obvious which rewards are claimed vs. locked</li>
+                <li>Keep the layout flexible for localization and art direction</li>
+            </ul>
+        </section>
+        <section id="exploration-weekly">
+            <h2>Exploration 1 — Weekly Track Concept</h2>
+            <p> The first prototype framed the daily login as a weekly track. Each day appeared as a tile in a short
+                horizontal sequence, making it easy to grasp the full week at a glance. </p>
+            <ul>
+                <li><strong>Short horizon:</strong> Only shows the current week to keep cognitive load low.</li>
+                <li><strong>Strong focus on the present:</strong> “Today” is highlighted with a prominent tile and
+                    reward callout.</li>
+                <li><strong>Completion feedback:</strong> Past days are marked as claimed, giving a strong sense of
+                    streak and progress.</li>
+            </ul>
+            <p> This direction tested well with stakeholders because it was immediately readable and clearly showcased
+                today’s reward, but it didn’t give MTX as much room to tease longer-term rewards and big milestones.
+            </p>
+            <figure> <img src="/mnt/data/xd daily login.png"
+                    alt="First row of mid-left screens showing weekly daily login track layout">
+                <figcaption>Option 1: Weekly track exploration with a compact horizontal sequence of daily rewards.
+                </figcaption>
+            </figure>
+        </section>
+        <section id="exploration-monthly">
+            <h2>Exploration 2 — Monthly Calendar Concept</h2>
+            <p> The second prototype explored a longer-range, calendar-like layout. Here, players could see a full
+                campaign: many days of rewards, including premium milestones further out. </p>
+            <ul>
+                <li><strong>Long-term visibility:</strong> Shows most or all days in the event, so players can “plan”
+                    their return.</li>
+                <li><strong>Milestone emphasis:</strong> Special rewards (e.g., end-of-month or streak bonuses) are
+                    called out with larger tiles.</li>
+                <li><strong>Grid structure:</strong> Calendar-style grid helps players understand how far they’ve
+                    progressed.</li>
+            </ul>
+            <p> This version met MTX’s desire to support longer campaigns and generate anticipation, but it was denser
+                and risked overwhelming new players. </p>
+            <figure> <img src="/mnt/data/xd daily login.png"
+                    alt="Second row of mid screens showing calendar-style daily login layout for a full month">
+                <figcaption>Option 2: Monthly calendar exploration with a full campaign view and milestone rewards.
+                </figcaption>
+            </figure>
+        </section>
+        <section id="hybrid-solution">
+            <h2>Final UX — Hybrid of Weekly & Monthly</h2>
+            <p> After walking MTX and the lead UI artist through both prototypes, stakeholders asked for a hybrid that
+                combined: </p>
+            <ul>
+                <li>The clarity and focus of the weekly track</li>
+                <li>The anticipation and milestone planning of the monthly view</li>
+            </ul>
+            <p> The final UX solution mixed both ideas: </p>
+            <ul>
+                <li>A focused row or segment for the upcoming days, with a clear highlight on today’s reward</li>
+                <li>Progress indicators that show how far along the overall campaign the player is</li>
+                <li>Visually distinct milestone tiles that stand out from regular daily rewards</li>
+                <li>Clean iconography and labels so rewards are understandable at a glance</li>
+            </ul>
+            <figure> <img src="/mnt/data/xd daily login.png"
+                    alt="Row labeled 'final UX, mix of both' showing hybrid daily login layout combining track and grid ideas">
+                <figcaption>Final UX wire: a hybrid layout that balances short-term clarity with long-term motivation.
+                </figcaption>
+            </figure>
+        </section>
+        <section id="handoff-to-ui">
+            <h2>Handoff & Final In-Game UI</h2>
+            <p> Once the UX pattern was approved, I documented interaction details (states for claimed, current, locked,
+                and milestone rewards, as well as animation suggestions for claiming and advancing) and handed the
+                design to the lead UI artist. </p>
+            <p> The UI artist then applied the game’s visual style, character artwork, and motion, while preserving the
+                information hierarchy and flows from the UX prototype. </p>
+            <figure> <img src="/mnt/data/xd daily login.png"
+                    alt="Bottom-right image showing final in-game daily login UI with character art and polished visuals">
+                <figcaption>Final implemented UI: the lead UI artist’s visual treatment built on top of the approved UX.
+                </figcaption>
+            </figure>
+        </section>
+        <section id="impact-and-learnings">
+            <h2>Impact & Learnings</h2>
+            <p> While MTX primarily owned quantitative results, the new daily login UX was designed to: </p>
+            <ul>
+                <li>Make reward progression self-explanatory without tooltips</li>
+                <li>Encourage players to return regularly through clear streak feedback and milestone rewards</li>
+                <li>Give MTX enough flexibility to run both short and long campaigns without redesigning the UI</li>
+            </ul>
+            <p> From a process perspective, the biggest win was involving MTX and UI art early with two distinct
+                prototypes, then converging on a hybrid that aligned retention goals with player readability and
+                aesthetic quality. </p>
+        </section>
+
+
+    </main>
+
+    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <div class="progress-nav bottom"> 
+    <div class="progress-track"> 
+      <div class="progress-bar"></div> 
+    </div> 
+
+    <nav class="anchor-nav"> 
+      <a href="#intro">Intro</a> 
+      <a href="#background">Background</a> 
+      <a href="#plan">The Plan</a> 
+      <a href="#process">Design Process</a> 
+      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+    </nav> 
+  </div> -->
+
+    <!-- 🔹 Footer -->
+    <footer>
+        Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+    </footer>
+
+    <!-- ✅ JS: navbar scroll + fade-in animation -->
+    <script src="../../js/script.js"></script>
+
+    <script>
+        // Add fade-in on scroll for project sections 
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.project-page section');
+
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            sections.forEach(section => observer.observe(section));
+        }); 
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.querySelector('.progress-bar');
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('.anchor-nav a');
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+                progressBar.style.width = `${scrollPercent}%`;
+
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (scrollTop >= sectionTop) current = section.id;
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateProgress);
+            updateProgress();
+        }); 
+    </script>
+
+</body>
+
+</html>
