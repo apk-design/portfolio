@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animal Crossing: New Horizons | Amber Kumar</title>
+
+  <!-- ✅ Main site styles -->
+  <link rel="stylesheet" href="../../css/style.css" />
+
+  <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🔹 Navbar (matches main site) -->
+  <header class="navbar">
+    <div class="left">
+      <a href="../../index.html">
+        <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+      </a>
+    </div>
+    <nav class="center">
+      <a class="nav-btn" href="../../index.html">Home</a>
+      <a class="nav-btn" href="../../resume.html">Resume</a>
+      <a class="nav-btn active" href="../../work.html">Work</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav project-page">
+    <!-- Section 1: Intro -->
+    <section>
+      <h1>Animal Crossing: New Horizons</h1>
+      <p class="muted">A cozy UX case study exploring player interaction, creativity, and world-building.</p>
+      <div class="tags">
+        <span class="tag">UX</span>
+        <span class="tag">Game Design</span>
+        <span class="tag">Prototype</span>
+      </div>
+    </section>
+
+    <!-- Section 2: Classic layout -->
+    <section class="row">
+      <img src="https://i.imgur.com/uWYuDFu.jpeg" alt="ACNH classic layout" />
+      <div class="text">
+        <h2>Classic Layout</h2>
+        <p>
+          A design study in structured grid layouts, balancing cozy aesthetics with functional UI patterns inspired by life simulation games.
+        </p>
+        <div class="tags">
+          <span class="tag">Layout</span>
+          <span class="tag">Composition</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Wide hero image -->
+    <section class="wide">
+      <h2>Wide Visual Study</h2>
+      <img src="https://dummyimage.com/1000x400/ccc/000" alt="Wide composition" />
+      <p>
+        Testing hero image proportions and color balance for storytelling moments within cozy-world interfaces.
+      </p>
+    </section>
+
+    <!-- Section 4: Two pics, one text -->
+    <section class="two-pics">
+      <h2>Dual Imagery</h2>
+      <div class="img-pair">
+        <img src="https://dummyimage.com/400x250/ddd/000" alt="Mood 1" />
+        <img src="https://dummyimage.com/400x250/ddd/000" alt="Mood 2" />
+      </div>
+      <p>
+        Exploring visual balance and interaction rhythm between two related visual states — the player’s home and island.
+      </p>
+    </section>
+
+    <!-- Section 5: Two-column layout -->
+    <section class="two-col">
+      <div class="col">
+        <img src="https://dummyimage.com/300x200/ccc/000" alt="Color Study" />
+        <p>
+          Experimenting with oceanic tones, texture accents, and accessibility for color-blind players.
+        </p>
+      </div>
+      <div class="col">
+        <img src="https://dummyimage.com/300x200/ccc/000" alt="UI Mockup" />
+        <p>
+          Iterative prototypes tested with participants focusing on comfort, flow, and creative expression.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 🔹 Footer -->
+  <footer>
+    © 2025 Amber Kumar
+  </footer>
+
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
+
+  <script>
+    // Add fade-in on scroll for project sections
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
+
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      sections.forEach(section => observer.observe(section));
+    });
+  </script>
+</body>
+</html>

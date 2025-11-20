@@ -1,0 +1,828 @@
+/* -----------------------------------------------------------
+   Amber Kumar Portfolio – Global Stylesheet
+   Includes navbar, layout, tags, project layouts, and inline sections
+   Typography: Space Mono (headers) + Space Grotesk (body)
+----------------------------------------------------------- */
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+/* -----------------------------------------------------------
+   Theme & Global Variables
+----------------------------------------------------------- */
+:root {
+  --bg: #ffffff;
+  --text: #0f1724;
+  --muted: #6b7280;
+  --cta: #FF5E1A;
+  --border: #e5e7eb;
+  --nav: #000;
+}
+
+[data-theme="dark"] {
+  --bg: #0f1724;
+  --text: #f5f5f5;
+  --muted: #9ca3af;
+  --border: #374151;
+  --nav: #000;
+}
+
+/* -----------------------------------------------------------
+   Base & Resets
+----------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background .3s, color .3s;
+  line-height: 1.7;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+  padding-top: 3%;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.3rem; }
+p, li, a, span {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+figcaption{
+ font-family: 'Space Mono', monospace;
+ text-align: center;
+ line-height: 1.7;
+ padding-bottom: 5%;
+}
+/* -----------------------------------------------------------
+   Navbar
+----------------------------------------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 60px;
+  background: transparent;
+  transition: background .3s, transform .3s;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(6px);
+}
+
+.navbar .left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo {
+  height: 32px;
+  display: block;
+}
+
+.navbar .center {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+
+.nav-btn {
+  padding: 10px 18px;
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  text-decoration: none;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  line-height: 1;
+  display: inline-block;
+  transition: color .25s, background .25s, border-color .25s, transform .2s;
+}
+
+.nav-btn:hover {
+  border-color: var(--cta);
+}
+
+.nav-btn:hover::after {
+  content: '';
+  display: block;
+  height: 2px;
+  background: var(--cta);
+  margin-top: 6px;
+}
+
+.nav-btn.active {
+  background: var(--cta);
+  color: #000;
+  border-color: var(--cta);
+}
+
+.navbar:not(.scrolled) .nav-btn {
+  color: var(--text);
+  border-color: var(--text);
+}
+
+.navbar.scrolled .nav-btn {
+  color: #fff;
+  border-color: #fff;
+}
+
+.navbar.scrolled .nav-btn.active {
+  color: #000;
+}
+
+/* -----------------------------------------------------------
+   Theme Toggle Switch
+----------------------------------------------------------- */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+}
+
+.theme-switch {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  display: inline-block;
+}
+
+.theme-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  border-radius: 30px;
+  background: #ffffff;
+  transition: .3s;
+}
+
+.slider:before {
+  content: '🌞';
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #fff;
+  transition: .35s;
+  font-size: 14px;
+}
+
+input:checked + .slider {
+  background: #111827;
+}
+
+input:checked + .slider:before {
+  content: '🌙';
+  transform: translateX(24px);
+  background: #1f2937;
+  color: #fff;
+}
+
+/* -----------------------------------------------------------
+   Layout Helpers
+----------------------------------------------------------- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 60px;
+}
+
+.mt-nav {
+  margin-top: 110px;
+}
+
+section {
+  margin-bottom: 80px;
+}
+
+/* -----------------------------------------------------------
+   Buttons / Tags
+----------------------------------------------------------- */
+.tag,
+.btn {
+  background: var(--cta);
+  color: #fff;
+  border: 1px solid var(--cta);
+  padding: 8px 16px;
+  font-family: 'Space Mono', monospace;
+  font-size: 14px;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: inline-block;
+  transition: all .25s;
+  border-radius: 0;
+}
+
+.tag:hover,
+.btn:hover {
+  background: transparent;
+  color: var(--cta);
+}
+
+/* -----------------------------------------------------------
+   Cards (Work grid)
+----------------------------------------------------------- */
+.grid {
+  display: grid;
+  gap: 32px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .6s, transform .6s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card .thumb {
+  width: 100%;
+  height: 180px;
+  background: #E5E7EB;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 15px;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.card-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* -----------------------------------------------------------
+   Sidebar / Wrap Layouts
+----------------------------------------------------------- */
+.wrap {
+  display: flex;
+  gap: 60px;
+}
+
+aside.sidebar {
+  position: sticky;
+  top: 110px;
+  width: 320px;
+  min-height: 60vh;
+  border-right: 1px solid var(--border);
+  padding-right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+aside.sidebar .left-text {
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0;
+}
+
+aside.sidebar .likes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+aside.sidebar .likes li {
+  margin: 8px 0;
+}
+
+/* -----------------------------------------------------------
+   Grids
+----------------------------------------------------------- */
+.home-grid .thumb {
+  height: 270px;
+}
+
+.home-grid {
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+}
+
+.work-grid {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* -----------------------------------------------------------
+   Footer
+----------------------------------------------------------- */
+footer {
+  margin: 60px 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 13px;
+}
+
+/* -----------------------------------------------------------
+   Project / Case Study Layout Helpers (Fixed image layout)
+----------------------------------------------------------- */
+
+.project-page section {
+  margin-bottom: 120px;
+}
+
+.project-page img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  padding-top: 5%;
+}
+
+/* Keep figures centered and inside the layout */
+figure {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+figure img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Extra padding between text + visuals */
+.project-page .row,
+.project-page .two-col,
+.project-page .two-pics {
+  gap: 60px;
+  align-items: center;
+}
+
+.project-page .two-col,
+.project-page .two-pics {
+  flex-wrap: wrap;
+}
+
+/* Two side-by-side images */
+.two-pics .img-pair {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.two-pics .img-pair img {
+  flex: 1;
+  min-width: 280px;
+  border-radius: 8px;
+}
+
+/* Inline image + text layout (ACNH / case study style) */
+.inline-pair {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 80px;
+  margin-bottom: 100px;
+}
+
+.inline-pair__media {
+  flex: 0 0 45%;
+  max-width: 45%;
+}
+
+.inline-pair__media img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  object-fit: cover;
+}
+
+.inline-pair__content {
+  flex: 1;
+  min-width: 280px;
+}
+
+.inline-pair__content h2 {
+  margin: 0 0 16px;
+}
+
+.inline-pair__content p {
+  margin: 0 0 20px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* video embed settings*/
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  width: 100%;
+  max-width: 900px;  /* ✨ optional but looks perfect with your layout */
+  margin: 40px auto; /* centers + adds breathing room */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  border: 0;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .project-page section {
+    margin-bottom: 80px;
+  }
+
+  .project-page img {
+    margin-bottom: 24px;
+  }
+
+  .inline-pair {
+    flex-direction: column;
+    text-align: center;
+    gap: 48px;
+  }
+
+  .inline-pair__media {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .inline-pair__content .tags {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Figure & figcaption styling */
+.two-pics figure {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.two-pics figure img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.two-pics figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+/* Figure & figcaption styling */
+.two-pics figure {
+  flex: 1;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.two-pics figure img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.two-pics figcaption {
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Makes the figures sit inline */
+.inline-figures {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: nowrap;
+}
+
+/* Each figure stacks image + caption */
+.inline-figure {
+  flex: 1;
+  text-align: center;
+}
+
+/* Make both images equal width */
+.inline-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  display: block;
+}
+
+/* Caption styling to match screenshot */
+.inline-figure figcaption {
+  margin-top: 12px;
+  font-size: 18px;
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--text);
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 768px) {
+  .inline-figures {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .inline-figure figcaption {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+}
+
+
+
+}
+/* -----------------------------------------------------------
+   Sticky Bottom Scroll Progress + Section Anchors
+----------------------------------------------------------- */
+
+.progress-nav.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  padding: 10px 40px 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+}
+
+/* Progress bar track + fill */
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: var(--cta);
+  transition: width 0.2s ease-out;
+}
+
+/* Anchor nav links */
+.anchor-nav {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+}
+
+.anchor-nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s;
+}
+
+.anchor-nav a:hover {
+  color: var(--cta);
+}
+
+.anchor-nav a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--cta);
+  border-radius: 2px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .progress-nav.bottom {
+    padding: 8px 20px 6px;
+  }
+  .anchor-nav {
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+}
+
+
+/* -----------------------------------------------------------
+   Primary Button — matches theme but distinct from nav-btn
+----------------------------------------------------------- */
+.btn-primary {
+  display: inline-block;
+  padding: 14px 26px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #fff;
+  background: var(--cta);
+  border: 1px solid var(--cta);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 94, 26, 0.2);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--cta);
+  box-shadow: 0 6px 20px rgba(255, 94, 26, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 94, 26, 0.25);
+}
+
+.btn-primary.light {
+  background: #fff;
+  color: var(--cta);
+  border-color: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary.light:hover {
+  background: var(--cta);
+  color: #fff;
+}
+
+/* -----------------------------------------------------------
+   Secondary Button — minimalist outline version
+----------------------------------------------------------- */
+.btn-secondary {
+  display: inline-block;
+  padding: 14px 26px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--cta);
+  color: var(--cta);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 94, 26, 0.15);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 94, 26, 0.1);
+}
+
+/* Dark theme adjustment */
+[data-theme="dark"] .btn-secondary {
+  color: var(--muted);
+  border-color: var(--border);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+  color: var(--cta);
+  border-color: var(--cta);
+  box-shadow: 0 4px 12px rgba(255, 94, 26, 0.25);
+}
+
+.btn-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .btn-group {
+    justify-content: center;
+  }
+}
+
+/* === Perfect side-by-side figure layout (UNBREAKABLE) === */
+
+.paired-images {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  gap: 40px !important;
+  margin: 60px 0 !important;
+  width: 100%;
+}
+
+.paired-item {
+  flex: 1 1 0 !important;
+  text-align: center !important;
+}
+
+.paired-item img {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 8px !important;
+  display: block !important;
+}
+
+.paired-item figcaption {
+  margin-top: 16px !important;
+  font-size: 18px !important;
+  line-height: 1.5 !important;
+  font-style: italic !important;
+  color: var(--text) !important;
+}
+
+/* Mobile override — stacks vertically */
+@media (max-width: 768px) {
+  .paired-images {
+    flex-direction: column !important;
+    gap: 32px !important;
+  }
+
+  .paired-item figcaption {
+    font-size: 16px !important;
+  }
+
+  .navbar .left .logo {
+    display: none;
+}
+
+}
