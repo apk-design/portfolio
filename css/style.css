@@ -223,23 +223,37 @@ section { margin-bottom: 80px; }
 /* -----------------------------------------------------------
    Buttons / Tags
 ----------------------------------------------------------- */
-.tag, .btn {
-  background: var(--cta);
-  color: #fff;
-  border: 1px solid var(--cta);
-  padding: 8px 16px;
-  font-family: 'Space Mono', monospace;
+.tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 18px;
   font-size: 14px;
-  text-transform: uppercase;
+  font-weight: 600;
+  color: #fff;
+
+  background: var(--cta);
+  border: 1px solid var(--cta);
+  border-radius: 8px;
+
   text-decoration: none;
-  display: inline-block;
-  transition: all .25s;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(255, 94, 26, 0.15);
+
+  white-space: nowrap; /* <-- this fixes the line break issue */
 }
 
-.tag:hover, .btn:hover {
+.tag:hover {
   background: transparent;
   color: var(--cta);
+  box-shadow: 0 6px 20px rgba(255, 94, 26, 0.25);
+  transform: translateY(-2px);
 }
+
 
 /* -----------------------------------------------------------
    Cards
@@ -308,16 +322,35 @@ section { margin-bottom: 80px; }
 }
 
 .card-tags .tag {
-  display: inline-block;
-  padding: 6px 14px;                 /* proportionally smaller */
-  font-size: 13px;                   /* scaled down from 15px */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: #fff;
+
   background: var(--cta);
+  color: #fff;
   border: 1px solid var(--cta);
-  border-radius: 6px;                /* slightly smaller than buttons */
+  border-radius: 6px;
+
   text-decoration: none;
-  font-family: 'Space Mono', mo
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+
+  transition: all .25s ease;
+  box-shadow: 0 3px 8px rgba(255, 94, 26, 0.15);
+
+  white-space: nowrap;
+}
+
+.card-tags .tag:hover {
+  background: transparent;
+  color: var(--cta);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 94, 26, 0.25);
+}
 
 
 /* -----------------------------------------------------------
