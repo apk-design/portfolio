@@ -300,6 +300,26 @@ section { margin-bottom: 80px; }
   font-size: 15px;
 }
 
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.card-tags .tag {
+  display: inline-block;
+  padding: 6px 14px;                 /* proportionally smaller */
+  font-size: 13px;                   /* scaled down from 15px */
+  font-weight: 600;
+  color: #fff;
+  background: var(--cta);
+  border: 1px solid var(--cta);
+  border-radius: 6px;                /* slightly smaller than buttons */
+  text-decoration: none;
+  font-family: 'Space Mono', mo
+
+
 /* -----------------------------------------------------------
    Sidebar
 ----------------------------------------------------------- */
