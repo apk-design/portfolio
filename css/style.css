@@ -51,7 +51,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Space Mono', monospace;
   font-weight: 700;
   color: var(--text);
@@ -59,19 +64,32 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 3%;
 }
 
-h1 { font-size: 2.25rem; }
-h2 { font-size: 1.75rem; }
-h3 { font-size: 1.3rem; }
-p, li, a, span {
+h1 {
+  font-size: 2.25rem;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p,
+li,
+a,
+span {
   font-family: 'Space Grotesk', sans-serif;
 }
 
-figcaption{
- font-family: 'Space Mono', monospace;
- text-align: center;
- line-height: 1.7;
- padding-bottom: 5%;
+figcaption {
+  font-family: 'Space Mono', monospace;
+  text-align: center;
+  line-height: 1.7;
+  padding-bottom: 5%;
 }
+
 /* -----------------------------------------------------------
    Navbar
 ----------------------------------------------------------- */
@@ -205,11 +223,11 @@ figcaption{
   font-size: 14px;
 }
 
-input:checked + .slider {
+input:checked+.slider {
   background: #111827;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
   content: '🌙';
   transform: translateX(24px);
   background: #1f2937;
@@ -469,8 +487,10 @@ figure img {
   position: relative;
   padding-bottom: 56.25%;
   width: 100%;
-  max-width: 900px;  /* ✨ optional but looks perfect with your layout */
-  margin: 40px auto; /* centers + adds breathing room */
+  max-width: 900px;
+  /* ✨ optional but looks perfect with your layout */
+  margin: 40px auto;
+  /* centers + adds breathing room */
   height: 0;
   overflow: hidden;
 }
@@ -484,6 +504,7 @@ figure img {
   display: block;
   border: 0;
 }
+
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
@@ -514,6 +535,47 @@ figure img {
   }
 
   /* Figure & figcaption styling */
+  .two-pics figure {
+    flex: 1;
+    min-width: 260px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .two-pics figure img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .two-pics figcaption {
+    font-size: 14px;
+    color: var(--muted);
+    text-align: center;
+    line-height: 1.4;
+  }
+}
+
+/* Mobile: stack inline-figures vertically */
+@media (max-width: 768px) {
+  .inline-figures {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .inline-figure figcaption {
+    margin-top: 10px;
+    font-size: 16px;
+  }
+
+  .navbar .left .logo {
+    display: none;
+    /* Only if you actually want the logo hidden */
+  }
+}
+
+
+/* Figure & figcaption styling */
 .two-pics figure {
   flex: 1;
   min-width: 260px;
@@ -533,6 +595,7 @@ figure img {
   text-align: center;
   line-height: 1.4;
 }
+
 /* Figure & figcaption styling */
 .two-pics figure {
   flex: 1;
@@ -600,8 +663,6 @@ figure img {
 }
 
 
-
-}
 /* -----------------------------------------------------------
    Sticky Bottom Scroll Progress + Section Anchors
 ----------------------------------------------------------- */
@@ -618,7 +679,7 @@ figure img {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  box-shadow: 0 -2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.05);
 }
 
 /* Progress bar track + fill */
@@ -674,6 +735,7 @@ figure img {
   .progress-nav.bottom {
     padding: 8px 20px 6px;
   }
+
   .anchor-nav {
     gap: 12px;
     flex-wrap: wrap;
@@ -823,7 +885,7 @@ figure img {
 
   .navbar .left .logo {
     display: none;
-}
+  }
 
 }
 
@@ -831,18 +893,77 @@ figure img {
 @media (max-width: 768px) {
 
   .wrap {
-    display: block;              /* Stack vertically */
+    display: block;
+    /* Stack vertically */
   }
 
   aside.sidebar {
-    position: static;            /* Remove sticky on mobile */
-    width: 100%;                 /* Full width */
-    border-right: none;          /* Remove desktop divider */
+    position: static;
+    /* Remove sticky on mobile */
+    width: 100%;
+    /* Full width */
+    border-right: none;
+    /* Remove desktop divider */
     padding-right: 0;
-    margin-bottom: 40px;         /* Space before grid */
+    margin-bottom: 40px;
+    /* Space before grid */
   }
 
   .home-grid {
-    grid-template-columns: 1fr;  /* One column on small screens */
+    grid-template-columns: 1fr;
+    /* One column on small screens */
   }
+}
+
+/* === Updated Before/After Slider (Works with global styles) === */
+
+.ba-container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.ba-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ba-overlay {
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  overflow: hidden;
+  transition: width 0.1s ease-out;
+}
+
+.ba-before {
+  width: 100%;
+  display: block;
+}
+
+.ba-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 3px;
+  height: 100%;
+  background: var(--cta);
+  cursor: ew-resize;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ba-handle-line {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--cta);
+  box-shadow: 0 0 6px rgba(0,0,0,0.3);
 }

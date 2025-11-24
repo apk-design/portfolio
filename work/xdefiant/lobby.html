@@ -227,15 +227,37 @@
 
   <figure class="before-after-wrapper">
     <div class="ba-container">
-      <img src="/work/xdefiant/assets/lobby5.png" alt="Lo-fi modular lobby wireframe" class="ba-img ba-before">
-      <img src="/work/xdefiant/assets/lobby6.png" alt="Hi-fi modular lobby redesign" class="ba-img ba-after">
-      <div class="ba-handle">
+      <!-- Base layer: Lo-Fi wireframe -->
+      <img
+        src="/work/xdefiant/assets/lobby5.png"
+        alt="Lo-fi modular lobby wireframe"
+        class="ba-img ba-after"
+      />
+
+      <!-- Top layer: Hi-Fi vision (revealed as you drag) -->
+      <div class="ba-overlay">
+        <img
+          src="/work/xdefiant/assets/lobby6.png"
+          alt="Hi-fi modular lobby redesign"
+          class="ba-img ba-before"
+        />
+      </div>
+
+      <!-- Handle -->
+      <div class="ba-handle" aria-hidden="true">
         <span class="ba-handle-line"></span>
       </div>
     </div>
-    <figcaption>Drag the handle to compare the modular lo-fi lobby proposal with the hi-fi vision.</figcaption>
+
+    <figcaption>
+      Drag the handle to compare the modular lo-fi lobby with the hi-fi vision.
+    </figcaption>
   </figure>
 </section>
+
+
+</main>
+
 
 
 <!--section id="video-demo">
