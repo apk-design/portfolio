@@ -41,95 +41,264 @@
   <main class="container mt-nav project-page">
     <!-- Section 1: Intro -->
     <section>
-      <h1>Animal Crossing: New Horizons</h1>
-      <p class="muted">A cozy UX case study exploring player interaction, creativity, and world-building.</p>
-      <div class="tags">
-        <span class="tag">UX</span>
-        <span class="tag">Game Design</span>
-        <span class="tag">Prototype</span>
+      <h1>Baggu: A Case Study in Retention</h1>
+      <p class="muted"> What would it look like if Baggu had a warmer, more welcoming account hub? 
+    Something that didn’t just store your past orders, but actually let you 
+    <em>live inside your collection</em> a little?</p>
+      <div class="card-tags">
+        <span class="tag">UI/UX</span>
+        <span class="tag">Redesign</span>
+        <span class="tag">Website Design</span>
       </div>
     </section>
+<section id="intro">
+  <p>
+    I love Baggu. I love their prints, their drops, their little ecosystems of 
+    charms and cases. And I especially love their model of being a sustainable brand - not something easy to accomplish in seemingly the time of fast fashion! 
+    As a dedicated brand evangelist, I felt compelled to inject their existing account page with the energy of their 
+    brand—or their cult following—I got curious. 
+  </p>
 
-    <!-- Section 2: Classic layout -->
-    <section class="row">
-      <img src="https://i.imgur.com/uWYuDFu.jpeg" alt="ACNH classic layout" />
-      <div class="text">
-        <h2>Classic Layout</h2>
-        <p>
-          A design study in structured grid layouts, balancing cozy aesthetics with functional UI patterns inspired by life simulation games.
-        </p>
-        <div class="tags">
-          <span class="tag">Layout</span>
-          <span class="tag">Composition</span>
-        </div>
-      </div>
-    </section>
+</section>
 
-    <!-- Section 3: Wide hero image -->
-    <section class="wide">
-      <h2>Wide Visual Study</h2>
-      <img src="https://dummyimage.com/1000x400/ccc/000" alt="Wide composition" />
-      <p>
-        Testing hero image proportions and color balance for storytelling moments within cozy-world interfaces.
-      </p>
-    </section>
+<section id="problem">
+  <h2>What I Noticed</h2>
+  <p>
+    Baggu’s existing account page was pretty bare-bones. It had the essentials—your name, 
+    email, and a long list of order numbers, pretty much the bare minimum. </p>
 
-    <!-- Section 4: Two pics, one text -->
-    <section class="two-pics">
-      <h2>Dual Imagery</h2>
-      <div class="img-pair">
-        <img src="https://dummyimage.com/400x250/ddd/000" alt="Mood 1" />
-        <img src="https://dummyimage.com/400x250/ddd/000" alt="Mood 2" />
-      </div>
-      <p>
-        Exploring visual balance and interaction rhythm between two related visual states — the player’s home and island.
-      </p>
-    </section>
+  <figure>
+    <img src="/work/baggu/assets/orders-original.png" alt="Original Baggu account page" />
+    <figcaption>The original account page leaves a bit to be desired.</figcaption>
+  </figure>
 
-    <!-- Section 5: Two-column layout -->
-    <section class="two-col">
-      <div class="col">
-        <img src="https://dummyimage.com/300x200/ccc/000" alt="Color Study" />
-        <p>
-          Experimenting with oceanic tones, texture accents, and accessibility for color-blind players.
-        </p>
-      </div>
-      <div class="col">
-        <img src="https://dummyimage.com/300x200/ccc/000" alt="UI Mockup" />
-        <p>
-          Iterative prototypes tested with participants focusing on comfort, flow, and creative expression.
-        </p>
-      </div>
-    </section>
-  </main>
+  <p>
+    It wasn’t bad, but it felt like a missed opportunity. Baggu customers aren’t casual. 
+    They collect! They trade! They remember prints by name! I knew there was space to 
+    design something that aligned far better with the average Baggu Baddie. 
+  </p>
+  <p>As someone who loves great ecommerce design, and has the skills to do so, I wanted to showcase Baggu's brand identity while catering to their customers.
+  </p>
+</section>
 
-  <!-- 🔹 Footer -->
-  <footer>
-    © 2025 Amber Kumar
+<section id="inspiration">
+  <h2>Looking at Other Reward Systems</h2>
+  <p>
+    Before I jumped into redesigning, I wanted to see how other brands use loyalty and 
+    account hubs to keep customers engaged. One example that stood out was 
+    <strong>ban.do’s Rewards page</strong>—bright, friendly, and actually fun to land on. </p>
+    <p>They also seem to have extremely similar demographics, and though ban.do sells Baggu on their site, since our concept strives to keep the customer on Baggu's site, it is a valid sample to use in a competitive analysis.
+  </p>
+
+  <figure>
+    <img src="/work/baggu/assets/bando-comparison.png" alt="ban.do rewards comparison" />
+    <figcaption>ban.do’s account and reward experience</figcaption>
+  </figure>
+
+  <p>
+    Though Bando's example is also very minimal, it made me wonder - what if Baggu had something similar? Something that made you feel 
+    welcomed back, not just logged in? 
+  </p>
+</section>
+
+<section id="revamp-intro">
+  <h2>The New Account Home</h2>
+  <p>
+    So I started with developing the account page, emphasizing the user's desires of being able to see everything at a glance. 
+  </p>
+  <p> I chose the placement of my modules carefully, I thought that since "Your Orders" was already present in a reduced form, that should take up the most amount of space. "Favorites" is a close second, as that is a fairly conventional part of ecommerce, but as "Inventory" is a lot more experimental, that has the least amount of screen real-estate.
+  </p>
+
+  <figure>
+    <img src="/work/baggu/assets/accounthome.png" alt="Redesigned Baggu account home" />
+    <figcaption>Eagle-eyed Baggu fiends will notice the use of the iconic Baggu Smiley as a fun call-back. Also the Summer 2025 gingham! :D</figcaption>
+  </figure>
+
+  <p>
+    I introduced Baggu Bucks (I am <i>not</i> a copywriter), a clear reminder of how close you 
+    are to your next discount, and quick access to favorites, past orders, and your 
+    ever-growing inventory. Not only is this a fairly standard method of rewards, it is also something fairly easy to implement in Shopify, the ecommerce platform Baggu appears to be using.
+  </p>
+</section>
+
+<section id="past-orders">
+  <h2>Rethinking Past Orders</h2>
+  <p>
+    I also rebuilt the Past Orders page to match the rest of the redesign. Instead of a 
+    long text list, orders are grouped with product thumbnails and clear status labels.
+  </p>
+
+  <figure>
+    <img src="/work/baggu/assets/orders-revamp.png" alt="Past orders layout revamp" />
+    <figcaption>I reused the components that Baggu already had with their original "account page", but this still was fairly lackluster to me.</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/orders-update.png" alt="Updated past orders with shipping & returns" />
+    <figcaption>Updated Past Orders page, faaaaar more emphasis on the visual elements of the brand, also re-utilizing the same assets / form factor across all uses for better site load. </figcaption>
+  </figure>
+
+  <p>
+    This makes it much faster to scan what the status of specific orders are. I didn't think it would be worth another click to have to track an order, in most cases, it's the whole reason you're on the page to begin with!
+  </p>
+</section>
+
+<section id="favorites">
+  <h2>Favorites — A More Visual Wishlist</h2>
+  <p>
+    Baggu products are 
+    <em>visual</em>. They have gorgeous prints and silhouettes, and you want to see them all together, like a digital sticker book.
+  </p>
+
+  <figure>
+    <img src="/work/baggu/assets/favorites.png" alt="Favorites grid" />
+    <figcaption>Can you tell that I have a certain collection on my mind?</figcaption>
+  </figure>
+
+  <p>
+    I expanded favorites into a full gallery. Big images. Big energy. Lots of prints staring 
+    back at you. It makes browsing your saved items feel like shopping your own curated shop. Also makes it easy to know what you can add to your cart to hit free shipping!
+  </p>
+</section>
+
+<section id="inventory">
+  <h2>Your Baggu Inventory</h2>
+  <p>
+    Here’s where I had the most fun. Baggu fans often collect across categories, and I am certainly not exempt.
+  </p>
+
+  <p>So I built one featuring my own collection, and as I have been a fan for many years, it is quite vast.</p>
+  
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-purses.png" alt="Reusable bags inventory" />
+    <figcaption>Inventory of Purses</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-reusables.png" alt="Purses inventory" />
+    <figcaption>Inventory of Reusables</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-pouches.png" alt="Pouches & Cases inventory" />
+    <figcaption>Inventory of Pouches and Cases</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-keychains.png" alt="Keychains and charms inventory" />
+    <figcaption>Inventory of Keychains and Charms</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-socks.png" alt="Socks inventory" />
+    <figcaption>Inventory of Socks</figcaption>
+  </figure>
+
+  <figure>
+    <img src="/work/baggu/assets/inventory-masks.png" alt="Socks inventory" />
+    <figcaption>Inventory of Masks</figcaption>
+  </figure>
+
+  <p>
+    The idea was to turn your collection into something browsable and fun—almost like 
+    your own little Baggu museum (Bagguseum?). You can filter by category on the left, see everything 
+    neatly organized, and visually track your "sets". I thought that the inventory feature could even be a little sentimental, since Baggu prints are generally limited time releases!
+  </p>
+</section>
+
+<section id="walkthrough">
+  <figure style="max-width: 800px; margin: 0 auto;">
+    <video controls style="width: 100%; border-radius: 8px;">
+      <source src="/work/baggu/assets/walkthrough.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <figcaption style="text-align: center; margin-top: 0.5rem; font-size: 0.9rem;">
+      A walkthrough of the redesigned Baggu account UI, with specific emphasis on the inventory.
+    </figcaption>
+  </figure>
+</section>
+
+
+<section id="takeaways">
+  <h2>What I Learned</h2>
+  <p>
+    This project made me appreciate how much a brand’s personality should extend into the 
+    “utility” parts of a website. Baggu has such a strong aesthetic and such a loyal 
+    community, so it only felt natural to bring more joy and clarity into the account experience. 
+  </p>
+  <p>
+    If I were to keep going, I’d explore deeper reward integration, product recommendations, and even a robust secondhand market baked into the site itself. All of the former is of course, meant to keep the customer on the page and more immersed within Baggu, as the brand.
+  </p>
+<p>Baggu as a brand means a lot to me, and I would like to thank the community on reddit for their support. When I posted the above video, these are some of the responses I received.</p>
+<figure>
+    <img src="/work/baggu/assets/reddit-feedback.png" alt="Reusable bags inventory" />
+    <figcaption>This project was truly a labor of love, and my fellow Baggu enthusiasts have offered me so much inspiration. I hope to be able to pay it forward!</figcaption>
+  </figure>
+  
+</section>
+
+</main>
+
+  <!-- 🔹 Footer --> 
+  <footer> 
+     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
   </footer>
 
-  <!-- ✅ JS: navbar scroll + fade-in animation -->
-  <script src="../../js/script.js"></script>
+  <!-- ✅ JS: navbar scroll + fade-in animation --> 
+  <script src="../../js/script.js"></script> 
 
-  <script>
-    // Add fade-in on scroll for project sections
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
+  <script> 
+    // Add fade-in on scroll for project sections 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const sections = document.querySelectorAll('.project-page section'); 
 
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
+      const observer = new IntersectionObserver( 
+        (entries, obs) => { 
+          entries.forEach(entry => { 
+            if (entry.isIntersecting) { 
+              entry.target.classList.add('visible'); 
+              obs.unobserve(entry.target); 
+            } 
+          }); 
+        }, 
+        { threshold: 0.1 } 
+      ); 
 
-      sections.forEach(section => observer.observe(section));
-    });
-  </script>
-</body>
+      sections.forEach(section => observer.observe(section)); 
+    }); 
+  </script> 
+
+  <script> 
+    document.addEventListener('DOMContentLoaded', () => { 
+      const progressBar = document.querySelector('.progress-bar'); 
+      const sections = document.querySelectorAll('main section[id]'); 
+      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+
+      function updateProgress() { 
+        const scrollTop = window.scrollY; 
+        const docHeight = document.body.scrollHeight - window.innerHeight; 
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
+        progressBar.style.width = `${scrollPercent}%`; 
+
+        let current = ''; 
+        sections.forEach(section => { 
+          const sectionTop = section.offsetTop - 150; 
+          if (scrollTop >= sectionTop) current = section.id; 
+        }); 
+
+        navLinks.forEach(link => { 
+          link.classList.remove('active'); 
+          if (link.getAttribute('href') === `#${current}`) { 
+            link.classList.add('active'); 
+          } 
+        }); 
+      }
+
+      window.addEventListener('scroll', updateProgress); 
+      updateProgress(); 
+    }); 
+  </script> 
+
+</body> 
 </html>
