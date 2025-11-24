@@ -249,6 +249,19 @@ section { margin-bottom: 80px; }
   gap: 32px;
 }
 
+/* Work page grid layout */
+.work-grid {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Desktop: lock to exactly 3 columns */
+@media (min-width: 1024px) {
+  .work-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+
 .card {
   border: 1px solid var(--border);
   background: var(--bg);
