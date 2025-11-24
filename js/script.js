@@ -41,49 +41,55 @@ document.querySelectorAll('.card').forEach(el=>observer.observe(el));
   if (!sliders.length) return; // No sliders on this page — exit safely
 
   sliders.forEach(container => {
-    const overlay = container.querySelector('.ba-overlay');
+    const beforeImg = container.querySelector('.ba-before');
     const handle = container.querySelector('.ba-handle');
 
-    if (!overlay || !handle) return; // Incomplete slider markup — skip
+    if (!beforeImg || !handle) return; // Incomplete slider markup — skip
 
     let dragging = false;
 
-    function setPosition(clientX) {
+    const applyPercent = (percent) => {
+      const clamped = Math.max(0, Math.min(100, percent));
+      beforeImg.style.clipPath = `inset(0 ${100 - clamped}% 0 0)`;
+      handle.style.left = `${clamped}%`;
+    };
+
+    const setPosition = (clientX) => {
       const rect = container.getBoundingClientRect();
-      let x = clientX - rect.left;
+      const x = Math.max(0, Math.min(rect.width, clientX - rect.left));
+      applyPercent((x / rect.width) * 100);
+    };
 
-      // Clamp to container bounds
-      x = Math.max(0, Math.min(rect.width, x));
+    const startDrag = (clientX) => {
+      dragging = true;
+      setPosition(clientX);
+    };
 
-      const percent = (x / rect.width) * 100;
+    const moveDrag = (clientX) => {
+      if (!dragging) return;
+      setPosition(clientX);
+    };
 
-      overlay.style.width = percent + "%";
-      handle.style.left = percent + "%";
-    }
+    const endDrag = () => { dragging = false; };
 
     // ---- Mouse ----
-    handle.addEventListener('mousedown', (e) => {
-      dragging = true;
-      setPosition(e.clientX);
-    });
-
-    window.addEventListener('mouseup', () => { dragging = false; });
-
-    window.addEventListener('mousemove', (e) => {
-      if (dragging) setPosition(e.clientX);
-    });
+    const onMouseDown = (e) => {
+      if (e.button !== 0) return; // only respond to primary button
+      startDrag(e.clientX);
+    };
+    handle.addEventListener('mousedown', onMouseDown);
+    container.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mousemove', (e) => moveDrag(e.clientX));
+    window.addEventListener('mouseup', endDrag);
 
     // ---- Touch ----
-    handle.addEventListener('touchstart', (e) => {
-      dragging = true;
-      setPosition(e.touches[0].clientX);
-    }, { passive: true });
+    const onTouchStart = (e) => startDrag(e.touches[0].clientX);
+    handle.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove', (e) => moveDrag(e.touches[0].clientX), { passive: true });
+    window.addEventListener('touchend', endDrag);
 
-    window.addEventListener('touchend', () => { dragging = false; });
-
-    window.addEventListener('touchmove', (e) => {
-      if (dragging) setPosition(e.touches[0].clientX);
-    }, { passive: true });
-
+    // Default to 50/50 split
+    applyPercent(50);
   });
 })();
