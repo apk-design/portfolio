@@ -85,24 +85,29 @@
     <section id="store-before">
       <h2>What I Started From</h2>
 
-      <p>
-        The existing bundle tile only exposed a “BUNDLE” label and a price. Everything else
-        (what the pack contained, how many currencies it used, what was premium vs. bonus)
-        lived in supporting UI. That worked acceptably in English, but completely broke down
-        once Arabic and Ukrainian strings were added – the layout simply had nowhere for
-        longer words to go.
-      </p>
-
-      <!-- Old bundle tile (static) -->
-      <!-- Asset: /work/xdefiant/assets/store-oldtile.png -->
-      <figure>
-        <img src="/work/xdefiant/assets/store-oldtile.png"
-          alt="Original XDefiant bundle tile showing only a 'BUNDLE' label and price">
-        <figcaption>
-          Original bundle tile — visually strong hero art, but almost no information density,
-          and no plan for longer localized strings.
-        </figcaption>
-      </figure>
+      <div class="inline-pair">
+        <!-- Old bundle tile (static) -->
+        <!-- Asset: /work/xdefiant/assets/store-oldtile.png -->
+        <div class="inline-pair__media">
+          <figure>
+            <img src="/work/xdefiant/assets/store-oldtile.png"
+              alt="Original XDefiant bundle tile showing only a 'BUNDLE' label and price">
+            <figcaption>
+              Original bundle tile — visually strong hero art, but almost no information density,
+              and no plan for longer localized strings.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="inline-pair__content">
+          <p>
+            The existing bundle tile only exposed a “BUNDLE” label and a price. Everything else
+            (what the pack contained, how many currencies it used, what was premium vs. bonus)
+            lived in supporting UI. That worked acceptably in English, but completely broke down
+            once Arabic and Ukrainian strings were added – the layout simply had nowhere for
+            longer words to go.
+          </p>
+        </div>
+      </div>
 
       <!-- Legacy store video snippet -->
       <!-- Uses Vimeo snippet the way your other pages do -->
@@ -203,14 +208,33 @@
       </ul>
 
       <!-- Asset: /work/xdefiant/assets/store-UXtile.png -->
-      <figure>
-        <img src="/work/xdefiant/assets/store-UXtile.png"
-          alt="UX wireframe showing the new bundle tile structure and information hierarchy">
-        <figcaption>
-          UX tile spec — splitting the tile into predictable zones for hero art, bundle name,
-          contents, and price so that localization had room to breathe.
-        </figcaption>
-      </figure>
+      <div class="inline-pair">
+        <div class="inline-pair__media">
+          <figure>
+            <img src="/work/xdefiant/assets/store-UXtile.png"
+              alt="UX wireframe showing the new bundle tile structure and information hierarchy">
+            <figcaption>
+              UX tile spec — splitting the tile into predictable zones for hero art, bundle name,
+              contents, and price so that localization had room to breathe.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="inline-pair__content">
+          <p>
+            Instead of treating each bundle as a mini poster, I reframed the tile as a compact
+            system for communicating value. That meant designing backwards from constraints:
+          </p>
+
+          <ul>
+            <li><strong>Localization first:</strong> Typesetting and grid decisions were driven by
+              the <em>longest</em> expected strings, not just English.</li>
+            <li><strong>Reusable structure:</strong> The same tile template needed to work for
+              single items, bundles, and future promo types.</li>
+            <li><strong>Minimal graph impact:</strong> Any changes had to sit on top of the
+              existing store graph, not restructure it.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- BUNDLE STRUCTURE & TILE DESIGN ----------------------------------------->
@@ -230,14 +254,31 @@
       </ul>
 
       <!-- Asset: /work/xdefiant/assets/store-tile.png -->
-      <figure>
-        <img src="/work/xdefiant/assets/store-tile.png"
-          alt="Annotated UX tile mock showing final bundle structure and typography guidelines">
-        <figcaption>
-          Updated tile anatomy — a shared structure for all bundles, designed to stay stable
-          under different languages and currencies.
-        </figcaption>
-      </figure>
+      <div class="inline-pair">
+        <div class="inline-pair__media">
+          <figure>
+            <img src="/work/xdefiant/assets/store-tile.png"
+              alt="Annotated UX tile mock showing final bundle structure and typography guidelines">
+            <figcaption>
+              Updated tile anatomy — a shared structure for all bundles, designed to stay stable
+              under different languages and currencies.
+            </figcaption>
+          </figure>
+        </div>
+        <div class="inline-pair__content">
+          <p>
+            With the new frame in place, I re-defined how bundle information showed up on the tile:
+          </p>
+
+          <ul>
+            <li><strong>Top band:</strong> Promotional flags like “Limited Time” or “Sale”, designed
+              to hold localized labels without overlapping art.</li>
+            <li><strong>Middle:</strong> Hero art focused on the key characters or weapons.</li>
+            <li><strong>Bottom white panel:</strong> Name, contents, and price, laid out on a flexible
+              grid that could adapt to different currencies and line lengths.</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- STATES: INACTIVE VS ACTIVE -------------------------------------------->
