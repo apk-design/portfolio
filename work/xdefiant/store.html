@@ -2,215 +2,406 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Experian: Financial Calculators | Amber Kumar</title>
-    <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XDefiant: Store UX | Amber Kumar</title>
+  <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
 
-    <!-- ✅ Main site styles -->
-    <link rel="stylesheet" href="../../css/style.css" />
+  <!-- ✅ Main site styles -->
+  <link rel="stylesheet" href="../../css/style.css" />
 
-    <style>
-        /* Optional: small boost for fade-in smoothness on project pages */
-        .project-page section {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
+  <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
 
-        .project-page section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 
 <body>
-    <!-- 🔹 Navbar (matches main site) -->
-    <header class="navbar">
-        <div class="left">
-            <a href="../../index.html">
-                <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
-            </a>
+  <!-- 🔹 Navbar (matches main site) -->
+  <header class="navbar">
+    <div class="left">
+      <a href="../../index.html">
+        <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+      </a>
+    </div>
+    <nav class="center">
+      <a class="nav-btn" href="../../index.html">Home</a>
+      <a class="nav-btn" href="../../resume.html">Resume</a>
+      <a class="nav-btn" href="../../work.html">Work</a>
+    </nav>
+  </header>
+
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav project-page">
+
+    <!-- Section 1: Intro -->
+    <section id="intro">
+      <h1>XDefiant: Store UX</h1>
+      <p class="muted">
+        I redesigned the in-game Store to support clearer navigation, stronger merchandising,
+        and a more efficient purchasing flow. The goal was to give players a clean, modern
+        interface with intuitive browsing, while simultaneously preparing the UI for
+        full localization and accessibility compliance across multiple languages.
+      </p>
+      <div class="card-tags">
+        <span class="tag">UX</span>
+        <span class="tag">Gaming</span>
+        <span class="tag">Ecommerce</span>
+        <span class="tag">Accessibility</span>
+      </div>
+    </section>
+
+    <!-- Section 2: Classic layout -->
+
+    <!-- PROJECT INTRO ---------------------------------------------------------->
+    <section id="store-brief">
+      <h1>XDefiant — Store & Bundle Tile Localization Redesign</h1>
+
+      <p class="muted">
+        I redesigned the XDefiant store, bundle structure, and product tiles after we started
+        seeing localization issues in Arabic and Ukrainian. The original layout had been built
+        quickly to support launch, and it struggled once strings became longer and bundles
+        more complex. This work focused on making the store more legible, localization-safe,
+        and scalable without adding heavy new logic to an already development-dense graph.
+      </p>
+
+      <div class="card-tags">
+        <span class="tag">UI/UX</span>
+        <span class="tag">Game Store</span>
+        <span class="tag">Localization</span>
+      </div>
+    </section>
+
+    <!-- WHAT WE STARTED WITH --------------------------------------------------->
+    <section id="store-before">
+      <h2>What I Started From</h2>
+
+      <p>
+        The existing bundle tile only exposed a “BUNDLE” label and a price. Everything else
+        (what the pack contained, how many currencies it used, what was premium vs. bonus)
+        lived in supporting UI. That worked acceptably in English, but completely broke down
+        once Arabic and Ukrainian strings were added – the layout simply had nowhere for
+        longer words to go.
+      </p>
+
+      <!-- Old bundle tile (static) -->
+      <!-- Asset: /work/xdefiant/assets/store-oldtile.png -->
+      <figure>
+        <img src="/work/xdefiant/assets/store-oldtile.png"
+          alt="Original XDefiant bundle tile showing only a 'BUNDLE' label and price">
+        <figcaption>
+          Original bundle tile — visually strong hero art, but almost no information density,
+          and no plan for longer localized strings.
+        </figcaption>
+      </figure>
+
+      <!-- Legacy store video snippet -->
+      <!-- Uses Vimeo snippet the way your other pages do -->
+      <figure class="video-embed">
+        <iframe title="Legacy XDefiant store interaction"
+          src="https://player.vimeo.com/video/1065311568?h=79e5244b16#t=42s&end=66s" width="100%" height="420"
+          frameborder="0" referrerpolicy="strict-origin-when-cross-origin"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" allowfullscreen>
+        </iframe>
+        <figcaption>
+          Legacy store flow — tiles visually carried the page, but the information layer
+          stayed shallow and brittle once localized.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- TEAM & ROLE ------------------------------------------------------------>
+    <section id="store-team-role">
+      <h2>The Team &amp; My Role</h2>
+
+      <p>
+        I worked as the UX designer on this effort, partnering closely with:
+      </p>
+
+      <ul>
+        <li>The MTX (monetization) team, who owned business goals and pricing strategy.</li>
+        <li>One UI Tech Artist, who helped me understand what the existing store graph
+          could realistically support.</li>
+      </ul>
+
+      <p>
+        I owned the end-to-end UX for the store refresh: auditing the current layout,
+        mapping localization failures, redesigning the bundle structure and tile, and
+        documenting final specs and states for implementation.
+      </p>
+    </section>
+
+    <!-- PLAYERS & NEEDS -------------------------------------------------------->
+    <section id="store-players-needs">
+      <h2>Players &amp; Their Needs</h2>
+
+      <p>
+        Store work looks like “just art” from the outside, but the players here were
+        pretty clear:
+      </p>
+
+      <ul>
+        <li><strong>Clarity:</strong> What exactly am I buying? Is this a bundle, a skin, a currency pack?</li>
+        <li><strong>Trust:</strong> Does the tile reflect the same offer in every language and platform?</li>
+        <li><strong>Speed:</strong> Can I scan tiles quickly with a controller and still understand value?</li>
+        <li><strong>Stability:</strong> Does the layout feel consistent regardless of language length?</li>
+      </ul>
+    </section>
+
+    <!-- PROBLEM: LOCALIZATION & STRUCTURE -------------------------------------->
+    <section id="store-problem">
+      <h2>The Problem Behind the Pretty Tile</h2>
+
+      <p>
+        Once Arabic and Ukrainian were added, the store started to show its seams:
+      </p>
+
+      <ul>
+        <li>Longer strings pushed outside the tile frame or collapsed into illegible wrapping.</li>
+        <li>Key information (what the bundle contained, which currencies were used) had to be
+          dropped or abbreviated per language.</li>
+        <li>The store graph was already development-heavy, so we couldn’t “just add more UI”
+          without increasing complexity and risk.</li>
+      </ul>
+
+      <!-- Asset: /work/xdefiant/assets/store-localization.png -->
+      <figure>
+        <img src="/work/xdefiant/assets/store-localization.png"
+          alt="Side-by-side comparison of inactive and active tiles across multiple localized languages">
+        <figcaption>
+          Localization stress test — Arabic and Ukrainian strings quickly exposed how fragile
+          the original tile layout was.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- APPROACH: REFRAMING THE TILE AS A SYSTEM ------------------------------->
+    <section id="store-approach">
+      <h2>Approach: Treating the Tile as a System, Not a Poster</h2>
+
+      <p>
+        Instead of treating each bundle as a mini poster, I reframed the tile as a compact
+        system for communicating value. That meant designing backwards from constraints:
+      </p>
+
+      <ul>
+        <li><strong>Localization first:</strong> Typesetting and grid decisions were driven by
+          the <em>longest</em> expected strings, not just English.</li>
+        <li><strong>Reusable structure:</strong> The same tile template needed to work for
+          single items, bundles, and future promo types.</li>
+        <li><strong>Minimal graph impact:</strong> Any changes had to sit on top of the
+          existing store graph, not restructure it.</li>
+      </ul>
+
+      <!-- Asset: /work/xdefiant/assets/store-UXtile.png -->
+      <figure>
+        <img src="/work/xdefiant/assets/store-UXtile.png"
+          alt="UX wireframe showing the new bundle tile structure and information hierarchy">
+        <figcaption>
+          UX tile spec — splitting the tile into predictable zones for hero art, bundle name,
+          contents, and price so that localization had room to breathe.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- BUNDLE STRUCTURE & TILE DESIGN ----------------------------------------->
+    <section id="store-bundle-structure">
+      <h2>Redesigning the Bundle Structure &amp; Product Tile</h2>
+
+      <p>
+        With the new frame in place, I re-defined how bundle information showed up on the tile:
+      </p>
+
+      <ul>
+        <li><strong>Top band:</strong> Promotional flags like “Limited Time” or “Sale”, designed
+          to hold localized labels without overlapping art.</li>
+        <li><strong>Middle:</strong> Hero art focused on the key characters or weapons.</li>
+        <li><strong>Bottom white panel:</strong> Name, contents, and price, laid out on a flexible
+          grid that could adapt to different currencies and line lengths.</li>
+      </ul>
+
+      <!-- Asset: /work/xdefiant/assets/store-tile.png -->
+      <figure>
+        <img src="/work/xdefiant/assets/store-tile.png"
+          alt="Annotated UX tile mock showing final bundle structure and typography guidelines">
+        <figcaption>
+          Updated tile anatomy — a shared structure for all bundles, designed to stay stable
+          under different languages and currencies.
+        </figcaption>
+      </figure>
+    </section>
+
+    <!-- STATES: INACTIVE VS ACTIVE -------------------------------------------->
+    <section id="store-states">
+      <h2>States: Inactive vs. Active Selection</h2>
+
+      <p>
+        Because the store needed to be fully navigable on controller, I treated the inactive
+        and active states as part of the information hierarchy, not just a hover effect.
+        The goal was that players could feel a clear “step up” in focus without losing
+        legibility.
+      </p>
+
+      <!-- Side-by-side inactive vs active tiles -->
+      <!-- Assets: /work/xdefiant/assets/store-inactivetile.png, /work/xdefiant/assets/store-activetile.png -->
+      <div class="paired-images">
+        <figure class="paired-item">
+          <img src="/work/xdefiant/assets/store-inactivetile.png" alt="Inactive bundle tile state">
+          <figcaption>
+            Inactive state — slightly desaturated art and a neutral panel so tiles can sit
+            comfortably side by side.
+          </figcaption>
+        </figure>
+
+        <figure class="paired-item">
+          <img src="/work/xdefiant/assets/store-activetile.png" alt="Active bundle tile state with stronger focus">
+          <figcaption>
+            Active state — brighter hero art and bolder type for the name and price, tuned
+            for controller focus.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ITERATION & FEEDBACK --------------------------------------------------->
+    <section id="store-iteration">
+      <h2>Iteration with MTX &amp; Tech Art</h2>
+
+      <p>
+        I iterated on the tile and bundle structure with the MTX team and our UI Tech Artist:
+      </p>
+
+      <ul>
+        <li>MTX pushed for clearer value communication: it needed to be obvious when a bundle
+          contained multiple items vs. a single premium skin.</li>
+        <li>The Tech Artist surfaced where the graph was most fragile, so I could avoid
+          solutions that needed new nodes or bespoke logic.</li>
+        <li>Localization reviews highlighted where Arabic and Ukrainian still needed more
+          breathing room, so I widened the bottom text panel and re-balanced type sizes.</li>
+      </ul>
+    </section>
+
+    <!-- CONSTRAINTS ------------------------------------------------------------>
+    <section id="store-constraints">
+      <h2>Constraints I Worked Around</h2>
+
+      <ul>
+        <li><strong>Heavily loaded store graph:</strong> The store was already one of the more
+          complex graphs in the game. I had to treat every new UI element as a cost.</li>
+        <li><strong>Limited time to iterate:</strong> This work happened alongside other
+          live-service priorities, so I leaned on lightweight prototypes and static mocks
+          instead of full interactive flows.</li>
+        <li><strong>No major IA changes:</strong> The navigation model for the store stayed
+          the same; all improvements had to come from tile structure and presentation.</li>
+      </ul>
+      <div class="inline-pair">
+        <div class="inline-pair__media">
+          <figure>
+            <video controls playsinline style="width:100%; max-width:420px;">
+              <source src="/work/xdefiant/assets/store-horizontal.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              Horizontal layout stress test — proved the bundle tile could stretch without
+              breaking the graph or forcing new IA.
+            </figcaption>
+          </figure>
         </div>
-        <nav class="center">
-            <a class="nav-btn" href="../../index.html">Home</a>
-            <a class="nav-btn" href="../../resume.html">Resume</a>
-            <a class="nav-btn" href="../../work.html">Work</a>
-        </nav>
-    </header>
+        <div class="inline-pair__content">
+          <figure>
+            <video controls playsinline style="width:100%; max-width:420px;">
+              <source src="/work/xdefiant/assets/store-vertical.mp4" type="video/mp4">
+            </video>
+            <figcaption>
+              Vertical stack prototype — showed how the same template adapted to controller
+              focus states without extra flyouts.
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+      <figure class="video-embed">
+        <video controls playsinline width="100%">
+          <source src="/work/xdefiant/assets/store-bothaxis.mp4" type="video/mp4">
+        </video>
+        <figcaption>
+          Combined axis pass — final verification that horizontal and vertical variations
+          stayed stable under localization constraints.
+        </figcaption>
+      </figure>
+    </section>
 
-    <!-- 🔹 Main Project Content -->
-    <main class="container mt-nav project-page">
+    <!-- IMPACT ----------------------------------------------------------------->
+    <section id="store-impact">
+      <h2>What This Work Set Up</h2>
 
-        <!-- Section 1: Intro -->
-        <section id="intro">
-            <h1>Designing an On-Site Job Application & Safety Assessment Platform</h1>
-            <p class="muted">
-                This project was created for a venture capital firm's portfolio companies with high-volume
-                frontline roles. The goal was to build an on-site job application system designed for walk-in
-                candidates. The platform streamlined the application process and embedded a mandatory
-                safety-oriented quiz to help identify candidates with strong situational awareness and
-                responsibility.
-            </p>
-            <div class="card-tags">
-                <span class="tag">UI/UX</span>
-                <span class="tag">Web Design</span>
-                <span class="tag">On Site Job Applications</span>
-            </div>
-        </section>
+      <p>
+        The redesigned store and tile system shipped internally before XDefiant was sunset
+        in Summer 2025. Because the team was let go shortly after the release of Season 3,
+        we weren’t able to run the long-term experiments we had planned or collect detailed
+        metrics.
+      </p>
 
-        <!-- Section 2: Classic layout -->
-      
-        <section id="store-overview">
-  <h1>Store UX Redesign</h1>
-  <p>
-    I redesigned the in-game Store to support clearer navigation, stronger merchandising,
-    and a more efficient purchasing flow. The goal was to give players a clean, modern 
-    interface with intuitive browsing, while simultaneously preparing the UI for 
-    full localization and accessibility compliance across multiple languages.
-  </p>
+      <p>
+        That said, the work left the team with:
+      </p>
 
-  <figure>
-    <img src="/mnt/data/localization.png" alt="Store UX Wireframes and Localization Notes">
-    <figcaption>
-      Early exploration wireframes and the first pass of localization-accessibility notes 
-      for the Store redesign.
-    </figcaption>
-  </figure>
-</section>
+      <ul>
+        <li>A <strong>localization-ready tile template</strong> that held up under Arabic
+          and Ukrainian without bespoke exceptions.</li>
+        <li>A <strong>clear UX spec</strong> for bundle structure and tile states that could
+          be reused across future promos and offers.</li>
+        <li>A shared understanding across MTX and Tech Art of how to evolve the store without
+          overloading the underlying graph.</li>
+      </ul>
+    </section>
 
-<section id="goals">
-  <h2>Project Goals</h2>
-  <ul>
-    <li>Strengthen Store clarity, hierarchy, and visual merchandising.</li>
-    <li>Support multiple monetization categories (bundles, featured, rotating items).</li>
-    <li>Prepare the UI for localization in up to 12+ languages.</li>
-    <li>Establish a predictable and scalable card system for item previews.</li>
-    <li>Ensure accessibility compliance (contrast, scale, label hierarchy).</li>
-  </ul>
-</section>
+    <!-- REFLECTION ------------------------------------------------------------->
+    <section id="store-reflection">
+      <h2>What I Would Have Done Next</h2>
 
-<section id="problems">
-  <h2>Problems Identified</h2>
-  <ul>
-    <li>Category structure did not scale with future content.</li>
-    <li>Item cards varied visually, creating inconsistent browsing.</li>
-    <li>Text did not reflow properly in long-language translations.</li>
-    <li>Limited room for accessibility-safe components (AT labels, contrast ratios, etc).</li>
-    <li>Purchasing flow required too many steps when previewing items.</li>
-  </ul>
-</section>
+      <p>
+        If the project had continued past Season 3, I would have:
+      </p>
 
-<section id="wireframes">
-  <h2>Wireframe Exploration</h2>
-  <p>
-    I created a complete set of wireframes that explored various layouts for item 
-    cards, featured banners, modular grids, and flow transitions between 
-    browsing → preview → purchase confirmation. Each layout was evaluated against:
-  </p>
+      <ul>
+        <li>
+          <strong>Run more player testing around value perception.</strong>
+          We started from localization pain, but I would have loved to run A/B tests
+          on different ways of surfacing “what’s in the bundle” and how that influenced
+          purchase confidence.
+        </li>
+        <li>
+          <strong>Pushed the system into more edge cases.</strong>
+          Things like free rewards, cross-promotion tiles, or bonus currency grants
+          would have been great stress tests for the template.
+        </li>
+        <li>
+          <strong>Explored a more modular store layout.</strong>
+          The next step would have been to apply the same system thinking to
+          carousels and event panels, so the whole store felt as considered as the tile.
+        </li>
+      </ul>
 
-  <ul>
-    <li>Localization safety (text expansion, line wrapping, button width)</li>
-    <li>Image cropping stability</li>
-    <li>Readability across multiple screen sizes</li>
-    <li>Clear purchase affordances (currency, rarity, quantity)</li>
-  </ul>
-
-  <figure>
-    <img src="/mnt/data/localization.png" alt="Store Wireframe Layouts and Iterations">
-    <figcaption>
-      Wireframe iterations demonstrating modular card layouts, preview flows, and 
-      text-expansion testing for localization.
-    </figcaption>
-  </figure>
-</section>
-
-<section id="localization-accessibility">
-  <h2>Localization & Accessibility Considerations</h2>
-  <p>
-    I produced a detailed localization callout list to help ensure the new Store design 
-    would remain stable across all supported languages. This included:
-  </p>
-
-  <h3>Localization Requirements</h3>
-  <ul>
-    <li>Item names must support 30–45% text expansion.</li>
-    <li>Price tags must support right-to-left (RTL) formatting.</li>
-    <li>Button labels must allow dynamic resizing + multiline behavior.</li>
-    <li>Promo banners must maintain aspect ratios regardless of text length.</li>
-  </ul>
-
-  <h3>Accessibility Requirements</h3>
-  <ul>
-    <li>Minimum 4.5:1 contrast ratio for all text-based UI.</li>
-    <li>Minimum 44px touch targets for all action buttons.</li>
-    <li>ARIA labels defined for item cards, currency indicators, and purchase buttons.</li>
-    <li>Reduced-motion compatibility for animated banners.</li>
-  </ul>
-</section>
-
-<section id="final-ux">
-  <h2>Final Store UX Structure</h2>
-  <p>
-    The final structure allocates clear hierarchical divisions while remaining flexible 
-    for future content updates. This design ensured that new bundles, skins, or promos 
-    could be added without needing a redesign.
-  </p>
-
-  <ul>
-    <li><strong>Top Merchandising Row:</strong> Featured bundles or limited-time offers.</li>
-    <li><strong>Modular Item Grid:</strong> Supports dynamically switching between 2–5 columns.</li>
-    <li><strong>Robust Preview Pane:</strong> Shows item skins, animations, variants, and flavor text.</li>
-    <li><strong>Streamlined Purchase Flow:</strong> 2-click checkout with pre-confirmation checks.</li>
-  </ul>
-</section>
-
-<section id="implementation">
-  <h2>Implementation Notes</h2>
-  <p>
-    After wireframes were approved, I worked directly with UI artists and engineering to finalize:
-  </p>
-  <ul>
-    <li>Safe zone rules for text and images</li>
-    <li>Iconography guidelines</li>
-    <li>Button behavior (hover, focus, disabled states)</li>
-    <li>Localization tokens for dynamic data</li>
-  </ul>
-</section>
-
-<section id="video-demo">
-  <h2>Video Demonstration (Vimeo)</h2>
-  <p>
-    This clip demonstrates the full Store browsing flow, beginning at the Store landing 
-    screen and ending at the purchase confirmation window. The embedded video starts and 
-    ends at the specific timestamps where the Store UX is shown.
-  </p>
-
-  <figure>
-    <!-- Replace the XXXXXX with your video ID -->
-    <!-- Replace #t=START,END with your timestamps -->
-    <iframe
-      src="https://player.vimeo.com/video/XXXXXXXXX#t=30,85"
-      width="100%"
-      height="480"
-      frameborder="0"
-      allow="autoplay; fullscreen; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-
-    <figcaption>
-      Store browsing flow — segment from 00:30s to 01:25s showing navigation, preview, 
-      and localization-safe UI behavior.
-    </figcaption>
-  </figure>
-</section>
+      <p>
+        Even though XDefiant was sunset, this project reinforced a pattern I keep coming back to:
+        treat every “single screen” as a system. When the underlying logic is clear and
+        localization is part of the design from day one, the UI stays stable even as the
+        game and business evolve around it.
+      </p>
+    </section>
 
 
+  </main>
 
-    </main>
-
-    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
   <div class="progress-nav bottom"> 
     <div class="progress-track"> 
       <div class="progress-bar"></div> 
@@ -225,65 +416,65 @@
     </nav> 
   </div> -->
 
-    <!-- 🔹 Footer -->
-    <footer>
-        Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
-    </footer>
+  <!-- 🔹 Footer -->
+  <footer>
+    Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+  </footer>
 
-    <!-- ✅ JS: navbar scroll + fade-in animation -->
-    <script src="../../js/script.js"></script>
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
 
-    <script>
-        // Add fade-in on scroll for project sections 
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.project-page section');
+  <script>
+    // Add fade-in on scroll for project sections 
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
 
-            const observer = new IntersectionObserver(
-                (entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            sections.forEach(section => observer.observe(section));
-        }); 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const progressBar = document.querySelector('.progress-bar');
-            const sections = document.querySelectorAll('main section[id]');
-            const navLinks = document.querySelectorAll('.anchor-nav a');
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.body.scrollHeight - window.innerHeight;
-                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-                progressBar.style.width = `${scrollPercent}%`;
-
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (scrollTop >= sectionTop) current = section.id;
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
             }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-            window.addEventListener('scroll', updateProgress);
-            updateProgress();
-        }); 
-    </script>
+      sections.forEach(section => observer.observe(section));
+    }); 
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+        progressBar.style.width = `${scrollPercent}%`;
+
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (scrollTop >= sectionTop) current = section.id;
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
+    }); 
+  </script>
 
 </body>
 
