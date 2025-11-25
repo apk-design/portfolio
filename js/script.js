@@ -1,19 +1,56 @@
 
 // Theme toggle
-const themeCheckbox = document.getElementById('theme-checkbox');
-if (themeCheckbox){
+const initThemeToggle = () => {
+  const ensureToggle = () => {
+    let checkbox = document.getElementById('theme-checkbox');
+    if (checkbox) return checkbox;
+
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return null;
+
+    let toggleWrapper = navbar.querySelector('.theme-toggle');
+    if (!toggleWrapper) {
+      toggleWrapper = document.createElement('div');
+      toggleWrapper.className = 'right theme-toggle';
+      toggleWrapper.innerHTML = `
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-checkbox">
+          <span class="slider"></span>
+        </label>
+      `;
+      navbar.appendChild(toggleWrapper);
+    }
+    return toggleWrapper.querySelector('#theme-checkbox');
+  };
+
+  const checkbox = ensureToggle();
+  if (!checkbox) return;
+
   const applyTheme = () => {
-    if(themeCheckbox.checked){
-      document.body.setAttribute('data-theme','dark');
-      localStorage.setItem('theme','dark');
+    if (checkbox.checked) {
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
     } else {
       document.body.removeAttribute('data-theme');
       localStorage.removeItem('theme');
     }
   };
-  themeCheckbox.addEventListener('change', applyTheme);
-  if(localStorage.getItem('theme')==='dark'){ themeCheckbox.checked = true; document.body.setAttribute('data-theme','dark'); }
-}
+
+  if (!checkbox.dataset.bound) {
+    checkbox.addEventListener('change', applyTheme);
+    checkbox.dataset.bound = 'true';
+  }
+
+  if (localStorage.getItem('theme') === 'dark') {
+    checkbox.checked = true;
+    document.body.setAttribute('data-theme', 'dark');
+  } else {
+    checkbox.checked = false;
+    document.body.removeAttribute('data-theme');
+  }
+};
+
+initThemeToggle();
 
 // Navbar show on scroll-up + transparent -> solid on scroll
 let lastScroll = 0;
