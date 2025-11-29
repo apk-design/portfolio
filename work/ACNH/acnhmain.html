@@ -1,27 +1,29 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <title>Animal Crossing: New Horizons | Amber Kumar</title> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Animal Crossing: New Horizons | Amber Kumar</title>
   <link rel="icon" type="image/png" href="assets/amber-logo.png">
 
-  <!-- ✅ Main site styles --> 
-  <link rel="stylesheet" href="../../css/style.css" /> 
+  <!-- ✅ Main site styles -->
+  <link rel="stylesheet" href="../../css/style.css" />
 
-  <style> 
-    /* Optional: small boost for fade-in smoothness on project pages */ 
-    .project-page section { 
-      opacity: 0; 
-      transform: translateY(30px); 
-      transition: opacity 0.8s ease, transform 0.8s ease; 
-    } 
-    .project-page section.visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-    } 
-  </style> 
-</head> 
+  <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
 
 <body>
   <!-- 🔹 Navbar (matches main site) -->
@@ -37,500 +39,492 @@
       <a class="nav-btn" href="../../work.html">Work</a>
     </nav>
   </header>
-<!-- 🔹 Main Project Content -->
-<main class="container mt-nav project-page">
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav project-page">
 
-  <!-- Section 1: Intro -->
-  <section id="intro">
-    <h1>15 Days to Make: <br>Art Checklist for ACNH</h1>
+    <!-- Section 1: Intro -->
+    <section id="intro">
+      <h1>15 Days to Make: <br>Art Checklist for ACNH</h1>
 
-    <p class="muted">
-      A UX case study exploring how I created my art checklist.
-      If you want to see it in action,
-      <a href="/work/ACNH/ACNH-artchecklist.html" target="_blank"
-         class="underline hover:text-white">click here!</a>
-    </p>
-
-    <div class="card-tags">
-      <span class="tag">Gaming</span>
-      <span class="tag">Prototype</span>
-      <span class="tag">Front-End Dev</span>
-    </div>
-  </section>
-
-  <!-- Section 2: Classic layout -->
-  <section class="row">
-    <figure>
-      <img src="/work/ACNH/acnh-assets/nooklings.png"
-           alt="Game screenshot of two shop characters smiling at the player"
-           style="width:100%">
-      <figcaption><i>This is the last thing I saw before losing 1200+ hours of my life.</i></figcaption>
-    </figure>
-
-    <div class="text">
-      <p>
-        I think it tends to be easier said than done when it comes to developing something from scratch.
-        We all have these sorts of “blue sky” ideas as designers, but when it comes to feasibility, it’s
-        easy to pass the buck to engineers or tech dev.
+      <p class="muted">
+        A UX case study exploring how I created my art checklist.
+        If you want to see it in action,
+        <a href="/work/ACNH/ACNH-artchecklist.html" target="_blank" class="underline hover:text-white">click here!</a>
       </p>
-      <p>
-        This challenge is meant to help me get better at bridging the gap. I’ve done 24-hour design
-        challenges before, but they’ve stayed within the safe borders of Figma and Adobe XD (throwback!).
-        This time, I wanted to make a very basic museum checklist with cute, Animal Crossing-inspired UI
-        and design and develop it myself.
-      </p>
-      <p>
-        Are you thinking, “Gee, that seems kinda random”? Yeah. You’re correct. This is a situation where
-        I’m <b>not</b> doing any demographic research, which goes against my usual flow.
-      </p>
-    </div>
-  </section>
 
-  <!-- Section 3: Wide hero image / Background -->
-  <section id="background" class="wide">
-    <h2>So... Why am I not conducting any UX research?</h2>
-
-    <figure>
-      <img src="/work/ACNH/acnh-assets/charlie.png"
-           alt="Person gesturing at a wall of papers connected by red string"
-           style="width:100%">
-      <figcaption><i>A picture of me in action, conducting UX demo research (2025).</i></figcaption>
-    </figure>
-
-    <p>
-      In this case, I am the end user and I’m developing a project for my own selfish, museum-completionist
-      desires.
-    </p>
-
-    <h3>Seems niche?</h3>
-    <p>
-      Yeah, you’re right again! This actually stems from a very odd edge case that drove me absolutely
-      wild. I do a daily walk as an excuse to play as many video games as I can in the time it takes
-      to knock out five miles on the treadmill.
-    </p>
-
-    <p>
-      The current method of finding peace is to power-walk while playing Animal Crossing: New Horizons. It is a great game, but I'm already fearing going too into depth, as this already reads as one of those recipe pages that tells the author’s life story before telling you how to make zucchini muffins or some other thing you won’t end up eating. 
-    </p>
-
-    <p>
-      If you have played ACNH and don’t require background, please skip to
-      <a href="#plan" class="underline hover:text-white">HERE!</a>
-    </p>
-
-    <figure>
-      <img src="/work/ACNH/acnh-assets/critterpedia.png"
-           alt="completed critterpedia"
-           style="width:100%">
-      <figcaption><i>From Reddit: _maddieee3 completed their critterpedia - I hope to achieve the same one day.</i></figcaption>
-    </figure>
-
-    <p>
-      If you’ve never played ACNH, the gist is that you move to a deserted island and slowly turn it into
-      a vacation paradise. The big infrastructure pieces you place are a general store, tailor’s shop, and
-      a museum. To fill out that museum, you need every bug, fish, sea creature, fossil, and art piece in
-      the game. To keep track of the critters, you get the Critterpedia.
-    </p>
-
-    <section class="two-pics">
-      <div class="img-pair">
-        <img src="/work/ACNH/acnh-assets/arapaima.png" alt="Aquarium exhibit with a large fish">
-        <img src="https://dodo.ac/np/images/1/1a/NH_Museum_Fossil_Exhibit.jpg"
-             alt="Fossil exhibit in a game museum">
+      <div class="card-tags">
+        <span class="tag">Gaming</span>
+        <span class="tag">UI/UX</span>
+        <span class="tag">Front-End Dev</span>
       </div>
-
-      <p>
-        Naturally, filling it out is a massive grind, but the Critterpedia makes it manageable. It’s an
-        app on the player’s in-game phone that lets you track every bug, fish, and sea creature almost
-        effortlessly.
-      </p>
-
-      <p>
-        Fossils are the exception: they’re always genuine, you find four on your island daily, and you rely
-        on Blathers, the museum curator, to identify and accept them in a single flow.
-      </p>
-
-      <p><i>
-        The same mental load that exists in the process of growing the art collection does not exist within
-        fossil accumulation.
-      </i></p>
     </section>
 
-    <!-- Redd / warning images -->
-    <section class="paired-images">
-      <figure class="paired-item">
-        <img
-          src="/work/ACNH/acnh-assets/NH_Redd_Announcement.png"
-          alt="Announcement screen warning about a suspicious visitor">
-        <figcaption>
-          <em>Isabelle warns us whenever the suspicious character is visiting.</em>
-        </figcaption>
-      </figure>
-
-      <figure class="paired-item">
-        <img
-          src="/work/ACNH/acnh-assets/Animal-Crossing-New-Horizons-Redds-Second-Visit.png"
-          alt="Fox merchant talking to the player on a sunny island path">
-        <figcaption>
-          <em>The suspicious character himself, “Cousin” Redd. Probably also a nightmare at Thanksgiving.</em>
-        </figcaption>
-      </figure>
-    </section>
-
-    <section>
-      <p>
-        Of course, something notable is missing: there is literally no place where the player can check
-        their progress on the art collection, unless they sprint through the museum and manually
-        take stock.
-      </p>
-<figure>
-      <img src="/work/ACNH/acnh-assets/sunfish.png"
-           alt="Game screenshot of a character looking at a large fish in a museum tank"
-           style="width:100%">
-      <figcaption><i>The player caught an Ocean Sunfish, and is hilariously obscured by the sheer size of the fish. They will probably have this on their dating profile.</i></figcaption>
-    </figure>
-
-      <p>
-        For bugs, fish, and sea creatures, the first time you catch something that can be donated, the text
-        modal celebrates with a “Yes!” and marks it off. When you assess a new fossil, Blathers notes it.
-      </p>
-
-      <p>
-        No such thing exists for art — and to make it worse, art is actually much harder to fill out:
-      </p>
-
-      <ul>
-        <li>
-          You have to wait around two weeks between appearances for Redd, a sly dealer who sells you art.
-          His tugboat appears on the north beach, which early players can’t even reach without tools like
-          the vaulting pole and ladder. Later in the game, you can visit him daily on Harv’s island if
-          you’re willing to shell out 99,000 bells.
-        </li>
-        <li>
-          Each art piece costs 4,980 bells. That’s a lot for early-game players, or for anyone trying to
-          pay off their debt to Tom Nook quickly.
-        </li>
-        <li>
-          You can only purchase one piece per encounter. Anything left behind just vanishes.
-        </li>
-        <li>
-          Redd can and will sell you fakes. Often. With a straight face.
-        </li>
-        <li>
-          There is a zoom action to inspect pieces, but it only goes so far. Players who are visually
-          impaired, or who play in handheld mode, may still be at a disadvantage. Unless you’re extremely
-          familiar with the real-world artworks, you’re likely to end up with counterfeits.
-          <b>I’ve been scammed multiple times and I have an art degree.</b>
-        </li>
-      </ul>
-    </section>
-  </section>
-
-  <!-- The Plan -->
-  <section class="project-page" id="plan">
-    <h2><u>The Plan</u></h2>
-    <h3>
-      I’m going to design and develop a checklist for players to track their current art collection.
-      The page will show comparisons between a counterfeit piece and the genuine article and surface the
-      real artwork name. The UX will stay minimal while still borrowing some Animal Crossing charm.
-    </h3>
-  </section>
-
-  <!-- Design Process -->
-  <section class="project-page" id="process">
-    <h2>The Design Process</h2>
-
-    <section class="wide">
+    <!-- Section 2: Classic layout -->
+    <section class="row">
       <figure>
-        <img src="/work/ACNH/acnh-assets/newhorizonsart.png"
-             alt="Overview of art pieces available in the game"
-             style="width:100%">
-        <figcaption><i>Nookipedia's list of NH Art - don't fall for them saying 42, one painting has 2 halves!</i></figcaption>
+        <img src="/work/ACNH/acnh-assets/nooklings.png"
+          alt="Game screenshot of two shop characters smiling at the player" style="width:100%">
+        <figcaption><i>This is the last thing I saw before losing 1200+ hours of my life.</i></figcaption>
+      </figure>
+
+      <div class="text">
+        <p>
+          I think it tends to be easier said than done when it comes to developing something from scratch.
+          We all have these sorts of “blue sky” ideas as designers, but when it comes to feasibility, it’s
+          easy to pass the buck to engineers or tech dev.
+        </p>
+        <p>
+          This challenge is meant to help me get better at bridging the gap. I’ve done 24-hour design
+          challenges before, but they’ve stayed within the safe borders of Figma and Adobe XD (throwback!).
+          This time, I wanted to make a very basic museum checklist with cute, Animal Crossing-inspired UI
+          and design and develop it myself.
+        </p>
+        <p>
+          Are you thinking, “Gee, that seems kinda random”? Yeah. You’re correct. This is a situation where
+          I’m <b>not</b> doing any demographic research, which goes against my usual flow.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 3: Wide hero image / Background -->
+    <section id="background" class="wide">
+      <h2>So... Why am I not conducting any UX research?</h2>
+
+      <figure>
+        <img src="/work/ACNH/acnh-assets/charlie.png" alt="Person gesturing at a wall of papers connected by red string"
+          style="width:100%">
+        <figcaption><i>A picture of me in action, conducting UX demo research (2025).</i></figcaption>
       </figure>
 
       <p>
-        There are 43 pieces of art: 30 paintings and 13 statues. 17 of them have no counterfeit.
-        Considering counterfeit art usually has one visual difference, you have about a 25% chance of
-        picking a genuine piece when Redd visits your island; if you visit him at Harv’s, that number dips
-        even lower.
+        In this case, I am the end user and I’m developing a project for my own selfish, museum-completionist
+        desires.
       </p>
 
+      <h3>Seems niche?</h3>
+      <p>
+        Yeah, you’re right again! This actually stems from a very odd edge case that drove me absolutely
+        wild. I do a daily walk as an excuse to play as many video games as I can in the time it takes
+        to knock out five miles on the treadmill.
+      </p>
+
+      <p>
+        The current method of finding peace is to power-walk while playing Animal Crossing: New Horizons. It is a great
+        game, but I'm already fearing going too into depth, as this already reads as one of those recipe pages that
+        tells the author’s life story before telling you how to make zucchini muffins or some other thing you won’t end
+        up eating.
+      </p>
+
+      <p>
+        If you have played ACNH and don’t require background, please skip to
+        <a href="#plan" class="underline hover:text-white">HERE!</a>
+      </p>
+
+      <figure>
+        <img src="/work/ACNH/acnh-assets/critterpedia.png" alt="completed critterpedia" style="width:100%">
+        <figcaption><i>From Reddit: _maddieee3 completed their critterpedia - I hope to achieve the same one day.</i>
+        </figcaption>
+      </figure>
+
+      <p>
+        If you’ve never played ACNH, the gist is that you move to a deserted island and slowly turn it into
+        a vacation paradise. The big infrastructure pieces you place are a general store, tailor’s shop, and
+        a museum. To fill out that museum, you need every bug, fish, sea creature, fossil, and art piece in
+        the game. To keep track of the critters, you get the Critterpedia.
+      </p>
+
+      <section class="two-pics">
+        <div class="img-pair">
+          <img src="/work/ACNH/acnh-assets/arapaima.png" alt="Aquarium exhibit with a large fish">
+          <img src="https://dodo.ac/np/images/1/1a/NH_Museum_Fossil_Exhibit.jpg" alt="Fossil exhibit in a game museum">
+        </div>
+
+        <p>
+          Naturally, filling it out is a massive grind, but the Critterpedia makes it manageable. It’s an
+          app on the player’s in-game phone that lets you track every bug, fish, and sea creature almost
+          effortlessly.
+        </p>
+
+        <p>
+          Fossils are the exception: they’re always genuine, you find four on your island daily, and you rely
+          on Blathers, the museum curator, to identify and accept them in a single flow.
+        </p>
+
+        <p><i>
+            The same mental load that exists in the process of growing the art collection does not exist within
+            fossil accumulation.
+          </i></p>
+      </section>
+
+      <!-- Redd / warning images -->
+      <section class="paired-images">
+        <figure class="paired-item">
+          <img src="/work/ACNH/acnh-assets/NH_Redd_Announcement.png"
+            alt="Announcement screen warning about a suspicious visitor">
+          <figcaption>
+            <em>Isabelle warns us whenever the suspicious character is visiting.</em>
+          </figcaption>
+        </figure>
+
+        <figure class="paired-item">
+          <img src="/work/ACNH/acnh-assets/Animal-Crossing-New-Horizons-Redds-Second-Visit.png"
+            alt="Fox merchant talking to the player on a sunny island path">
+          <figcaption>
+            <em>The suspicious character himself, “Cousin” Redd. Probably also a nightmare at Thanksgiving.</em>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <p>
+          Of course, something notable is missing: there is literally no place where the player can check
+          their progress on the art collection, unless they sprint through the museum and manually
+          take stock.
+        </p>
+        <figure>
+          <img src="/work/ACNH/acnh-assets/sunfish.png"
+            alt="Game screenshot of a character looking at a large fish in a museum tank" style="width:100%">
+          <figcaption><i>The player caught an Ocean Sunfish, and is hilariously obscured by the sheer size of the fish.
+              They will probably have this on their dating profile.</i></figcaption>
+        </figure>
+
+        <p>
+          For bugs, fish, and sea creatures, the first time you catch something that can be donated, the text
+          modal celebrates with a “Yes!” and marks it off. When you assess a new fossil, Blathers notes it.
+        </p>
+
+        <p>
+          No such thing exists for art — and to make it worse, art is actually much harder to fill out:
+        </p>
+
+        <ul>
+          <li>
+            You have to wait around two weeks between appearances for Redd, a sly dealer who sells you art.
+            His tugboat appears on the north beach, which early players can’t even reach without tools like
+            the vaulting pole and ladder. Later in the game, you can visit him daily on Harv’s island if
+            you’re willing to shell out 99,000 bells.
+          </li>
+          <li>
+            Each art piece costs 4,980 bells. That’s a lot for early-game players, or for anyone trying to
+            pay off their debt to Tom Nook quickly.
+          </li>
+          <li>
+            You can only purchase one piece per encounter. Anything left behind just vanishes.
+          </li>
+          <li>
+            Redd can and will sell you fakes. Often. With a straight face.
+          </li>
+          <li>
+            There is a zoom action to inspect pieces, but it only goes so far. Players who are visually
+            impaired, or who play in handheld mode, may still be at a disadvantage. Unless you’re extremely
+            familiar with the real-world artworks, you’re likely to end up with counterfeits.
+            <b>I’ve been scammed multiple times and I have an art degree.</b>
+          </li>
+        </ul>
+      </section>
+    </section>
+
+    <!-- The Plan -->
+    <section class="project-page" id="plan">
+      <h2><u>The Plan</u></h2>
+      <h3>
+        I’m going to design and develop a checklist for players to track their current art collection.
+        The page will show comparisons between a counterfeit piece and the genuine article and surface the
+        real artwork name. The UX will stay minimal while still borrowing some Animal Crossing charm.
+      </h3>
+    </section>
+
+    <!-- Design Process -->
+    <section class="project-page" id="process">
+      <h2>The Design Process</h2>
+
+      <section class="wide">
+        <figure>
+          <img src="/work/ACNH/acnh-assets/newhorizonsart.png" alt="Overview of art pieces available in the game"
+            style="width:100%">
+          <figcaption><i>Nookipedia's list of NH Art - don't fall for them saying 42, one painting has 2 halves!</i>
+          </figcaption>
+        </figure>
+
+        <p>
+          There are 43 pieces of art: 30 paintings and 13 statues. 17 of them have no counterfeit.
+          Considering counterfeit art usually has one visual difference, you have about a 25% chance of
+          picking a genuine piece when Redd visits your island; if you visit him at Harv’s, that number dips
+          even lower.
+        </p>
+
+        <div class="inline-pair">
+          <div class="inline-pair__media">
+            <h2>The User Experience</h2>
+            <h3>The Individual Tile &amp; iOS Inspiration</h3>
+            <p>
+              The building blocks of each tile are: a checkmark, image, title, and a “View Contrast”
+              dropdown CTA.
+            </p>
+            <p>
+              The dropdown exposes differences between always-genuine pieces and those with forgeries.
+              By only showing this for pieces that have counterfeits, I reduce unnecessary clicks and
+              cognitive load.
+            </p>
+
+            <h3>Sort List Function</h3>
+            <p>
+              Seven tiles fit into a standard screen above the fold, but there are 56 tiles total.
+              That’s eight full scroll lengths — a lot.
+            </p>
+            <p>
+              I added a sticky sort nav so players can quickly filter between All, Paintings, and Statues.
+              As a solo project, I’m still deciding how far to push this, but it already makes long-list
+              browsing more bearable.
+            </p>
+          </div>
+
+          <div class="inline-pair__content">
+            <figure>
+              <img src="/work/ACNH/acnh-assets/wireframe1.png" alt="Wireframe of the early tiles and layout"
+                style="width:75%">
+              <figcaption><i>Early wireframe exploring list, tile, and detail layout.</i></figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- Questions + Component Library + Prototypes -->
+    <section class="project-section">
+      <h1>Questions I Am Considering</h1>
+
+      <figure>
+        <img src="/work/ACNH/acnh-assets/figmacomponentlibrary.png"
+          alt="Figma component library of tiles, nav, and buttons" style="width:100%">
+        <figcaption>
+          <i>
+            The Figma component library I built. It borrows ACNH styling while staying clean and modular.
+          </i>
+        </figcaption>
+      </figure>
+
+
+      <p>
+        Should I show selections like a cart? Should I offer a quick way to scroll back to the top?
+        Does a “sandwich nav” (top and bottom) feel helpful, or is it overkill?
+      </p>
+
+      <p>
+        These experiments helped me understand the trade-offs between keeping the UI playful and keeping
+        it genuinely useful. The main goal is still the same: make selecting and tracking art feel
+        seamless, not like another grind layered on top of the existing grind.
+      </p>
+
+
+
+      <figure>
+        <img src="/work/ACNH/acnh-assets/desktopview.png" alt="desktop view" style="width:100%">
+        <figcaption><i>An exploration in how a three-column desktop layout could support list, detail, and the
+            "receipt".</i></figcaption>
+      </figure>
+
+      <figure>
+        <img src="/work/ACNH/acnh-assets/evolution.png" alt="evolution of styling" style="width:100%">
+        <figcaption>
+          <i>
+            Taking some UI cues from ACNH, and utilizing what I have already built to translate into this UX.
+          </i>
+        </figcaption>
+      </figure>
+
+      <!-- Prototype videos -->
       <div class="inline-pair">
         <div class="inline-pair__media">
-          <h2>The User Experience</h2>
-          <h3>The Individual Tile &amp; iOS Inspiration</h3>
-          <p>
-            The building blocks of each tile are: a checkmark, image, title, and a “View Contrast”
-            dropdown CTA.
-          </p>
-          <p>
-            The dropdown exposes differences between always-genuine pieces and those with forgeries.
-            By only showing this for pieces that have counterfeits, I reduce unnecessary clicks and
-            cognitive load.
-          </p>
-
-          <h3>Sort List Function</h3>
-          <p>
-            Seven tiles fit into a standard screen above the fold, but there are 56 tiles total.
-            That’s eight full scroll lengths — a lot.
-          </p>
-          <p>
-            I added a sticky sort nav so players can quickly filter between All, Paintings, and Statues.
-            As a solo project, I’m still deciding how far to push this, but it already makes long-list
-            browsing more bearable.
-          </p>
+          <figure>
+            <video controls playsinline style="width:100%; max-width:360px;">
+              <source src="/work/ACNH/acnh-assets/scaffoldingUX.mp4" type="video/mp4">
+            </video>
+            <figcaption><i>Prototype Interaction Demo 1 — basic tile selection and detail view.</i></figcaption>
+          </figure>
         </div>
 
         <div class="inline-pair__content">
           <figure>
-            <img src="/work/ACNH/acnh-assets/wireframe1.png"
-                 alt="Wireframe of the early tiles and layout"
-                 style="width:75%">
-            <figcaption><i>Early wireframe exploring list, tile, and detail layout.</i></figcaption>
+            <video controls playsinline style="width:100%; max-width:360px;">
+              <source src="/work/ACNH/acnh-assets/updatedfocusux.mp4" type="video/mp4">
+            </video>
+            <figcaption><i>Prototype Interaction Demo 2 — testing the “receipt” pattern for selected pieces.</i>
+            </figcaption>
           </figure>
         </div>
       </div>
     </section>
-  </section>
 
-  <!-- Questions + Component Library + Prototypes -->
-  <section class="project-section">
-    <h1>Questions I Am Considering</h1>
+    <!-- Front-End Development -->
+    <section id="frontend"></section>
+    <section class="project-section">
+      <h2>From Figma to Front-End</h2>
 
-    <figure>
-      <img src="/work/ACNH/acnh-assets/figmacomponentlibrary.png"
-           alt="Figma component library of tiles, nav, and buttons"
-           style="width:100%">
-      <figcaption>
-        <i>
-          The Figma component library I built. It borrows ACNH styling while staying clean and modular.
-        </i>
-      </figcaption>
-    </figure>
+      <div class="inline-pair">
+        <div class="inline-pair__media">
+          <figure>
+            <img src="/work/ACNH/acnh-assets/frontenddev-mobile.png"
+              alt="Mobile layout showing art list, detail card, and selected items" style="width:100%">
+            <figcaption><i>Early mobile-first pass translating the component library into code.</i></figcaption>
+          </figure>
+        </div>
 
-  
-        <p>
-          Should I show selections like a cart? Should I offer a quick way to scroll back to the top?
-          Does a “sandwich nav” (top and bottom) feel helpful, or is it overkill?
-        </p>
-
-        <p>
-          These experiments helped me understand the trade-offs between keeping the UI playful and keeping
-          it genuinely useful. The main goal is still the same: make selecting and tracking art feel
-          seamless, not like another grind layered on top of the existing grind.
-        </p>
-
-
-      
-<figure>
-      <img src="/work/ACNH/acnh-assets/desktopview.png"
-           alt="desktop view"
-           style="width:100%">
-      <figcaption><i>An exploration in how a three-column desktop layout could support list, detail, and the "receipt".</i></figcaption>
- </figure>
-
-<figure>
-      <img src="/work/ACNH/acnh-assets/evolution.png"
-           alt="evolution of styling"
-           style="width:100%">
-      <figcaption>
-        <i>
-          Taking some UI cues from ACNH, and utilizing what I have already built to translate into this UX.
-        </i>
-      </figcaption>
-</figure>
-
-    <!-- Prototype videos -->
-    <div class="inline-pair">
-      <div class="inline-pair__media">
-        <figure>
-          <video controls playsinline style="width:100%; max-width:360px;">
-            <source src="/work/ACNH/acnh-assets/scaffoldingUX.mp4" type="video/mp4">
-          </video>
-          <figcaption><i>Prototype Interaction Demo 1 — basic tile selection and detail view.</i></figcaption>
-        </figure>
+        <div class="inline-pair__content">
+          <figure>
+            <img src="/work/ACNH/acnh-assets/front-end-dev-mobilepopulated.png"
+              alt="Mobile layout with artwork content populated" style="width:100%">
+            <figcaption><i>Populated state.</i></figcaption>
+          </figure>
+        </div>
       </div>
 
-      <div class="inline-pair__content">
-        <figure>
-          <video controls playsinline style="width:100%; max-width:360px;">
-            <source src="/work/ACNH/acnh-assets/updatedfocusux.mp4" type="video/mp4">
-          </video>
-          <figcaption><i>Prototype Interaction Demo 2 — testing the “receipt” pattern for selected pieces.</i></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+      <div class="inline-pair">
+        <div class="inline-pair__media">
+          <figure>
+            <img src="/work/ACNH/acnh-assets/frontend-desktop.png"
+              alt="Desktop view with list on the left, detail in the center, selected list on the right"
+              style="width:100%">
+            <figcaption><i>Desktop layout focusing on long-form reading and detailed comparisons.</i></figcaption>
+          </figure>
+        </div>
 
-  <!-- Front-End Development -->
-  <section id="frontend"></section>
-  <section class="project-section">
-    <h2>From Figma to Front-End</h2>
-
-    <div class="inline-pair">
-      <div class="inline-pair__media">
-        <figure>
-          <img src="/work/ACNH/acnh-assets/frontenddev-mobile.png"
-               alt="Mobile layout showing art list, detail card, and selected items"
-               style="width:100%">
-          <figcaption><i>Early mobile-first pass translating the component library into code.</i></figcaption>
-        </figure>
+        <div class="inline-pair__content">
+          <figure>
+            <img src="/work/ACNH/acnh-assets/frontenddesktop-nodescription.png"
+              alt="Desktop layout displaying an artwork without description text" style="width:100%">
+            <figcaption><i>An instance where I forgot to populate description data - sigh. </i></figcaption>
+          </figure>
+        </div>
       </div>
 
-      <div class="inline-pair__content">
-        <figure>
-          <img src="/work/ACNH/acnh-assets/front-end-dev-mobilepopulated.png"
-               alt="Mobile layout with artwork content populated"
-               style="width:100%">
-          <figcaption><i>Populated state.</i></figcaption>
-        </figure>
-      </div>
-    </div>
+      <p>
+        Returning to front-end work after years in UX was humbling; I wrestled with viewport units,
+        inconsistent image sizes, and the realities of designing for both desktop and mobile. Eventually,
+        I prioritized a desktop-first layout for readability and accessibility, while keeping mobile support
+        for quick reference. This did build my already massive respect for the devs I've worked with before, as most of
+        the 15 days it took me to work on this were spent on the w3 ref page.
+      </p>
+    </section>
 
-    <div class="inline-pair">
-      <div class="inline-pair__media">
-        <figure>
-          <img src="/work/ACNH/acnh-assets/frontend-desktop.png"
-               alt="Desktop view with list on the left, detail in the center, selected list on the right"
-               style="width:100%">
-          <figcaption><i>Desktop layout focusing on long-form reading and detailed comparisons.</i></figcaption>
-        </figure>
-      </div>
+    <!-- Outcome / Closing -->
+    <section id="outcome"></section>
+    <section class="project-section">
+      <h2>Outcome</h2>
+      <p>
+        Though the final product's core demo is me, I am more than sure that other players will enjoy how functional
+        this is.
+      </p>
 
-      <div class="inline-pair__content">
-        <figure>
-          <img src="/work/ACNH/acnh-assets/frontenddesktop-nodescription.png"
-               alt="Desktop layout displaying an artwork without description text"
-               style="width:100%">
-          <figcaption><i>An instance where I forgot to populate description data - sigh. </i></figcaption>
-        </figure>
-      </div>
-    </div>
-
-    <p>
-      Returning to front-end work after years in UX was humbling; I wrestled with viewport units,
-      inconsistent image sizes, and the realities of designing for both desktop and mobile. Eventually,
-      I prioritized a desktop-first layout for readability and accessibility, while keeping mobile support
-      for quick reference. This did build my already massive respect for the devs I've worked with before, as most of the 15 days it took me to work on this were spent on the w3 ref page.
-    </p>
-  </section>
-
-  <!-- Outcome / Closing -->
-<section id="outcome"></section>
-  <section class="project-section">
-    <h2>Outcome</h2>
- <p>
-      Though the final product's core demo is me, I am more than sure that other players will enjoy how functional this is. 
-    </p>
-   
-    <!--<video controls width="100%">
+      <!--<video controls width="100%">
   <source src="/work/ACNH/acnh-assets/finallook.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video-->
- <p>
-      This 15-day challenge pushed me to own the full loop: focused "research",
-      UX, UI, component thinking, and code. Even when the layout broke or an image source disappeared,
-      it still felt worth it. And now, filling my virtual museum is just a little less chaotic.
-    </p>
-    <figure>
-      <img src="/work/ACNH/acnh-assets/famousdesigner.png"
-           alt="Game screenshot of the player character being celebrated with the title 'Famous Designer'"
-           style="width:100%">
-      <figcaption>
-        <i>
-          The game may call me a “Famous Designer,” but this project reminded me how much I still enjoy
-          being a scrappy front-end dev too.
-        </i>
-      </figcaption>
-    </figure>
+      <p>
+        This 15-day challenge pushed me to own the full loop: focused "research",
+        UX, UI, component thinking, and code. Even when the layout broke or an image source disappeared,
+        it still felt worth it. And now, filling my virtual museum is just a little less chaotic.
+      </p>
+      <figure>
+        <img src="/work/ACNH/acnh-assets/famousdesigner.png"
+          alt="Game screenshot of the player character being celebrated with the title 'Famous Designer'"
+          style="width:100%">
+        <figcaption>
+          <i>
+            The game may call me a “Famous Designer,” but this project reminded me how much I still enjoy
+            being a scrappy front-end dev too.
+          </i>
+        </figcaption>
+      </figure>
 
-   
-  </section>
-   <section> 
-    <h1>Want to see how it worked out?</h1>
-        <a href="/work/ACNH/ACNH-artchecklist.html" class="btn-primary"> 
-          See the result! 
-        </a> 
-      </section> 
 
-</main>
+    </section>
+    <section>
+      <h1>Want to see how it worked out?</h1>
+      <a href="/work/ACNH/ACNH-artchecklist.html" class="btn-primary">
+        See the result!
+      </a>
+    </section>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation --> 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  </main>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="#frontend">Development Process</a> 
-      <a href="#outcome">Outcome</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
+
+    <nav class="anchor-nav">
+      <a href="#intro">Intro</a>
+      <a href="#background">Background</a>
+      <a href="#plan">The Plan</a>
+      <a href="#process">Design Process</a>
+      <a href="#frontend">Development Process</a>
+      <a href="#outcome">Outcome</a>
+      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a>
+    </nav>
   </div>
 
-  <!-- 🔹 Footer --> 
-  <footer> 
+  <!-- 🔹 Footer -->
+  <footer>
     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
   </footer>
 
-  <!-- ✅ JS: navbar scroll + fade-in animation --> 
-  <script src="../../js/script.js"></script> 
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
 
-  <script> 
+  <script>
     // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const sections = document.querySelectorAll('.project-page section'); 
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
 
-      const observer = new IntersectionObserver( 
-        (entries, obs) => { 
-          entries.forEach(entry => { 
-            if (entry.isIntersecting) { 
-              entry.target.classList.add('visible'); 
-              obs.unobserve(entry.target); 
-            } 
-          }); 
-        }, 
-        { threshold: 0.1 } 
-      ); 
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-      sections.forEach(section => observer.observe(section)); 
+      sections.forEach(section => observer.observe(section));
     }); 
-  </script> 
+  </script>
 
-  <script> 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const progressBar = document.querySelector('.progress-bar'); 
-      const sections = document.querySelectorAll('main section[id]'); 
-      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.anchor-nav a');
 
-      function updateProgress() { 
-        const scrollTop = window.scrollY; 
-        const docHeight = document.body.scrollHeight - window.innerHeight; 
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
-        progressBar.style.width = `${scrollPercent}%`; 
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+        progressBar.style.width = `${scrollPercent}%`;
 
-        let current = ''; 
-        sections.forEach(section => { 
-          const sectionTop = section.offsetTop - 150; 
-          if (scrollTop >= sectionTop) current = section.id; 
-        }); 
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (scrollTop >= sectionTop) current = section.id;
+        });
 
-        navLinks.forEach(link => { 
-          link.classList.remove('active'); 
-          if (link.getAttribute('href') === `#${current}`) { 
-            link.classList.add('active'); 
-          } 
-        }); 
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
       }
 
-      window.addEventListener('scroll', updateProgress); 
-      updateProgress(); 
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
     }); 
-  </script> 
+  </script>
 
-</body> 
+</body>
+
 </html>

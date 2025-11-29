@@ -1,27 +1,29 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <title>Venmo for Apple Watch | Amber Kumar</title> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Venmo for Apple Watch | Amber Kumar</title>
   <link rel="icon" type="image/png" href="/assets/amber-logo.png">
 
-  <!-- ✅ Main site styles --> 
-  <link rel="stylesheet" href="/css/style.css" /> 
+  <!-- ✅ Main site styles -->
+  <link rel="stylesheet" href="/css/style.css" />
 
-  <style> 
-    /* Optional: small boost for fade-in smoothness on project pages */ 
-    .project-page section { 
-      opacity: 0; 
-      transform: translateY(10px); 
-      transition: opacity 0.8s ease, transform 0.8s ease; 
-    } 
-    .project-page section.visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-    } 
-  </style> 
-</head> 
+  <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
 
 <body>
   <!-- 🔹 Navbar (matches main site) -->
@@ -38,36 +40,38 @@
     </nav>
   </header>
 
-  <!-- 🔹 Main Project Content --> 
-  <main class="container mt-nav project-page"> 
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav project-page">
 
-    <!-- Section 1: Intro --> 
-    <section id="intro"> 
-      <h1>Venmo for Apple Watch</h1> 
-      <p class="muted"> 
-       I decided to take a shot at designing the Venmo companion app for the Apple Watch. I wanted to make sure that I was able to fully flesh out the  product within the parameters of the screen size while staying true to my source material.
-    </p>
-      <div class="card-tags"> 
+    <!-- Section 1: Intro -->
+    <section id="intro">
+      <h1>Venmo for Apple Watch</h1>
+      <p class="muted">
+        I decided to take a shot at designing the Venmo companion app for the Apple Watch. I wanted to make sure that I
+        was able to fully flesh out the product within the parameters of the screen size while staying true to my source
+        material.
+      </p>
+      <div class="card-tags">
+        <span class="tag">Operating System</span>
+        <span class="tag">UI/UX</span>
         <span class="tag">Watch OS</span>
-        <span class="tag">Feature Design</span>
-         <span class="tag">UI / UX</span>
-      </div> 
-    </section> 
+      </div>
+    </section>
 
-<section class="row">
-  <figure>
-    <img src="/work/venmo/assets/venmo0.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo1.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo2.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo3.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo4.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo5.png" style="width:100%">
-    <img src="/work/venmo/assets/venmo6.png" style="width:100%">
+    <section class="row">
+      <figure>
+        <img src="/work/venmo/assets/venmo0.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo1.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo2.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo3.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo4.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo5.png" style="width:100%">
+        <img src="/work/venmo/assets/venmo6.png" style="width:100%">
 
 
 
-  </figure>
-</section>
+      </figure>
+    </section>
 
   </main>
 
@@ -84,67 +88,68 @@
       <a href="#process">Design Process</a> 
       <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
     </nav> 
-  </div> --> 
+  </div> -->
 
-  <!-- 🔹 Footer --> 
-  <footer> 
-     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+  <!-- 🔹 Footer -->
+  <footer>
+    Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
   </footer>
 
-  <!-- ✅ JS: navbar scroll + fade-in animation --> 
-  <script src="../../js/script.js"></script> 
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
 
-  <script> 
+  <script>
     // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const sections = document.querySelectorAll('.project-page section'); 
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
 
-      const observer = new IntersectionObserver( 
-        (entries, obs) => { 
-          entries.forEach(entry => { 
-            if (entry.isIntersecting) { 
-              entry.target.classList.add('visible'); 
-              obs.unobserve(entry.target); 
-            } 
-          }); 
-        }, 
-        { threshold: 0.1 } 
-      ); 
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-      sections.forEach(section => observer.observe(section)); 
+      sections.forEach(section => observer.observe(section));
     }); 
-  </script> 
+  </script>
 
-  <script> 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const progressBar = document.querySelector('.progress-bar'); 
-      const sections = document.querySelectorAll('main section[id]'); 
-      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.anchor-nav a');
 
-      function updateProgress() { 
-        const scrollTop = window.scrollY; 
-        const docHeight = document.body.scrollHeight - window.innerHeight; 
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
-        progressBar.style.width = `${scrollPercent}%`; 
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+        progressBar.style.width = `${scrollPercent}%`;
 
-        let current = ''; 
-        sections.forEach(section => { 
-          const sectionTop = section.offsetTop - 150; 
-          if (scrollTop >= sectionTop) current = section.id; 
-        }); 
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (scrollTop >= sectionTop) current = section.id;
+        });
 
-        navLinks.forEach(link => { 
-          link.classList.remove('active'); 
-          if (link.getAttribute('href') === `#${current}`) { 
-            link.classList.add('active'); 
-          } 
-        }); 
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
       }
 
-      window.addEventListener('scroll', updateProgress); 
-      updateProgress(); 
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
     }); 
-  </script> 
+  </script>
 
-</body> 
+</body>
+
 </html>
