@@ -1,4 +1,18 @@
 
+// Google Analytics
+(function(){
+  const GA_ID = 'G-VC107MK7W0';
+  if(!GA_ID || typeof document === 'undefined') return;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ window.dataLayer.push(arguments); }
+  gtag('js', new Date());
+  gtag('config', GA_ID);
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+  document.head.appendChild(gaScript);
+})();
+
 // Theme toggle
 const initThemeToggle = () => {
   const ensureToggle = () => {
@@ -70,7 +84,7 @@ const observer = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.card').forEach(el=>observer.observe(el));
 
 // ---------------------------------------------------------------------------
-// Before/After Slider (modular + safe for multiple case studies)
+// Before/After Slider
 // ---------------------------------------------------------------------------
 
 (function () {
