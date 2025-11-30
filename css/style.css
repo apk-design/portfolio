@@ -367,29 +367,40 @@ section { margin-bottom: 80px; }
   transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
 }
 
-.card-tags .tag { cursor: default; }
-.tags .tag { cursor: pointer; appearance: none; }
+.card-tags .tag {
+  cursor: default;
+  background: rgba(15, 23, 36, 0.18);
+  border-color: rgba(15, 23, 36, 0.3);
+  color: rgba(15, 23, 36, 0.7);
+}
+.tags .tag {
+  cursor: pointer;
+  appearance: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.tags .tag::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
+  height: 2px;
+  background: transparent;
+  transition: background .2s ease;
+}
 
 .tags .tag-filter.active {
   background: rgba(255, 94, 26, 0.18);
   border-color: rgba(255, 94, 26, 0.6);
 }
 
-.card-tags .tag:hover,
 .tags .tag:hover {
   background: rgba(15, 23, 36, 0.1);
-  box-shadow: 0 0 0 2px rgba(255, 94, 26, 0.25);
-  transform: translateY(-1px);
 }
-
-.grid.work-grid .card.dimmed {
-  opacity: 0.25;
-  pointer-events: none;
-}
-
-.grid.work-grid .card.highlight {
-  border-color: var(--cta);
-  box-shadow: 0 20px 40px rgba(255, 94, 26, 0.35);
+.tags .tag:hover::after {
+  background: rgba(255, 94, 26, 0.6);
 }
 
 
