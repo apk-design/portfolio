@@ -51,8 +51,22 @@
       z-index: 15;
       background: #fff;
     }
-    #selected-list { background: #ffffff; padding: 1rem; border-left: 1px solid rgba(0,0,0,0.1); box-shadow: -2px 0 4px rgba(0,0,0,.05); position: sticky; top: 0; height: 100%; overflow-y: auto; }
-    #selected-items { max-height: calc(5 * 9vh); overflow-y: auto; }
+    #selected-list {
+      background: #ffffff;
+      padding: 1rem;
+      border-left: 1px solid rgba(0,0,0,0.1);
+      box-shadow: -2px 0 4px rgba(0,0,0,.05);
+      position: sticky;
+      top: 0;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    #selected-items {
+      flex: 1;
+      max-height: none;
+      overflow-y: auto;
+    }
     footer { flex-shrink: 0; }
 
     .hover\:text-white:hover { color: var(--acnh-primary) !important; }
