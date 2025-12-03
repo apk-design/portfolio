@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XDefiant: Daily Log In | Amber Kumar</title>
+    <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
+
+    <!-- ✅ Main site styles -->
+    <link rel="stylesheet" href="../../css/style.css" />
+
+    <style>
+        /* Optional: small boost for fade-in smoothness on project pages */
+        .project-page section {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .project-page section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lost-panel {
+            max-width: 320px;
+            margin: -80px auto 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media (min-width: 900px) {
+            .lost-panel {
+                max-width: 420px;
+            }
+        }
+
+        @media (min-height: 700px) {
+            .project-page {
+                min-height: calc(100vh - 160px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        .lost-figure {
+            margin: 0;
+        }
+
+        .lost-figure img.hover-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .lost-figure figcaption {
+            margin-top: 12px;
+        }
+
+        .lost-text {
+            margin-top: 16px;
+            color: var(--muted);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 🔹 Navbar (matches main site) -->
+    <header class="navbar">
+        <div class="left">
+            <a href="../../index.html">
+                <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+            </a>
+        </div>
+        <nav class="center">
+            <a class="nav-btn" href="../../index.html">Home</a>
+            <a class="nav-btn" href="../../resume.html">Resume</a>
+            <a class="nav-btn" href="../../work.html">Work</a>
+        </nav>
+    </header>
+
+    <!-- 🔹 Main Project Content -->
+    <main class="container mt-nav project-page">
+        <section class="lost-panel">
+          <figure class="lost-figure">
+            <img src="/assets/404-page-1.svg" data-primary="/assets/404-page-1.svg" data-hover="/assets/404-page-2.svg" alt="scary cave - watch out!" class="hover-image">
+            
+          </figure>
+          <p class="lost-text">It seems like you've ventured to a strange place — <br> do you wish to turn back?</p>
+          <div class="lost-cta">
+            <a class="btn-primary" href="/index.html">Let’s Go Home</a>
+          </div>
+        </section>
+</main>
+
+    <!-- 🔹 Footer -->
+    <footer>
+        Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+    </footer>
+
+    <!-- ✅ JS: navbar scroll + fade-in animation -->
+    <script src="../../js/script.js"></script> 
+
+    <script>
+      const hoverImg = document.querySelector('.hover-image');
+      const homeBtn = document.querySelector('.lost-cta .btn-primary');
+      if (hoverImg) {
+        const primarySrc = hoverImg.dataset.primary;
+        const hoverSrc = hoverImg.dataset.hover;
+        const activate = () => hoverImg.src = hoverSrc;
+        const deactivate = () => hoverImg.src = primarySrc;
+        hoverImg.addEventListener('mouseenter', activate);
+        hoverImg.addEventListener('mouseleave', deactivate);
+        if (homeBtn) {
+          homeBtn.addEventListener('mouseenter', activate);
+          homeBtn.addEventListener('mouseleave', deactivate);
+        }
+      }
+    </script>
+
+    <script>
+        // Add fade-in on scroll for project sections 
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.project-page section');
+
+            const observer = new IntersectionObserver(
+                (entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            sections.forEach(section => observer.observe(section));
+        }); 
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const progressBar = document.querySelector('.progress-bar');
+            const sections = document.querySelectorAll('main section[id]');
+            const navLinks = document.querySelectorAll('.anchor-nav a');
+
+            function updateProgress() {
+                const scrollTop = window.scrollY;
+                const docHeight = document.body.scrollHeight - window.innerHeight;
+                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+                progressBar.style.width = `${scrollPercent}%`;
+
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 150;
+                    if (scrollTop >= sectionTop) current = section.id;
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', updateProgress);
+            updateProgress();
+        }); 
+    </script>
+
+</body>
+
+</html>
