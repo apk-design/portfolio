@@ -254,6 +254,25 @@ section { margin-bottom: 80px; }
   transform: translateY(-2px);
 }
 
+.inline-video {
+  margin: 32px auto;
+  text-align: center;
+}
+
+.inline-video video {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.1);
+  background: #000;
+}
+
+.inline-video figcaption {
+  margin-top: 10px;
+  font-style: italic;
+  color: var(--muted);
+}
+
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
