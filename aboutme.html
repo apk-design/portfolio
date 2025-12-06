@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Amber Kumar — About</title>
+  <link rel="icon" type="image/png" href="assets/amber-logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .picks-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="left">
+      <a href="index.html" aria-label="Home">
+        <img src="assets/logo_amberkumar.svg" alt="Amber Kumar logo" class="logo">
+      </a>
+    </div>
+    <nav class="center">
+      <a class="nav-btn " href="index.html">Home</a>
+      <a class="nav-btn " href="resume.html">Resume</a>
+      <a class="nav-btn " href="work.html">Work</a>
+    </nav>
+    <div class="right theme-toggle">
+      <label class="theme-switch">
+        <input type="checkbox" id="theme-checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container mt-nav about-page">
+    <div class="wrap" style="align-items:center; gap:32px; flex-wrap:wrap;">
+      <figure
+        style="flex:0 0 320px; margin:0; border-radius:24px; overflow:hidden; border:1px solid rgba(255,255,255,0.12); background:linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0));">
+        <img src="assets/amber-image.png" alt="Portrait of Amber Kumar" style="display:block; width:50%; height:auto;">
+      </figure>
+      <div style="flex:1; min-width:260px;">
+        <h1>About Me</h1>
+        <p class="left-text">I am a senior UI/UX designer based in California who loves building grounded, accessible
+          experiences for products spanning gaming, fintech, and ecommerce. I am happiest when shaping complex systems
+          into clear, confident journeys.</p>
+      </div>
+    </div>
+
+    <section style="margin-top:48px;">
+      <h2>My Picks</h2>
+      <div class="grid picks-grid">
+        <div class="card">
+          <h3>Books</h3>
+          <ul class="likes">
+            <li>📚 Medium Raw — Anthony Bourdain</li>
+            <li>📚 The Divine Comedy — Dante Alighieri</li>
+            <li>📚 ASOIAF - George RR Martin</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Movies</h3>
+          <ul class="likes">
+            <li>🎥 Detective Pikachu</li>
+            <li>🎥 Everything, Everywhere, All at Once</li>
+            <li>🎥 Bram Stoker's Dracula</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>TV Shows</h3>
+          <ul class="likes">
+            <li>📺 It's Always Sunny</li>
+            <li>📺 Andor</li>
+            <li>📺 AMC Interview with the Vampire</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Music</h3>
+          <ul class="likes">
+            <li>🎶 Tame Impala</li>
+            <li>🎶 Fleetwood Mac</li>
+            <li>🎶 Daft Punk</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Video Games</h3>
+          <ul class="likes">
+            <li>🎮 World of Warcraft</li>
+            <li>🎮 Animal Crossing: New Horizons</li>
+            <li>🎮 Zelda: Majora's Mask</li>
+
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Hobbies</h3>
+          <ul class="likes">
+            <li>⌨️ Mechanical Keyboards</li>
+            <li>💅🏽 Gel Nails</li>
+            <li>🏃🏽‍♀️ Daily 5 mile Walks</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <h2>Creative Projects</h2>
+    <section class="grid work-grid" style="margin-top:60px;">
+
+
+      <a href="/work/ACNH/acnhmain.html" class="card">
+        <div class="thumb" aria-label="ACNH Art Checklist"
+          style="background-image: url(assets/thumbnails/acnh.JPG); background-size: cover; background-position: center;">
+        </div>
+        <h3>15 Days to Make:<br>Art Checklist for ACNH</h3>
+        <p>I built a tracker that lets players mark off every piece of museum art and see what they’re missing. I
+          designed the UI and coded the front end to ensure that everything feels simple, fast, and easy to skim.</p>
+        <div class="card-tags">
+          <span class="tag">Gaming</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Product Design</span>
+          <span class="tag">Front-End Dev</span>
+        </div>
+      </a>
+
+      <a href="/work/baggu/baggu.html" class="card">
+        <div class="thumb" aria-label="Baggu Account Redesign"
+          style="background-image: url(/assets/thumbnails/baggu.png); background-size: cover; background-position: center;">
+        </div>
+        <h3>Baggu: A Case Study in Retention</h3>
+        <p>I redesigned Baggu’s account hub to surface useful info and encourage people to revisit their past purchases.
+          I handled the UX, UI, and flows that turned it from a static history page into a more guidance-oriented
+          dashboard.</p>
+        <div class="card-tags">
+          <span class="tag">Ecommerce</span>
+          <span class="tag">UI/UX</span>
+          <span class="tag">Product Design</span>
+          <span class="tag">Web Design</span>
+        </div>
+      </a>
+
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/inprogress.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Working On</i><br>Streaming Service Web Project</h3>
+        <p>
+        </p>
+        <!--div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div-->
+      </a>
+
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/comingsoon.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Coming Soon</i><br>Nail Polish Web Project</h3>
+        <p>
+        </p>
+        <div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/comingsoon.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Coming Soon</i><br>Supplementary Nutrition Mobile App</h3>
+        <p>
+        </p>
+        <div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div>
+      </a>
+      
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/comingsoon.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Coming Soon</i><br>Video Game Accessibility + Input Adjustment</h3>
+        <p>
+        </p>
+        <div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/comingsoon.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Coming Soon</i><br>Book Club Mobile App</h3>
+        <p>
+        </p>
+        <div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div>
+      </a>
+
+      <a href="/404.html" class="card">
+        <div class="thumb" aria-label="Project 1"
+          style="background-image: url(/assets/comingsoon.png); background-size: cover; background-position: center;">
+        </div>
+        <h3><i>Coming Soon</i><br>Keyboard Web Project</h3>
+        <p>
+        </p>
+        <div class="card-tags">
+          <span class="tag">Coming Soon</span>
+        </div>
+      </a>
+
+
+    </section>
+  </main>
+
+  <footer class="container">Designed &amp; Developed with ❤️‍🔥 by Amber Kumar © 2025</footer>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
