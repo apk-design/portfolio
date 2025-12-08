@@ -1,27 +1,29 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-  <meta charset="UTF-8" /> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> 
-  <title>Experian: Financial Calculators | Amber Kumar</title> 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>El Burro: End to End Product Design | Amber Kumar</title>
   <link rel="icon" type="image/png" href="/portfolio/assets/amber-logo.png">
 
-  <!-- ✅ Main site styles --> 
-  <link rel="stylesheet" href="../../css/style.css" /> 
+  <!-- ✅ Main site styles -->
+  <link rel="stylesheet" href="../../css/style.css" />
 
-  <style> 
-    /* Optional: small boost for fade-in smoothness on project pages */ 
-    .project-page section { 
-      opacity: 0; 
-      transform: translateY(10px); 
-      transition: opacity 0.8s ease, transform 0.8s ease; 
-    } 
-    .project-page section.visible { 
-      opacity: 1; 
-      transform: translateY(0); 
-    } 
-  </style> 
-</head> 
+  <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
 
 <body>
   <!-- 🔹 Navbar (matches main site) -->
@@ -38,178 +40,188 @@
     </nav>
   </header>
 
-  <!-- 🔹 Main Project Content --> 
-  <main class="container mt-nav project-page"> 
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav project-page">
 
-    <!-- Section 1: Intro --> 
-    <section id="intro"> 
-      <h1>Designing an End-to-End POS for a Local Restaurant</h1> 
-      <p class="muted"> 
-       While working at a venture capital firm, I was asked to explore an internal solution that could replace the restaurant’s dependency on an 
-    external POS vendor.
+    <section id="intro">
+      <h1>El Burro: Restaurant Operations & Ordering Platform</h1>
+      <p class="muted">
+        El Burro needed one
+        clean, custom system to manage multiple locations, help employees move faster, and give customers
+        an easy way to order online. I designed the entire platform: from the admin dashboard to the POS
+        tools to the full delivery and pickup experience.
       </p>
-      <div class="card-tags"> 
+      <div class="card-tags">
+        <span class="tag">Product Design</span>
         <span class="tag">UI/UX</span>
+        <span class="tag">Internal Tool</span>
+        <span class="tag">Ecommerce</span>
+        <span class="tag">Tablet App</span>
         <span class="tag">Web Design</span>
-        <span class="tag">Food Service</span>
-      </div> 
-    </section> 
+      </div>
+    </section>
 
-    <!-- Section 2: Classic layout --> 
+    <section id="project-brief" class="cs-section">
+      <h2>Project Brief</h2>
+      <p>
+        When this project kicked off, things were pretty messy. El Burro was growing fast, juggling
+        multiple locations, and relying on a patchwork of manual processes. Everyone agreed they needed
+        a centralized system, but no one really knew what it should be yet.
+      </p>
+      <p>
+        My first job was to untangle all the confusion and turn scattered ideas into something
+        simple and workable. Once the foundation was clear, the rest of the design process started
+        flowing much more smoothly.
+      </p>
+      <p>
+        The goal: build a fully custom internal platform (instead of using Square, Clover as point-of-service
+        or Squarespace as a CMS) that would:
+      </p>
+      <ul>
+        <li>Modernize manual workflows</li>
+        <li>Reduce employee workload and mistakes</li>
+        <li>Support delivery & pickup ordering</li>
+        <li>Unify menu management across locations</li>
+        <li>Keep the brand experience consistent end-to-end</li>
+      </ul>
+    </section>
 
-<section id="intro">
-  <p>
-    The goal was to create an integrated system that unified store operations, 
-    kitchen workflows, and customer ordering on both desktop and mobile devices. What emerged was a 
-    three-layer ecosystem: an admin interface for management, a server view for real-time operations, 
-    and a customer ordering experience.
-  </p>
+    <section id="team-role" class="cs-section">
+      <h2>The Team & My Role</h2>
+      <p>
+        I worked as the Lead Product Designer, handling everything from UX flows and IA to
+        UI and component design. I partnered closely with the founder and product manager to turn big,
+        fuzzy goals into something clean and actionable.
+      </p>
+      <p>
+        Since there was no existing system to build from, I designed the entire product ecosystem from
+        scratch: the admin dashboard, POS tools, and both desktop and mobile ordering experiences.
+      </p>
+    </section>
 
-  <img src="/mnt/data/admin server.png" alt="High-level collage of admin/server POS screens" />
-</section>
+    <section id="customers-needs" class="cs-section">
+      <h2>Customers & Their Needs</h2>
 
-<section id="context-problem">
-  <h2>Context & Problem</h2>
-  <p>
-    The restaurant relied on a third-party POS provider that was rigid, limited, and expensive to 
-    customize. Any operational changes required vendor intervention. The restaurant needed:
-  </p>
-  <ul>
-    <li>Full ownership of the system</li>
-    <li>Faster iteration and customization</li>
-    <li>A consistent branded experience across all touchpoints</li>
-    <li>Reduced operational friction</li>
-  </ul>
-  <p>
-    This was not a redesign — it was a completely new POS built from scratch.
-  </p>
+      <h3>1. Restaurant Admins</h3>
+      <p>
+        Admins needed one place to manage menus, pricing, employees, and orders across multiple locations.
+        Bringing everything under one roof gave them the clarity they were missing.
+      </p>
+      <div class="cs-image-group">
+        <img src="/work/kraferd/assets/eb-adminflow.png" alt="Admin main flow" />
+        <img src="/work/kraferd/assets/eb-adminflow-menu.png" alt="Admin menu management" />
+        <img src="/work/kraferd/assets/eb-adminflow-yourrestaurants.png" alt="Admin restaurant list" />
+      </div>
 
-  <img src="/mnt/data/admin server.png" alt="Receipt and error receipt screens representing operational issues" />
-</section>
+      <h3>2. Restaurant Employees</h3>
+      <p>
+        Employees needed a POS flow that was fast, clear, and left little room for errors, especially during busy hours.
+      </p>
+      <img src="/work/kraferd/assets/eb-anemployee-eventflow.png" alt="Employee POS flow" />
 
-<section id="system-overview">
-  <h2>System Overview</h2>
-  <p>
-    The system was designed as three interconnected layers:
-  </p>
-  <ol>
-    <li><strong>Admin View</strong> — controls menu, pricing, settings, and reporting.</li>
-    <li><strong>Server View</strong> — used by in-store staff for fast, accurate order handling.</li>
-    <li><strong>Customer View</strong> — mobile + desktop ordering experience.</li>
-  </ol>
+      <h3>3. Customers Ordering Online</h3>
+      <p>
+        Customers wanted a smooth, no-nonsense ordering experience: browse, customize, check out, and get
+        updates on their order. Straightforward and reliable.
+      </p>
+      <div class="cs-image-group">
+        <img src="/work/kraferd/assets/eb-dt-orderingflow-complete.png" alt="Desktop ordering flow" />
+        <img src="/work/kraferd/assets/eb-mb-orderingflow-complete.png" alt="Mobile ordering flow" />
+      </div>
+    </section>
 
-  <img src="/mnt/data/desktop.png" alt="Collage showing desktop customer ordering flow" />
-  <img src="/mnt/data/mobile.png" alt="Collage showing mobile customer ordering flow" />
-</section>
+    <section id="approach" class="cs-section">
+      <h2>Approach</h2>
 
-<section id="admin-view">
-  <h2>Admin View</h2>
-  <p>
-    The admin interface gave restaurant management full autonomy to maintain the menu, pricing, 
-    schedules, reporting, and user permissions without external vendor support.
-  </p>
+      <h3>How I Tackled the Problem</h3>
+      <ul>
+        <li>Turned unclear requirements into structured flows and priorities</li>
+        <li>Mapped journeys for admins, employees, and customers</li>
+        <li>Created a scalable information architecture for multiple locations</li>
+        <li>Built reusable UI components to keep things consistent</li>
+        <li>Designed annotated flows for desktop and mobile</li>
+      </ul>
 
-  <h3>Key Features</h3>
-  <ul>
-    <li>Menu management with add/edit item modals</li>
-    <li>Pricing & availability controls</li>
-    <li>Live operations dashboard</li>
-    <li>Reporting with charts and summaries</li>
-    <li>Staff roles and PIN-based permissions</li>
-    <li>Order-ahead scheduling logic</li>
-  </ul>
+      <h3>Key Design Decisions</h3>
 
-  <img src="/mnt/data/admin server.png" alt="Admin screens: menu management, item editing, settings dashboards" />
-</section>
+      <h4>1. A Centralized Menu CMS</h4>
+      <p>
+        One menu system powers all locations, no duplicate work, no inconsistencies. A big time saver.
+      </p>
+      <img src="/work/kraferd/assets/eb-adminflow-menu.png" alt="Menu CMS" />
 
-<section id="server-view">
-  <h2>Server View (Operations)</h2>
-  <p>
-    The server view was optimized for speed and clarity. During busy hours, cashiers and staff must 
-    interact with the POS quickly and without errors.
-  </p>
+      <h4>2. Separate Delivery & Pickup Flows</h4>
+      <p>
+        Delivery and pickup behave differently in the real world, so I designed dedicated flows for each
+        instead of forcing them into the same experience.
+      </p>
+      <div class="cs-image-group">
+        <img src="/work/kraferd/assets/eb-dt-deliveryflow.png" alt="Delivery flow" />
+        <img src="/work/kraferd/assets/eb-dt-pickupflow.png" alt="Pickup flow" />
+      </div>
 
-  <h3>Key Features</h3>
-  <ul>
-    <li>Real-time order queue</li>
-    <li>High-contrast, large-touch-target menu screens</li>
-    <li>Error-proof receipts and correction flows</li>
-    <li>Role-based PIN login</li>
-    <li>Confirmation and scheduling modals</li>
-  </ul>
+      <h4>3. Clear Error States for Employees</h4>
+      <p>
+        Employees needed error messages that were unmissable and easy to act on, so I redesigned the POS
+        error states to be much more direct.
+      </p>
+      <img src="/work/kraferd/assets/eb-anemployee-alerts.png" alt="employee alerts" />
+    </section>
 
-  <img src="/mnt/data/admin server.png" alt="Server-facing screens showing order queue, receipts, and PIN pad login" />
-</section>
+    <section id="iteration" class="cs-section">
+      <h2>Iteration</h2>
+      <p>
+        Feedback loops were steady and practical, leading to improvements like:
+      </p>
+      <ul>
+        <li>Clearer multi-location overview for admins</li>
+        <li>More helpful error handling for employees</li>
+        <li>Backup flows for customers who denied location access</li>
+      </ul>
+    </section>
 
-<section id="customer-view">
-  <h2>Customer View (Desktop + Mobile)</h2>
-  <p>
-    The customer-facing ordering experience unified branding with clarity. It supported pickup, 
-    delivery, store-locator flows, item customization, checkout, scheduling, and order tracking.
-  </p>
+    <section id="constraints" class="cs-section">
+      <h2>Constraints</h2>
+      <ul>
+        <li>Building a fully custom system from scratch, no Square/Clover shortcuts</li>
+        <li>Complex multi-location menu and employee logic</li>
+        <li>Address validation and delivery edge cases to handle</li>
+        <li>Pickup needing both location permissions and fallbacks</li>
+        <li>
+          Store-hour constraints → I designed (and illustrated!!!) a modal letting the user know that the store was
+          closed.
+          <br />
+          <img src="/work/kraferd/assets/eb-edgecase-closedstore.png" alt="Closed store modal" />
+        </li>
+      </ul>
+    </section>
 
-  <h3>Desktop Features</h3>
-  <ul>
-    <li>Map-based store locator</li>
-    <li>Rich item cards and categories</li>
-    <li>Detailed item pages</li>
-    <li>Checkout with address validation</li>
-    <li>Order tracking with map feedback</li>
-  </ul>
+    <section id="impact" class="cs-section">
+      <h2>Impact</h2>
+      <p>
+        I unfortunately was not able to access formal metrics, but the improvements were clear:
+      </p>
+      <ul>
+        <li>Employees processed orders faster</li>
+        <li>Online orders increased after delivery/pickup launched</li>
+        <li>Menus stayed consistent across every location</li>
+        <li>Admin overhead dropped significantly</li>
+      </ul>
+    </section>
 
-  <img src="/mnt/data/desktop.png" alt="Desktop ordering screens: maps, item pages, checkout, and order tracking" />
+    <section id="reflection" class="cs-section">
+      <h2>Reflection</h2>
+      <p>
+        If I revisited this project, I’d:
+      </p>
+      <ul>
+        <li>Run earlier usability testing around address/location flows</li>
+        <li>Document feedback more formally</li>
+        <li>Create an even more robust site map</li>
+      </ul>
+    </section>
 
-  <h3>Mobile Features</h3>
-  <ul>
-    <li>Mobile-first store locator</li>
-    <li>Accordion category menus</li>
-    <li>Full-screen item detail pages</li>
-    <li>Mobile checkout flow</li>
-    <li>Order status timeline</li>
-  </ul>
 
-  <img src="/mnt/data/mobile.png" alt="Mobile ordering screens: item list, item detail, checkout, and order status" />
-</section>
-
-<section id="system-connections">
-  <h2>How the Three Views Connect</h2>
-  <p>
-    Each part of the POS ecosystem was designed to work together seamlessly:
-  </p>
-  <ul>
-    <li>Admin updates menu → server and customer instantly receive updates.</li>
-    <li>Customer places an order → server view receives it immediately.</li>
-    <li>Server updates order status → customer map tracking updates.</li>
-    <li>Admin reporting aggregates both in-store and online orders.</li>
-  </ul>
-
-  <img src="/mnt/data/admin server.png" alt="Screens representing unified admin, server, and customer flow" />
-</section>
-
-<section id="design-approach">
-  <h2>Design Approach</h2>
-  <ul>
-    <li>Minimize cognitive load for staff</li>
-    <li>Simplify admin tasks</li>
-    <li>Make customer ordering fast and visually consistent</li>
-    <li>Unify design language across all three touchpoints</li>
-    <li>Use large touch targets and strong contrast where needed</li>
-    <li>Leverage brand photography and story elements on consumer-facing views</li>
-  </ul>
-
-  <img src="/mnt/data/desktop.png" alt="Customer-facing screens demonstrating brand cohesion" />
-</section>
-
-<section id="outcome">
-  <h2>Outcome</h2>
-  <p>
-    The completed system formed a scalable POS ecosystem designed for administrators, staff, and 
-    customers. It replaced dependency on external vendors, improved operational clarity, and provided a 
-    fully branded ordering experience across desktop and mobile.
-  </p>
-
-  <img src="/mnt/data/admin server.png" alt="Final unified system collage representing admin, server, and customer flows" />
-</section>
 
   </main>
 
@@ -226,67 +238,68 @@
       <a href="#process">Design Process</a> 
       <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
     </nav> 
-  </div> --> 
+  </div> -->
 
-  <!-- 🔹 Footer --> 
-  <footer> 
-     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
+  <!-- 🔹 Footer -->
+  <footer>
+    Designed & Developed with ❤️‍🔥 by Amber Kumar © 2025
   </footer>
 
-  <!-- ✅ JS: navbar scroll + fade-in animation --> 
-  <script src="../../js/script.js"></script> 
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
 
-  <script> 
+  <script>
     // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const sections = document.querySelectorAll('.project-page section'); 
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
 
-      const observer = new IntersectionObserver( 
-        (entries, obs) => { 
-          entries.forEach(entry => { 
-            if (entry.isIntersecting) { 
-              entry.target.classList.add('visible'); 
-              obs.unobserve(entry.target); 
-            } 
-          }); 
-        }, 
-        { threshold: 0.1 } 
-      ); 
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
 
-      sections.forEach(section => observer.observe(section)); 
+      sections.forEach(section => observer.observe(section));
     }); 
-  </script> 
+  </script>
 
-  <script> 
-    document.addEventListener('DOMContentLoaded', () => { 
-      const progressBar = document.querySelector('.progress-bar'); 
-      const sections = document.querySelectorAll('main section[id]'); 
-      const navLinks = document.querySelectorAll('.anchor-nav a'); 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.anchor-nav a');
 
-      function updateProgress() { 
-        const scrollTop = window.scrollY; 
-        const docHeight = document.body.scrollHeight - window.innerHeight; 
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100); 
-        progressBar.style.width = `${scrollPercent}%`; 
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+        progressBar.style.width = `${scrollPercent}%`;
 
-        let current = ''; 
-        sections.forEach(section => { 
-          const sectionTop = section.offsetTop - 150; 
-          if (scrollTop >= sectionTop) current = section.id; 
-        }); 
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (scrollTop >= sectionTop) current = section.id;
+        });
 
-        navLinks.forEach(link => { 
-          link.classList.remove('active'); 
-          if (link.getAttribute('href') === `#${current}`) { 
-            link.classList.add('active'); 
-          } 
-        }); 
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
       }
 
-      window.addEventListener('scroll', updateProgress); 
-      updateProgress(); 
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
     }); 
-  </script> 
+  </script>
 
-</body> 
+</body>
+
 </html>
