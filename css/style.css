@@ -392,6 +392,11 @@ section { margin-bottom: 80px; }
   font-size: 15px;
 }
 
+
+.card-cta {
+  margin-top: 18px;
+}
+
 .card-tags {
   display: flex;
   flex-wrap: wrap;
