@@ -26,6 +26,9 @@ const initThemeToggle = () => {
     if (!toggleWrapper) {
       toggleWrapper = document.createElement('div');
       toggleWrapper.className = 'right theme-toggle';
+      toggleWrapper.setAttribute('role', 'button');
+      toggleWrapper.setAttribute('tabindex', '0');
+      toggleWrapper.setAttribute('aria-label', 'Toggle site theme');
       toggleWrapper.innerHTML = `
         <label class="theme-switch">
           <input type="checkbox" id="theme-checkbox">
@@ -39,6 +42,7 @@ const initThemeToggle = () => {
 
   const checkbox = ensureToggle();
   if (!checkbox) return;
+  const toggleWrapper = checkbox.closest('.theme-toggle');
 
   const applyTheme = () => {
     if (checkbox.checked) {
@@ -53,6 +57,25 @@ const initThemeToggle = () => {
   if (!checkbox.dataset.bound) {
     checkbox.addEventListener('change', applyTheme);
     checkbox.dataset.bound = 'true';
+  }
+
+  const toggleFromWrapper = () => {
+    checkbox.checked = !checkbox.checked;
+    applyTheme();
+  };
+
+  if (toggleWrapper && !toggleWrapper.dataset.bound) {
+    toggleWrapper.addEventListener('click', (event) => {
+      if (event.target.closest('.theme-switch')) return;
+      toggleFromWrapper();
+    });
+    toggleWrapper.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleFromWrapper();
+      }
+    });
+    toggleWrapper.dataset.bound = 'true';
   }
 
   if (localStorage.getItem('theme') === 'dark') {

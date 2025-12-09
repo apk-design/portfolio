@@ -22,7 +22,7 @@
       <a class="nav-btn " href="resume.html">Resume</a>
       <a class="nav-btn active" href="work.html">Work</a>
     </nav>
-    <div class="right theme-toggle">
+    <div class="right theme-toggle" role="button" tabindex="0" aria-label="Toggle site theme">
       <label class="theme-switch">
         <input type="checkbox" id="theme-checkbox">
         <span class="slider"></span>
@@ -31,10 +31,14 @@
   </header>
 
   <main class="container mt-nav">
-    <h1>All Work</h1>
-    <div class="tags" style="display:flex; gap:12px; flex-wrap:wrap; margin: 0 0 32px;">
-      <button type="button" class="tag tag-filter" data-tag="Accessibility">Accessibility</button>
-      <button type="button" class="tag tag-filter" data-tag="Branding">Branding</button>
+    <div class="work-heading">
+      <h1>All Work</h1>
+      <button type="button" class="btn-secondary filter-toggle" aria-expanded="false">Show filters ↓</button>
+    </div>
+    <section class="filter-section">
+      <div class="tags filter-list is-collapsed">
+        <button type="button" class="tag tag-filter" data-tag="Accessibility">Accessibility</button>
+        <button type="button" class="tag tag-filter" data-tag="Branding">Branding</button>
       <button type="button" class="tag tag-filter" data-tag="Front-End Dev">Front-End Dev</button>
       <button type="button" class="tag tag-filter" data-tag="Product Design">Product Design</button>
       <button type="button" class="tag tag-filter" data-tag="Redesign">Redesign</button>
@@ -55,8 +59,9 @@
       <button type="button" class="tag tag-filter" data-tag="Polar Pro">Polar Pro</button>
       <button type="button" class="tag tag-filter" data-tag="The Bouqs">The Bouqs</button>
       <button type="button" class="tag tag-filter" data-tag="XDefiant">XDefiant</button>
-      <button type="button" class="tag tag-filter" data-tag="Coming Soon">Coming Soon</button>
-    </div>
+        <button type="button" class="tag tag-filter" data-tag="Coming Soon">Coming Soon</button>
+      </div>
+    </section>
     <section class="grid work-grid">
 
       <a href="/work/ACNH/acnhmain.html" class="card">
@@ -535,11 +540,38 @@
     document.addEventListener('DOMContentLoaded', () => {
       const filterButtons = document.querySelectorAll('.tag-filter');
       const cards = Array.from(document.querySelectorAll('.grid.work-grid .card'));
-      if (!filterButtons.length || !cards.length) return;
+      const filterList = document.querySelector('.filter-list');
+      const filterToggle = document.querySelector('.filter-toggle');
+      if (!cards.length) return;
 
       let activeTag = null;
+      let filtersVisible = false;
+
+      const updateToggleLabel = () => {
+        if (!filterToggle) return;
+        filterToggle.textContent = filtersVisible ? 'Hide filters ↑' : 'Show filters ↓';
+        filterToggle.setAttribute('aria-expanded', filtersVisible.toString());
+      };
+
+      const toggleFilters = (forceState) => {
+        if (!filterList) return;
+        filtersVisible = typeof forceState === 'boolean' ? forceState : !filtersVisible;
+        filterList.classList.toggle('is-collapsed', !filtersVisible);
+        updateToggleLabel();
+      };
+
+      updateToggleLabel();
+
+      if (filterToggle) {
+        filterToggle.addEventListener('click', () => toggleFilters());
+      }
+
+      if (!filterButtons.length) return;
 
       const setFilter = (tag) => {
+        if (tag && !filtersVisible) {
+          toggleFilters(true);
+        }
         activeTag = tag;
         filterButtons.forEach(btn => btn.classList.toggle('active', tag && btn.dataset.tag === tag));
 
