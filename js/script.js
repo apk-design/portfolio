@@ -13,6 +13,72 @@
   document.head.appendChild(gaScript);
 })();
 
+const NAV_BREAKPOINT = 1024;
+
+const NAV_LINKS = [
+  { key: 'home', label: 'Home', href: 'index.html' },
+  { key: 'resume', label: 'Resume', href: 'resume.html' },
+  { key: 'work', label: 'Work', href: 'work.html' }
+];
+
+const computePathPrefix = () => {
+  const path = window.location.pathname.split('?')[0];
+  const segments = path.split('/').filter(Boolean);
+  const repoIndex = segments.indexOf('portfolio');
+  const relevant = repoIndex >= 0 ? segments.slice(repoIndex + 1) : segments;
+  const depth = Math.max(0, relevant.length ? relevant.length - 1 : 0);
+  return depth ? '../'.repeat(depth) : '';
+};
+
+const getActiveNavKey = () => {
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/resume')) return 'resume';
+  if (path.includes('/work')) return 'work';
+  return 'home';
+};
+
+const buildGlobalNav = () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const prefix = computePathPrefix();
+  const activeKey = getActiveNavKey();
+  const navLinksMarkup = NAV_LINKS.map(link => {
+    const href = `${prefix}${link.href}`;
+    const activeClass = activeKey === link.key ? ' active' : '';
+    return `<a class="nav-btn${activeClass}" href="${href}">${link.label}</a>`;
+  }).join('');
+
+  navbar.innerHTML = `
+    <div class="left">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+    <div class="logo-slot">
+      <a href="${prefix}index.html" aria-label="Home">
+        <img src="${prefix}assets/logo_amberkumar.svg" alt="Amber Kumar logo" class="logo">
+      </a>
+    </div>
+    <nav class="center nav-links" id="primary-nav" aria-label="Primary navigation">
+      ${navLinksMarkup}
+    </nav>
+    <div class="right nav-actions">
+      <div class="nav-translate" aria-label="Language selection">
+        <div id="google_translate_element"></div>
+      </div>
+      <div class="theme-toggle" role="button" tabindex="0" aria-label="Toggle site theme">
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  `;
+};
+
 // Theme toggle
 const initThemeToggle = () => {
   const ensureToggle = () => {
@@ -87,8 +153,6 @@ const initThemeToggle = () => {
   }
 };
 
-initThemeToggle();
-
 // Navbar show on scroll-up + transparent -> solid on scroll
 let lastScroll = 0;
 const nav = document.querySelector('.navbar');
@@ -99,6 +163,62 @@ window.addEventListener('scroll', () => {
   else { nav.style.transform = 'translateY(-100%)'; }
   lastScroll = y;
 });
+
+// Mobile nav toggle
+const initMobileNav = () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const navToggle = navbar.querySelector('.nav-toggle');
+  const navLinks = navbar.querySelector('.nav-links');
+  if (!navToggle || !navLinks) return;
+
+  const closeNav = () => {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navbar.classList.remove('nav-open');
+  };
+
+  navToggle.addEventListener('click', () => {
+    const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', (!expanded).toString());
+    navbar.classList.toggle('nav-open', !expanded);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= NAV_BREAKPOINT) {
+        closeNav();
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > NAV_BREAKPOINT) {
+      closeNav();
+    }
+  });
+};
+
+const initTranslatePlacement = () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const navLinks = navbar.querySelector('.nav-links');
+  const navActions = navbar.querySelector('.nav-actions');
+  const translate = navbar.querySelector('.nav-translate');
+  if (!navLinks || !navActions || !translate) return;
+
+  const moveTranslate = () => {
+    if (window.innerWidth <= NAV_BREAKPOINT) {
+      if (translate.parentElement !== navLinks) {
+        navLinks.appendChild(translate);
+      }
+    } else if (translate.parentElement !== navActions) {
+      navActions.insertBefore(translate, navActions.firstChild || null);
+    }
+  };
+
+  moveTranslate();
+  window.addEventListener('resize', moveTranslate);
+};
 
 // Fade-in cards
 const observer = new IntersectionObserver((entries)=>{
@@ -167,3 +287,31 @@ document.querySelectorAll('.card').forEach(el=>observer.observe(el));
     applyPercent(50);
   });
 })();
+
+// ---------------------------------------------------------------------------
+// Google Translate Widget
+// ---------------------------------------------------------------------------
+const initGoogleTranslate = () => {
+  const translateTarget = document.getElementById('google_translate_element');
+  if (!translateTarget) return;
+
+  window.googleTranslateElementInit = () => {
+    new google.translate.TranslateElement({ pageLanguage: 'en' }, 'google_translate_element');
+  };
+
+  if (document.querySelector('script[data-google-translate]')) return;
+
+  const gtScript = document.createElement('script');
+  gtScript.type = 'text/javascript';
+  gtScript.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+  gtScript.dataset.googleTranslate = 'true';
+  document.body.appendChild(gtScript);
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  buildGlobalNav();
+  initThemeToggle();
+  initMobileNav();
+  initTranslatePlacement();
+  initGoogleTranslate();
+});
