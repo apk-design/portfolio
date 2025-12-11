@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Nail Preview – DND Bestsellers</title>
+    <style>
+        :root {
+            --bg: #faf7f7;
+            --accent: #f04a4a;
+            --text: #222;
+            --nailColor: #d32f2f;
+            /* default polish (DND-style red) */
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+                -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .app {
+            max-width: 1200px;
+            width: 100%;
+            padding: 24px;
+            display: grid;
+            grid-template-columns: 230px minmax(0, 1fr) 260px;
+            gap: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        h2,
+        h3 {
+            margin: 0 0 12px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        .panel {
+            font-size: 13px;
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid #ddd;
+            background: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s;
+        }
+
+        .pill.active {
+            border-color: #000;
+            background: #ffe5e5;
+        }
+
+        .pill.disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .preview-card {
+            background: var(--bg);
+            border-radius: 40px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+            padding: 24px 24px 32px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preview-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+
+        .color-label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .sub-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.7;
+        }
+
+        .hand-wrapper {
+            width: 100%;
+            max-width: 520px;
+        }
+
+        .hand-wrapper svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Nails */
+        .hand-wrapper .nail {
+            fill: var(--nailColor);
+            transition: fill 0.2s ease-out, opacity 0.15s ease-out;
+        }
+
+        .hand-wrapper .nail.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Gloss highlight */
+        .nail-gloss-layer {
+            mix-blend-mode: screen;
+            pointer-events: none;
+            transition: opacity 0.2s ease-out;
+        }
+
+        .nail-gloss-layer.matte {
+            opacity: 0;
+        }
+
+        /* Skin tone rects */
+        .skinTone {
+            transition: opacity 0.2s ease-out;
+        }
+
+        .skinTone.hidden {
+            opacity: 0;
+        }
+
+        /* DND color grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            max-height: 430px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .swatch {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            outline: none;
+            display: block;
+        }
+
+        .swatch.active {
+            border-color: #000;
+        }
+
+        .swatch:focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 3px;
+        }
+
+        .swatch-label {
+            margin-top: 12px;
+            font-size: 11px;
+            opacity: 0.8;
+        }
+
+        .footer-link {
+            margin-top: 16px;
+            font-size: 11px;
+            text-align: left;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        /* Skin tone UI */
+        .skin-tone-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .skin-swatch {
+            width: 26px;
+            height: 26px;
+            border-radius: 999px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            padding: 0;
+            outline: none;
+        }
+
+        .skin-swatch.active {
+            border-color: #000;
+            box-shadow: 0 0 0 1px #000;
+        }
+
+        .skin-swatch:focus-visible {
+            outline: 2px solid #000;
+            outline-offset: 2px;
+        }
+
+        @media (max-width: 900px) {
+            .app {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <!-- LEFT PANEL: Shape / Length / Finish / Skin Tone -->
+        <div class="panel">
+            <h1>Nail preview</h1>
+            <p style="margin:0 0 24px;font-size:13px;opacity:0.8;">
+                Try bestselling DND shades on a medium oval hand illustration.
+            </p>
+
+            <h2>Nail Shape</h2>
+            <div class="pill-group">
+                <button class="pill shape-pill disabled" data-shape="almond">Almond</button>
+                <button class="pill shape-pill disabled" data-shape="coffin">Coffin</button>
+                <button class="pill shape-pill disabled" data-shape="square">Square</button>
+                <button class="pill shape-pill disabled" data-shape="duck">Duck</button>
+                <button class="pill shape-pill disabled" data-shape="stiletto">Stiletto</button>
+                <button class="pill shape-pill active" data-shape="oval">Oval</button>
+            </div>
+
+            <h2 style="margin-top:24px;">Nail Length</h2>
+            <div class="pill-group">
+                <button class="pill length-pill disabled" data-length="short">Short</button>
+                <button class="pill length-pill active" data-length="medium">Medium</button>
+                <button class="pill length-pill disabled" data-length="long">Long</button>
+            </div>
+
+            <h2 style="margin-top:24px;">Finish</h2>
+            <div class="pill-group">
+                <button class="pill finish-pill active" data-finish="shiny">Shiny</button>
+                <button class="pill finish-pill" data-finish="matte">Matte</button>
+            </div>
+
+            <h2 style="margin-top:24px;">Skin Tone</h2>
+            <div class="skin-tone-row" id="skinToneRow"></div>
+        </div>
+
+        <!-- CENTER: Preview -->
+        <div class="preview-card">
+            <div class="preview-header">
+                <div>
+                    <div class="color-label" id="colorLabel">
+                        Cherry Mocha #751
+                    </div>
+                    <div class="sub-label" id="subLabel">
+                        DND Duo Gel – Bestseller
+                    </div>
+                </div>
+                <div class="sub-label" id="shapeLabel">
+                    Oval · Medium · Shiny
+                </div>
+            </div>
+
+            <div class="hand-wrapper" id="handWrapper">
+                <!-- SVG with skin tones + nails -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="813" height="632" viewBox="0 0 813 632" fill="none">
+                    <defs>
+                        <!-- Skin tone gradients (built from your spheres) -->
+                        <radialGradient id="skinTone0" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#EDC7AA" />
+                            <stop offset="100%" stop-color="#C79A7C" />
+                        </radialGradient>
+                        <radialGradient id="skinTone1" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#BF8064" />
+                            <stop offset="100%" stop-color="#A75D3C" />
+                        </radialGradient>
+                        <radialGradient id="skinTone2" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#D1976F" />
+                            <stop offset="100%" stop-color="#A76F3F" />
+                        </radialGradient>
+                        <radialGradient id="skinTone3" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#DFA981" />
+                            <stop offset="100%" stop-color="#B68863" />
+                        </radialGradient>
+                        <radialGradient id="skinTone4" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#BE8C6D" />
+                            <stop offset="100%" stop-color="#986344" />
+                        </radialGradient>
+                        <radialGradient id="skinTone5" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#FFE1CA" />
+                            <stop offset="100%" stop-color="#CEA890" />
+                        </radialGradient>
+                        <radialGradient id="skinTone6" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#EBC7AD" />
+                            <stop offset="100%" stop-color="#CCA488" />
+                        </radialGradient>
+                        <radialGradient id="skinTone7" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#986138" />
+                            <stop offset="100%" stop-color="#854414" />
+                        </radialGradient>
+                        <radialGradient id="skinTone8" cx="50%" cy="30%" r="70%">
+                            <stop offset="0%" stop-color="#FFE2CC" />
+                            <stop offset="100%" stop-color="#E0C7B8" />
+                        </radialGradient>
+
+                        <!-- Mask to approximate filled hand silhouettes using your outlines -->
+                        <mask id="skinMask" maskUnits="userSpaceOnUse" x="0" y="0" width="813" height="632">
+                            <rect width="813" height="632" fill="black" />
+                            <!-- Right hand outline as wide stroke -->
+                            <path
+                                d="M586.261 149C586.244 148.933 585.654 142.547 585.637 142.479C585.393 141.525 585.132 140.798 585.233 140.462C582.577 130.376 577.286 109.417 577.366 106.27C577.447 103.124 575.517 96.8231 574.542 94.0663C572.525 88.25 569.035 74.1767 571.214 64.4134C573.392 54.6502 578.308 52.4783 580.493 52.6128C606.414 55.7395 605.204 79.7442 608.028 86.1992C610.287 91.3632 615.222 116.39 617.408 128.258C619.055 136.394 623.379 154.945 627.494 164.063C631.609 173.181 634.588 187.967 635.562 194.22L638.084 201.785C638.084 211.548 644.741 230.732 648.069 239.103C648.742 235.035 649.683 225.366 648.069 219.234C646.052 211.568 646.859 201.079 648.069 194.22C649.279 187.362 647.061 181.714 643.228 161.643C639.395 141.571 645.043 135.318 648.977 131.385C652.91 127.451 660.979 125.938 668.544 142.681C674.595 156.075 676.646 171.729 676.915 177.881C676.377 180.739 676.29 189.52 680.243 201.785C684.197 214.049 684.043 224.512 683.471 228.21L689.22 258.166L699.508 293.063C700.987 298.913 703.683 312.469 702.634 319.892C701.585 327.315 703.071 343.829 703.946 351.159C705.122 359.16 706.77 379.964 703.946 399.168C701.122 418.372 702.769 426.669 703.946 428.417C716.694 493.291 780.801 590.6 811.261 631.146H628.2L581.501 533.413C569.882 498.878 551.378 486.681 543.578 484.899C528.489 476.346 519.741 463.584 517.254 458.272C510.698 445.53 495.629 416.96 487.802 404.615C478.019 389.183 475.195 371.936 474.691 368.103C474.186 364.27 468.538 349.242 465.613 345.107C463.273 341.799 456.906 328.465 454.014 322.212C451.325 318.514 446.006 310.209 446.248 306.579C446.49 302.948 444.668 296.862 443.727 294.274C438.684 282.574 440.499 282.473 440.499 278.237C440.499 274.001 428.396 255.342 427.387 252.215C426.379 249.088 430.211 240.919 443.021 238.498C455.83 236.077 466.924 250.5 476.809 263.31C484.716 273.557 486.424 279.212 486.29 280.758C490.566 283.502 491.299 289.634 491.131 292.357C495.246 296.553 495.468 301.098 495.064 302.847C496.597 304.218 499.939 311.218 501.419 314.546C502.158 316.665 503.88 320.921 504.848 321.001C506.058 321.102 507.268 305.166 506.562 303.956C505.998 302.988 506.798 289.231 507.268 282.473C509.205 269.724 508.075 254.972 507.268 249.189C508.237 242.653 502.427 216.073 499.401 203.6C496.376 196.473 490.042 178.829 488.912 165.274C487.5 148.329 486.088 145.505 485.785 138.848C485.483 132.191 481.347 119.18 476.304 101.833C472.27 87.9542 472.741 76.3486 473.48 72.2805C473.615 67.4729 476.97 57.8575 489.315 57.8575C504.747 57.8575 508.781 74.7012 512.715 87.107C515.862 97.0316 517.523 102.808 517.96 104.455C520.649 117.499 526.916 144.597 530.466 148.632C534.904 153.675 535.913 159.222 539.443 175.158C542.267 187.907 549.966 218.393 553.462 232.043C558.505 240.818 554.471 245.256 556.589 248.181C558.283 250.52 559.716 248.012 560.22 246.466C557.073 242.109 557.228 235.035 557.699 232.043C554.975 187.261 550.235 185.446 545.898 173.947C542.428 164.749 540.149 154.381 539.443 150.346C537.426 129.065 534.4 120.996 533.29 113.734C532.403 107.924 528.819 95.5792 527.138 90.1328C525.524 84.1148 521.691 69.2346 519.271 57.8575C516.245 43.6363 517.758 37.2821 518.262 32.2391C518.767 27.1961 525.625 21.2453 532.181 20.1359C537.426 19.2483 543.309 22.9263 545.595 24.8763C551.566 28.1038 556.085 49.4189 557.598 59.673C560.153 69.2211 566.151 91.3027 569.701 103.245C574.131 118.148 596.761 190.105 586.261 149Z"
+                                stroke="white" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"
+                                fill="none" />
+                            <!-- Left hand outline as wide stroke -->
+                            <path
+                                d="M226.261 149C226.278 148.933 226.867 142.547 226.885 142.479C227.129 141.525 227.389 140.798 227.288 140.462C229.944 130.376 235.236 109.417 235.155 106.27C235.075 103.124 237.004 96.8231 237.979 94.0663C239.997 88.25 243.486 74.1767 241.308 64.4134C239.129 54.6502 234.214 52.4783 232.029 52.6128C206.108 55.7395 207.318 79.7442 204.494 86.1992C202.235 91.3632 197.299 116.39 195.114 128.258C193.466 136.394 189.143 154.945 185.028 164.063C180.913 173.181 177.934 187.967 176.959 194.22L174.438 201.785C174.438 211.548 167.781 230.732 164.452 239.103C163.78 235.035 162.839 225.366 164.452 219.234C166.47 211.568 165.663 201.079 164.452 194.22C163.242 187.362 165.461 181.714 169.294 161.643C173.126 141.571 167.478 135.318 163.545 131.385C159.611 127.451 151.542 125.938 143.978 142.681C137.926 156.075 135.875 171.729 135.606 177.881C136.144 180.739 136.232 189.52 132.278 201.785C128.324 214.049 128.479 224.512 129.05 228.21L123.301 258.166L113.014 293.063C111.534 298.913 108.838 312.469 109.887 319.892C110.936 327.315 109.45 343.829 108.576 351.159C107.399 359.16 105.752 379.964 108.576 399.168C111.4 418.372 109.753 426.669 108.576 428.417C95.8272 493.291 31.7205 590.6 1.26074 631.146H184.322L231.02 533.413C242.639 498.878 261.144 486.681 268.943 484.899C284.032 476.346 292.78 463.584 295.268 458.272C301.824 445.53 316.892 416.96 324.719 404.615C334.502 389.183 337.327 371.936 337.831 368.103C338.335 364.27 343.983 349.242 346.908 345.107C349.248 341.799 355.616 328.465 358.507 322.212C361.197 318.514 366.515 310.209 366.273 306.579C366.031 302.948 367.854 296.862 368.795 294.274C373.838 282.574 372.022 282.473 372.022 278.237C372.022 274.001 384.126 255.342 385.134 252.215C386.143 249.088 382.31 240.919 369.501 238.498C356.692 236.077 345.597 250.5 335.713 263.31C327.805 273.557 326.097 279.212 326.232 280.758C321.955 283.502 321.223 289.634 321.391 292.357C317.276 296.553 317.054 301.098 317.457 302.847C315.924 304.218 312.582 311.218 311.103 314.546C310.363 316.665 308.642 320.921 307.674 321.001C306.463 321.102 305.253 305.166 305.959 303.956C306.524 302.988 305.724 289.231 305.253 282.473C303.317 269.724 304.446 254.972 305.253 249.189C304.285 242.653 310.094 216.073 313.12 203.6C316.146 196.473 322.48 178.829 323.61 165.274C325.022 148.329 326.434 145.505 326.736 138.848C327.039 132.191 331.174 119.18 336.217 101.833C340.251 87.9542 339.781 76.3486 339.041 72.2805C338.907 67.4729 335.551 57.8575 323.206 57.8575C307.775 57.8575 303.74 74.7012 299.807 87.107C296.66 97.0316 294.999 102.808 294.562 104.455C291.872 117.499 285.605 144.597 282.055 148.632C277.617 153.675 276.609 159.222 273.079 175.158C270.255 187.907 262.556 218.393 259.059 232.043C254.016 240.818 258.051 245.256 255.932 248.181C254.238 250.52 252.806 248.012 252.301 246.466C255.448 242.109 255.294 235.035 254.823 232.043C257.546 187.261 262.287 185.446 266.624 173.947C270.093 164.749 272.373 154.381 273.079 150.346C275.096 129.065 278.122 120.996 279.231 113.734C280.119 107.924 283.703 95.5792 285.384 90.1328C286.997 84.1148 290.83 69.2346 293.251 57.8575C296.276 43.6363 294.764 37.2821 294.259 32.2391C293.755 27.1961 286.896 21.2453 280.341 20.1359C275.096 19.2483 269.212 22.9263 266.926 24.8763C260.955 28.1038 256.437 49.4189 254.924 59.673C252.369 69.2211 246.371 91.3027 242.821 103.245C238.39 118.148 215.76 190.105 226.261 149Z"
+                                stroke="white" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"
+                                fill="none" />
+                        </mask>
+
+                        <!-- Gloss gradient for nails -->
+                        <linearGradient id="nailGloss" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
+                            <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.2" />
+                            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- Skin tone layers (masked to hand shapes) -->
+                    <g id="skinGroup" mask="url(#skinMask)">
+                        <rect class="skinTone" width="813" height="632" fill="url(#skinTone0)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone1)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone2)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone3)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone4)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone5)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone6)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone7)" />
+                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone8)" />
+                    </g>
+
+                    <!-- Right hand outline -->
+                    <path
+                        d="M586.261 149C586.244 148.933 585.654 142.547 585.637 142.479C585.393 141.525 585.132 140.798 585.233 140.462C582.577 130.376 577.286 109.417 577.366 106.27C577.447 103.124 575.517 96.8231 574.542 94.0663C572.525 88.25 569.035 74.1767 571.214 64.4134C573.392 54.6502 578.308 52.4783 580.493 52.6128C606.414 55.7395 605.204 79.7442 608.028 86.1992C610.287 91.3632 615.222 116.39 617.408 128.258C619.055 136.394 623.379 154.945 627.494 164.063C631.609 173.181 634.588 187.967 635.562 194.22L638.084 201.785C638.084 211.548 644.741 230.732 648.069 239.103C648.742 235.035 649.683 225.366 648.069 219.234C646.052 211.568 646.859 201.079 648.069 194.22C649.279 187.362 647.061 181.714 643.228 161.643C639.395 141.571 645.043 135.318 648.977 131.385C652.91 127.451 660.979 125.938 668.544 142.681C674.595 156.075 676.646 171.729 676.915 177.881C676.377 180.739 676.29 189.52 680.243 201.785C684.197 214.049 684.043 224.512 683.471 228.21L689.22 258.166L699.508 293.063C700.987 298.913 703.683 312.469 702.634 319.892C701.585 327.315 703.071 343.829 703.946 351.159C705.122 359.16 706.77 379.964 703.946 399.168C701.122 418.372 702.769 426.669 703.946 428.417C716.694 493.291 780.801 590.6 811.261 631.146H628.2L581.501 533.413C569.882 498.878 551.378 486.681 543.578 484.899C528.489 476.346 519.741 463.584 517.254 458.272C510.698 445.53 495.629 416.96 487.802 404.615C478.019 389.183 475.195 371.936 474.691 368.103C474.186 364.27 468.538 349.242 465.613 345.107C463.273 341.799 456.906 328.465 454.014 322.212C451.325 318.514 446.006 310.209 446.248 306.579C446.49 302.948 444.668 296.862 443.727 294.274C438.684 282.574 440.499 282.473 440.499 278.237C440.499 274.001 428.396 255.342 427.387 252.215C426.379 249.088 430.211 240.919 443.021 238.498C455.83 236.077 466.924 250.5 476.809 263.31C484.716 273.557 486.424 279.212 486.29 280.758C490.566 283.502 491.299 289.634 491.131 292.357C495.246 296.553 495.468 301.098 495.064 302.847C496.597 304.218 499.939 311.218 501.419 314.546C502.158 316.665 503.88 320.921 504.848 321.001C506.058 321.102 507.268 305.166 506.562 303.956C505.998 302.988 506.798 289.231 507.268 282.473C509.205 269.724 508.075 254.972 507.268 249.189C508.237 242.653 502.427 216.073 499.401 203.6C496.376 196.473 490.042 178.829 488.912 165.274C487.5 148.329 486.088 145.505 485.785 138.848C485.483 132.191 481.347 119.18 476.304 101.833C472.27 87.9542 472.741 76.3486 473.48 72.2805C473.615 67.4729 476.97 57.8575 489.315 57.8575C504.747 57.8575 508.781 74.7012 512.715 87.107C515.862 97.0316 517.523 102.808 517.96 104.455C520.649 117.499 526.916 144.597 530.466 148.632C534.904 153.675 535.913 159.222 539.443 175.158C542.267 187.907 549.966 218.393 553.462 232.043C558.505 240.818 554.471 245.256 556.589 248.181C558.283 250.52 559.716 248.012 560.22 246.466C557.073 242.109 557.228 235.035 557.699 232.043C554.975 187.261 550.235 185.446 545.898 173.947C542.428 164.749 540.149 154.381 539.443 150.346C537.426 129.065 534.4 120.996 533.29 113.734C532.403 107.924 528.819 95.5792 527.138 90.1328C525.524 84.1148 521.691 69.2346 519.271 57.8575C516.245 43.6363 517.758 37.2821 518.262 32.2391C518.767 27.1961 525.625 21.2453 532.181 20.1359C537.426 19.2483 543.309 22.9263 545.595 24.8763C551.566 28.1038 556.085 49.4189 557.598 59.673C560.153 69.2211 566.151 91.3027 569.701 103.245C574.131 118.148 596.761 190.105 586.261 149ZM586.261 149C590.452 178.368 600.661 232.928 610.261 241.5"
+                        stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
+                    <!-- Right-hand extra shapes -->
+                    <path
+                        d="M613.468 481.143C629.283 490.099 628.126 495.431 625.571 496.978C622.989 514.164 645.272 537.423 656.737 546.904C664.563 545.613 667.125 549.795 667.428 552.047C686.289 576.456 681.548 587.147 684.171 597.434C686.269 605.665 682.221 623.053 679.935 630.718H712.008C717.757 590.576 703.637 565.764 696.274 554.872C690.384 546.157 681.044 524.546 677.11 514.83C643.827 483.866 634.548 491.834 631.522 491.834C629.101 491.834 624.932 486.858 623.15 484.37C624.441 474.284 617.233 471.494 613.468 471.359C619.842 477.492 619.687 480.437 618.813 481.143C614.537 479.852 613.468 480.605 613.468 481.143Z"
+                        fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
+                    <path
+                        d="M750.617 610.018C728.033 601.658 723.667 620.335 724.307 630.718H744.792C744.894 627.905 746.627 626.464 747.48 626.096C752.806 622.398 759.814 627.637 762.652 630.718H777.503C769.821 618.539 756.378 611.844 750.617 610.018Z"
+                        fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
+
+                    <!-- RIGHT HAND NAILS: oval / medium -->
+                    <path id="nail-r-1" class="nail nail-hand-right nail-shape-oval nail-length-medium"
+                        d="M494.344 97.8856C484.875 100.423 481.238 96.3162 480.603 93.9459C480.247 93.0468 465.161 45.3965 479.906 41.4447C495.26 37.3297 504.205 79.6682 505.233 87.3462C506.105 93.8551 497.677 97.103 494.344 97.8856Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-r-2" class="nail nail-hand-right nail-shape-oval nail-length-medium"
+                        d="M451.852 272.634C444.131 277.396 439.721 274.565 438.481 272.555C437.909 271.822 410.918 232 422.942 224.584C435.464 216.862 452.46 250.179 455.559 256.956C458.186 262.702 454.602 271.06 451.852 272.634Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-r-3" class="nail nail-hand-right nail-shape-oval nail-length-medium"
+                        d="M539.344 59.8856C529.875 62.4226 526.238 58.3162 525.603 55.9459C525.247 55.0468 510.161 7.39652 524.906 3.44472C540.26 -0.670257 549.205 41.6682 550.233 49.3462C551.105 55.8551 542.677 59.103 539.344 59.8856Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-r-4" class="nail nail-hand-right nail-shape-oval nail-length-medium"
+                        d="M589.718 88.0812C581.168 90.3723 577.883 86.6639 577.31 84.5233C576.989 83.7114 563.364 40.6798 576.68 37.111C590.546 33.3949 598.624 71.6296 599.553 78.5634C600.34 84.4413 592.728 87.3744 589.718 88.0812Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-r-5" class="nail nail-hand-right nail-shape-oval nail-length-medium"
+                        d="M659.453 156.363C653.522 157.952 651.225 155.308 650.817 153.787C650.591 153.21 640.945 122.633 650.181 120.158C659.799 117.58 665.571 144.732 666.245 149.654C666.817 153.826 661.541 155.874 659.453 156.363Z"
+                        fill="var(--nailColor)" />
+
+                    <!-- Left hand outline -->
+                    <path
+                        d="M226.261 149C226.278 148.933 226.867 142.547 226.885 142.479C227.129 141.525 227.389 140.798 227.288 140.462C229.944 130.376 235.236 109.417 235.155 106.27C235.075 103.124 237.004 96.8231 237.979 94.0663C239.997 88.25 243.486 74.1767 241.308 64.4134C239.129 54.6502 234.214 52.4783 232.029 52.6128C206.108 55.7395 207.318 79.7442 204.494 86.1992C202.235 91.3632 197.299 116.39 195.114 128.258C193.466 136.394 189.143 154.945 185.028 164.063C180.913 173.181 177.934 187.967 176.959 194.22L174.438 201.785C174.438 211.548 167.781 230.732 164.452 239.103C163.78 235.035 162.839 225.366 164.452 219.234C166.47 211.568 165.663 201.079 164.452 194.22C163.242 187.362 165.461 181.714 169.294 161.643C173.126 141.571 167.478 135.318 163.545 131.385C159.611 127.451 151.542 125.938 143.978 142.681C137.926 156.075 135.875 171.729 135.606 177.881C136.144 180.739 136.232 189.52 132.278 201.785C128.324 214.049 128.479 224.512 129.05 228.21L123.301 258.166L113.014 293.063C111.534 298.913 108.838 312.469 109.887 319.892C110.936 327.315 109.45 343.829 108.576 351.159C107.399 359.16 105.752 379.964 108.576 399.168C111.4 418.372 109.753 426.669 108.576 428.417C95.8272 493.291 31.7205 590.6 1.26074 631.146H184.322L231.02 533.413C242.639 498.878 261.144 486.681 268.943 484.899C284.032 476.346 292.78 463.584 295.268 458.272C301.824 445.53 316.892 416.96 324.719 404.615C334.502 389.183 337.327 371.936 337.831 368.103C338.335 364.27 343.983 349.242 346.908 345.107C349.248 341.799 355.616 328.465 358.507 322.212C361.197 318.514 366.515 310.209 366.273 306.579C366.031 302.948 367.854 296.862 368.795 294.274C373.838 282.574 372.022 282.473 372.022 278.237C372.022 274.001 384.126 255.342 385.134 252.215C386.143 249.088 382.31 240.919 369.501 238.498C356.692 236.077 345.597 250.5 335.713 263.31C327.805 273.557 326.097 279.212 326.232 280.758C321.955 283.502 321.223 289.634 321.391 292.357C317.276 296.553 317.054 301.098 317.457 302.847C315.924 304.218 312.582 311.218 311.103 314.546C310.363 316.665 308.642 320.921 307.674 321.001C306.463 321.102 305.253 305.166 305.959 303.956C306.524 302.988 305.724 289.231 305.253 282.473C303.317 269.724 304.446 254.972 305.253 249.189C304.285 242.653 310.094 216.073 313.12 203.6C316.146 196.473 322.48 178.829 323.61 165.274C325.022 148.329 326.434 145.505 326.736 138.848C327.039 132.191 331.174 119.18 336.217 101.833C340.251 87.9542 339.781 76.3486 339.041 72.2805C338.907 67.4729 335.551 57.8575 323.206 57.8575C307.775 57.8575 303.74 74.7012 299.807 87.107C296.66 97.0316 294.999 102.808 294.562 104.455C291.872 117.499 285.605 144.597 282.055 148.632C277.617 153.675 276.609 159.222 273.079 175.158C270.255 187.907 262.556 218.393 259.059 232.043C254.016 240.818 258.051 245.256 255.932 248.181C254.238 250.52 252.806 248.012 252.301 246.466C255.448 242.109 255.294 235.035 254.823 232.043C257.546 187.261 262.287 185.446 266.624 173.947C270.093 164.749 272.373 154.381 273.079 150.346C275.096 129.065 278.122 120.996 279.231 113.734C280.119 107.924 283.703 95.5792 285.384 90.1328C286.997 84.1148 290.83 69.2346 293.251 57.8575C296.276 43.6363 294.764 37.2821 294.259 32.2391C293.755 27.1961 286.896 21.2453 280.341 20.1359C275.096 19.2483 269.212 22.9263 266.926 24.8763C260.955 28.1038 256.437 49.4189 254.924 59.673C252.369 69.2211 246.371 91.3027 242.821 103.245C238.39 118.148 215.76 190.105 226.261 149ZM226.261 149C222.07 178.368 211.861 232.928 202.261 241.5"
+                        stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
+                    <!-- LEFT HAND NAILS: oval / medium -->
+                    <path id="nail-l-1" class="nail nail-hand-left nail-shape-oval nail-length-medium"
+                        d="M318.178 97.8856C327.646 100.423 331.283 96.3162 331.919 93.9459C332.274 93.0468 347.361 45.3965 332.615 41.4447C317.261 37.3297 308.317 79.6682 307.288 87.3462C306.417 93.8551 314.845 97.103 318.178 97.8856Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-l-2" class="nail nail-hand-left nail-shape-oval nail-length-medium"
+                        d="M360.669 272.634C368.391 277.396 372.801 274.565 374.041 272.555C374.613 271.822 401.604 232 389.579 224.584C377.058 216.862 360.061 250.179 356.963 256.956C354.336 262.702 357.92 271.06 360.669 272.634Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-l-3" class="nail nail-hand-left nail-shape-oval nail-length-medium"
+                        d="M273.178 59.8856C282.646 62.4226 286.283 58.3162 286.919 55.9459C287.274 55.0468 302.361 7.39652 287.615 3.44472C272.261 -0.670257 263.317 41.6682 262.288 49.3462C261.417 55.8551 269.845 59.103 273.178 59.8856Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-l-4" class="nail nail-hand-left nail-shape-oval nail-length-medium"
+                        d="M222.803 88.0812C231.354 90.3723 234.638 86.6639 235.212 84.5233C235.533 83.7114 249.157 40.6798 235.841 37.111C221.975 33.3949 213.898 71.6296 212.969 78.5634C212.182 84.4413 219.793 87.3744 222.803 88.0812Z"
+                        fill="var(--nailColor)" />
+                    <path id="nail-l-5" class="nail nail-hand-left nail-shape-oval nail-length-medium"
+                        d="M153.068 156.363C158.999 157.952 161.297 155.308 161.704 153.787C161.931 153.21 171.576 122.633 162.34 120.158C152.723 117.58 146.951 144.732 146.276 149.654C145.705 153.826 150.98 155.874 153.068 156.363Z"
+                        fill="var(--nailColor)" />
+
+                    <!-- Nail gloss overlay (uses same nail shapes) -->
+                    <g class="nail-gloss-layer">
+                        <use href="#nail-r-1" fill="url(#nailGloss)" />
+                        <use href="#nail-r-2" fill="url(#nailGloss)" />
+                        <use href="#nail-r-3" fill="url(#nailGloss)" />
+                        <use href="#nail-r-4" fill="url(#nailGloss)" />
+                        <use href="#nail-r-5" fill="url(#nailGloss)" />
+                        <use href="#nail-l-1" fill="url(#nailGloss)" />
+                        <use href="#nail-l-2" fill="url(#nailGloss)" />
+                        <use href="#nail-l-3" fill="url(#nailGloss)" />
+                        <use href="#nail-l-4" fill="url(#nailGloss)" />
+                        <use href="#nail-l-5" fill="url(#nailGloss)" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- RIGHT PANEL: DND Palette -->
+        <div class="panel">
+            <h2>DND Duo Bestsellers</h2>
+            <div class="color-grid" id="colorGrid"></div>
+            <div class="swatch-label" id="swatchLabel">
+                Tap a shade to apply it to the nails.
+            </div>
+            <div class="footer-link">
+                Colors are on-screen approximations of DND shades.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* DND bestseller colors – approximate on-screen hex values */
+        const dndBestsellers = [
+            { name: "Cherry Mocha #751", hex: "#4A1C24" },
+            { name: "Ferrari Red #430", hex: "#E6342A" },
+            { name: "Blood Mary #473", hex: "#7E1D29" },
+            { name: "Maroon Red #495", hex: "#812026" },
+            { name: "Khaki #599", hex: "#A8D6A4" },
+            { name: "Amazon Green #597", hex: "#0A4A3D" },
+            { name: "Pastel Pink #447", hex: "#F7DCE9" },
+            { name: "Mint Cream #441", hex: "#B7EDC1" },
+            { name: "Snow White #449", hex: "#FFFFFF" },
+            { name: "Sonic Blue #675", hex: "#193DAA" },
+            { name: "Black Licorice #419", hex: "#000000" },
+            { name: "Midnight Blue #405", hex: "#11235E" },
+            { name: "Baby Blue #442", hex: "#B7DFF7" },
+            { name: "Cranberry Red #654", hex: "#781A22" },
+            { name: "Cotton Candy #466", hex: "#F7C8D6" },
+            { name: "Sky Blue #543", hex: "#39A6E8" },
+            { name: "Ocean Blue #652", hex: "#002F8D" },
+            { name: "Flamingo Pink #541", hex: "#F8B1D8" },
+            { name: "True Blue #582", hex: "#0E6DD9" },
+            { name: "Teal Mist #572", hex: "#79C6CF" },
+            { name: "Cornflower Blue #442", hex: "#9BBCEC" },
+            { name: "Hot Pink #676", hex: "#FA3C90" },
+            { name: "Deep Wine #675", hex: "#5A0E1E" },
+            { name: "Plum Red #702", hex: "#651C3A" },
+            { name: "Red Delicious #491", hex: "#D71A1D" },
+            { name: "Violet Blue #540", hex: "#7D8CE2" },
+            { name: "Caramel Latte #625", hex: "#A27F6B" },
+            { name: "Lemon Drop #653", hex: "#F7D56B" },
+            { name: "Lilac Mist #573", hex: "#CABCEE" },
+            { name: "French White #447", hex: "#F6F6F6" },
+            { name: "Fuchsia Pop #668", hex: "#F84899" },
+            { name: "Ruby Red #495", hex: "#D62828" },
+            { name: "Midnight Sky #597", hex: "#02245E" },
+            { name: "Baby Boy Blue #631", hex: "#88B9F6" },
+            { name: "Silver Glitter #496", hex: "#D9D9D9" },
+            { name: "Capri Blue #572", hex: "#48CDE4" }
+        ];
+
+        /* Skin tones from your gradient spheres (for UI swatches) */
+        const skinTones = [
+            { id: "light1", start: "#F6E3D4", end: "#E6C9B4" },
+            { id: "light2", start: "#EBC7AD", end: "#CCA488" },
+            { id: "light3", start: "#DFA981", end: "#B68863" },
+            { id: "medium1", start: "#D1976F", end: "#A76F3F" },
+            { id: "medium2", start: "#BE8C6D", end: "#986344" },
+            { id: "medium3", start: "#BF8064", end: "#A75D3C" },
+            { id: "deep1", start: "#9B683F", end: "#7B441C" },
+            { id: "deep2", start: "#84421C", end: "#5D2A10" },
+            { id: "deep3", start: "#673219", end: "#431C0D" }
+        ];
+
+        const handPaths = document.querySelectorAll(".hand-path");
+        const skinToneRow = document.getElementById("skinToneRow");
+
+        // build swatches
+        skinTones.forEach((tone, index) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "skin-swatch" + (index === 4 ? " active" : ""); // medium2 default
+            btn.style.backgroundImage = `radial-gradient(circle at 30% 30%, ${tone.start}, ${tone.end})`;
+            btn.title = tone.id; // tooltip text (light1, medium2, etc.)
+            btn.dataset.id = tone.id;
+
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".skin-swatch").forEach(s =>
+                    s.classList.remove("active")
+                );
+                btn.classList.add("active");
+
+                // update both hands to use the matching gradient
+                const gradientId = `skinTone-${tone.id}`;
+                handPaths.forEach(path => {
+                    path.setAttribute("fill", `url(#${gradientId})`);
+                });
+            });
+
+            skinToneRow.appendChild(btn);
+        });
+
+
+        const root = document.documentElement;
+        const grid = document.getElementById("colorGrid");
+        const colorLabel = document.getElementById("colorLabel");
+        const subLabel = document.getElementById("subLabel");
+        const shapeLabel = document.getElementById("shapeLabel");
+        const handWrapper = document.getElementById("handWrapper");
+        const skinToneRow = document.getElementById("skinToneRow");
+
+        /* Build DND swatches */
+        dndBestsellers.forEach((c, index) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "swatch" + (index === 0 ? " active" : "");
+            btn.style.backgroundColor = c.hex;
+            btn.dataset.hex = c.hex;
+            btn.dataset.name = c.name;
+            btn.addEventListener("click", () => {
+                root.style.setProperty("--nailColor", c.hex);
+                colorLabel.textContent = c.name;
+                subLabel.textContent = "DND Duo Gel – Bestseller";
+
+                document.querySelectorAll(".swatch").forEach(s =>
+                    s.classList.remove("active")
+                );
+                btn.classList.add("active");
+            });
+            grid.appendChild(btn);
+        });
+
+        /* Build skin tone swatches */
+        const skinToneRects = document.querySelectorAll(".skinTone");
+
+        skinTones.forEach((tone, index) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "skin-swatch" + (index === 0 ? " active" : "");
+            btn.style.backgroundImage = `radial-gradient(circle at 30% 30%, ${tone.start}, ${tone.end})`;
+            btn.dataset.index = index;
+
+            btn.addEventListener("click", () => {
+                // toggle active UI state
+                document.querySelectorAll(".skin-swatch").forEach(s =>
+                    s.classList.remove("active")
+                );
+                btn.classList.add("active");
+
+                // show only the selected skin rect
+                skinToneRects.forEach((rect, rectIndex) => {
+                    rect.classList.toggle("hidden", rectIndex !== index);
+                });
+            });
+
+            skinToneRow.appendChild(btn);
+        });
+
+        /* Shape / Length / Finish system */
+
+        let currentShape = "oval";
+        let currentLength = "medium";
+        let currentFinish = "shiny";
+
+        function updateShapeLengthFinishLabel() {
+            const labelText =
+                capitalize(currentShape) +
+                " · " +
+                capitalize(currentLength) +
+                " · " +
+                capitalize(currentFinish);
+            shapeLabel.textContent = labelText;
+        }
+
+        function capitalize(str) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
+
+        /* Shape: only oval currently */
+        document.querySelectorAll(".shape-pill").forEach(pill => {
+            pill.addEventListener("click", () => {
+                if (pill.classList.contains("disabled")) return;
+                document
+                    .querySelectorAll(".shape-pill")
+                    .forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                currentShape = pill.dataset.shape;
+
+                document.querySelectorAll(".nail").forEach(nail => {
+                    const hasShape = nail.classList.contains(
+                        "nail-shape-" + currentShape
+                    );
+                    nail.classList.toggle("hidden", !hasShape);
+                });
+
+                updateShapeLengthFinishLabel();
+            });
+        });
+
+        /* Length: only medium currently */
+        document.querySelectorAll(".length-pill").forEach(pill => {
+            pill.addEventListener("click", () => {
+                if (pill.classList.contains("disabled")) return;
+                document
+                    .querySelectorAll(".length-pill")
+                    .forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                currentLength = pill.dataset.length;
+                // future: toggle .nail-length-* visibility
+                updateShapeLengthFinishLabel();
+            });
+        });
+
+        /* Finish: matte vs shiny (also toggles gloss layer) */
+        const glossLayer = document.querySelector(".nail-gloss-layer");
+
+        document.querySelectorAll(".finish-pill").forEach(pill => {
+            pill.addEventListener("click", () => {
+                document
+                    .querySelectorAll(".finish-pill")
+                    .forEach(p => p.classList.remove("active"));
+                pill.classList.add("active");
+                currentFinish = pill.dataset.finish;
+
+                if (currentFinish === "matte") {
+                    handWrapper.style.filter = "saturate(0.85) brightness(1.05)";
+                    if (glossLayer) glossLayer.classList.add("matte");
+                } else {
+                    handWrapper.style.filter = "none";
+                    if (glossLayer) glossLayer.classList.remove("matte");
+                }
+
+                updateShapeLengthFinishLabel();
+            });
+        });
+
+        // Initialize label
+        updateShapeLengthFinishLabel();
+    </script>
+</body>
+
+</html>
