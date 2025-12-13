@@ -2,672 +2,938 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Nail Preview – DND Bestsellers</title>
-    <style>
-        :root {
-            --bg: #faf7f7;
-            --accent: #f04a4a;
-            --text: #222;
-            --nailColor: #d32f2f;
-            /* default polish (DND-style red) */
-        }
+  <meta charset="UTF-8" />
+  <title>Nail Preview Tool</title>
+  <style>
+    :root {
+      --bg: #faf7f7;
+      --accent: #f04a4a;
+      --text: #222;
+      --nailColor: #d71a1d; /* default polish (Red Delicious) */
+    }
 
-        * {
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-                -apple-system, BlinkMacSystemFont, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-        body {
-            margin: 0;
-            background: #fff;
-            color: var(--text);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--text);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-        .app {
-            max-width: 1200px;
-            width: 100%;
-            padding: 24px;
-            display: grid;
-            grid-template-columns: 230px minmax(0, 1fr) 260px;
-            gap: 24px;
-        }
+    .app {
+      max-width: 1200px;
+      width: 100%;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr) 260px;
+      gap: 24px;
+    }
 
-        h1 {
-            margin: 0 0 8px;
-            font-size: 20px;
-            font-weight: 600;
-        }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 20px;
+      font-weight: 600;
+    }
 
-        h2,
-        h3 {
-            margin: 0 0 12px;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 12px;
-            opacity: 0.8;
-        }
+    h2,
+    h3 {
+      margin: 0 0 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-size: 12px;
+      opacity: 0.8;
+    }
 
-        .panel {
-            font-size: 13px;
-        }
+    .panel {
+      font-size: 13px;
+    }
 
-        .pill-group {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
-        .pill {
-            padding: 6px 12px;
-            border-radius: 999px;
-            border: 1px solid #ddd;
-            background: #fff;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s;
-        }
+    .pill {
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      font-size: 12px;
+      transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s;
+    }
 
-        .pill.active {
-            border-color: #000;
-            background: #ffe5e5;
-        }
+    .pill.active {
+      border-color: #000;
+      background: #ffe5e5;
+    }
 
-        .pill.disabled {
-            opacity: 0.35;
-            cursor: default;
-        }
+    .preview-card {
+      background: var(--bg);
+      border-radius: 40px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      padding: 24px 24px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .preview-card {
-            background: var(--bg);
-            border-radius: 40px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
-            padding: 24px 24px 32px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
+    .preview-header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
 
-        .preview-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-bottom: 12px;
-            gap: 8px;
-        }
+    .color-label {
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-        .color-label {
-            font-size: 14px;
-            font-weight: 600;
-        }
+    .sub-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+    }
 
-        .sub-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            opacity: 0.7;
-        }
+    .hand-wrapper {
+      width: 100%;
+      max-width: 520px;
+    }
 
-        .hand-wrapper {
-            width: 100%;
-            max-width: 520px;
-        }
+    .hand-wrapper svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-        .hand-wrapper svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+    /* Nails */
+    .hand-wrapper .nail {
+      fill: var(--nailColor);
+      transition: fill 0.2s ease-out, opacity 0.15s ease-out;
+    }
 
-        /* Nails */
-        .hand-wrapper .nail {
-            fill: var(--nailColor);
-            transition: fill 0.2s ease-out, opacity 0.15s ease-out;
-        }
+    .hand-wrapper .nail.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
 
-        .hand-wrapper .nail.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
+    /* Skin tone UI */
+    .skin-tone-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
 
-        /* Gloss highlight */
-        .nail-gloss-layer {
-            mix-blend-mode: screen;
-            pointer-events: none;
-            transition: opacity 0.2s ease-out;
-        }
+    .skin-swatch {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      padding: 0;
+      outline: none;
+      background-size: 150% 150%;
+      background-position: 30% 30%;
+    }
 
-        .nail-gloss-layer.matte {
-            opacity: 0;
-        }
+    .skin-swatch.active {
+      border-color: #000;
+      box-shadow: 0 0 0 1px #000;
+    }
 
-        /* Skin tone rects */
-        .skinTone {
-            transition: opacity 0.2s ease-out;
-        }
+    .skin-swatch:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+    }
 
-        .skinTone.hidden {
-            opacity: 0;
-        }
+    /* DND color grid */
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      max-height: 430px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
 
-        /* DND color grid */
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
-            max-height: 430px;
-            overflow-y: auto;
-            padding-right: 4px;
-        }
+    .swatch {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      outline: none;
+      display: block;
+    }
 
-        .swatch {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            cursor: pointer;
-            outline: none;
-            display: block;
-        }
+    .swatch.active {
+      border-color: #000;
+    }
 
-        .swatch.active {
-            border-color: #000;
-        }
+    .swatch:focus-visible {
+      outline: 2px solid #000;
+      outline-offset: 3px;
+    }
 
-        .swatch:focus-visible {
-            outline: 2px solid #000;
-            outline-offset: 3px;
-        }
+    .swatch-label {
+      margin-top: 12px;
+      font-size: 11px;
+      opacity: 0.8;
+    }
 
-        .swatch-label {
-            margin-top: 12px;
-            font-size: 11px;
-            opacity: 0.8;
-        }
+    .footer-link {
+      margin-top: 16px;
+      font-size: 11px;
+      text-align: left;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      opacity: 0.7;
+    }
 
-        .footer-link {
-            margin-top: 16px;
-            font-size: 11px;
-            text-align: left;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-            cursor: pointer;
-            opacity: 0.7;
-        }
-
-        /* Skin tone UI */
-        .skin-tone-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 4px;
-        }
-
-        .skin-swatch {
-            width: 26px;
-            height: 26px;
-            border-radius: 999px;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            padding: 0;
-            outline: none;
-        }
-
-        .skin-swatch.active {
-            border-color: #000;
-            box-shadow: 0 0 0 1px #000;
-        }
-
-        .skin-swatch:focus-visible {
-            outline: 2px solid #000;
-            outline-offset: 2px;
-        }
-
-        @media (max-width: 900px) {
-            .app {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    @media (max-width: 900px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="app">
-        <!-- LEFT PANEL: Shape / Length / Finish / Skin Tone -->
-        <div class="panel">
-            <h1>Nail preview</h1>
-            <p style="margin:0 0 24px;font-size:13px;opacity:0.8;">
-                Try bestselling DND shades on a medium oval hand illustration.
-            </p>
+  <div class="app">
+    <!-- LEFT PANEL: Shape / Length / Finish / Skin Tone -->
+    <div class="panel">
+      <h1>Nail Preview Tool</h1>
+      <p style="margin:0 0 24px;font-size:13px;opacity:0.8;">
+       Try out a new nail shape, length, or shade!
+      </p>
 
-            <h2>Nail Shape</h2>
-            <div class="pill-group">
-                <button class="pill shape-pill disabled" data-shape="almond">Almond</button>
-                <button class="pill shape-pill disabled" data-shape="coffin">Coffin</button>
-                <button class="pill shape-pill disabled" data-shape="square">Square</button>
-                <button class="pill shape-pill disabled" data-shape="duck">Duck</button>
-                <button class="pill shape-pill disabled" data-shape="stiletto">Stiletto</button>
-                <button class="pill shape-pill active" data-shape="oval">Oval</button>
-            </div>
+      <h2>Skin Tone</h2>
+      <div class="skin-tone-row" id="skinToneRow"></div>
 
-            <h2 style="margin-top:24px;">Nail Length</h2>
-            <div class="pill-group">
-                <button class="pill length-pill disabled" data-length="short">Short</button>
-                <button class="pill length-pill active" data-length="medium">Medium</button>
-                <button class="pill length-pill disabled" data-length="long">Long</button>
-            </div>
+      <h2 style="margin-top:24px;">Nail Shape</h2>
+      <div class="pill-group">
+        <button class="pill shape-pill active" data-shape="oval">Oval</button>
+        <button class="pill shape-pill" data-shape="almond">Almond</button>
+        <button class="pill shape-pill" data-shape="coffin">Coffin</button>
+        <button class="pill shape-pill" data-shape="square">Square</button>
+      </div>
 
-            <h2 style="margin-top:24px;">Finish</h2>
-            <div class="pill-group">
-                <button class="pill finish-pill active" data-finish="shiny">Shiny</button>
-                <button class="pill finish-pill" data-finish="matte">Matte</button>
-            </div>
+      <h2 style="margin-top:24px;">Nail Length</h2>
+      <div class="pill-group">
+        <button class="pill length-pill" data-length="short">Short</button>
+        <button class="pill length-pill active" data-length="medium">Medium</button>
+        <button class="pill length-pill" data-length="long">Long</button>
+      </div>
 
-            <h2 style="margin-top:24px;">Skin Tone</h2>
-            <div class="skin-tone-row" id="skinToneRow"></div>
-        </div>
+      <h2 style="margin-top:24px;">Finish</h2>
+      <div class="pill-group">
+        <button class="pill finish-pill active" data-finish="shiny">Shiny</button>
+        <button class="pill finish-pill" data-finish="matte">Matte</button>
+      </div>
 
-        <!-- CENTER: Preview -->
-        <div class="preview-card">
-            <div class="preview-header">
-                <div>
-                    <div class="color-label" id="colorLabel">
-                        Cherry Mocha #751
-                    </div>
-                    <div class="sub-label" id="subLabel">
-                        DND Duo Gel – Bestseller
-                    </div>
-                </div>
-                <div class="sub-label" id="shapeLabel">
-                    Oval · Medium · Shiny
-                </div>
-            </div>
-
-            <div class="hand-wrapper" id="handWrapper">
-                <!-- SVG with skin tones + nails -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="813" height="632" viewBox="0 0 813 632" fill="none">
-                    <defs>
-                        <!-- Skin tone gradients (built from your spheres) -->
-                        <radialGradient id="skinTone0" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#EDC7AA" />
-                            <stop offset="100%" stop-color="#C79A7C" />
-                        </radialGradient>
-                        <radialGradient id="skinTone1" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#BF8064" />
-                            <stop offset="100%" stop-color="#A75D3C" />
-                        </radialGradient>
-                        <radialGradient id="skinTone2" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#D1976F" />
-                            <stop offset="100%" stop-color="#A76F3F" />
-                        </radialGradient>
-                        <radialGradient id="skinTone3" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#DFA981" />
-                            <stop offset="100%" stop-color="#B68863" />
-                        </radialGradient>
-                        <radialGradient id="skinTone4" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#BE8C6D" />
-                            <stop offset="100%" stop-color="#986344" />
-                        </radialGradient>
-                        <radialGradient id="skinTone5" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#FFE1CA" />
-                            <stop offset="100%" stop-color="#CEA890" />
-                        </radialGradient>
-                        <radialGradient id="skinTone6" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#EBC7AD" />
-                            <stop offset="100%" stop-color="#CCA488" />
-                        </radialGradient>
-                        <radialGradient id="skinTone7" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#986138" />
-                            <stop offset="100%" stop-color="#854414" />
-                        </radialGradient>
-                        <radialGradient id="skinTone8" cx="50%" cy="30%" r="70%">
-                            <stop offset="0%" stop-color="#FFE2CC" />
-                            <stop offset="100%" stop-color="#E0C7B8" />
-                        </radialGradient>
-
-                        <!-- Mask to approximate filled hand silhouettes using your outlines -->
-                        <mask id="skinMask" maskUnits="userSpaceOnUse" x="0" y="0" width="813" height="632">
-                            <rect width="813" height="632" fill="black" />
-                            <!-- Right hand outline as wide stroke -->
-                            <path
-                                d="M586.261 149C586.244 148.933 585.654 142.547 585.637 142.479C585.393 141.525 585.132 140.798 585.233 140.462C582.577 130.376 577.286 109.417 577.366 106.27C577.447 103.124 575.517 96.8231 574.542 94.0663C572.525 88.25 569.035 74.1767 571.214 64.4134C573.392 54.6502 578.308 52.4783 580.493 52.6128C606.414 55.7395 605.204 79.7442 608.028 86.1992C610.287 91.3632 615.222 116.39 617.408 128.258C619.055 136.394 623.379 154.945 627.494 164.063C631.609 173.181 634.588 187.967 635.562 194.22L638.084 201.785C638.084 211.548 644.741 230.732 648.069 239.103C648.742 235.035 649.683 225.366 648.069 219.234C646.052 211.568 646.859 201.079 648.069 194.22C649.279 187.362 647.061 181.714 643.228 161.643C639.395 141.571 645.043 135.318 648.977 131.385C652.91 127.451 660.979 125.938 668.544 142.681C674.595 156.075 676.646 171.729 676.915 177.881C676.377 180.739 676.29 189.52 680.243 201.785C684.197 214.049 684.043 224.512 683.471 228.21L689.22 258.166L699.508 293.063C700.987 298.913 703.683 312.469 702.634 319.892C701.585 327.315 703.071 343.829 703.946 351.159C705.122 359.16 706.77 379.964 703.946 399.168C701.122 418.372 702.769 426.669 703.946 428.417C716.694 493.291 780.801 590.6 811.261 631.146H628.2L581.501 533.413C569.882 498.878 551.378 486.681 543.578 484.899C528.489 476.346 519.741 463.584 517.254 458.272C510.698 445.53 495.629 416.96 487.802 404.615C478.019 389.183 475.195 371.936 474.691 368.103C474.186 364.27 468.538 349.242 465.613 345.107C463.273 341.799 456.906 328.465 454.014 322.212C451.325 318.514 446.006 310.209 446.248 306.579C446.49 302.948 444.668 296.862 443.727 294.274C438.684 282.574 440.499 282.473 440.499 278.237C440.499 274.001 428.396 255.342 427.387 252.215C426.379 249.088 430.211 240.919 443.021 238.498C455.83 236.077 466.924 250.5 476.809 263.31C484.716 273.557 486.424 279.212 486.29 280.758C490.566 283.502 491.299 289.634 491.131 292.357C495.246 296.553 495.468 301.098 495.064 302.847C496.597 304.218 499.939 311.218 501.419 314.546C502.158 316.665 503.88 320.921 504.848 321.001C506.058 321.102 507.268 305.166 506.562 303.956C505.998 302.988 506.798 289.231 507.268 282.473C509.205 269.724 508.075 254.972 507.268 249.189C508.237 242.653 502.427 216.073 499.401 203.6C496.376 196.473 490.042 178.829 488.912 165.274C487.5 148.329 486.088 145.505 485.785 138.848C485.483 132.191 481.347 119.18 476.304 101.833C472.27 87.9542 472.741 76.3486 473.48 72.2805C473.615 67.4729 476.97 57.8575 489.315 57.8575C504.747 57.8575 508.781 74.7012 512.715 87.107C515.862 97.0316 517.523 102.808 517.96 104.455C520.649 117.499 526.916 144.597 530.466 148.632C534.904 153.675 535.913 159.222 539.443 175.158C542.267 187.907 549.966 218.393 553.462 232.043C558.505 240.818 554.471 245.256 556.589 248.181C558.283 250.52 559.716 248.012 560.22 246.466C557.073 242.109 557.228 235.035 557.699 232.043C554.975 187.261 550.235 185.446 545.898 173.947C542.428 164.749 540.149 154.381 539.443 150.346C537.426 129.065 534.4 120.996 533.29 113.734C532.403 107.924 528.819 95.5792 527.138 90.1328C525.524 84.1148 521.691 69.2346 519.271 57.8575C516.245 43.6363 517.758 37.2821 518.262 32.2391C518.767 27.1961 525.625 21.2453 532.181 20.1359C537.426 19.2483 543.309 22.9263 545.595 24.8763C551.566 28.1038 556.085 49.4189 557.598 59.673C560.153 69.2211 566.151 91.3027 569.701 103.245C574.131 118.148 596.761 190.105 586.261 149Z"
-                                stroke="white" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"
-                                fill="none" />
-                            <!-- Left hand outline as wide stroke -->
-                            <path
-                                d="M226.261 149C226.278 148.933 226.867 142.547 226.885 142.479C227.129 141.525 227.389 140.798 227.288 140.462C229.944 130.376 235.236 109.417 235.155 106.27C235.075 103.124 237.004 96.8231 237.979 94.0663C239.997 88.25 243.486 74.1767 241.308 64.4134C239.129 54.6502 234.214 52.4783 232.029 52.6128C206.108 55.7395 207.318 79.7442 204.494 86.1992C202.235 91.3632 197.299 116.39 195.114 128.258C193.466 136.394 189.143 154.945 185.028 164.063C180.913 173.181 177.934 187.967 176.959 194.22L174.438 201.785C174.438 211.548 167.781 230.732 164.452 239.103C163.78 235.035 162.839 225.366 164.452 219.234C166.47 211.568 165.663 201.079 164.452 194.22C163.242 187.362 165.461 181.714 169.294 161.643C173.126 141.571 167.478 135.318 163.545 131.385C159.611 127.451 151.542 125.938 143.978 142.681C137.926 156.075 135.875 171.729 135.606 177.881C136.144 180.739 136.232 189.52 132.278 201.785C128.324 214.049 128.479 224.512 129.05 228.21L123.301 258.166L113.014 293.063C111.534 298.913 108.838 312.469 109.887 319.892C110.936 327.315 109.45 343.829 108.576 351.159C107.399 359.16 105.752 379.964 108.576 399.168C111.4 418.372 109.753 426.669 108.576 428.417C95.8272 493.291 31.7205 590.6 1.26074 631.146H184.322L231.02 533.413C242.639 498.878 261.144 486.681 268.943 484.899C284.032 476.346 292.78 463.584 295.268 458.272C301.824 445.53 316.892 416.96 324.719 404.615C334.502 389.183 337.327 371.936 337.831 368.103C338.335 364.27 343.983 349.242 346.908 345.107C349.248 341.799 355.616 328.465 358.507 322.212C361.197 318.514 366.515 310.209 366.273 306.579C366.031 302.948 367.854 296.862 368.795 294.274C373.838 282.574 372.022 282.473 372.022 278.237C372.022 274.001 384.126 255.342 385.134 252.215C386.143 249.088 382.31 240.919 369.501 238.498C356.692 236.077 345.597 250.5 335.713 263.31C327.805 273.557 326.097 279.212 326.232 280.758C321.955 283.502 321.223 289.634 321.391 292.357C317.276 296.553 317.054 301.098 317.457 302.847C315.924 304.218 312.582 311.218 311.103 314.546C310.363 316.665 308.642 320.921 307.674 321.001C306.463 321.102 305.253 305.166 305.959 303.956C306.524 302.988 305.724 289.231 305.253 282.473C303.317 269.724 304.446 254.972 305.253 249.189C304.285 242.653 310.094 216.073 313.12 203.6C316.146 196.473 322.48 178.829 323.61 165.274C325.022 148.329 326.434 145.505 326.736 138.848C327.039 132.191 331.174 119.18 336.217 101.833C340.251 87.9542 339.781 76.3486 339.041 72.2805C338.907 67.4729 335.551 57.8575 323.206 57.8575C307.775 57.8575 303.74 74.7012 299.807 87.107C296.66 97.0316 294.999 102.808 294.562 104.455C291.872 117.499 285.605 144.597 282.055 148.632C277.617 153.675 276.609 159.222 273.079 175.158C270.255 187.907 262.556 218.393 259.059 232.043C254.016 240.818 258.051 245.256 255.932 248.181C254.238 250.52 252.806 248.012 252.301 246.466C255.448 242.109 255.294 235.035 254.823 232.043C257.546 187.261 262.287 185.446 266.624 173.947C270.093 164.749 272.373 154.381 273.079 150.346C275.096 129.065 278.122 120.996 279.231 113.734C280.119 107.924 283.703 95.5792 285.384 90.1328C286.997 84.1148 290.83 69.2346 293.251 57.8575C296.276 43.6363 294.764 37.2821 294.259 32.2391C293.755 27.1961 286.896 21.2453 280.341 20.1359C275.096 19.2483 269.212 22.9263 266.926 24.8763C260.955 28.1038 256.437 49.4189 254.924 59.673C252.369 69.2211 246.371 91.3027 242.821 103.245C238.39 118.148 215.76 190.105 226.261 149Z"
-                                stroke="white" stroke-width="80" stroke-linecap="round" stroke-linejoin="round"
-                                fill="none" />
-                        </mask>
-
-                        <!-- Gloss gradient for nails -->
-                        <linearGradient id="nailGloss" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.6" />
-                            <stop offset="35%" stop-color="#FFFFFF" stop-opacity="0.2" />
-                            <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Skin tone layers (masked to hand shapes) -->
-                    <g id="skinGroup" mask="url(#skinMask)">
-                        <rect class="skinTone" width="813" height="632" fill="url(#skinTone0)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone1)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone2)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone3)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone4)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone5)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone6)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone7)" />
-                        <rect class="skinTone hidden" width="813" height="632" fill="url(#skinTone8)" />
-                    </g>
-
-                    <!-- Right hand outline -->
-                    <path
-                        d="M586.261 149C586.244 148.933 585.654 142.547 585.637 142.479C585.393 141.525 585.132 140.798 585.233 140.462C582.577 130.376 577.286 109.417 577.366 106.27C577.447 103.124 575.517 96.8231 574.542 94.0663C572.525 88.25 569.035 74.1767 571.214 64.4134C573.392 54.6502 578.308 52.4783 580.493 52.6128C606.414 55.7395 605.204 79.7442 608.028 86.1992C610.287 91.3632 615.222 116.39 617.408 128.258C619.055 136.394 623.379 154.945 627.494 164.063C631.609 173.181 634.588 187.967 635.562 194.22L638.084 201.785C638.084 211.548 644.741 230.732 648.069 239.103C648.742 235.035 649.683 225.366 648.069 219.234C646.052 211.568 646.859 201.079 648.069 194.22C649.279 187.362 647.061 181.714 643.228 161.643C639.395 141.571 645.043 135.318 648.977 131.385C652.91 127.451 660.979 125.938 668.544 142.681C674.595 156.075 676.646 171.729 676.915 177.881C676.377 180.739 676.29 189.52 680.243 201.785C684.197 214.049 684.043 224.512 683.471 228.21L689.22 258.166L699.508 293.063C700.987 298.913 703.683 312.469 702.634 319.892C701.585 327.315 703.071 343.829 703.946 351.159C705.122 359.16 706.77 379.964 703.946 399.168C701.122 418.372 702.769 426.669 703.946 428.417C716.694 493.291 780.801 590.6 811.261 631.146H628.2L581.501 533.413C569.882 498.878 551.378 486.681 543.578 484.899C528.489 476.346 519.741 463.584 517.254 458.272C510.698 445.53 495.629 416.96 487.802 404.615C478.019 389.183 475.195 371.936 474.691 368.103C474.186 364.27 468.538 349.242 465.613 345.107C463.273 341.799 456.906 328.465 454.014 322.212C451.325 318.514 446.006 310.209 446.248 306.579C446.49 302.948 444.668 296.862 443.727 294.274C438.684 282.574 440.499 282.473 440.499 278.237C440.499 274.001 428.396 255.342 427.387 252.215C426.379 249.088 430.211 240.919 443.021 238.498C455.83 236.077 466.924 250.5 476.809 263.31C484.716 273.557 486.424 279.212 486.29 280.758C490.566 283.502 491.299 289.634 491.131 292.357C495.246 296.553 495.468 301.098 495.064 302.847C496.597 304.218 499.939 311.218 501.419 314.546C502.158 316.665 503.88 320.921 504.848 321.001C506.058 321.102 507.268 305.166 506.562 303.956C505.998 302.988 506.798 289.231 507.268 282.473C509.205 269.724 508.075 254.972 507.268 249.189C508.237 242.653 502.427 216.073 499.401 203.6C496.376 196.473 490.042 178.829 488.912 165.274C487.5 148.329 486.088 145.505 485.785 138.848C485.483 132.191 481.347 119.18 476.304 101.833C472.27 87.9542 472.741 76.3486 473.48 72.2805C473.615 67.4729 476.97 57.8575 489.315 57.8575C504.747 57.8575 508.781 74.7012 512.715 87.107C515.862 97.0316 517.523 102.808 517.96 104.455C520.649 117.499 526.916 144.597 530.466 148.632C534.904 153.675 535.913 159.222 539.443 175.158C542.267 187.907 549.966 218.393 553.462 232.043C558.505 240.818 554.471 245.256 556.589 248.181C558.283 250.52 559.716 248.012 560.22 246.466C557.073 242.109 557.228 235.035 557.699 232.043C554.975 187.261 550.235 185.446 545.898 173.947C542.428 164.749 540.149 154.381 539.443 150.346C537.426 129.065 534.4 120.996 533.29 113.734C532.403 107.924 528.819 95.5792 527.138 90.1328C525.524 84.1148 521.691 69.2346 519.271 57.8575C516.245 43.6363 517.758 37.2821 518.262 32.2391C518.767 27.1961 525.625 21.2453 532.181 20.1359C537.426 19.2483 543.309 22.9263 545.595 24.8763C551.566 28.1038 556.085 49.4189 557.598 59.673C560.153 69.2211 566.151 91.3027 569.701 103.245C574.131 118.148 596.761 190.105 586.261 149ZM586.261 149C590.452 178.368 600.661 232.928 610.261 241.5"
-                        stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
-                    <!-- Right-hand extra shapes -->
-                    <path
-                        d="M613.468 481.143C629.283 490.099 628.126 495.431 625.571 496.978C622.989 514.164 645.272 537.423 656.737 546.904C664.563 545.613 667.125 549.795 667.428 552.047C686.289 576.456 681.548 587.147 684.171 597.434C686.269 605.665 682.221 623.053 679.935 630.718H712.008C717.757 590.576 703.637 565.764 696.274 554.872C690.384 546.157 681.044 524.546 677.11 514.83C643.827 483.866 634.548 491.834 631.522 491.834C629.101 491.834 624.932 486.858 623.15 484.37C624.441 474.284 617.233 471.494 613.468 471.359C619.842 477.492 619.687 480.437 618.813 481.143C614.537 479.852 613.468 480.605 613.468 481.143Z"
-                        fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
-                    <path
-                        d="M750.617 610.018C728.033 601.658 723.667 620.335 724.307 630.718H744.792C744.894 627.905 746.627 626.464 747.48 626.096C752.806 622.398 759.814 627.637 762.652 630.718H777.503C769.821 618.539 756.378 611.844 750.617 610.018Z"
-                        fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
-
-                    <!-- RIGHT HAND NAILS: oval / medium -->
-                    <path id="nail-r-1" class="nail nail-hand-right nail-shape-oval nail-length-medium"
-                        d="M494.344 97.8856C484.875 100.423 481.238 96.3162 480.603 93.9459C480.247 93.0468 465.161 45.3965 479.906 41.4447C495.26 37.3297 504.205 79.6682 505.233 87.3462C506.105 93.8551 497.677 97.103 494.344 97.8856Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-r-2" class="nail nail-hand-right nail-shape-oval nail-length-medium"
-                        d="M451.852 272.634C444.131 277.396 439.721 274.565 438.481 272.555C437.909 271.822 410.918 232 422.942 224.584C435.464 216.862 452.46 250.179 455.559 256.956C458.186 262.702 454.602 271.06 451.852 272.634Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-r-3" class="nail nail-hand-right nail-shape-oval nail-length-medium"
-                        d="M539.344 59.8856C529.875 62.4226 526.238 58.3162 525.603 55.9459C525.247 55.0468 510.161 7.39652 524.906 3.44472C540.26 -0.670257 549.205 41.6682 550.233 49.3462C551.105 55.8551 542.677 59.103 539.344 59.8856Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-r-4" class="nail nail-hand-right nail-shape-oval nail-length-medium"
-                        d="M589.718 88.0812C581.168 90.3723 577.883 86.6639 577.31 84.5233C576.989 83.7114 563.364 40.6798 576.68 37.111C590.546 33.3949 598.624 71.6296 599.553 78.5634C600.34 84.4413 592.728 87.3744 589.718 88.0812Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-r-5" class="nail nail-hand-right nail-shape-oval nail-length-medium"
-                        d="M659.453 156.363C653.522 157.952 651.225 155.308 650.817 153.787C650.591 153.21 640.945 122.633 650.181 120.158C659.799 117.58 665.571 144.732 666.245 149.654C666.817 153.826 661.541 155.874 659.453 156.363Z"
-                        fill="var(--nailColor)" />
-
-                    <!-- Left hand outline -->
-                    <path
-                        d="M226.261 149C226.278 148.933 226.867 142.547 226.885 142.479C227.129 141.525 227.389 140.798 227.288 140.462C229.944 130.376 235.236 109.417 235.155 106.27C235.075 103.124 237.004 96.8231 237.979 94.0663C239.997 88.25 243.486 74.1767 241.308 64.4134C239.129 54.6502 234.214 52.4783 232.029 52.6128C206.108 55.7395 207.318 79.7442 204.494 86.1992C202.235 91.3632 197.299 116.39 195.114 128.258C193.466 136.394 189.143 154.945 185.028 164.063C180.913 173.181 177.934 187.967 176.959 194.22L174.438 201.785C174.438 211.548 167.781 230.732 164.452 239.103C163.78 235.035 162.839 225.366 164.452 219.234C166.47 211.568 165.663 201.079 164.452 194.22C163.242 187.362 165.461 181.714 169.294 161.643C173.126 141.571 167.478 135.318 163.545 131.385C159.611 127.451 151.542 125.938 143.978 142.681C137.926 156.075 135.875 171.729 135.606 177.881C136.144 180.739 136.232 189.52 132.278 201.785C128.324 214.049 128.479 224.512 129.05 228.21L123.301 258.166L113.014 293.063C111.534 298.913 108.838 312.469 109.887 319.892C110.936 327.315 109.45 343.829 108.576 351.159C107.399 359.16 105.752 379.964 108.576 399.168C111.4 418.372 109.753 426.669 108.576 428.417C95.8272 493.291 31.7205 590.6 1.26074 631.146H184.322L231.02 533.413C242.639 498.878 261.144 486.681 268.943 484.899C284.032 476.346 292.78 463.584 295.268 458.272C301.824 445.53 316.892 416.96 324.719 404.615C334.502 389.183 337.327 371.936 337.831 368.103C338.335 364.27 343.983 349.242 346.908 345.107C349.248 341.799 355.616 328.465 358.507 322.212C361.197 318.514 366.515 310.209 366.273 306.579C366.031 302.948 367.854 296.862 368.795 294.274C373.838 282.574 372.022 282.473 372.022 278.237C372.022 274.001 384.126 255.342 385.134 252.215C386.143 249.088 382.31 240.919 369.501 238.498C356.692 236.077 345.597 250.5 335.713 263.31C327.805 273.557 326.097 279.212 326.232 280.758C321.955 283.502 321.223 289.634 321.391 292.357C317.276 296.553 317.054 301.098 317.457 302.847C315.924 304.218 312.582 311.218 311.103 314.546C310.363 316.665 308.642 320.921 307.674 321.001C306.463 321.102 305.253 305.166 305.959 303.956C306.524 302.988 305.724 289.231 305.253 282.473C303.317 269.724 304.446 254.972 305.253 249.189C304.285 242.653 310.094 216.073 313.12 203.6C316.146 196.473 322.48 178.829 323.61 165.274C325.022 148.329 326.434 145.505 326.736 138.848C327.039 132.191 331.174 119.18 336.217 101.833C340.251 87.9542 339.781 76.3486 339.041 72.2805C338.907 67.4729 335.551 57.8575 323.206 57.8575C307.775 57.8575 303.74 74.7012 299.807 87.107C296.66 97.0316 294.999 102.808 294.562 104.455C291.872 117.499 285.605 144.597 282.055 148.632C277.617 153.675 276.609 159.222 273.079 175.158C270.255 187.907 262.556 218.393 259.059 232.043C254.016 240.818 258.051 245.256 255.932 248.181C254.238 250.52 252.806 248.012 252.301 246.466C255.448 242.109 255.294 235.035 254.823 232.043C257.546 187.261 262.287 185.446 266.624 173.947C270.093 164.749 272.373 154.381 273.079 150.346C275.096 129.065 278.122 120.996 279.231 113.734C280.119 107.924 283.703 95.5792 285.384 90.1328C286.997 84.1148 290.83 69.2346 293.251 57.8575C296.276 43.6363 294.764 37.2821 294.259 32.2391C293.755 27.1961 286.896 21.2453 280.341 20.1359C275.096 19.2483 269.212 22.9263 266.926 24.8763C260.955 28.1038 256.437 49.4189 254.924 59.673C252.369 69.2211 246.371 91.3027 242.821 103.245C238.39 118.148 215.76 190.105 226.261 149ZM226.261 149C222.07 178.368 211.861 232.928 202.261 241.5"
-                        stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
-                    <!-- LEFT HAND NAILS: oval / medium -->
-                    <path id="nail-l-1" class="nail nail-hand-left nail-shape-oval nail-length-medium"
-                        d="M318.178 97.8856C327.646 100.423 331.283 96.3162 331.919 93.9459C332.274 93.0468 347.361 45.3965 332.615 41.4447C317.261 37.3297 308.317 79.6682 307.288 87.3462C306.417 93.8551 314.845 97.103 318.178 97.8856Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-l-2" class="nail nail-hand-left nail-shape-oval nail-length-medium"
-                        d="M360.669 272.634C368.391 277.396 372.801 274.565 374.041 272.555C374.613 271.822 401.604 232 389.579 224.584C377.058 216.862 360.061 250.179 356.963 256.956C354.336 262.702 357.92 271.06 360.669 272.634Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-l-3" class="nail nail-hand-left nail-shape-oval nail-length-medium"
-                        d="M273.178 59.8856C282.646 62.4226 286.283 58.3162 286.919 55.9459C287.274 55.0468 302.361 7.39652 287.615 3.44472C272.261 -0.670257 263.317 41.6682 262.288 49.3462C261.417 55.8551 269.845 59.103 273.178 59.8856Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-l-4" class="nail nail-hand-left nail-shape-oval nail-length-medium"
-                        d="M222.803 88.0812C231.354 90.3723 234.638 86.6639 235.212 84.5233C235.533 83.7114 249.157 40.6798 235.841 37.111C221.975 33.3949 213.898 71.6296 212.969 78.5634C212.182 84.4413 219.793 87.3744 222.803 88.0812Z"
-                        fill="var(--nailColor)" />
-                    <path id="nail-l-5" class="nail nail-hand-left nail-shape-oval nail-length-medium"
-                        d="M153.068 156.363C158.999 157.952 161.297 155.308 161.704 153.787C161.931 153.21 171.576 122.633 162.34 120.158C152.723 117.58 146.951 144.732 146.276 149.654C145.705 153.826 150.98 155.874 153.068 156.363Z"
-                        fill="var(--nailColor)" />
-
-                    <!-- Nail gloss overlay (uses same nail shapes) -->
-                    <g class="nail-gloss-layer">
-                        <use href="#nail-r-1" fill="url(#nailGloss)" />
-                        <use href="#nail-r-2" fill="url(#nailGloss)" />
-                        <use href="#nail-r-3" fill="url(#nailGloss)" />
-                        <use href="#nail-r-4" fill="url(#nailGloss)" />
-                        <use href="#nail-r-5" fill="url(#nailGloss)" />
-                        <use href="#nail-l-1" fill="url(#nailGloss)" />
-                        <use href="#nail-l-2" fill="url(#nailGloss)" />
-                        <use href="#nail-l-3" fill="url(#nailGloss)" />
-                        <use href="#nail-l-4" fill="url(#nailGloss)" />
-                        <use href="#nail-l-5" fill="url(#nailGloss)" />
-                    </g>
-                </svg>
-            </div>
-        </div>
-
-        <!-- RIGHT PANEL: DND Palette -->
-        <div class="panel">
-            <h2>DND Duo Bestsellers</h2>
-            <div class="color-grid" id="colorGrid"></div>
-            <div class="swatch-label" id="swatchLabel">
-                Tap a shade to apply it to the nails.
-            </div>
-            <div class="footer-link">
-                Colors are on-screen approximations of DND shades.
-            </div>
-        </div>
     </div>
 
-    <script>
-        /* DND bestseller colors – approximate on-screen hex values */
-        const dndBestsellers = [
-            { name: "Cherry Mocha #751", hex: "#4A1C24" },
-            { name: "Ferrari Red #430", hex: "#E6342A" },
-            { name: "Blood Mary #473", hex: "#7E1D29" },
-            { name: "Maroon Red #495", hex: "#812026" },
-            { name: "Khaki #599", hex: "#A8D6A4" },
-            { name: "Amazon Green #597", hex: "#0A4A3D" },
-            { name: "Pastel Pink #447", hex: "#F7DCE9" },
-            { name: "Mint Cream #441", hex: "#B7EDC1" },
-            { name: "Snow White #449", hex: "#FFFFFF" },
-            { name: "Sonic Blue #675", hex: "#193DAA" },
-            { name: "Black Licorice #419", hex: "#000000" },
-            { name: "Midnight Blue #405", hex: "#11235E" },
-            { name: "Baby Blue #442", hex: "#B7DFF7" },
-            { name: "Cranberry Red #654", hex: "#781A22" },
-            { name: "Cotton Candy #466", hex: "#F7C8D6" },
-            { name: "Sky Blue #543", hex: "#39A6E8" },
-            { name: "Ocean Blue #652", hex: "#002F8D" },
-            { name: "Flamingo Pink #541", hex: "#F8B1D8" },
-            { name: "True Blue #582", hex: "#0E6DD9" },
-            { name: "Teal Mist #572", hex: "#79C6CF" },
-            { name: "Cornflower Blue #442", hex: "#9BBCEC" },
-            { name: "Hot Pink #676", hex: "#FA3C90" },
-            { name: "Deep Wine #675", hex: "#5A0E1E" },
-            { name: "Plum Red #702", hex: "#651C3A" },
-            { name: "Red Delicious #491", hex: "#D71A1D" },
-            { name: "Violet Blue #540", hex: "#7D8CE2" },
-            { name: "Caramel Latte #625", hex: "#A27F6B" },
-            { name: "Lemon Drop #653", hex: "#F7D56B" },
-            { name: "Lilac Mist #573", hex: "#CABCEE" },
-            { name: "French White #447", hex: "#F6F6F6" },
-            { name: "Fuchsia Pop #668", hex: "#F84899" },
-            { name: "Ruby Red #495", hex: "#D62828" },
-            { name: "Midnight Sky #597", hex: "#02245E" },
-            { name: "Baby Boy Blue #631", hex: "#88B9F6" },
-            { name: "Silver Glitter #496", hex: "#D9D9D9" },
-            { name: "Capri Blue #572", hex: "#48CDE4" }
-        ];
+    <!-- CENTER: Preview -->
+    <div class="preview-card">
+      <div class="preview-header">
+        <div>
+          <div class="color-label" id="colorLabel">
+            Red Delicious #491
+          </div>
+          <div class="sub-label" id="subLabel">
+            DND Duo Gel – Bestseller
+          </div>
+        </div>
+        <div class="sub-label" id="shapeLabel">
+          Oval · Medium · Shiny
+        </div>
+      </div>
 
-        /* Skin tones from your gradient spheres (for UI swatches) */
-        const skinTones = [
-            { id: "light1", start: "#F6E3D4", end: "#E6C9B4" },
-            { id: "light2", start: "#EBC7AD", end: "#CCA488" },
-            { id: "light3", start: "#DFA981", end: "#B68863" },
-            { id: "medium1", start: "#D1976F", end: "#A76F3F" },
-            { id: "medium2", start: "#BE8C6D", end: "#986344" },
-            { id: "medium3", start: "#BF8064", end: "#A75D3C" },
-            { id: "deep1", start: "#9B683F", end: "#7B441C" },
-            { id: "deep2", start: "#84421C", end: "#5D2A10" },
-            { id: "deep3", start: "#673219", end: "#431C0D" }
-        ];
+      <div class="hand-wrapper" id="handWrapper">
+        <!-- SVG: hands + nails -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="813" height="632" viewBox="0 0 813 632" fill="none">
+          <defs>
+            <!-- 9 skin tones: light1..deep3 -->
+            <linearGradient id="skinTone-light1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#F6E3D4" />
+              <stop offset="100%" stop-color="#E6C9B4" />
+            </linearGradient>
+            <linearGradient id="skinTone-light2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#EBC7AD" />
+              <stop offset="100%" stop-color="#CCA488" />
+            </linearGradient>
+            <linearGradient id="skinTone-light3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#DFA981" />
+              <stop offset="100%" stop-color="#B68863" />
+            </linearGradient>
 
-        const handPaths = document.querySelectorAll(".hand-path");
-        const skinToneRow = document.getElementById("skinToneRow");
+            <linearGradient id="skinTone-medium1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#D1976F" />
+              <stop offset="100%" stop-color="#A76F3F" />
+            </linearGradient>
+            <linearGradient id="skinTone-medium2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#BE8C6D" />
+              <stop offset="100%" stop-color="#986344" />
+            </linearGradient>
+            <linearGradient id="skinTone-medium3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#BF8064" />
+              <stop offset="100%" stop-color="#A75D3C" />
+            </linearGradient>
 
-        // build swatches
-        skinTones.forEach((tone, index) => {
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "skin-swatch" + (index === 4 ? " active" : ""); // medium2 default
-            btn.style.backgroundImage = `radial-gradient(circle at 30% 30%, ${tone.start}, ${tone.end})`;
-            btn.title = tone.id; // tooltip text (light1, medium2, etc.)
-            btn.dataset.id = tone.id;
+            <linearGradient id="skinTone-deep1" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#9B683F" />
+              <stop offset="100%" stop-color="#7B441C" />
+            </linearGradient>
+            <linearGradient id="skinTone-deep2" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#84421C" />
+              <stop offset="100%" stop-color="#5D2A10" />
+            </linearGradient>
+            <linearGradient id="skinTone-deep3" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#673219" />
+              <stop offset="100%" stop-color="#431C0D" />
+            </linearGradient>
+          </defs>
 
-            btn.addEventListener("click", () => {
-                document.querySelectorAll(".skin-swatch").forEach(s =>
-                    s.classList.remove("active")
-                );
-                btn.classList.add("active");
+          <!-- RIGHT HAND OUTLINE (filled with skin tone) -->
+          <path class="hand-path hand-right"
+            d="M586.261 149C586.244 148.933 585.654 142.547 585.637 142.479C585.393 141.525 585.132 140.798 585.233 140.462C582.577 130.376 577.286 109.417 577.366 106.27C577.447 103.124 575.517 96.8231 574.542 94.0663C572.525 88.25 569.035 74.1767 571.214 64.4134C573.392 54.6502 578.308 52.4783 580.493 52.6128C606.414 55.7395 605.204 79.7442 608.028 86.1992C610.287 91.3632 615.222 116.39 617.408 128.258C619.055 136.394 623.379 154.945 627.494 164.063C631.609 173.181 634.588 187.967 635.562 194.22L638.084 201.785C638.084 211.548 644.741 230.732 648.069 239.103C648.742 235.035 649.683 225.366 648.069 219.234C646.052 211.568 646.859 201.079 648.069 194.22C649.279 187.362 647.061 181.714 643.228 161.643C639.395 141.571 645.043 135.318 648.977 131.385C652.91 127.451 660.979 125.938 668.544 142.681C674.595 156.075 676.646 171.729 676.915 177.881C676.377 180.739 676.29 189.52 680.243 201.785C684.197 214.049 684.043 224.512 683.471 228.21L689.22 258.166L699.508 293.063C700.987 298.913 703.683 312.469 702.634 319.892C701.585 327.315 703.071 343.829 703.946 351.159C705.122 359.16 706.77 379.964 703.946 399.168C701.122 418.372 702.769 426.669 703.946 428.417C716.694 493.291 780.801 590.6 811.261 631.146H628.2L581.501 533.413C569.882 498.878 551.378 486.681 543.578 484.899C528.489 476.346 519.741 463.584 517.254 458.272C510.698 445.53 495.629 416.96 487.802 404.615C478.019 389.183 475.195 371.936 474.691 368.103C474.186 364.27 468.538 349.242 465.613 345.107C463.273 341.799 456.906 328.465 454.014 322.212C451.325 318.514 446.006 310.209 446.248 306.579C446.49 302.948 444.668 296.862 443.727 294.274C438.684 282.574 440.499 282.473 440.499 278.237C440.499 274.001 428.396 255.342 427.387 252.215C426.379 249.088 430.211 240.919 443.021 238.498C455.83 236.077 466.924 250.5 476.809 263.31C484.716 273.557 486.424 279.212 486.29 280.758C490.566 283.502 491.299 289.634 491.131 292.357C495.246 296.553 495.468 301.098 495.064 302.847C496.597 304.218 499.939 311.218 501.419 314.546C502.158 316.665 503.88 320.921 504.848 321.001C506.058 321.102 507.268 305.166 506.562 303.956C505.998 302.988 506.798 289.231 507.268 282.473C509.205 269.724 508.075 254.972 507.268 249.189C508.237 242.653 502.427 216.073 499.401 203.6C496.376 196.473 490.042 178.829 488.912 165.274C487.5 148.329 486.088 145.505 485.785 138.848C485.483 132.191 481.347 119.18 476.304 101.833C472.27 87.9542 472.741 76.3486 473.48 72.2805C473.615 67.4729 476.97 57.8575 489.315 57.8575C504.747 57.8575 508.781 74.7012 512.715 87.107C515.862 97.0316 517.523 102.808 517.96 104.455C520.649 117.499 526.916 144.597 530.466 148.632C534.904 153.675 535.913 159.222 539.443 175.158C542.267 187.907 549.966 218.393 553.462 232.043C558.505 240.818 554.471 245.256 556.589 248.181C558.283 250.52 559.716 248.012 560.22 246.466C557.073 242.109 557.228 235.035 557.699 232.043C554.975 187.261 550.235 185.446 545.898 173.947C542.428 164.749 540.149 154.381 539.443 150.346C537.426 129.065 534.4 120.996 533.29 113.734C532.403 107.924 528.819 95.5792 527.138 90.1328C525.524 84.1148 521.691 69.2346 519.271 57.8575C516.245 43.6363 517.758 37.2821 518.262 32.2391C518.767 27.1961 525.625 21.2453 532.181 20.1359C537.426 19.2483 543.309 22.9263 545.595 24.8763C551.566 28.1038 556.085 49.4189 557.598 59.673C560.153 69.2211 566.151 91.3027 569.701 103.245C574.131 118.148 596.761 190.105 586.261 149ZM586.261 149C590.452 178.368 600.661 232.928 610.261 241.5"
+            fill="url(#skinTone-medium2)" stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
 
-                // update both hands to use the matching gradient
-                const gradientId = `skinTone-${tone.id}`;
-                handPaths.forEach(path => {
-                    path.setAttribute("fill", `url(#${gradientId})`);
-                });
-            });
+          <!-- RIGHT WRIST / SLEEVE SHAPES -->
+          <path
+            d="M613.468 481.143C629.283 490.099 628.126 495.431 625.571 496.978C622.989 514.164 645.272 537.423 656.737 546.904C664.563 545.613 667.125 549.795 667.428 552.047C686.289 576.456 681.548 587.147 684.171 597.434C686.269 605.665 682.221 623.053 679.935 630.718H712.008C717.757 590.576 703.637 565.764 696.274 554.872C690.384 546.157 681.044 524.546 677.11 514.83C643.827 483.866 634.548 491.834 631.522 491.834C629.101 491.834 624.932 486.858 623.15 484.37C624.441 474.284 617.233 471.494 613.468 471.359C619.842 477.492 619.687 480.437 618.813 481.143C614.537 479.852 613.468 480.605 613.468 481.143Z"
+            fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
+          <path
+            d="M750.617 610.018C728.033 601.658 723.667 620.335 724.307 630.718H744.792C744.894 627.905 746.627 626.464 747.48 626.096C752.806 622.398 759.814 627.637 762.652 630.718H777.503C769.821 618.539 756.378 611.844 750.617 610.018Z"
+            fill="#3C4244" stroke="#535B5E" stroke-width="0.629562" />
 
-            skinToneRow.appendChild(btn);
+          <!-- LEFT HAND OUTLINE (filled with skin tone) -->
+          <path class="hand-path hand-left"
+            d="M226.261 149C226.278 148.933 226.867 142.547 226.885 142.479C227.129 141.525 227.389 140.798 227.288 140.462C229.944 130.376 235.236 109.417 235.155 106.27C235.075 103.124 237.004 96.8231 237.979 94.0663C239.997 88.25 243.486 74.1767 241.308 64.4134C239.129 54.6502 234.214 52.4783 232.029 52.6128C206.108 55.7395 207.318 79.7442 204.494 86.1992C202.235 91.3632 197.299 116.39 195.114 128.258C193.466 136.394 189.143 154.945 185.028 164.063C180.913 173.181 177.934 187.967 176.959 194.22L174.438 201.785C174.438 211.548 167.781 230.732 164.452 239.103C163.78 235.035 162.839 225.366 164.452 219.234C166.47 211.568 165.663 201.079 164.452 194.22C163.242 187.362 165.461 181.714 169.294 161.643C173.126 141.571 167.478 135.318 163.545 131.385C159.611 127.451 151.542 125.938 143.978 142.681C137.926 156.075 135.875 171.729 135.606 177.881C136.144 180.739 136.232 189.52 132.278 201.785C128.324 214.049 128.479 224.512 129.05 228.21L123.301 258.166L113.014 293.063C111.534 298.913 108.838 312.469 109.887 319.892C110.936 327.315 109.45 343.829 108.576 351.159C107.399 359.16 105.752 379.964 108.576 399.168C111.4 418.372 109.753 426.669 108.576 428.417C95.8272 493.291 31.7205 590.6 1.26074 631.146H184.322L231.02 533.413C242.639 498.878 261.144 486.681 268.943 484.899C284.032 476.346 292.78 463.584 295.268 458.272C301.824 445.53 316.892 416.96 324.719 404.615C334.502 389.183 337.327 371.936 337.831 368.103C338.335 364.27 343.983 349.242 346.908 345.107C349.248 341.799 355.616 328.465 358.507 322.212C361.197 318.514 366.515 310.209 366.273 306.579C366.031 302.948 367.854 296.862 368.795 294.274C373.838 282.574 372.022 282.473 372.022 278.237C372.022 274.001 384.126 255.342 385.134 252.215C386.143 249.088 382.31 240.919 369.501 238.498C356.692 236.077 345.597 250.5 335.713 263.31C327.805 273.557 326.097 279.212 326.232 280.758C321.955 283.502 321.223 289.634 321.391 292.357C317.276 296.553 317.054 301.098 317.457 302.847C315.924 304.218 312.582 311.218 311.103 314.546C310.363 316.665 308.642 320.921 307.674 321.001C306.463 321.102 305.253 305.166 305.959 303.956C306.524 302.988 305.724 289.231 305.253 282.473C303.317 269.724 304.446 254.972 305.253 249.189C304.285 242.653 310.094 216.073 313.12 203.6C316.146 196.473 322.48 178.829 323.61 165.274C325.022 148.329 326.434 145.505 326.736 138.848C327.039 132.191 331.174 119.18 336.217 101.833C340.251 87.9542 339.781 76.3486 339.041 72.2805C338.907 67.4729 335.551 57.8575 323.206 57.8575C307.775 57.8575 303.74 74.7012 299.807 87.107C296.66 97.0316 294.999 102.808 294.562 104.455C291.872 117.499 285.605 144.597 282.055 148.632C277.617 153.675 276.609 159.222 273.079 175.158C270.255 187.907 262.556 218.393 259.059 232.043C254.016 240.818 258.051 245.256 255.932 248.181C254.238 250.52 252.806 248.012 252.301 246.466C255.448 242.109 255.294 235.035 254.823 232.043C257.546 187.261 262.287 185.446 266.624 173.947C270.093 164.749 272.373 154.381 273.079 150.346C275.096 129.065 278.122 120.996 279.231 113.734C280.119 107.924 283.703 95.5792 285.384 90.1328C286.997 84.1148 290.83 69.2346 293.251 57.8575C296.276 43.6363 294.764 37.2821 294.259 32.2391C293.755 27.1961 286.896 21.2453 280.341 20.1359C275.096 19.2483 269.212 22.9263 266.926 24.8763C260.955 28.1038 256.437 49.4189 254.924 59.673C252.369 69.2211 246.371 91.3027 242.821 103.245C238.39 118.148 215.76 190.105 226.261 149ZM226.261 149C222.07 178.368 211.861 232.928 202.261 241.5"
+            fill="url(#skinTone-medium2)" stroke="black" stroke-opacity="0.6" stroke-width="1.25912" />
+
+          <!-- ====== NAILS ====== -->
+          <!-- OVAL · MEDIUM (example wired in; replace / duplicate for other sets) -->
+          <!-- TODO: replace these with your oval-m.svg paths; keep IDs & classes -->
+          <path id="nail-oval-m-r-1"
+            class="nail nail-hand-right nail-shape-oval nail-length-medium"
+            d="M494.344 97.8856C484.875 100.423 481.238 96.3162 480.603 93.9459C480.247 93.0468 465.161 45.3965 479.906 41.4447C495.26 37.3297 504.205 79.6682 505.233 87.3462C506.105 93.8551 497.677 97.103 494.344 97.8856Z" />
+          <path id="nail-oval-m-r-2"
+            class="nail nail-hand-right nail-shape-oval nail-length-medium"
+            d="M451.852 272.634C444.131 277.396 439.721 274.565 438.481 272.555C437.909 271.822 410.918 232 422.942 224.584C435.464 216.862 452.46 250.179 455.559 256.956C458.186 262.702 454.602 271.06 451.852 272.634Z" />
+          <path id="nail-oval-m-r-3"
+            class="nail nail-hand-right nail-shape-oval nail-length-medium"
+            d="M539.344 59.8856C529.875 62.4226 526.238 58.3162 525.603 55.9459C525.247 55.0468 510.161 7.39652 524.906 3.44472C540.26 -0.670257 549.205 41.6682 550.233 49.3462C551.105 55.8551 542.677 59.103 539.344 59.8856Z" />
+          <path id="nail-oval-m-r-4"
+            class="nail nail-hand-right nail-shape-oval nail-length-medium"
+            d="M589.718 88.0812C581.168 90.3723 577.883 86.6639 577.31 84.5233C576.989 83.7114 563.364 40.6798 576.68 37.111C590.546 33.3949 598.624 71.6296 599.553 78.5634C600.34 84.4413 592.728 87.3744 589.718 88.0812Z" />
+          <path id="nail-oval-m-r-5"
+            class="nail nail-hand-right nail-shape-oval nail-length-medium"
+            d="M659.453 156.363C653.522 157.952 651.225 155.308 650.817 153.787C650.591 153.21 640.945 122.633 650.181 120.158C659.799 117.58 665.571 144.732 666.245 149.654C666.817 153.826 661.541 155.874 659.453 156.363Z" />
+
+          <path id="nail-oval-m-l-1"
+            class="nail nail-hand-left nail-shape-oval nail-length-medium"
+            d="M318.178 97.8856C327.646 100.423 331.283 96.3162 331.919 93.9459C332.274 93.0468 347.361 45.3965 332.615 41.4447C317.261 37.3297 308.317 79.6682 307.288 87.3462C306.417 93.8551 314.845 97.103 318.178 97.8856Z" />
+          <path id="nail-oval-m-l-2"
+            class="nail nail-hand-left nail-shape-oval nail-length-medium"
+            d="M360.669 272.634C368.391 277.396 372.801 274.565 374.041 272.555C374.613 271.822 401.604 232 389.579 224.584C377.058 216.862 360.061 250.179 356.963 256.956C354.336 262.702 357.92 271.06 360.669 272.634Z" />
+          <path id="nail-oval-m-l-3"
+            class="nail nail-hand-left nail-shape-oval nail-length-medium"
+            d="M273.178 59.8856C282.646 62.4226 286.283 58.3162 286.919 55.9459C287.274 55.0468 302.361 7.39652 287.615 3.44472C272.261 -0.670257 263.317 41.6682 262.288 49.3462C261.417 55.8551 269.845 59.103 273.178 59.8856Z" />
+          <path id="nail-oval-m-l-4"
+            class="nail nail-hand-left nail-shape-oval nail-length-medium"
+            d="M222.803 88.0812C231.354 90.3723 234.638 86.6639 235.212 84.5233C235.533 83.7114 249.157 40.6798 235.841 37.111C221.975 33.3949 213.898 71.6296 212.969 78.5634C212.182 84.4413 219.793 87.3744 222.803 88.0812Z" />
+          <path id="nail-oval-m-l-5"
+            class="nail nail-hand-left nail-shape-oval nail-length-medium"
+            d="M153.068 156.363C158.999 157.952 161.297 155.308 161.704 153.787C161.931 153.21 171.576 122.633 162.34 120.158C152.723 117.58 146.951 144.732 146.276 149.654C145.705 153.826 150.98 155.874 153.068 156.363Z" />
+
+          <!-- OVAL · SHORT -->
+          <path id="nail-oval-s-r-1"
+            class="nail nail-hand-right nail-shape-oval nail-length-short"
+            d="M494.045 97.8868C484.577 100.424 481.212 97.3324 480.712 95.4696C480.41 94.7691 468.09 57.4452 482.836 53.4936C498.19 49.3787 504.74 82.7808 505.343 88.8699C505.854 94.0318 497.372 97.0821 494.045 97.8868Z" />
+          <path id="nail-oval-s-r-2"
+            class="nail nail-hand-right nail-shape-oval nail-length-short"
+            d="M451.071 272.933C442.992 277.915 438.987 275.94 437.994 274.33C437.515 273.756 415.469 242.138 428.05 234.379C441.15 226.3 454.129 253.367 456.417 258.912C458.358 263.613 453.934 271.264 451.071 272.933Z" />
+          <path id="nail-oval-s-r-3"
+            class="nail nail-hand-right nail-shape-oval nail-length-short"
+            d="M539.045 59.8867C529.577 62.4237 526.193 59.2629 525.684 57.3655C525.378 56.6514 512.87 18.622 527.615 14.6703C542.969 10.5555 549.683 44.5681 550.315 50.7658C550.85 56.0198 542.372 59.0835 539.045 59.8867Z" />
+          <path id="nail-oval-s-r-4"
+            class="nail nail-hand-right nail-shape-oval nail-length-short"
+            d="M589.42 88.0829C580.87 90.374 577.854 87.6692 577.415 86.0303C577.146 85.4148 566.258 52.5927 579.574 49.0241C593.44 45.3082 599.15 74.7075 599.658 80.0704C600.088 84.6167 592.424 87.3543 589.42 88.0829Z" />
+          <path id="nail-oval-s-r-5"
+            class="nail nail-hand-right nail-shape-oval nail-length-short"
+            d="M659.154 156.363C653.224 157.952 651.039 155.73 650.688 154.42C650.484 153.925 641.987 127.637 651.223 125.162C660.841 122.584 665.618 146.024 666.116 150.286C666.538 153.899 661.24 155.865 659.154 156.363Z" />
+
+          <path id="nail-oval-s-l-1"
+            class="nail nail-hand-left nail-shape-oval nail-length-short"
+            d="M318.178 97.8868C327.646 100.424 331.011 97.3324 331.51 95.4696C331.813 94.7691 344.132 57.4452 329.387 53.4936C314.033 49.3787 307.483 82.7808 306.88 88.8699C306.369 94.0318 314.85 97.0821 318.178 97.8868Z" />
+          <path id="nail-oval-s-l-2"
+            class="nail nail-hand-left nail-shape-oval nail-length-short"
+            d="M361.152 272.933C369.23 277.915 373.236 275.94 374.228 274.33C374.708 273.756 396.754 242.138 384.173 234.379C371.072 226.3 358.094 253.367 355.805 258.912C353.865 263.613 358.289 271.264 361.152 272.933Z" />
+          <path id="nail-oval-s-l-3"
+            class="nail nail-hand-left nail-shape-oval nail-length-short"
+            d="M273.178 59.8867C282.646 62.4237 286.03 59.2629 286.538 57.3655C286.844 56.6514 299.353 18.622 284.608 14.6703C269.254 10.5555 262.54 44.5681 261.908 50.7658C261.372 56.0198 269.85 59.0835 273.178 59.8867Z" />
+          <path id="nail-oval-s-l-4"
+            class="nail nail-hand-left nail-shape-oval nail-length-short"
+            d="M222.802 88.0829C231.353 90.374 234.369 87.6692 234.808 86.0303C235.076 85.4148 245.965 52.5927 232.649 49.0241C218.783 45.3082 213.073 74.7075 212.565 80.0704C212.134 84.6167 219.798 87.3543 222.802 88.0829Z" />
+          <path id="nail-oval-s-l-5"
+            class="nail nail-hand-left nail-shape-oval nail-length-short"
+            d="M153.068 156.363C158.999 157.952 161.184 155.73 161.535 154.42C161.739 153.925 170.235 127.637 160.999 125.162C151.382 122.584 146.604 146.024 146.107 150.286C145.685 153.899 150.983 155.865 153.068 156.363Z" />
+
+          <!-- OVAL · LONG -->
+          <path id="nail-oval-l-r-1"
+            class="nail nail-hand-right nail-shape-oval nail-length-long"
+            d="M494.489 105.839C485.021 108.376 481.287 103.909 480.604 101.358C480.229 100.389 464.16 49.0704 478.905 45.1186C494.259 41.0035 504.054 86.5162 505.234 94.7585C506.234 101.746 497.824 105.064 494.489 105.839Z" />
+          <path id="nail-oval-l-r-2"
+            class="nail nail-hand-right nail-shape-oval nail-length-long"
+            d="M451.999 280.587C444.278 285.348 439.403 281.764 437.931 279.376C437.267 278.496 405.547 231.006 417.572 223.59C430.094 215.868 450.758 255.133 454.584 263.09C457.828 269.835 454.759 279.028 451.999 280.587Z" />
+          <path id="nail-oval-l-r-3"
+            class="nail nail-hand-right nail-shape-oval nail-length-long"
+            d="M539.489 67.837C530.021 70.374 526.131 65.3275 525.37 62.4871C524.965 61.4041 507.316 4.18965 522.061 0.237691C537.415 -3.87745 548.578 46.7379 550 55.8875C551.207 63.6438 542.827 67.0748 539.489 67.837Z" />
+          <path id="nail-oval-l-r-4"
+            class="nail nail-hand-right nail-shape-oval nail-length-long"
+            d="M589.864 96.0327C581.313 98.3238 577.828 93.867 577.154 91.3521C576.794 90.3938 561.129 39.7473 574.445 36.1784C588.311 32.4622 598.154 77.2868 599.397 85.3922C600.45 92.2634 592.878 95.3422 589.864 96.0327Z" />
+          <path id="nail-oval-l-r-5"
+            class="nail nail-hand-right nail-shape-oval nail-length-long"
+            d="M659.599 164.315C653.668 165.904 651.236 162.759 650.762 160.989C650.509 160.313 639.499 124.644 648.735 122.169C658.353 119.591 665.305 151.15 666.19 156.855C666.939 161.691 661.69 163.837 659.599 164.315Z" />
+
+          <path id="nail-oval-l-l-1"
+            class="nail nail-hand-left nail-shape-oval nail-length-long"
+            d="M318.177 105.839C327.645 108.376 331.379 103.909 332.062 101.358C332.437 100.389 348.506 49.0704 333.761 45.1186C318.407 41.0035 308.612 86.5162 307.432 94.7585C306.432 101.746 314.842 105.064 318.177 105.839Z" />
+          <path id="nail-oval-l-l-2"
+            class="nail nail-hand-left nail-shape-oval nail-length-long"
+            d="M360.669 280.587C368.39 285.348 373.265 281.764 374.737 279.376C375.401 278.496 407.12 231.006 395.096 223.59C382.574 215.868 361.91 255.133 358.084 263.09C354.84 269.835 357.909 279.028 360.669 280.587Z" />
+          <path id="nail-oval-l-l-3"
+            class="nail nail-hand-left nail-shape-oval nail-length-long"
+            d="M273.177 67.837C282.646 70.374 286.535 65.3275 287.296 62.4871C287.701 61.4041 305.35 4.18965 290.605 0.237691C275.251 -3.87745 264.088 46.7379 262.666 55.8875C261.459 63.6438 269.839 67.0748 273.177 67.837Z" />
+          <path id="nail-oval-l-l-4"
+            class="nail nail-hand-left nail-shape-oval nail-length-long"
+            d="M222.802 96.0327C231.353 98.3238 234.838 93.867 235.512 91.3521C235.872 90.3938 251.537 39.7473 238.221 36.1784C224.355 32.4622 214.512 77.2868 213.269 85.3922C212.216 92.2634 219.788 95.3422 222.802 96.0327Z" />
+          <path id="nail-oval-l-l-5"
+            class="nail nail-hand-left nail-shape-oval nail-length-long"
+            d="M153.067 164.315C158.998 165.904 161.43 162.759 161.904 160.989C162.157 160.313 173.167 124.644 163.931 122.169C154.314 119.591 147.361 151.15 146.476 156.855C145.727 161.691 150.976 163.837 153.067 164.315Z" />
+
+          <!-- COFFIN · SHORT -->
+          <path id="nail-coffin-s-r-1"
+            class="nail nail-hand-right nail-shape-coffin nail-length-short"
+            d="M499.321 67.2436C503.913 75.4688 504.674 82.3383 504.48 84.7449C500.789 92.7064 485.39 95.007 481.769 90.1597C479.741 87.4452 478.124 77.1706 478.165 72.2875L477.879 54.5382C483.109 51.0984 488.769 51.028 490.946 51.4228L499.321 67.2436Z" />
+          <path id="nail-coffin-s-r-2"
+            class="nail nail-hand-right nail-shape-coffin nail-length-short"
+            d="M429.265 261.232C432.357 270.13 436.982 275.266 438.908 276.721C447.31 279.257 455.518 268.268 454.305 262.34C453.625 259.02 450.773 251.997 447.098 248.782L434.03 236.768C427.984 238.387 424.168 242.569 423.016 244.457L429.265 261.232Z" />
+          <path id="nail-coffin-s-r-3"
+            class="nail nail-hand-right nail-shape-coffin nail-length-short"
+            d="M544.652 30.2586C549.597 39.4328 550.494 47.0513 550.325 49.7138C546.555 58.4788 530.396 60.809 526.519 55.3894C524.348 52.3546 522.503 40.9527 522.477 35.5455L521.925 15.8844C527.376 12.1489 533.327 12.151 535.621 12.6191L544.652 30.2586Z" />
+          <path id="nail-coffin-s-r-4"
+            class="nail nail-hand-right nail-shape-coffin nail-length-short"
+            d="M595.155 62.9857C599.747 71.211 600.508 78.0805 600.314 80.487C596.623 88.4486 581.224 90.7492 577.603 85.9019C575.575 83.1874 573.958 72.9128 573.999 68.0297L573.713 50.2804C578.943 46.8406 584.603 46.7702 586.78 47.165L595.155 62.9857Z" />
+          <path id="nail-coffin-s-r-5"
+            class="nail nail-hand-right nail-shape-coffin nail-length-short"
+            d="M661.898 135.09C665.453 141.459 666.043 146.779 665.893 148.642C663.034 154.807 651.111 156.588 648.307 152.835C646.736 150.733 645.484 142.777 645.516 138.996L645.295 125.252C649.344 122.589 653.727 122.534 655.413 122.84L661.898 135.09Z" />
+
+          <path id="nail-coffin-s-l-1"
+            class="nail nail-hand-left nail-shape-coffin nail-length-short"
+            d="M313.243 67.2436C308.652 75.4688 307.891 82.3383 308.084 84.7449C311.776 92.7064 327.174 95.007 330.796 90.1597C332.824 87.4452 334.441 77.1706 334.399 72.2875L334.685 54.5382C329.456 51.0984 323.795 51.028 321.619 51.4228L313.243 67.2436Z" />
+          <path id="nail-coffin-s-l-2"
+            class="nail nail-hand-left nail-shape-coffin nail-length-short"
+            d="M383.299 261.232C380.208 270.13 375.582 275.266 373.656 276.721C365.254 279.257 357.047 268.268 358.26 262.34C358.939 259.02 361.791 251.997 365.466 248.782L378.534 236.768C384.581 238.387 388.397 242.569 389.549 244.457L383.299 261.232Z" />
+          <path id="nail-coffin-s-l-3"
+            class="nail nail-hand-left nail-shape-coffin nail-length-short"
+            d="M267.912 30.2586C262.968 39.4328 262.071 47.0513 262.24 49.7138C266.009 58.4788 282.168 60.809 286.045 55.3894C288.216 52.3546 290.062 40.9527 290.087 35.5455L290.639 15.8844C285.188 12.1489 279.237 12.151 276.943 12.6191L267.912 30.2586Z" />
+          <path id="nail-coffin-s-l-4"
+            class="nail nail-hand-left nail-shape-coffin nail-length-short"
+            d="M217.411 62.9857C212.82 71.211 212.059 78.0805 212.252 80.487C215.944 88.4486 231.342 90.7492 234.964 85.9019C236.992 83.1874 238.609 72.9128 238.567 68.0297L238.853 50.2804C233.624 46.8406 227.963 46.7702 225.787 47.165L217.411 62.9857Z" />
+          <path id="nail-coffin-s-l-5"
+            class="nail nail-hand-left nail-shape-coffin nail-length-short"
+            d="M150.668 135.09C147.113 141.459 146.524 146.779 146.674 148.642C149.532 154.807 161.455 156.588 164.26 152.835C165.83 150.733 167.082 142.777 167.05 138.996L167.272 125.252C163.222 122.589 158.839 122.534 157.154 122.84L150.668 135.09Z" />
+
+          <!-- COFFIN · MEDIUM -->
+          <path id="nail-coffin-m-r-1"
+            class="nail nail-hand-right nail-shape-coffin nail-length-medium"
+            d="M498.278 63.3926C503.186 72.9483 504.187 80.8243 504.074 83.5679C500.623 92.5403 485.179 94.6453 481.363 88.9827C479.226 85.8117 477.246 74.0153 477.122 68.4366L476.229 48.1437C481.384 44.3908 487.088 44.5031 489.296 45.0283L498.278 63.3926Z" />
+          <path id="nail-coffin-m-r-2"
+            class="nail nail-hand-right nail-shape-coffin nail-length-medium"
+            d="M425.586 255.817C430.109 266.766 435.817 273.453 438.106 275.428C447.595 279.521 455.122 267.557 453.032 260.373C451.862 256.35 447.843 247.655 443.419 243.368L427.614 227.434C421.231 228.571 417.612 233.034 416.6 235.123L425.586 255.817Z" />
+          <path id="nail-coffin-m-r-3"
+            class="nail nail-hand-right nail-shape-coffin nail-length-medium"
+            d="M543.685 26.7214C548.917 37.1019 550.032 45.633 549.935 48.601C546.384 58.2826 530.183 60.4353 526.13 54.2766C523.86 50.8278 521.686 38.0463 521.51 32.0083L520.408 10.0412C525.791 6.02178 531.782 6.18949 534.104 6.77577L543.685 26.7214Z" />
+          <path id="nail-coffin-m-r-4"
+            class="nail nail-hand-right nail-shape-coffin nail-length-medium"
+            d="M593.565 56.8503C598.69 67.3105 599.854 75.8706 599.795 78.8432C596.508 88.5028 581.032 90.4748 577.084 84.2581C574.873 80.7768 572.647 67.9459 572.409 61.8943L571.105 39.8725C576.209 35.9068 581.943 36.1432 584.171 36.7571L593.565 56.8503Z" />
+          <path id="nail-coffin-m-r-5"
+            class="nail nail-hand-right nail-shape-coffin nail-length-medium"
+            d="M661.123 132.376C664.889 139.625 665.637 145.611 665.54 147.697C662.841 154.531 650.887 156.183 647.954 151.89C646.311 149.486 644.819 140.523 644.742 136.282L644.119 120.855C648.119 117.984 652.531 118.051 654.237 118.443L661.123 132.376Z" />
+
+          <path id="nail-coffin-m-l-1"
+            class="nail nail-hand-left nail-shape-coffin nail-length-medium"
+            d="M314.043 63.3926C309.134 72.9483 308.133 80.8243 308.246 83.5679C311.697 92.5403 327.142 94.6453 330.958 88.9827C333.095 85.8117 335.074 74.0153 335.199 68.4366L336.091 48.1437C330.936 44.3908 325.232 44.5031 323.025 45.0283L314.043 63.3926Z" />
+          <path id="nail-coffin-m-l-2"
+            class="nail nail-hand-left nail-shape-coffin nail-length-medium"
+            d="M386.734 255.817C382.211 266.766 376.503 273.453 374.214 275.428C364.725 279.521 357.198 267.557 359.288 260.373C360.459 256.35 364.478 247.655 368.901 243.368L384.706 227.434C391.089 228.571 394.709 233.034 395.72 235.123L386.734 255.817Z" />
+          <path id="nail-coffin-m-l-3"
+            class="nail nail-hand-left nail-shape-coffin nail-length-medium"
+            d="M268.638 26.7214C263.406 37.1019 262.291 45.633 262.387 48.601C265.938 58.2826 282.139 60.4353 286.193 54.2766C288.462 50.8278 290.637 38.0463 290.812 32.0083L291.914 10.0412C286.531 6.02178 280.541 6.18949 278.218 6.77577L268.638 26.7214Z" />
+          <path id="nail-coffin-m-l-4"
+            class="nail nail-hand-left nail-shape-coffin nail-length-medium"
+            d="M218.755 56.8503C213.631 67.3105 212.467 75.8706 212.525 78.8432C215.812 88.5028 231.288 90.4748 235.237 84.2581C237.448 80.7768 239.674 67.9459 239.911 61.8943L241.216 39.8725C236.111 35.9068 230.378 36.1432 228.149 36.7571L218.755 56.8503Z" />
+          <path id="nail-coffin-m-l-5"
+            class="nail nail-hand-left nail-shape-coffin nail-length-medium"
+            d="M151.197 132.376C147.432 139.625 146.684 145.611 146.78 147.697C149.479 154.531 161.433 156.183 164.366 151.89C166.009 149.486 167.501 140.523 167.579 136.282L168.201 120.855C164.201 117.984 159.789 118.051 158.083 118.443L151.197 132.376Z" />
+
+          <!-- COFFIN · LONG -->
+          <path id="nail-coffin-l-r-1"
+            class="nail nail-hand-right nail-shape-coffin nail-length-long"
+            d="M497.186 60.3045C502.383 71.0689 503.602 79.8592 503.562 82.9089C500.33 92.7996 484.843 94.7269 480.85 88.3237C478.614 84.738 476.305 71.5592 476.03 65.3485L474.587 42.745C479.674 38.7078 485.418 38.9859 487.653 39.6297L497.186 60.3045Z" />
+          <path id="nail-coffin-l-r-2"
+            class="nail nail-hand-right nail-shape-coffin nail-length-long"
+            d="M423.701 253.602C428.858 265.459 435.045 272.832 437.495 275.037C447.466 279.82 454.691 267.424 452.212 259.684C450.825 255.349 446.289 245.914 441.534 241.152L424.517 223.482C417.985 224.406 414.452 228.993 413.503 231.172L423.701 253.602Z" />
+          <path id="nail-coffin-l-r-3"
+            class="nail nail-hand-right nail-shape-coffin nail-length-long"
+            d="M542.663 23.9405C548.154 35.4079 549.465 44.7612 549.434 48.0045C546.08 58.5119 529.841 60.5047 525.629 53.6801C523.27 49.8584 520.8 35.8337 520.488 29.2274L518.891 5.18236C524.213 0.907252 530.239 1.22414 532.587 1.91698L542.663 23.9405Z" />
+          <path id="nail-coffin-l-r-4"
+            class="nail nail-hand-right nail-shape-coffin nail-length-long"
+            d="M592.666 54.5621C598.003 65.9142 599.328 75.1492 599.323 78.3477C596.198 88.6851 580.69 90.5259 576.611 83.7626C574.327 79.9752 571.858 66.1241 571.51 59.6061L569.798 35.879C574.853 31.7035 580.615 32.0623 582.865 32.7636L592.666 54.5621Z" />
+          <path id="nail-coffin-l-r-5"
+            class="nail nail-hand-right nail-shape-coffin nail-length-long"
+            d="M660.12 129.663C664.138 137.973 665.077 144.76 665.044 147.115C662.537 154.754 650.546 156.25 647.458 151.308C645.729 148.54 643.948 138.365 643.738 133.569L642.632 116.116C646.573 112.996 651.019 113.207 652.75 113.703L660.12 129.663Z" />
+
+          <path id="nail-coffin-l-l-1"
+            class="nail nail-hand-left nail-shape-coffin nail-length-long"
+            d="M314.767 60.3045C309.57 71.0689 308.351 79.8592 308.391 82.9089C311.623 92.7996 327.11 94.7269 331.103 88.3237C333.339 84.738 335.648 71.5592 335.923 65.3485L337.366 42.745C332.279 38.7078 326.536 38.9859 324.3 39.6297L314.767 60.3045Z" />
+          <path id="nail-coffin-l-l-2"
+            class="nail nail-hand-left nail-shape-coffin nail-length-long"
+            d="M388.254 253.602C383.098 265.459 376.91 272.832 374.46 275.037C364.489 279.82 357.264 267.424 359.743 259.684C361.131 255.349 365.666 245.914 370.421 241.152L387.438 223.482C393.97 224.406 397.503 228.993 398.452 231.172L388.254 253.602Z" />
+          <path id="nail-coffin-l-l-3"
+            class="nail nail-hand-left nail-shape-coffin nail-length-long"
+            d="M269.29 23.9405C263.799 35.4079 262.488 44.7612 262.519 48.0045C265.873 58.5119 282.112 60.5047 286.324 53.6801C288.683 49.8584 291.154 35.8337 291.465 29.2274L293.062 5.18236C287.74 0.907252 281.714 1.22414 279.366 1.91698L269.29 23.9405Z" />
+          <path id="nail-coffin-l-l-4"
+            class="nail nail-hand-left nail-shape-coffin nail-length-long"
+            d="M219.289 54.5621C213.952 65.9142 212.627 75.1492 212.632 78.3477C215.757 88.6851 231.265 90.5259 235.344 83.7626C237.628 79.9752 240.097 66.1241 240.445 59.6061L242.157 35.879C237.102 31.7035 231.34 32.0623 229.09 32.7636L219.289 54.5621Z" />
+          <path id="nail-coffin-l-l-5"
+            class="nail nail-hand-left nail-shape-coffin nail-length-long"
+            d="M151.833 129.663C147.815 137.973 146.876 144.76 146.909 147.115C149.416 154.754 161.407 156.25 164.495 151.308C166.224 148.54 168.005 138.365 168.215 133.569L169.321 116.116C165.38 112.996 160.934 113.207 159.203 113.703L151.833 129.663Z" />
+
+          <!-- ALMOND · SHORT -->
+          <path id="nail-almond-s-r-1"
+            class="nail nail-hand-right nail-shape-almond nail-length-short"
+            d="M504.327 80.5089C504.925 83.9906 503.819 86.8863 503.19 87.899C497.082 93.8855 486.576 93.5852 483.444 92.6059C480.939 91.8224 479.502 88.2244 479.096 86.5233L477.181 77.2721C474.951 61.8396 478.685 53.1834 483.895 51.9413C493.422 51.0511 500.026 64.4916 502.138 71.3231C502.618 72.9343 503.729 77.0272 504.327 80.5089Z" />
+          <path id="nail-almond-s-r-2"
+            class="nail nail-hand-right nail-shape-almond nail-length-short"
+            d="M456.844 257.978C458.736 261.108 458.257 263.804 458.014 265.033C454.211 273.25 446.517 277.692 443.106 277.176C438.633 276.499 437.572 274.506 436.536 273.022L431.187 264.836C423.22 250.798 423.678 240.942 428.365 237.67C437.449 233.022 446.304 243.507 450.942 249.274C452.019 250.642 454.953 254.849 456.844 257.978Z" />
+          <path id="nail-almond-s-r-3"
+            class="nail nail-hand-right nail-shape-almond nail-length-short"
+            d="M550.113 44.6555C550.793 48.4782 549.749 51.6206 549.142 52.714C543.152 59.1227 532.608 58.5529 529.444 57.4096C526.913 56.495 525.388 52.5258 524.942 50.6555L522.808 40.4909C520.218 23.5568 523.763 14.173 528.962 12.9338C538.497 12.1789 545.43 27.0341 547.705 34.5561C548.225 36.3298 549.433 40.8329 550.113 44.6555Z" />
+          <path id="nail-almond-s-r-4"
+            class="nail nail-hand-right nail-shape-almond nail-length-short"
+            d="M599.105 76.1923C599.7 79.5563 598.755 82.3275 598.208 83.2926C592.824 88.9582 583.389 88.4943 580.562 87.4989C578.3 86.7025 576.95 83.2124 576.558 81.567L574.685 72.623C572.427 57.719 575.634 49.4421 580.291 48.3321C588.827 47.6329 594.978 60.6905 596.987 67.3067C597.445 68.8669 598.511 72.8283 599.105 76.1923Z" />
+          <path id="nail-almond-s-r-5"
+            class="nail nail-hand-right nail-shape-almond nail-length-short"
+            d="M664.977 145.565C665.418 148.061 664.717 150.116 664.311 150.832C660.317 155.036 653.317 154.692 651.22 153.953C649.542 153.362 648.54 150.773 648.249 149.552L646.86 142.917C645.185 131.86 647.564 125.719 651.019 124.896C657.351 124.377 661.915 134.064 663.405 138.973C663.745 140.13 664.535 143.069 664.977 145.565Z" />
+
+          <path id="nail-almond-s-l-1"
+            class="nail nail-hand-left nail-shape-almond nail-length-short"
+            d="M308.54 80.5089C307.942 83.9906 309.049 86.8863 309.677 87.899C315.786 93.8855 326.291 93.5852 329.423 92.6059C331.928 91.8224 333.366 88.2244 333.771 86.5233L335.686 77.2721C337.916 61.8396 334.183 53.1834 328.972 51.9413C319.446 51.0511 312.841 64.4916 310.73 71.3231C310.249 72.9343 309.138 77.0272 308.54 80.5089Z" />
+          <path id="nail-almond-s-l-2"
+            class="nail nail-hand-left nail-shape-almond nail-length-short"
+            d="M356.023 257.978C354.132 261.108 354.61 263.804 354.853 265.033C358.656 273.25 366.35 277.692 369.762 277.176C374.234 276.499 375.295 274.506 376.331 273.022L381.68 264.836C389.647 250.798 389.189 240.942 384.502 237.67C375.418 233.022 366.563 243.507 361.925 249.274C360.848 250.642 357.914 254.849 356.023 257.978Z" />
+          <path id="nail-almond-s-l-3"
+            class="nail nail-hand-left nail-shape-almond nail-length-short"
+            d="M262.754 44.6555C262.074 48.4782 263.118 51.6206 263.725 52.714C269.715 59.1227 280.26 58.5529 283.424 57.4096C285.955 56.495 287.479 52.5258 287.925 50.6555L290.059 40.4909C292.65 23.5568 289.104 14.173 283.905 12.9338C274.37 12.1789 267.437 27.0341 265.162 34.5561C264.643 36.3298 263.434 40.8329 262.754 44.6555Z" />
+          <path id="nail-almond-s-l-4"
+            class="nail nail-hand-left nail-shape-almond nail-length-short"
+            d="M213.762 76.1923C213.167 79.5563 214.112 82.3275 214.659 83.2926C220.043 88.9582 229.478 88.4943 232.305 87.4989C234.567 86.7025 235.917 83.2124 236.309 81.567L238.182 72.623C240.44 57.719 237.233 49.4421 232.576 48.3321C224.04 47.6329 217.889 60.6905 215.88 67.3067C215.422 68.8669 214.357 72.8283 213.762 76.1923Z" />
+          <path id="nail-almond-s-l-5"
+            class="nail nail-hand-left nail-shape-almond nail-length-short"
+            d="M147.891 145.565C147.449 148.061 148.151 150.116 148.556 150.832C152.55 155.036 159.55 154.692 161.647 153.953C163.325 153.362 164.327 150.773 164.618 149.552L166.007 142.917C167.682 131.86 165.303 125.719 161.848 124.896C155.516 124.377 150.952 134.064 149.462 138.973C149.122 140.13 148.332 143.069 147.891 145.565Z" />
+
+          <!-- ALMOND · MEDIUM -->
+          <path id="nail-almond-m-r-1"
+            class="nail nail-hand-right nail-shape-almond nail-length-medium"
+            d="M503.112 78.5484C503.887 82.7724 502.909 86.2072 502.323 87.3966C496.435 94.311 485.793 93.4363 482.577 92.1035C480.004 91.0373 478.374 86.6321 477.881 84.5628L475.492 73.3231C472.483 54.6207 475.837 44.3738 481.048 43.1317C490.641 42.5244 497.979 59.0402 500.449 67.3741C501.014 69.3388 502.337 74.3244 503.112 78.5484Z" />
+          <path id="nail-almond-m-r-2"
+            class="nail nail-hand-right nail-shape-almond nail-length-medium"
+            d="M455.124 256.585C457.379 260.234 457.093 263.206 456.936 264.559C453.588 273.428 445.818 277.76 442.17 276.905C437.387 275.784 436.102 273.471 434.886 271.729L428.564 262.15C418.997 245.819 418.676 234.849 423.363 231.576C432.586 227.127 442.801 239.561 448.175 246.381C449.425 247.996 452.869 252.935 455.124 256.585Z" />
+          <path id="nail-almond-m-r-3"
+            class="nail nail-hand-right nail-shape-almond nail-length-medium"
+            d="M548.874 42.5938C549.74 47.1969 548.832 50.9061 548.269 52.1853C542.512 59.5696 531.823 58.3958 528.571 56.8809C525.969 55.669 524.242 50.8511 523.704 48.5937L521.072 36.3385C517.661 15.9666 520.808 4.91027 526.007 3.67114C535.613 3.21354 543.317 21.3022 545.968 30.4038C546.576 32.5491 548.008 37.9907 548.874 42.5938Z" />
+          <path id="nail-almond-m-r-4"
+            class="nail nail-hand-right nail-shape-almond nail-length-medium"
+            d="M597.831 73.9877C598.625 78.1863 597.824 81.5636 597.325 82.7273C592.189 89.4361 582.601 88.3265 579.679 86.9336C577.341 85.8193 575.775 81.4219 575.284 79.3624L572.878 68.183C569.744 49.603 572.525 39.5378 577.182 38.4278C585.793 38.0465 592.769 54.5616 595.18 62.8667C595.733 64.8243 597.038 69.7892 597.831 73.9877Z" />
+          <path id="nail-almond-m-r-5"
+            class="nail nail-hand-right nail-shape-almond nail-length-medium"
+            d="M663.683 143.279C664.331 146.64 663.779 149.325 663.423 150.247C659.686 155.532 652.527 154.518 650.332 153.367C648.575 152.447 647.349 148.916 646.956 147.266L645.013 138.312C642.43 123.442 644.367 115.447 647.821 114.624C654.233 114.435 659.651 127.708 661.559 134.368C661.997 135.938 663.036 139.918 663.683 143.279Z" />
+
+          <path id="nail-almond-m-l-1"
+            class="nail nail-hand-left nail-shape-almond nail-length-medium"
+            d="M309.007 78.5484C308.232 82.7724 309.21 86.2072 309.796 87.3966C315.684 94.311 326.326 93.4363 329.542 92.1035C332.115 91.0373 333.745 86.6321 334.238 84.5628L336.627 73.3231C339.636 54.6207 336.282 44.3738 331.071 43.1317C321.478 42.5244 314.14 59.0402 311.671 67.3741C311.106 69.3388 309.782 74.3244 309.007 78.5484Z" />
+          <path id="nail-almond-m-l-2"
+            class="nail nail-hand-left nail-shape-almond nail-length-medium"
+            d="M356.995 256.585C354.74 260.234 355.026 263.206 355.183 264.559C358.531 273.428 366.301 277.76 369.95 276.905C374.732 275.784 376.017 273.471 377.233 271.729L383.555 262.15C393.122 245.819 393.443 234.849 388.756 231.576C379.534 227.127 369.318 239.561 363.944 246.381C362.694 247.996 359.25 252.935 356.995 256.585Z" />
+          <path id="nail-almond-m-l-3"
+            class="nail nail-hand-left nail-shape-almond nail-length-medium"
+            d="M263.245 42.5938C262.379 47.1969 263.287 50.9061 263.85 52.1853C269.607 59.5696 280.296 58.3958 283.549 56.8809C286.151 55.669 287.877 50.8511 288.415 48.5937L291.048 36.3385C294.458 15.9666 291.311 4.91027 286.112 3.67114C276.506 3.21354 268.802 21.3022 266.151 30.4038C265.543 32.5491 264.111 37.9907 263.245 42.5938Z" />
+          <path id="nail-almond-m-l-4"
+            class="nail nail-hand-left nail-shape-almond nail-length-medium"
+            d="M214.288 73.9877C213.494 78.1863 214.295 81.5636 214.795 82.7273C219.93 89.4361 229.518 88.3265 232.44 86.9336C234.778 85.8193 236.344 81.4219 236.835 79.3624L239.241 68.183C242.375 49.603 239.594 39.5378 234.938 38.4278C226.326 38.0465 219.35 54.5616 216.939 62.8667C216.386 64.8243 215.081 69.7892 214.288 73.9877Z" />
+          <path id="nail-almond-m-l-5"
+            class="nail nail-hand-left nail-shape-almond nail-length-medium"
+            d="M148.436 143.279C147.788 146.64 148.34 149.325 148.697 150.247C152.433 155.532 159.592 154.518 161.788 153.367C163.544 152.447 164.77 148.916 165.163 147.266L167.106 138.312C169.689 123.442 167.752 115.447 164.298 114.624C157.886 114.435 152.468 127.708 150.56 134.368C150.122 135.938 149.084 139.918 148.436 143.279Z" />
+
+          <!-- ALMOND · LONG -->
+          <path id="nail-almond-l-r-1"
+            class="nail nail-hand-right nail-shape-almond nail-length-long"
+            d="M503.454 82.4901C504.411 87.4754 503.565 91.4631 503.022 92.8337C497.361 100.7 486.578 99.2359 483.276 97.5406C480.634 96.1844 478.807 90.9514 478.223 88.5045L475.348 75.2257C471.54 53.17 474.505 41.2918 479.716 40.0497C489.378 39.7324 497.468 59.4021 500.305 69.2767C500.956 71.6039 502.498 77.5048 503.454 82.4901Z" />
+          <path id="nail-almond-l-r-2"
+            class="nail nail-hand-right nail-shape-almond nail-length-long"
+            d="M454.662 260.7C457.396 265.035 457.364 268.371 457.322 269.887C454.572 279.613 446.702 283.802 442.742 282.501C437.55 280.794 435.971 278.059 434.517 275.977L426.913 264.561C415.236 245.209 413.889 232.768 418.576 229.496C427.981 225.308 439.99 240.311 446.333 248.519C447.811 250.461 451.929 256.364 454.662 260.7Z" />
+          <path id="nail-almond-l-r-3"
+            class="nail nail-hand-right nail-shape-almond nail-length-long"
+            d="M549.187 46.4046C550.246 51.8185 549.478 56.1165 548.961 57.5888C543.445 65.9866 532.607 64.1854 529.263 62.2844C526.587 60.7636 524.65 55.0642 524.016 52.4046L520.866 37.9775C516.605 14.0342 519.338 1.24035 524.536 0.00122215C534.216 -0.147503 542.721 21.3003 545.763 32.0428C546.463 34.5742 548.127 40.9907 549.187 46.4046Z" />
+          <path id="nail-almond-l-r-4"
+            class="nail nail-hand-right nail-shape-almond nail-length-long"
+            d="M598.131 77.7507C599.122 82.7782 598.465 86.7574 598.012 88.1185C593.124 95.8634 583.383 94.1124 580.367 92.3248C577.954 90.8947 576.172 85.596 575.584 83.1254L572.648 69.7256C568.644 47.4945 571.002 35.653 575.658 34.543C584.345 34.4775 592.139 54.4266 594.951 64.4094C595.598 66.7617 597.14 72.7232 598.131 77.7507Z" />
+          <path id="nail-almond-l-r-5"
+            class="nail nail-hand-right nail-shape-almond nail-length-long"
+            d="M664.053 147.332C664.871 151.412 664.444 154.619 664.128 155.712C660.606 161.895 653.315 160.325 651.037 158.832C649.216 157.638 647.803 153.326 647.325 151.32L644.924 140.441C641.586 122.406 643.156 112.871 646.611 112.047C653.087 112.132 659.215 128.382 661.47 136.497C661.989 138.409 663.234 143.253 664.053 147.332Z" />
+
+          <path id="nail-almond-l-l-1"
+            class="nail nail-hand-left nail-shape-almond nail-length-long"
+            d="M309.485 82.4901C308.528 87.4754 309.375 91.4631 309.918 92.8337C315.578 100.7 326.361 99.2359 329.664 97.5406C332.306 96.1844 334.133 90.9514 334.716 88.5045L337.592 75.2257C341.4 53.17 338.435 41.2918 333.224 40.0497C323.561 39.7324 315.472 59.4021 312.635 69.2767C311.983 71.6039 310.441 77.5048 309.485 82.4901Z" />
+          <path id="nail-almond-l-l-2"
+            class="nail nail-hand-left nail-shape-almond nail-length-long"
+            d="M358.279 260.7C355.545 265.035 355.577 268.371 355.619 269.887C358.369 279.613 366.24 283.802 370.2 282.501C375.391 280.794 376.97 278.059 378.424 275.977L386.028 264.561C397.706 245.209 399.053 232.768 394.366 229.496C384.96 225.308 372.951 240.311 366.608 248.519C365.13 250.461 361.013 256.364 358.279 260.7Z" />
+          <path id="nail-almond-l-l-3"
+            class="nail nail-hand-left nail-shape-almond nail-length-long"
+            d="M263.755 46.4046C262.695 51.8185 263.464 56.1165 263.98 57.5888C269.496 65.9866 280.334 64.1854 283.679 62.2844C286.354 60.7636 288.291 55.0642 288.925 52.4046L292.075 37.9775C296.337 14.0342 293.604 1.24035 288.405 0.00122215C278.726 -0.147503 270.221 21.3003 267.178 32.0428C266.478 34.5742 264.814 40.9907 263.755 46.4046Z" />
+          <path id="nail-almond-l-l-4"
+            class="nail nail-hand-left nail-shape-almond nail-length-long"
+            d="M214.81 77.7507C213.819 82.7782 214.477 86.7574 214.929 88.1185C219.817 95.8634 229.559 94.1124 232.575 92.3248C234.988 90.8947 236.769 85.596 237.358 83.1254L240.293 69.7256C244.297 47.4945 241.94 35.653 237.283 34.543C228.596 34.4775 220.802 54.4266 217.991 64.4094C217.344 66.7617 215.802 72.7232 214.81 77.7507Z" />
+          <path id="nail-almond-l-l-5"
+            class="nail nail-hand-left nail-shape-almond nail-length-long"
+            d="M148.889 147.332C148.07 151.412 148.497 154.619 148.813 155.712C152.335 161.895 159.627 160.325 161.904 158.832C163.726 157.638 165.138 153.326 165.616 151.32L168.017 140.441C171.356 122.406 169.785 112.871 166.331 112.047C159.854 112.132 153.726 128.382 151.472 136.497C150.952 138.409 149.708 143.253 148.889 147.332Z" />
+
+          <!-- SQUARE · LONG -->
+          <path id="nail-square-l-l-1"
+            class="nail nail-hand-left nail-shape-square nail-length-long"
+            d="M317.972 94.3043C309.302 92.2372 308.303 86.8178 308.888 84.3665C308.948 83.9156 310.971 73.2087 314.55 61.9169C317.264 53.3534 316.929 53.9313 323.672 36.4525C323.967 35.2146 330.917 36.8714 332.029 37.1365L332.031 37.1371C334.069 37.6231 339.813 38.9926 340.147 40.0539C339.584 51.0431 339.219 56.7968 337.291 67.1828C335.425 77.2349 332.581 86.604 331.442 89.7437C329.146 96.0718 320.973 95.1325 317.972 94.3043Z" />
+          <path id="nail-square-l-l-2"
+            class="nail nail-hand-left nail-shape-square nail-length-long"
+            d="M357.841 272.68C350.533 267.578 353.945 257.93 355.37 255.89C355.587 255.498 358.923 250.685 366.307 241.617C371.906 234.739 371.387 235.147 383.933 221.553C384.653 220.523 390.511 224.613 391.448 225.267L391.45 225.268C393.168 226.468 398.009 229.848 397.938 230.948C393.464 240.851 391.057 246.011 385.532 254.856C380.185 263.416 374.176 270.987 371.989 273.456C367.582 278.431 360.33 274.55 357.841 272.68Z" />
+          <path id="nail-square-l-l-3"
+            class="nail nail-hand-left nail-shape-square nail-length-long"
+            d="M272.458 58.4153C263.788 56.3482 262.791 50.9194 263.377 48.4634C263.437 48.0117 265.465 37.2844 269.049 25.9705C271.767 17.3903 271.431 17.9694 278.183 0.455849C278.479 -0.78438 285.429 0.872367 286.541 1.13751L286.543 1.1381C288.581 1.62409 294.324 2.99359 294.658 4.05662C294.09 15.0661 293.723 20.8304 291.79 31.2361C289.919 41.3073 287.071 50.6947 285.931 53.8406C283.631 60.1812 275.459 59.2437 272.458 58.4153Z" />
+          <path id="nail-square-l-l-4"
+            class="nail nail-hand-left nail-shape-square nail-length-long"
+            d="M221.495 87.9367C213.257 85.9726 212.349 80.6519 212.925 78.2371C212.985 77.7934 214.996 67.2501 218.492 56.1195C221.144 47.6782 220.82 48.2491 227.378 31.0102C227.668 29.7908 234.272 31.365 235.328 31.6169L235.331 31.6175C237.267 32.0793 242.724 33.3805 243.034 34.4213C242.411 45.2307 242.019 50.8908 240.101 61.1178C238.245 71.016 235.464 80.2504 234.355 83.3464C232.119 89.5864 224.346 88.7273 221.495 87.9367Z" />
+          <path id="nail-square-l-l-5"
+            class="nail nail-hand-left nail-shape-square nail-length-long"
+            d="M154.21 155.743C148.245 154.321 147.768 149.711 148.275 147.583C148.336 147.194 150.181 137.923 153.137 128.086C155.378 120.627 155.121 121.136 160.535 105.862C160.791 104.787 165.573 105.927 166.338 106.11L166.339 106.11C167.741 106.444 171.693 107.387 171.883 108.284C171.044 117.738 170.556 122.691 168.79 131.683C167.079 140.386 164.715 148.542 163.793 151.283C161.934 156.807 156.271 156.332 154.21 155.743Z" />
+          <path id="nail-square-l-r-1"
+            class="nail nail-hand-right nail-shape-square nail-length-long"
+            d="M494.075 94.3043C502.745 92.2372 503.743 86.8178 503.159 84.3665C503.099 83.9156 501.076 73.2087 497.497 61.9169C494.783 53.3534 495.118 53.9313 488.375 36.4525C488.08 35.2146 481.13 36.8714 480.018 37.1365L480.016 37.1371C477.978 37.6231 472.234 38.9926 471.9 40.0539C472.463 51.0431 472.828 56.7968 474.756 67.1828C476.622 77.2349 479.466 86.604 480.605 89.7437C482.901 96.0718 491.073 95.1325 494.075 94.3043Z" />
+          <path id="nail-square-l-r-2"
+            class="nail nail-hand-right nail-shape-square nail-length-long"
+            d="M454.206 272.68C461.514 267.578 458.101 257.93 456.677 255.89C456.46 255.498 453.124 250.685 445.74 241.617C440.141 234.739 440.66 235.147 428.113 221.553C427.394 220.523 421.536 224.613 420.599 225.267L420.597 225.268C418.879 226.468 414.038 229.848 414.109 230.948C418.582 240.851 420.99 246.011 426.514 254.856C431.862 263.416 437.871 270.987 440.058 273.456C444.465 278.431 451.717 274.55 454.206 272.68Z" />
+          <path id="nail-square-l-r-3"
+            class="nail nail-hand-right nail-shape-square nail-length-long"
+            d="M539.589 58.4153C548.259 56.3482 549.256 50.9194 548.67 48.4634C548.61 48.0117 546.582 37.2844 542.998 25.9705C540.28 17.3903 540.615 17.9694 533.864 0.455849C533.568 -0.78438 526.618 0.872367 525.506 1.13751L525.504 1.1381C523.466 1.62409 517.723 2.99359 517.389 4.05662C517.956 15.0661 518.324 20.8304 520.257 31.2361C522.128 41.3073 524.975 50.6947 526.116 53.8406C528.415 60.1812 536.588 59.2437 539.589 58.4153Z" />
+          <path id="nail-square-l-r-4"
+            class="nail nail-hand-right nail-shape-square nail-length-long"
+            d="M590.552 87.9367C598.79 85.9726 599.698 80.6519 599.122 78.2371C599.061 77.7934 597.051 67.2501 593.555 56.1195C590.903 47.6782 591.227 48.2491 584.669 31.0102C584.378 29.7908 577.775 31.365 576.719 31.6169L576.716 31.6175C574.78 32.0793 569.323 33.3805 569.013 34.4213C569.635 45.2307 570.028 50.8908 571.946 61.1178C573.802 71.016 576.583 80.2504 577.692 83.3464C579.928 89.5864 587.701 88.7273 590.552 87.9367Z" />
+          <path id="nail-square-l-r-5"
+            class="nail nail-hand-right nail-shape-square nail-length-long"
+            d="M657.837 155.743C663.802 154.321 664.279 149.711 663.771 147.583C663.711 147.194 661.865 137.923 658.91 128.086C656.669 120.627 656.926 121.136 651.512 105.862C651.256 104.787 646.474 105.927 645.709 106.11L645.708 106.11C644.305 106.444 640.354 107.387 640.164 108.284C641.003 117.738 641.49 122.691 643.257 131.683C644.967 140.386 647.332 148.542 648.254 151.283C650.113 156.807 655.776 156.332 657.837 155.743Z" />
+
+          <!-- SQUARE · MEDIUM -->
+          <path id="nail-square-m-l-1"
+            class="nail nail-hand-left nail-shape-square nail-length-medium"
+            d="M317.285 93.1661C308.615 91.099 307.418 86.5123 307.903 84.4773C307.945 84.1012 309.539 75.1925 312.653 65.8526C315.014 58.7693 314.704 59.2415 320.716 44.8301C320.961 43.8025 327.911 45.4593 329.023 45.7244L329.025 45.725C331.064 46.211 336.807 47.5805 337.179 48.484C337.042 57.6855 336.901 62.5006 335.388 71.1435C333.924 79.5086 331.466 87.2631 330.457 89.8546C328.424 95.0777 320.291 93.9762 317.285 93.1661Z" />
+          <path id="nail-square-m-l-2"
+            class="nail nail-hand-left nail-shape-square nail-length-medium"
+            d="M360.559 273.07C353.25 267.968 355.692 259.711 356.871 258.022C357.045 257.693 359.804 253.707 366.038 246.283C370.767 240.653 370.31 240.972 381.051 229.964C381.647 229.111 387.505 233.201 388.442 233.855L388.444 233.856C390.162 235.056 395.003 238.436 395.025 239.403C391.603 247.8 389.748 252.168 385.249 259.543C380.895 266.682 375.836 272.892 373.972 274.898C370.215 278.942 363.059 274.925 360.559 273.07Z" />
+          <path id="nail-square-m-l-3"
+            class="nail nail-hand-left nail-shape-square nail-length-medium"
+            d="M271.773 57.2771C263.102 55.21 261.908 50.6139 262.394 48.5742C262.436 48.1973 264.035 39.2682 267.154 29.9062C269.519 22.8062 269.209 23.2796 275.229 8.83347C275.475 7.80349 282.425 9.46026 283.537 9.7254L283.539 9.72599C285.577 10.212 291.32 11.5814 291.692 12.4867C291.55 21.7085 291.407 26.5342 289.889 35.1969C288.421 43.5811 285.958 51.3538 284.948 53.9515C282.912 59.1871 274.778 58.0874 271.773 57.2771Z" />
+          <path id="nail-square-m-l-4"
+            class="nail nail-hand-left nail-shape-square nail-length-medium"
+            d="M220.81 86.7985C212.572 84.8344 211.465 80.3464 211.942 78.348C211.985 77.979 213.566 69.2339 216.597 60.0551C218.896 53.0941 218.597 53.5593 224.424 39.3879C224.665 38.3787 231.268 39.9529 232.324 40.2048L232.327 40.2054C234.263 40.6671 239.72 41.9684 240.068 42.8514C239.871 51.8731 239.703 56.5946 238.201 65.0785C236.747 73.2897 234.351 80.9095 233.372 83.4573C231.399 88.5923 223.665 87.571 220.81 86.7985Z" />
+          <path id="nail-square-m-l-5"
+            class="nail nail-hand-left nail-shape-square nail-length-medium"
+            d="M153.523 154.605C147.558 153.183 146.883 149.405 147.291 147.694C147.333 147.379 148.75 139.906 151.24 132.022C153.128 126.043 152.896 126.446 157.579 114.239C157.785 113.375 162.567 114.515 163.332 114.697L163.333 114.698C164.736 115.032 168.687 115.974 168.915 116.714C168.502 124.38 168.238 128.395 166.887 135.644C165.579 142.659 163.6 149.201 162.808 151.394C161.213 155.813 155.588 155.176 153.523 154.605Z" />
+          <path id="nail-square-m-r-1"
+            class="nail nail-hand-right nail-shape-square nail-length-medium"
+            d="M494.75 93.1661C503.42 91.099 504.617 86.5123 504.132 84.4773C504.09 84.1012 502.496 75.1925 499.382 65.8526C497.021 58.7693 497.331 59.2415 491.319 44.8301C491.074 43.8025 484.124 45.4593 483.012 45.7244L483.01 45.725C480.972 46.211 475.228 47.5805 474.856 48.484C474.993 57.6855 475.134 62.5006 476.647 71.1435C478.111 79.5086 480.57 87.2631 481.578 89.8546C483.611 95.0777 491.744 93.9762 494.75 93.1661Z" />
+          <path id="nail-square-m-r-2"
+            class="nail nail-hand-right nail-shape-square nail-length-medium"
+            d="M451.477 273.07C458.785 267.968 456.344 259.711 455.164 258.022C454.991 257.693 452.231 253.707 445.997 246.283C441.268 240.653 441.725 240.972 430.984 229.964C430.388 229.111 424.53 233.201 423.593 233.855L423.591 233.856C421.873 235.056 417.032 238.436 417.01 239.403C420.432 247.8 422.287 252.168 426.786 259.543C431.14 266.682 436.199 272.892 438.063 274.898C441.821 278.942 448.976 274.925 451.477 273.07Z" />
+          <path id="nail-square-m-r-3"
+            class="nail nail-hand-right nail-shape-square nail-length-medium"
+            d="M540.263 57.2771C548.933 55.21 550.128 50.6139 549.641 48.5742C549.599 48.1973 548 39.2682 544.881 29.9062C542.516 22.8062 542.826 23.2796 536.806 8.83347C536.56 7.80349 529.61 9.46026 528.498 9.7254L528.496 9.72599C526.458 10.212 520.715 11.5814 520.343 12.4867C520.485 21.7085 520.628 26.5342 522.146 35.1969C523.614 43.5811 526.077 51.3538 527.087 53.9515C529.123 59.1871 537.257 58.0874 540.263 57.2771Z" />
+          <path id="nail-square-m-r-4"
+            class="nail nail-hand-right nail-shape-square nail-length-medium"
+            d="M591.225 86.7985C599.463 84.8344 600.57 80.3464 600.093 78.348C600.05 77.979 598.469 69.2339 595.438 60.0551C593.139 53.0941 593.438 53.5593 587.611 39.3879C587.371 38.3787 580.767 39.9529 579.711 40.2048L579.708 40.2054C577.772 40.6671 572.315 41.9684 571.967 42.8514C572.164 51.8731 572.333 56.5946 573.835 65.0785C575.288 73.2897 577.685 80.9095 578.663 83.4573C580.636 88.5923 588.37 87.571 591.225 86.7985Z" />
+          <path id="nail-square-m-r-5"
+            class="nail nail-hand-right nail-shape-square nail-length-medium"
+            d="M658.512 154.605C664.477 153.183 665.152 149.405 664.745 147.694C664.702 147.379 663.285 139.906 660.795 132.022C658.907 126.043 659.139 126.446 654.456 114.239C654.25 113.375 649.468 114.515 648.703 114.697L648.702 114.698C647.3 115.032 643.348 115.974 643.12 116.714C643.533 124.38 643.797 128.395 645.148 135.644C646.456 142.659 648.435 149.201 649.227 151.394C650.822 155.813 656.447 155.176 658.512 154.605Z" />
+
+          <!-- SQUARE · SHORT -->
+          <path id="nail-square-s-l-1"
+            class="nail nail-hand-left nail-shape-square nail-length-short"
+            d="M317.284 93.1677C308.614 91.1006 307.221 87.337 307.608 85.7136C307.633 85.4114 308.803 78.2804 311.456 70.8699C313.469 65.2499 313.184 65.6176 318.473 54.2385C318.668 53.4187 325.618 55.0755 326.73 55.3406L326.732 55.3412C328.771 55.8272 334.514 57.1966 334.923 57.9442C335.207 65.3786 335.288 69.2657 334.186 76.1857C333.119 82.8831 331.041 89.0414 330.162 91.0909C328.39 95.2217 320.294 93.9599 317.284 93.1677Z" />
+          <path id="nail-square-s-l-2"
+            class="nail nail-hand-left nail-shape-square nail-length-short"
+            d="M360.558 273.071C353.25 267.969 354.804 260.983 355.759 259.615C355.893 259.343 358.126 256.111 363.312 250.19C367.245 245.699 366.845 245.936 375.938 237.289C376.42 236.598 382.278 240.688 383.216 241.342L383.218 241.344C384.936 242.543 389.777 245.923 389.883 246.768C387.422 253.789 386.072 257.435 382.509 263.469C379.061 269.309 374.87 274.277 373.3 275.861C370.137 279.054 363.068 274.912 360.558 273.071Z" />
+          <path id="nail-square-s-l-3"
+            class="nail nail-hand-left nail-shape-square nail-length-short"
+            d="M272.095 57.5525C263.425 55.4854 262.031 51.7218 262.419 50.0984C262.443 49.7962 263.613 42.6651 266.267 35.2547C268.279 29.6347 267.994 30.0024 273.284 18.6232C273.479 17.8035 280.429 19.4603 281.541 19.7254L281.543 19.726C283.581 20.212 289.324 21.5814 289.733 22.329C290.018 29.7633 290.098 33.6505 288.996 40.5704C287.93 47.2679 285.852 53.4261 284.973 55.4757C283.2 59.6064 275.105 58.3447 272.095 57.5525Z" />
+          <path id="nail-square-s-l-4"
+            class="nail nail-hand-left nail-shape-square nail-length-short"
+            d="M220.901 88.0367C212.663 86.0726 211.378 82.3348 211.765 80.7114C211.791 80.4097 212.987 73.2846 215.598 65.8642C217.579 60.2366 217.303 60.6065 222.471 49.1984C222.667 48.3787 229.27 49.9529 230.326 50.2048L230.329 50.2054C232.265 50.6671 237.722 51.9683 238.104 52.7093C238.291 60.1205 238.324 63.9964 237.196 70.9101C236.105 77.6016 234.056 83.7667 233.195 85.8207C231.459 89.9603 223.76 88.7929 220.901 88.0367Z" />
+          <path id="nail-square-s-l-5"
+            class="nail nail-hand-left nail-shape-square nail-length-short"
+            d="M153.847 154.876C147.882 153.454 147.008 150.509 147.316 149.214C147.341 148.974 148.329 143.3 150.353 137.368C151.889 132.869 151.682 133.168 155.633 124.029C155.789 123.375 160.571 124.515 161.336 124.697L161.337 124.698C162.74 125.032 166.691 125.974 166.956 126.556C166.97 132.434 166.93 135.51 165.994 141.015C165.089 146.343 163.495 151.269 162.834 152.914C161.502 156.228 155.916 155.429 153.847 154.876Z" />
+          <path id="nail-square-s-r-1"
+            class="nail nail-hand-right nail-shape-square nail-length-short"
+            d="M495.298 93.1677C503.968 91.1006 505.361 87.337 504.974 85.7136C504.949 85.4114 503.779 78.2804 501.126 70.8699C499.113 65.2499 499.398 65.6176 494.109 54.2385C493.914 53.4187 486.964 55.0755 485.852 55.3406L485.85 55.3412C483.811 55.8272 478.068 57.1966 477.659 57.9442C477.375 65.3786 477.294 69.2657 478.396 76.1857C479.463 82.8831 481.541 89.0414 482.42 91.0909C484.192 95.2217 492.288 93.9599 495.298 93.1677Z" />
+          <path id="nail-square-s-r-2"
+            class="nail nail-hand-right nail-shape-square nail-length-short"
+            d="M452.024 273.071C459.332 267.969 457.778 260.983 456.823 259.615C456.689 259.343 454.456 256.111 449.27 250.19C445.337 245.699 445.738 245.936 436.644 237.289C436.162 236.598 430.304 240.688 429.366 241.342L429.364 241.344C427.646 242.543 422.805 245.923 422.699 246.768C425.16 253.789 426.51 257.435 430.073 263.469C433.521 269.309 437.712 274.277 439.282 275.861C442.445 279.054 449.514 274.912 452.024 273.071Z" />
+          <path id="nail-square-s-r-3"
+            class="nail nail-hand-right nail-shape-square nail-length-short"
+            d="M540.487 57.5525C549.157 55.4854 550.551 51.7218 550.163 50.0984C550.139 49.7962 548.969 42.6651 546.315 35.2547C544.303 29.6347 544.588 30.0024 539.299 18.6232C539.103 17.8035 532.153 19.4603 531.041 19.7254L531.039 19.726C529.001 20.212 523.258 21.5814 522.849 22.329C522.564 29.7633 522.484 33.6505 523.586 40.5704C524.652 47.2679 526.73 53.4261 527.61 55.4757C529.382 59.6064 537.477 58.3447 540.487 57.5525Z" />
+          <path id="nail-square-s-r-4"
+            class="nail nail-hand-right nail-shape-square nail-length-short"
+            d="M591.681 88.0367C599.919 86.0726 601.205 82.3348 600.817 80.7114C600.791 80.4097 599.595 73.2846 596.984 65.8642C595.003 60.2366 595.279 60.6065 590.111 49.1984C589.916 48.3787 583.312 49.9529 582.256 50.2048L582.253 50.2054C580.317 50.6671 574.86 51.9683 574.478 52.7093C574.291 60.1205 574.258 63.9964 575.386 70.9101C576.477 77.6016 578.526 83.7667 579.387 85.8207C581.123 89.9603 588.822 88.7929 591.681 88.0367Z" />
+          <path id="nail-square-s-r-5"
+            class="nail nail-hand-right nail-shape-square nail-length-short"
+            d="M658.735 154.876C664.7 153.454 665.574 150.509 665.266 149.214C665.241 148.974 664.253 143.3 662.229 137.368C660.693 132.869 660.9 133.168 656.949 124.029C656.793 123.375 652.011 124.515 651.246 124.697L651.245 124.698C649.843 125.032 645.891 125.974 645.626 126.556C645.612 132.434 645.652 135.51 646.588 141.015C647.493 146.343 649.087 151.269 649.748 152.914C651.08 156.228 656.666 155.429 658.735 154.876Z" />
+
+
+          <!-- TODO: paste your other nail paths below. 
+               - Use classes: nail, nail-hand-left/right, nail-shape-{oval|almond|coffin|square}, nail-length-{short|medium|long}
+               - Example ID pattern: nail-oval-s-r-1, nail-almond-l-l-3, etc.
+          -->
+        </svg>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: DND Palette -->
+    <div class="panel">
+      <h2>DND Duo Bestsellers</h2>
+      <div class="color-grid" id="colorGrid"></div>
+      <div class="swatch-label" id="swatchLabel">
+        Tap a shade to apply it to the nails.
+      </div>
+      <div class="footer-link">
+        Colors are on-screen approximations of DND shades.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* DND bestseller colors – approximate on-screen hex values */
+    const dndBestsellers = [
+      { name: "Red Delicious #491", hex: "#D71A1D" },
+      { name: "Cherry Mocha #751", hex: "#4A1C24" },
+      { name: "Ferrari Red #430", hex: "#E6342A" },
+      { name: "Blood Mary #473", hex: "#7E1D29" },
+      { name: "Maroon Red #495", hex: "#812026" },
+      { name: "Khaki #599", hex: "#A8D6A4" },
+      { name: "Amazon Green #597", hex: "#0A4A3D" },
+      { name: "Pastel Pink #447", hex: "#F7DCE9" },
+      { name: "Mint Cream #441", hex: "#B7EDC1" },
+      { name: "Snow White #449", hex: "#FFFFFF" },
+      { name: "Sonic Blue #675", hex: "#193DAA" },
+      { name: "Black Licorice #419", hex: "#000000" },
+      { name: "Midnight Blue #405", hex: "#11235E" },
+      { name: "Baby Blue #442", hex: "#B7DFF7" },
+      { name: "Cranberry Red #654", hex: "#781A22" },
+      { name: "Cotton Candy #466", hex: "#F7C8D6" },
+      { name: "Sky Blue #543", hex: "#39A6E8" },
+      { name: "Ocean Blue #652", hex: "#002F8D" },
+      { name: "Flamingo Pink #541", hex: "#F8B1D8" },
+      { name: "True Blue #582", hex: "#0E6DD9" },
+      { name: "Teal Mist #572", hex: "#79C6CF" },
+      { name: "Cornflower Blue #442", hex: "#9BBCEC" },
+      { name: "Hot Pink #676", hex: "#FA3C90" },
+      { name: "Deep Wine #675", hex: "#5A0E1E" },
+      { name: "Plum Red #702", hex: "#651C3A" },
+      { name: "Violet Blue #540", hex: "#7D8CE2" },
+      { name: "Caramel Latte #625", hex: "#A27F6B" },
+      { name: "Lemon Drop #653", hex: "#F7D56B" },
+      { name: "Lilac Mist #573", hex: "#CABCEE" },
+      { name: "French White #447", hex: "#F6F6F6" },
+      { name: "Fuchsia Pop #668", hex: "#F84899" },
+      { name: "Ruby Red #495", hex: "#D62828" },
+      { name: "Midnight Sky #597", hex: "#02245E" },
+      { name: "Baby Boy Blue #631", hex: "#88B9F6" },
+      { name: "Silver Glitter #496", hex: "#D9D9D9" },
+      { name: "Capri Blue #572", hex: "#48CDE4" }
+    ];
+
+    /* 9 skin tones: light1..deep3 */
+    const skinTones = [
+      { id: "light1", start: "#F6E3D4", end: "#E6C9B4" },
+      { id: "light2", start: "#EBC7AD", end: "#CCA488" },
+      { id: "light3", start: "#DFA981", end: "#B68863" },
+      { id: "medium1", start: "#D1976F", end: "#A76F3F" },
+      { id: "medium2", start: "#BE8C6D", end: "#986344" },
+      { id: "medium3", start: "#BF8064", end: "#A75D3C" },
+      { id: "deep1", start: "#9B683F", end: "#7B441C" },
+      { id: "deep2", start: "#84421C", end: "#5D2A10" },
+      { id: "deep3", start: "#673219", end: "#431C0D" }
+    ];
+
+    const root = document.documentElement;
+    const grid = document.getElementById("colorGrid");
+    const colorLabel = document.getElementById("colorLabel");
+    const subLabel = document.getElementById("subLabel");
+    const shapeLabel = document.getElementById("shapeLabel");
+    const handWrapper = document.getElementById("handWrapper");
+    const skinToneRow = document.getElementById("skinToneRow");
+    const handPaths = document.querySelectorAll(".hand-path");
+
+    /* Build DND swatches */
+    dndBestsellers.forEach((c, index) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "swatch" + (index === 0 ? " active" : "");
+      btn.style.backgroundColor = c.hex;
+      btn.dataset.hex = c.hex;
+      btn.dataset.name = c.name;
+      btn.addEventListener("click", () => {
+        root.style.setProperty("--nailColor", c.hex);
+        colorLabel.textContent = c.name;
+        subLabel.textContent = "DND Duo Gel – Bestseller";
+        document.querySelectorAll(".swatch").forEach(s =>
+          s.classList.remove("active")
+        );
+        btn.classList.add("active");
+      });
+      grid.appendChild(btn);
+    });
+
+    /* Build skin tone swatches */
+    skinTones.forEach((tone, index) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "skin-swatch" + (tone.id === "medium2" ? " active" : "");
+      btn.style.backgroundImage =
+        `radial-gradient(circle at 30% 30%, ${tone.start}, ${tone.end})`;
+      btn.title = tone.id;
+      btn.dataset.id = tone.id;
+
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".skin-swatch").forEach(s =>
+          s.classList.remove("active")
+        );
+        btn.classList.add("active");
+        const gradientId = `skinTone-${tone.id}`;
+        handPaths.forEach(path => {
+          path.setAttribute("fill", `url(#${gradientId})`);
         });
+      });
 
+      skinToneRow.appendChild(btn);
+    });
 
-        const root = document.documentElement;
-        const grid = document.getElementById("colorGrid");
-        const colorLabel = document.getElementById("colorLabel");
-        const subLabel = document.getElementById("subLabel");
-        const shapeLabel = document.getElementById("shapeLabel");
-        const handWrapper = document.getElementById("handWrapper");
-        const skinToneRow = document.getElementById("skinToneRow");
+    /* Shape / Length / Finish system */
+    let currentShape = "oval";
+    let currentLength = "medium";
+    let currentFinish = "shiny";
 
-        /* Build DND swatches */
-        dndBestsellers.forEach((c, index) => {
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "swatch" + (index === 0 ? " active" : "");
-            btn.style.backgroundColor = c.hex;
-            btn.dataset.hex = c.hex;
-            btn.dataset.name = c.name;
-            btn.addEventListener("click", () => {
-                root.style.setProperty("--nailColor", c.hex);
-                colorLabel.textContent = c.name;
-                subLabel.textContent = "DND Duo Gel – Bestseller";
+    const allNails = document.querySelectorAll(".nail");
+    const glossLayer = null; // if you later add a gloss group, you can wire it here
 
-                document.querySelectorAll(".swatch").forEach(s =>
-                    s.classList.remove("active")
-                );
-                btn.classList.add("active");
-            });
-            grid.appendChild(btn);
-        });
+    function updateNailsVisibility() {
+      allNails.forEach(nail => {
+        const matchesShape = nail.classList.contains(`nail-shape-${currentShape}`);
+        const matchesLength = nail.classList.contains(`nail-length-${currentLength}`);
+        nail.classList.toggle("hidden", !(matchesShape && matchesLength));
+      });
+    }
 
-        /* Build skin tone swatches */
-        const skinToneRects = document.querySelectorAll(".skinTone");
+    function updateShapeLengthFinishLabel() {
+      const labelText =
+        capitalize(currentShape) +
+        " · " +
+        capitalize(currentLength) +
+        " · " +
+        capitalize(currentFinish);
+      shapeLabel.textContent = labelText;
+    }
 
-        skinTones.forEach((tone, index) => {
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "skin-swatch" + (index === 0 ? " active" : "");
-            btn.style.backgroundImage = `radial-gradient(circle at 30% 30%, ${tone.start}, ${tone.end})`;
-            btn.dataset.index = index;
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
 
-            btn.addEventListener("click", () => {
-                // toggle active UI state
-                document.querySelectorAll(".skin-swatch").forEach(s =>
-                    s.classList.remove("active")
-                );
-                btn.classList.add("active");
-
-                // show only the selected skin rect
-                skinToneRects.forEach((rect, rectIndex) => {
-                    rect.classList.toggle("hidden", rectIndex !== index);
-                });
-            });
-
-            skinToneRow.appendChild(btn);
-        });
-
-        /* Shape / Length / Finish system */
-
-        let currentShape = "oval";
-        let currentLength = "medium";
-        let currentFinish = "shiny";
-
-        function updateShapeLengthFinishLabel() {
-            const labelText =
-                capitalize(currentShape) +
-                " · " +
-                capitalize(currentLength) +
-                " · " +
-                capitalize(currentFinish);
-            shapeLabel.textContent = labelText;
-        }
-
-        function capitalize(str) {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        }
-
-        /* Shape: only oval currently */
-        document.querySelectorAll(".shape-pill").forEach(pill => {
-            pill.addEventListener("click", () => {
-                if (pill.classList.contains("disabled")) return;
-                document
-                    .querySelectorAll(".shape-pill")
-                    .forEach(p => p.classList.remove("active"));
-                pill.classList.add("active");
-                currentShape = pill.dataset.shape;
-
-                document.querySelectorAll(".nail").forEach(nail => {
-                    const hasShape = nail.classList.contains(
-                        "nail-shape-" + currentShape
-                    );
-                    nail.classList.toggle("hidden", !hasShape);
-                });
-
-                updateShapeLengthFinishLabel();
-            });
-        });
-
-        /* Length: only medium currently */
-        document.querySelectorAll(".length-pill").forEach(pill => {
-            pill.addEventListener("click", () => {
-                if (pill.classList.contains("disabled")) return;
-                document
-                    .querySelectorAll(".length-pill")
-                    .forEach(p => p.classList.remove("active"));
-                pill.classList.add("active");
-                currentLength = pill.dataset.length;
-                // future: toggle .nail-length-* visibility
-                updateShapeLengthFinishLabel();
-            });
-        });
-
-        /* Finish: matte vs shiny (also toggles gloss layer) */
-        const glossLayer = document.querySelector(".nail-gloss-layer");
-
-        document.querySelectorAll(".finish-pill").forEach(pill => {
-            pill.addEventListener("click", () => {
-                document
-                    .querySelectorAll(".finish-pill")
-                    .forEach(p => p.classList.remove("active"));
-                pill.classList.add("active");
-                currentFinish = pill.dataset.finish;
-
-                if (currentFinish === "matte") {
-                    handWrapper.style.filter = "saturate(0.85) brightness(1.05)";
-                    if (glossLayer) glossLayer.classList.add("matte");
-                } else {
-                    handWrapper.style.filter = "none";
-                    if (glossLayer) glossLayer.classList.remove("matte");
-                }
-
-                updateShapeLengthFinishLabel();
-            });
-        });
-
-        // Initialize label
+    /* Shape pills */
+    document.querySelectorAll(".shape-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document
+          .querySelectorAll(".shape-pill")
+          .forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentShape = pill.dataset.shape;
+        updateNailsVisibility();
         updateShapeLengthFinishLabel();
-    </script>
+      });
+    });
+
+    /* Length pills */
+    document.querySelectorAll(".length-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document
+          .querySelectorAll(".length-pill")
+          .forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentLength = pill.dataset.length;
+        updateNailsVisibility();
+        updateShapeLengthFinishLabel();
+      });
+    });
+
+    /* Finish: matte vs shiny (currently via filter; you can also add gloss masks later) */
+    document.querySelectorAll(".finish-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        document
+          .querySelectorAll(".finish-pill")
+          .forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentFinish = pill.dataset.finish;
+
+        if (currentFinish === "matte") {
+          handWrapper.style.filter = "saturate(0.85) brightness(1.05)";
+          if (glossLayer) glossLayer.classList.add("matte");
+        } else {
+          handWrapper.style.filter = "none";
+          if (glossLayer) glossLayer.classList.remove("matte");
+        }
+
+        updateShapeLengthFinishLabel();
+      });
+    });
+
+    // Initialize
+    updateNailsVisibility();
+    updateShapeLengthFinishLabel();
+  </script>
 </body>
 
 </html>
