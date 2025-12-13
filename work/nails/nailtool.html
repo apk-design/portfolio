@@ -68,6 +68,12 @@
       gap: 8px;
     }
 
+    .panel-header h2 {
+      margin: 0;
+      flex: 1;
+      min-width: 0;
+    }
+
     .pill-group {
       display: flex;
       flex-wrap: wrap;
@@ -179,6 +185,7 @@
       max-height: 430px;
       overflow-y: auto;
       padding-right: 4px;
+      margin-top: 10px;
     }
 
     .color-grid.grid-view {
@@ -320,10 +327,13 @@
       margin-top: 16px;
       font-size: 11px;
       text-align: left;
+      opacity: 0.7;
+    }
+
+    .footer-link a {
+      color: inherit;
       text-decoration: underline;
       text-underline-offset: 3px;
-      cursor: pointer;
-      opacity: 0.7;
     }
 
     @media (max-width: 900px) {
@@ -881,7 +891,7 @@
         Tap a shade to apply it to the nails.
       </div>
       <div class="footer-link">
-        Colors are on-screen approximations of DND shades.
+        <a href="/index.html">View my portfolio</a>
       </div>
     </div>
   </div>
