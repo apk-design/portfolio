@@ -4,6 +4,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>Nail Preview Tool</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #faf7f7;
@@ -14,8 +19,8 @@
 
     * {
       box-sizing: border-box;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Urbanist", system-ui, -apple-system, BlinkMacSystemFont,
+        "SF Pro Text", sans-serif;
     }
 
     body {
@@ -165,30 +170,49 @@
     /* DND color grid */
     .color-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 10px;
       max-height: 430px;
       overflow-y: auto;
       padding-right: 4px;
     }
 
-    .swatch {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      border: 2px solid transparent;
+    .swatch-tile {
+      border: 1px solid #dadada;
+      border-radius: 18px;
+      padding: 8px 12px;
+      background: #fff;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: border 0.15s ease, box-shadow 0.15s ease;
       outline: none;
-      display: block;
     }
 
-    .swatch.active {
+    .swatch-tile.active {
       border-color: #000;
+      box-shadow: 0 0 0 1px #000;
     }
 
-    .swatch:focus-visible {
+    .swatch-tile:focus-visible {
       outline: 2px solid #000;
-      outline-offset: 3px;
+      outline-offset: 2px;
+    }
+
+    .swatch-chip {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+
+    .swatch-name {
+      font-size: 12px;
+      text-align: left;
+      color: #333;
+      line-height: 1.3;
     }
 
     .swatch-label {
@@ -811,22 +835,33 @@
 
     /* Build DND swatches */
     dndBestsellers.forEach((c, index) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "swatch" + (index === 0 ? " active" : "");
-      btn.style.backgroundColor = c.hex;
-      btn.dataset.hex = c.hex;
-      btn.dataset.name = c.name;
-      btn.addEventListener("click", () => {
+      const tile = document.createElement("button");
+      tile.type = "button";
+      tile.className = "swatch-tile" + (index === 0 ? " active" : "");
+      tile.dataset.hex = c.hex;
+      tile.dataset.name = c.name;
+      tile.setAttribute("aria-label", c.name);
+
+      const chip = document.createElement("span");
+      chip.className = "swatch-chip";
+      chip.style.backgroundColor = c.hex;
+
+      const name = document.createElement("span");
+      name.className = "swatch-name";
+      name.textContent = c.name;
+
+      tile.addEventListener("click", () => {
         root.style.setProperty("--nailColor", c.hex);
         colorLabel.textContent = c.name;
         subLabel.textContent = "DND Duo Gel – Bestseller";
-        document.querySelectorAll(".swatch").forEach(s =>
+        document.querySelectorAll(".swatch-tile").forEach(s =>
           s.classList.remove("active")
         );
-        btn.classList.add("active");
+        tile.classList.add("active");
       });
-      grid.appendChild(btn);
+
+      tile.append(chip, name);
+      grid.appendChild(tile);
     });
 
     /* Build skin tone swatches */
