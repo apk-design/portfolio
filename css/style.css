@@ -747,8 +747,15 @@ section { margin-bottom: 80px; }
 }
 
 .tags .tag-filter.active {
-  background: rgba(255, 94, 26, 0.18);
-  border-color: rgba(255, 94, 26, 0.6);
+  background: #ff5e1a;
+  color: #fff;
+  border-color: #ff5e1a;
+  box-shadow: 0 6px 18px rgba(255, 94, 26, 0.35);
+  transform: translateY(-1px);
+}
+
+.tags .tag-filter.active::after {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 .tags .tag:hover {
@@ -776,6 +783,17 @@ section { margin-bottom: 80px; }
 }
 [data-theme="dark"] .tags .tag:hover::after {
   background: rgba(255, 94, 26, 0.7);
+}
+
+[data-theme="dark"] .tags .tag-filter.active {
+  background: #ff8d55;
+  border-color: #ff8d55;
+  color: #1b1613;
+  box-shadow: 0 8px 20px rgba(255, 141, 85, 0.4);
+}
+
+[data-theme="dark"] .tags .tag-filter.active::after {
+  background: rgba(0, 0, 0, 0.4);
 }
 
 a.underline {
