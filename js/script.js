@@ -15,11 +15,11 @@
 
 const NAV_BREAKPOINT = 1024;
 
-// const NAV_LINKS = [
-//   { key: 'home', label: 'Home', href: 'index.html' },
-//   { key: 'resume', label: 'Resume', href: 'resume.html' },
-//   { key: 'work', label: 'Work', href: 'work.html' }
-// ];
+const NAV_LINKS = [
+  { key: 'home', label: 'Home', href: 'index.html' },
+  { key: 'resume', label: 'Resume', href: 'resume.html' },
+  { key: 'work', label: 'Work', href: 'work.html' }
+];
 
 const computePathPrefix = () => {
   const path = window.location.pathname.split('?')[0];
@@ -30,51 +30,54 @@ const computePathPrefix = () => {
   return depth ? '../'.repeat(depth) : '';
 };
 
-// const getActiveNavKey = () => {
-//   const path = window.location.pathname.toLowerCase();
-//   if (path.includes('/resume')) return 'resume';
-//   if (path.includes('/work')) return 'work';
-//   return 'home';
-// };
+const getActiveNavKey = () => {
+  const path = window.location.pathname.toLowerCase();
+  if (path.includes('/resume')) return 'resume';
+  if (path.includes('/work')) return 'work';
+  return 'home';
+};
 
-// const buildGlobalNav = () => {
-//   const navbar = document.querySelector('.navbar');
-//   if (!navbar) return;
-//   const prefix = computePathPrefix();
-//   const activeKey = getActiveNavKey();
-//   const navLinksMarkup = NAV_LINKS.map(link => {
-//     const href = `${prefix}${link.href}`;
-//     const activeClass = activeKey === link.key ? ' active' : '';
-//     return `<a class="nav-btn${activeClass}" href="${href}">${link.label}</a>`;
-//   }).join('');
-//
-//   navbar.innerHTML = `
-//     <div class="left">
-//       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
-//         <span class="sr-only">Toggle navigation</span>
-//         <span class="nav-toggle-bar"></span>
-//         <span class="nav-toggle-bar"></span>
-//         <span class="nav-toggle-bar"></span>
-//       </button>
-//     </div>
-//     <div class="logo-slot">
-//       <a href="${prefix}index.html" aria-label="Home">
-//         <img src="${prefix}assets/logo_amberkumar.svg" alt="Amber Kumar logo" class="logo">
-//       </a>
-//     </div>
-//     <nav class="center nav-links" id="primary-nav" aria-label="Primary navigation">
-//       ${navLinksMarkup}
-//     </nav>
-//     <div class="right nav-actions">
-//       <div class="theme-toggle" role="button" tabindex="0" aria-label="Toggle site theme">
-//         <label class="theme-switch">
-//           <input type="checkbox" id="theme-checkbox">
-//           <span class="slider"></span>
-//         </label>
-//       </div>
-//     </div>
-//   `;
-// };
+const buildGlobalNav = () => {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+  const prefix = computePathPrefix();
+  const activeKey = getActiveNavKey();
+  const navLinksMarkup = NAV_LINKS.map(link => {
+    const href = `${prefix}${link.href}`;
+    const activeClass = activeKey === link.key ? ' active' : '';
+    return `<a class="nav-btn${activeClass}" href="${href}">${link.label}</a>`;
+  }).join('');
+
+  navbar.innerHTML = `
+    <div class="left">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
+    <div class="logo-slot">
+      <a href="${prefix}index.html" aria-label="Home">
+        <img src="${prefix}assets/logo_amberkumar.svg" alt="Amber Kumar logo" class="logo">
+      </a>
+    </div>
+    <nav class="center nav-links" id="primary-nav" aria-label="Primary navigation">
+      ${navLinksMarkup}
+    </nav>
+    <div class="right nav-actions">
+      <div class="nav-translate" aria-label="Language selection">
+        <div id="google_translate_element"></div>
+      </div>
+      <div class="theme-toggle" role="button" tabindex="0" aria-label="Toggle site theme">
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+  `;
+};
 
 // Theme toggle
 const initThemeToggle = () => {
@@ -306,7 +309,9 @@ const initGoogleTranslate = () => {
 };
 
 document.addEventListener('DOMContentLoaded', () => {
-  // buildGlobalNav();
-  // initThemeToggle();
-  // initMobileNav();
+  buildGlobalNav();
+  initThemeToggle();
+  initMobileNav();
+  initTranslatePlacement();
+  initGoogleTranslate();
 });
