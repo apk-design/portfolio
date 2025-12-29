@@ -337,6 +337,33 @@ figcaption {
   .nav-translate .goog-te-gadget-simple {
     padding: 4px 10px;
   }
+
+  /* Tablet spacing: stack intro and grid with tighter gap */
+  .wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  aside.sidebar {
+    position: static;
+    width: 100%;
+    flex: 0 0 auto;
+    min-height: auto;
+    border-right: none;
+    padding-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .mobile-divider {
+    display: block;
+    margin: 4px 0 8px;
+  }
+
+  .home-grid {
+    margin-top: 0;
+    row-gap: 16px;
+  }
 }
 
 .nav-btn {
@@ -483,6 +510,15 @@ input:checked + .slider:before {
 
 .mt-nav { margin-top: 110px; }
 section { margin-bottom: 80px; }
+
+.mobile-divider {
+  display: none;
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: color-mix(in srgb, var(--border) 60%, #0f1724 40%);
+  margin: 24px 0;
+}
 
 /* -----------------------------------------------------------
    Buttons / Tags
@@ -1173,15 +1209,27 @@ footer:hover {
    MOBILE STYLES
 ----------------------------------------------------------- */
 @media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .mt-nav { margin-top: 80px; }
 
-  .wrap { display: block; }
+  .wrap { display: flex; flex-direction: column; gap: 8px; }
+  .mobile-divider {
+    display: block;
+    margin: 4px 0 8px;
+    background: color-mix(in srgb, var(--border) 70%, #0f1724 30%);
+  }
+
+  .home-grid {
+    margin-top: 0;
+    row-gap: 16px;
+  }
 
   aside.sidebar {
     position: static;
     width: 100%;
     border-right: none;
     padding-right: 0;
-    margin-bottom: 40px;
+    margin-bottom: 16px;
   }
 
   .navbar .left .logo {
