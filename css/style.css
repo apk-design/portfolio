@@ -275,11 +275,11 @@ figcaption {
 .nav-actions {
   display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 
 .nav-translate {
-  min-width: 150px;
+  min-width: auto;
 }
 
 .nav-translate .goog-te-gadget {
@@ -290,11 +290,12 @@ figcaption {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.4);
   border-radius: 999px;
-  padding: 6px 12px;
+  padding: 3px 8px;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   cursor: pointer;
+  font-size: 11px;
 }
 
 .nav-translate .goog-te-menu-value {
