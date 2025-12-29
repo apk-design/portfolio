@@ -66,9 +66,6 @@ const buildGlobalNav = () => {
       ${navLinksMarkup}
     </nav>
     <div class="right nav-actions">
-      <div class="nav-translate" aria-label="Language selection">
-        <div id="google_translate_element"></div>
-      </div>
       <div class="theme-toggle" role="button" tabindex="0" aria-label="Toggle site theme">
         <label class="theme-switch">
           <input type="checkbox" id="theme-checkbox">
@@ -312,6 +309,4 @@ document.addEventListener('DOMContentLoaded', () => {
   buildGlobalNav();
   initThemeToggle();
   initMobileNav();
-  initTranslatePlacement();
-  initGoogleTranslate();
 });
