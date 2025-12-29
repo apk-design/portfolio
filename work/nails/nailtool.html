@@ -150,6 +150,20 @@
       pointer-events: none;
     }
 
+    /* .design-layer .design {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .design-layer .design.is-active {
+      opacity: 1;
+    }
+
+    .design-layer .design.design-suppressed {
+      opacity: 0 !important;
+    } */
+
     /* Skin tone UI */
     .skin-tone-row {
       display: flex;
@@ -346,7 +360,7 @@
 
 <body>
   <div class="app">
-    <!-- LEFT PANEL: Shape / Length / Finish / Skin Tone -->
+    <!-- LEFT PANEL: Shape / Length / Skin Tone -->
     <div class="panel">
       <h1>Nail Preview Tool</h1>
       <p style="margin:0 0 24px;font-size:13px;opacity:0.8;">
@@ -371,11 +385,14 @@
         <button class="pill length-pill" data-length="long">Long</button>
       </div>
 
-      <h2 style="margin-top:24px;">Finish</h2>
+      <!-- <h2 style="margin-top:24px;">Nail Design</h2>
       <div class="pill-group">
-        <button class="pill finish-pill active" data-finish="shiny">Shiny</button>
-        <button class="pill finish-pill" data-finish="matte">Matte</button>
-      </div>
+        <button class="pill design-pill active" data-design="classic">Classic</button>
+        <button class="pill design-pill" data-design="french">French Tip</button>
+        <button class="pill design-pill" data-design="glitter">Glitter</button>
+        <button class="pill design-pill" data-design="cateye">Cat Eye</button>
+        <button class="pill design-pill" data-design="stars">Stars</button>
+      </div> -->
 
     </div>
 
@@ -391,7 +408,7 @@
           </div>
         </div>
         <div class="sub-label" id="shapeLabel">
-          Oval · Medium · Shiny
+          Oval · Medium
         </div>
       </div>
 
@@ -438,6 +455,8 @@
               <stop offset="0%" stop-color="#673219" />
               <stop offset="100%" stop-color="#431C0D" />
             </linearGradient>
+
+            <!-- design gradients/patterns commented out -->
           </defs>
 
           <!-- RIGHT HAND OUTLINE (filled with skin tone) -->
@@ -858,6 +877,8 @@
                - Use classes: nail, nail-hand-left/right, nail-shape-{oval|almond|coffin|square}, nail-length-{short|medium|long}
                - Example ID pattern: nail-oval-s-r-1, nail-almond-l-l-3, etc.
           -->
+
+          <!-- <g class="design-layer" id="designLayer"></g> -->
         </svg>
       </div>
     </div>
@@ -959,6 +980,17 @@
     const handWrapper = document.getElementById("handWrapper");
     const skinToneRow = document.getElementById("skinToneRow");
     const handPaths = document.querySelectorAll(".hand-path");
+    // const designButtons = document.querySelectorAll(".design-pill");
+    // const svgNS = "http://www.w3.org/2000/svg";
+    // const xlinkNS = "http://www.w3.org/1999/xlink";
+    // const designLayer = document.getElementById("designLayer");
+    // const designConfigs = {
+    //   french: { fill: "url(#frenchTipGradient)", opacity: 0.85 },
+    //   glitter: { fill: "url(#glitterPattern)", opacity: 0.55, mixBlendMode: "screen" },
+    //   cateye: { fill: "url(#catEyeGradient)", opacity: 0.75 },
+    //   stars: { fill: "url(#starPattern)", opacity: 0.85 }
+    // };
+    // const designShapes = [];
 
     /* Build DND swatches */
     dndBestsellers.forEach((c, index) => {
@@ -1026,30 +1058,58 @@
       skinToneRow.appendChild(btn);
     });
 
-    /* Shape / Length / Finish system */
+    /* Shape / Length system */
     let currentShape = "oval";
     let currentLength = "medium";
-    let currentFinish = "shiny";
+    // let currentDesign = "classic";
 
     const allNails = document.querySelectorAll(".nail");
-    const glossLayer = null; // if you later add a gloss group, you can wire it here
+    // const overlaysByNail = new Map();
+
+    // if (designLayer) {
+    //   allNails.forEach(nail => {
+    //     Object.entries(designConfigs).forEach(([type, config]) => {
+    //       const overlay = document.createElementNS(svgNS, "use");
+    //       overlay.setAttribute("href", `#${nail.id}`);
+    //       overlay.setAttributeNS(xlinkNS, "href", `#${nail.id}`);
+    //       overlay.dataset.nail = nail.id;
+    //       overlay.dataset.design = type;
+    //       overlay.classList.add("design", `design-${type}`);
+    //       overlay.setAttribute("fill", config.fill);
+    //       if (config.opacity) {
+    //         overlay.setAttribute("opacity", config.opacity);
+    //       }
+    //       if (config.mixBlendMode) {
+    //         overlay.style.mixBlendMode = config.mixBlendMode;
+    //       }
+    //       designLayer.appendChild(overlay);
+    //       designShapes.push(overlay);
+    //       if (!overlaysByNail.has(nail.id)) {
+    //         overlaysByNail.set(nail.id, []);
+    //       }
+    //       overlaysByNail.get(nail.id).push(overlay);
+    //     });
+    //   });
+    // }
 
     function updateNailsVisibility() {
       allNails.forEach(nail => {
         const matchesShape = nail.classList.contains(`nail-shape-${currentShape}`);
         const matchesLength = nail.classList.contains(`nail-length-${currentLength}`);
-        nail.classList.toggle("hidden", !(matchesShape && matchesLength));
+        const shouldShow = matchesShape && matchesLength;
+        nail.classList.toggle("hidden", !shouldShow);
+        // if (overlaysByNail.has(nail.id)) {
+        //   overlaysByNail.get(nail.id).forEach(shape => {
+        //     shape.classList.toggle("design-suppressed", !shouldShow);
+        //   });
+        // }
       });
+      // refreshDesignVisibility();
     }
 
-    function updateShapeLengthFinishLabel() {
-      const labelText =
-        capitalize(currentShape) +
-        " · " +
-        capitalize(currentLength) +
-        " · " +
-        capitalize(currentFinish);
-      shapeLabel.textContent = labelText;
+    function updateShapeLengthLabel() {
+      shapeLabel.textContent =
+        capitalize(currentShape) + " · " + capitalize(currentLength);
     }
 
     function capitalize(str) {
@@ -1065,9 +1125,19 @@
         pill.classList.add("active");
         currentShape = pill.dataset.shape;
         updateNailsVisibility();
-        updateShapeLengthFinishLabel();
+        updateShapeLengthLabel();
       });
     });
+
+    /* Design pills */
+    // designButtons.forEach(pill => {
+    //   pill.addEventListener("click", () => {
+    //     designButtons.forEach(p => p.classList.remove("active"));
+    //     pill.classList.add("active");
+    //     currentDesign = pill.dataset.design;
+    //     refreshDesignVisibility();
+    //   });
+    // });
 
     /* Length pills */
     document.querySelectorAll(".length-pill").forEach(pill => {
@@ -1078,34 +1148,25 @@
         pill.classList.add("active");
         currentLength = pill.dataset.length;
         updateNailsVisibility();
-        updateShapeLengthFinishLabel();
+        updateShapeLengthLabel();
       });
     });
 
-    /* Finish: matte vs shiny (currently via filter; you can also add gloss masks later) */
-    document.querySelectorAll(".finish-pill").forEach(pill => {
-      pill.addEventListener("click", () => {
-        document
-          .querySelectorAll(".finish-pill")
-          .forEach(p => p.classList.remove("active"));
-        pill.classList.add("active");
-        currentFinish = pill.dataset.finish;
-
-        if (currentFinish === "matte") {
-          handWrapper.style.filter = "saturate(0.85) brightness(1.05)";
-          if (glossLayer) glossLayer.classList.add("matte");
-        } else {
-          handWrapper.style.filter = "none";
-          if (glossLayer) glossLayer.classList.remove("matte");
-        }
-
-        updateShapeLengthFinishLabel();
-      });
-    });
+    // function refreshDesignVisibility() {
+    //   if (!designShapes.length) return;
+    //   designShapes.forEach(shape => {
+    //     const shouldShow =
+    //       currentDesign !== "classic" &&
+    //       shape.dataset.design === currentDesign &&
+    //       !shape.classList.contains("design-suppressed");
+    //     shape.classList.toggle("is-active", shouldShow);
+    //   });
+    // }
 
     // Initialize
     updateNailsVisibility();
-    updateShapeLengthFinishLabel();
+    updateShapeLengthLabel();
+    // refreshDesignVisibility();
   </script>
 </body>
 
