@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Keyboard Tool</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script type="module" src="./js/tool.js"></script>
+  </head>
+
+  <body>
+    <div class="app">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebarTitle">Keyboard</div>
+        <div class="nav">
+          <button class="navItem active" type="button" data-tab="checker">
+            <span class="navIcon" aria-hidden="true">✅</span>
+            <span>Checker</span>
+          </button>
+          <button class="navItem" type="button" data-tab="typing">
+            <span class="navIcon" aria-hidden="true">⌨️</span>
+            <span>Typing Test</span>
+          </button>
+        </div>
+
+        <div class="sidebarDivider"></div>
+
+        <div class="sidebarTitle muted">Additional Links</div>
+        <div class="nav">
+          <a class="navLink" href="#" target="_blank" rel="noreferrer">
+            <span class="navIcon" aria-hidden="true">📝</span>
+            <span>My Process ↗</span>
+          </a>
+          <a class="navLink" href="#" target="_blank" rel="noreferrer">
+            <span class="navIcon navIcon-img" aria-hidden="true">
+              <img src="../../assets/amber-logo.png" alt="">
+            </span>
+            <span>Portfolio ↗</span>
+          </a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <!-- ===================== -->
+        <!-- CHECKER TAB           -->
+        <!-- ===================== -->
+        <section class="tabPanel active" id="tab-checker">
+          <div class="checkerStack">
+            <header class="topbar">
+              <div class="title">Keyboard Checker</div>
+              <div class="topbarRight">
+                <div class="sizes">
+                  <span class="mutedSmall">Size</span>
+                  <button class="chip active" type="button" data-size="60%">60%</button>
+                  <button class="chip" type="button" data-size="65%">65%</button>
+                  <button class="chip" type="button" data-size="75%">75%</button>
+                  <button class="chip" type="button" data-size="tkl">TKL</button>
+                  <button class="chip" type="button" data-size="100%">100%</button>
+                </div>
+                <button class="btn" id="checker-restart" type="button">Restart</button>
+              </div>
+            </header>
+
+            <div class="checkerGridShell">
+              <!-- main checker content -->
+              <div class="page">
+                <div class="checkerGrid">
+                  <!-- Keyboard spans full width -->
+                  <section class="card keyboardCard2">
+                    <div class="keyboard" id="checker-keyboard"></div>
+                  </section>
+
+                  <!-- Bottom left: logger -->
+                  <section class="card loggerCard2">
+                    <div class="cardHeader">
+                      <div class="cardTitle">Keyboard Event Logger</div>
+                    </div>
+                    <div class="log" id="checker-log">
+                      <div>[ready]</div>
+                      <div>press a key to begin</div>
+                    </div>
+                  </section>
+
+                  <!-- Bottom right: results -->
+                  <section class="card resultsCard2">
+
+                    <!-- missing keys -->
+                    <div class="resultsBody" id="checker-results" style="display:none;">
+                      <div class="resultsTitle">Keys not detected during this test</div>
+                      <div class="resultsSub">
+                        If you did press these, re-seat the switch and confirm the pins are straight and fully inserted into the PCB.
+                      </div>
+
+                      <div class="missingList" id="checker-missing-list"></div>
+
+                      <div class="advice">
+                        <div class="adviceTitle">Mechanical keyboard check</div>
+                        <div class="adviceText">
+                          Hot-swap boards: check the socket isn’t loose and the switch pins aren’t bent.
+                        </div>
+                      </div>
+
+                      <div class="resultsActions">
+                        <button class="btn primary" type="button" id="checker-run-yes">Run again</button>
+                      </div>
+                    </div>
+
+                    <!-- celebrate -->
+                    <div class="resultsBody" id="checker-celebrate" style="display:none;">
+                      <div class="celebrateTitle">All keys detected.</div>
+                      <div class="resultsSub">This board looks good based on this test.</div>
+                      <div class="resultsActions">
+                        <button class="btn primary" type="button" id="checker-celebrate-run">Run again</button>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================== -->
+        <!-- TYPING TAB            -->
+        <!-- ===================== -->
+        <section class="tabPanel" id="tab-typing">
+          <div class="typingStack">
+            <header class="topbar">
+              <div class="title">Typing Test</div>
+              <div class="topbarRight">
+                <div class="sizes">
+                  <span class="mutedSmall">Length</span>
+                  <button class="chip active" type="button" data-length="short">short</button>
+                  <button class="chip" type="button" data-length="medium">medium</button>
+                  <button class="chip" type="button" data-length="long">long</button>
+                  <button class="chip" type="button" data-length="very">veeeeery looong</button>
+                </div>
+                <button class="btn" id="typing-restart" type="button">Refresh</button>
+              </div>
+            </header>
+
+            <div class="typingGrid">
+              <aside class="subnav">
+                <div class="subnavList" role="group" aria-label="Prompt pack">
+                  <button class="subnavItem active" type="button" data-pack="bourdain">
+                    <span class="subnavIcon" aria-hidden="true">🍽️</span>
+                    <span>Bourdain Quotes</span>
+                  </button>
+                  <button class="subnavItem" type="button" data-pack="dracula">
+                    <span class="subnavIcon" aria-hidden="true">🧛</span>
+                    <span>Vampires</span>
+                  </button>
+                </div>
+              </aside>
+
+              <div class="page">
+                <section class="card">
+                  <div class="typingHeader">
+                    <div class="typingTitle" id="typing-title">Anthony Bourdain</div>
+                    <div class="typingSub" id="typing-sub">PARTS UNKNOWN, S13 E3</div>
+                  </div>
+
+                  <div class="typingStage">
+                    <div class="quoteWrap">
+                      <div class="quote" id="typing-quote"></div>
+                    </div>
+
+                    <input
+                      id="typing-input"
+                      class="typingInput"
+                      type="text"
+                      autocomplete="off"
+                      autocapitalize="none"
+                      autocorrect="off"
+                      spellcheck="false"
+                      placeholder="Start typing…"
+                    />
+
+                    <div class="modal" id="typing-modal" style="display:none;">
+                      <div class="cardHeader">
+                        <div class="dots" aria-hidden="true">
+                          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                        </div>
+                        <div class="cardTitle">Typing Test Result</div>
+                      </div>
+                      <div class="modalBody">
+                        <div class="resultLine" id="typing-accuracy-line">—</div>
+                        <div class="resultLine" id="typing-wpm-line">—</div>
+                        <div class="resultsActions">
+                          <button class="btn" type="button" id="typing-try-no">No</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
