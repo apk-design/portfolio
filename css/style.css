@@ -44,6 +44,7 @@ body {
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-y: auto;
   transition: background .3s, color .3s;
   line-height: 1.7;
 }
@@ -877,6 +878,7 @@ aside.sidebar {
   display: flex;
   flex-direction: column;
   gap: 32px;
+  align-self: flex-start;
 }
 
 aside.sidebar .left-text {
