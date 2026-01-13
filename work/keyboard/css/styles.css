@@ -484,13 +484,14 @@ body {
   gap: 18px;
   justify-items: center;
   padding: 20px 10px;
+  width: 100%;
 }
 .typingColumns {
-  display: grid;
-  grid-template-columns: 260px 1fr;
+  display: flex;
   gap: 16px;
   width: 100%;
   max-width: 980px;
+  align-items: flex-start;
 }
 .focusBox {
   border: 1px solid var(--stroke);
@@ -522,7 +523,9 @@ body {
 }
 
 .quoteWrap {
+  flex: 1 1 auto;
   max-width: 980px;
+  width: 100%;
   padding: 24px 0;
   max-height: 200px;
   overflow: hidden;
