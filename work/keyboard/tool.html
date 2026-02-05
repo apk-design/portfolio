@@ -34,7 +34,7 @@
           </a>
           <a class="navLink" href="#" target="_blank" rel="noreferrer">
             <span class="navIcon navIcon-img" aria-hidden="true">
-              <img src="../../assets/amber-logo.png" alt="">
+              <img src="../../assets/amber-logo.png" alt="" />
             </span>
             <span>Portfolio ↗</span>
           </a>
@@ -63,12 +63,27 @@
             </header>
 
             <div class="checkerGridShell">
-              <!-- main checker content -->
               <div class="page">
                 <div class="checkerGrid">
                   <!-- Keyboard spans full width -->
                   <section class="card keyboardCard2">
                     <div class="keyboard" id="checker-keyboard"></div>
+
+                    <!-- Legend under keyboard (static) -->
+                    <div class="checkerLegend" aria-label="Keyboard legend">
+                      <div class="legendItem">
+                        <span class="legendSwatch legendSwatch--idle" aria-hidden="true"></span>
+                        <span>Not pressed</span>
+                      </div>
+                      <div class="legendItem">
+                        <span class="legendSwatch legendSwatch--seen" aria-hidden="true"></span>
+                        <span>Pressed</span>
+                      </div>
+                      <div class="legendItem">
+                        <span class="legendSwatch legendSwatch--down" aria-hidden="true"></span>
+                        <span>Currently down</span>
+                      </div>
+                    </div>
                   </section>
 
                   <!-- Bottom left: logger -->
@@ -82,38 +97,51 @@
                     </div>
                   </section>
 
-                  <!-- Bottom right: results -->
+                  <!-- Bottom right: FAQ tiles (static HTML) -->
                   <section class="card resultsCard2">
+                    <div class="cardHeader">
+                      <div class="cardTitle">FAQ</div>
+                    </div>
 
-                    <!-- missing keys -->
-                    <div class="resultsBody" id="checker-results" style="display:none;">
-                      <div class="resultsTitle">Keys not detected during this test</div>
-                      <div class="resultsSub">
-                        If you did press these, re-seat the switch and confirm the pins are straight and fully inserted into the PCB.
-                      </div>
-
-                      <div class="missingList" id="checker-missing-list"></div>
-
-                      <div class="advice">
-                        <div class="adviceTitle">Mechanical keyboard check</div>
-                        <div class="adviceText">
-                          Hot-swap boards: check the socket isn’t loose and the switch pins aren’t bent.
+                    <div class="faqGrid">
+                      <div class="faqTile">
+                        <div class="faqTitle">A key isn’t registering</div>
+                        <div class="faqBody">
+                          If you pressed it and it never highlights, re-seat the switch. Check the pins are straight and fully inserted into the PCB.
                         </div>
                       </div>
 
-                      <div class="resultsActions">
-                        <button class="btn primary" type="button" id="checker-run-yes">Run again</button>
+                      <div class="faqTile">
+                        <div class="faqTitle">Hot-swap boards</div>
+                        <div class="faqBody">
+                          Check the socket isn’t loose. Bent pins are common and can stop a switch from making contact.
+                        </div>
+                      </div>
+
+                      <div class="faqTile">
+                        <div class="faqTitle">Still stuck?</div>
+                        <div class="faqBody">
+                          Try another switch in the same socket. If the new switch works, the switch is the problem. If nothing works, the socket or PCB might be.
+                        </div>
+                      </div>
+
+                      <div class="faqTile">
+                        <div class="faqTitle">Notes</div>
+                        <div class="faqBody">
+                          This is a single-session test. Refresh or Restart to clear results and begin again.
+                        </div>
                       </div>
                     </div>
 
-                    <!-- celebrate -->
-                    <div class="resultsBody" id="checker-celebrate" style="display:none;">
-                      <div class="celebrateTitle">All keys detected.</div>
-                      <div class="resultsSub">This board looks good based on this test.</div>
-                      <div class="resultsActions">
-                        <button class="btn primary" type="button" id="checker-celebrate-run">Run again</button>
-                      </div>
+                    <!-- Keep old results nodes mounted but permanently hidden
+                         so your current checker.js doesn’t crash.
+                         We will remove these entirely after we update checker.js next. -->
+                    <div id="checker-results" style="display:none;" aria-hidden="true">
+                      <div id="checker-missing-list"></div>
                     </div>
+                    <div id="checker-celebrate" style="display:none;" aria-hidden="true"></div>
+                    <button id="checker-run-yes" type="button" style="display:none;" aria-hidden="true"></button>
+                    <button id="checker-celebrate-run" type="button" style="display:none;" aria-hidden="true"></button>
                   </section>
                 </div>
               </div>
@@ -163,6 +191,7 @@
 
                   <div class="typingStage">
                     <div class="typingHint">Hit Enter to begin</div>
+
                     <div class="typingColumns">
                       <div class="focusBox">
                         <div class="focusLabel">Current word</div>
@@ -170,6 +199,7 @@
                         <div class="focusLabel">Current letter</div>
                         <div class="focusLetter" id="typing-current-letter">—</div>
                       </div>
+
                       <div class="quoteWrap">
                         <div class="quote" id="typing-quote"></div>
                       </div>
@@ -201,10 +231,12 @@
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </section>
               </div>
             </div>
+
           </div>
         </section>
       </main>

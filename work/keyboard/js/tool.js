@@ -1,13 +1,4 @@
 // js/tool.js
-// Single entry point.
-// - Initializes Checker + Typing
-// - Handles tab switching (single page)
-
-// IMPORTANT: path assumes your structure:
-// js/tool.js
-// js/checker/checker.js
-// js/typing/typing.js
-
 import { initChecker } from "./checker/checker.js";
 import { initTyping } from "./typing/typing.js";
 
@@ -23,36 +14,28 @@ const panels = {
 };
 
 function setTab(name) {
-  // buttons
   for (const btn of tabButtons) {
-    const active = btn.dataset.tab === name;
-    btn.classList.toggle("active", active);
+    btn.classList.toggle("active", btn.dataset.tab === name);
   }
 
-  // panels
   if (panels.checker) panels.checker.classList.toggle("active", name === "checker");
   if (panels.typing) panels.typing.classList.toggle("active", name === "typing");
 
-  try {
-    localStorage.setItem(TAB_KEY, name);
-  } catch (e) {
-    // ignore storage errors
-  }
+  // global signal for any module that wants it
+  document.documentElement.dataset.activeTab = name;
+  window.dispatchEvent(new CustomEvent("tool:tabchange", { detail: { tab: name } }));
+
+  try { localStorage.setItem(TAB_KEY, name); } catch {}
 }
 
-// click handlers
 for (const btn of tabButtons) {
   btn.addEventListener("click", () => setTab(btn.dataset.tab));
 }
 
-// default tab (persist last selection)
 let initialTab = "checker";
 try {
   const saved = localStorage.getItem(TAB_KEY);
-  if (saved === "typing" || saved === "checker") {
-    initialTab = saved;
-  }
-} catch (e) {
-  // ignore storage errors
-}
+  if (saved === "typing" || saved === "checker") initialTab = saved;
+} catch {}
+
 setTab(initialTab);

@@ -1,13 +1,16 @@
 // js/checker/layout.js
-// Layout definitions with fixed-unit sizing.
-// 1u = 1x1 (we set 50px in CSS). Wider/taller keys use multiples of 1u.
+// Canonical layout geometry.
+// All visual alignment must come from:
+// - key widths/heights (w/h in "u" units)
+// - gap() spacer keys
+// No CSS transforms. No per-key nudging.
 
 export function getLayout(size) {
   const s = String(size).toLowerCase();
   if (s === "60%") return LAYOUT_60;
   if (s === "65%") return LAYOUT_65;
   if (s === "75%") return LAYOUT_75;
-  if (s === "tkl") return LAYOUT_TKL; // use tenkeyless (no numpad)
+  if (s === "tkl") return LAYOUT_TKL;
   if (s === "100%") return LAYOUT_100;
   return LAYOUT_60;
 }
@@ -24,7 +27,9 @@ export function getExpectedKeys(size) {
   return Array.from(new Set(out));
 }
 
-// Fixed sizes applied everywhere unless overridden
+/* ---------- unit constants ---------- */
+
+const GAP = 0.5;          // visual separation between clusters (kbdlab style)
 const TAB = 1.5;
 const BACKSLASH = 1.5;
 const CAPS = 1.75;
@@ -32,12 +37,21 @@ const BACKSPACE = 2;
 const ENTER = 2.25;
 const LEFT_SHIFT = 2.25;
 const SPACE = 6.25;
+
+// bottom-row mods
 const MOD_125 = 1.25;
 
 /* ---------- 60% ---------- */
+/*
+Row 1: ` 1..0 - = Backspace
+Row 2: Tab Q..P [ ] \ 
+Row 3: Caps A..L ; ' Enter
+Row 4: LShift Z..M , . / RShift(2.75)
+Row 5: Ctrl Meta Alt Space Alt Meta Menu Ctrl (all 1.25)
+*/
 const LAYOUT_60 = [
   [
-    k("Escape", "Esc"),
+    k("Backquote", "`"),
     ...digitsRow(),
     k("Minus", "-"),
     k("Equal", "="),
@@ -78,13 +92,20 @@ const LAYOUT_60 = [
 ];
 
 /* ---------- 65% ---------- */
+/*
+Adds:
+- right-side nav column: Del / PgUp / PgDn / End (1u)
+- arrow cluster (1u)
+Bottom row mods (65): Ctrl/Alt/Meta are 1u (per your rule)
+*/
 const LAYOUT_65 = [
   [
-    k("Escape", "Esc"),
+    k("Backquote", "`"),
     ...digitsRow(),
     k("Minus", "-"),
     k("Equal", "="),
     k("Backspace", "Backspace", BACKSPACE),
+    gap(GAP),
     k("Delete", "Del"),
   ],
   [
@@ -93,6 +114,7 @@ const LAYOUT_65 = [
     k("BracketLeft", "["),
     k("BracketRight", "]"),
     k("Backslash", "\\", BACKSLASH),
+    gap(GAP),
     k("PageUp", "PgUp"),
   ],
   [
@@ -101,6 +123,7 @@ const LAYOUT_65 = [
     k("Semicolon", ";"),
     k("Quote", "'"),
     k("Enter", "Enter", ENTER),
+    gap(GAP),
     k("PageDown", "PgDn"),
   ],
   [
@@ -110,6 +133,7 @@ const LAYOUT_65 = [
     k("Period", "."),
     k("Slash", "/"),
     k("ShiftRight", "Shift", 1.75),
+    gap(GAP),
     k("ArrowUp", "↑"),
     k("End", "End"),
   ],
@@ -121,17 +145,29 @@ const LAYOUT_65 = [
     k("AltRight", "Alt", 1),
     k("ControlRight", "Ctrl", 1),
     k("MetaRight", "Meta", 1),
+    gap(GAP),
     k("ArrowLeft", "←"),
     k("ArrowDown", "↓"),
     k("ArrowRight", "→"),
+    gap(1), // keeps a clean empty cell under the End column visually
   ],
 ];
 
 /* ---------- 75% ---------- */
+/*
+Adds:
+- function row
+- right-side nav column (Del / PgUp / PgDn / End)
+- arrow cluster
+Bottom row mods (75): Alt is 1.25, Ctrl/Menu 1u (per your rule)
+*/
 const LAYOUT_75 = [
   [
     k("Escape", "Esc"),
-    ...fRow(),
+    gap(GAP),
+    ...fRowGrouped(),
+    gap(GAP),
+    k("Delete", "Del"),
   ],
   [
     k("Backquote", "`"),
@@ -139,7 +175,8 @@ const LAYOUT_75 = [
     k("Minus", "-"),
     k("Equal", "="),
     k("Backspace", "Backspace", BACKSPACE),
-    k("Delete", "Del"),
+    gap(GAP),
+    k("PageUp", "PgUp"),
   ],
   [
     k("Tab", "Tab", TAB),
@@ -147,7 +184,8 @@ const LAYOUT_75 = [
     k("BracketLeft", "["),
     k("BracketRight", "]"),
     k("Backslash", "\\", BACKSLASH),
-    k("PageUp", "PgUp"),
+    gap(GAP),
+    k("PageDown", "PgDn"),
   ],
   [
     k("CapsLock", "Caps", CAPS),
@@ -155,7 +193,8 @@ const LAYOUT_75 = [
     k("Semicolon", ";"),
     k("Quote", "'"),
     k("Enter", "Enter", ENTER),
-    k("PageDown", "PgDn"),
+    gap(GAP),
+    k("End", "End"),
   ],
   [
     k("ShiftLeft", "Shift", LEFT_SHIFT),
@@ -164,8 +203,9 @@ const LAYOUT_75 = [
     k("Period", "."),
     k("Slash", "/"),
     k("ShiftRight", "Shift", 1.75),
+    gap(GAP),
     k("ArrowUp", "↑"),
-    k("End", "End"),
+    gap(1),
   ],
   [
     k("ControlLeft", "Ctrl", 1),
@@ -175,17 +215,30 @@ const LAYOUT_75 = [
     k("AltRight", "Alt", 1.25),
     k("ControlRight", "Ctrl", 1),
     k("ContextMenu", "Menu", 1),
+    gap(GAP),
     k("ArrowLeft", "←"),
     k("ArrowDown", "↓"),
     k("ArrowRight", "→"),
+    gap(1),
   ],
 ];
 
 /* ---------- TKL ---------- */
+/*
+Standard ANSI TKL:
+- F row
+- 3-key block: PrtSc / ScrLk / Pause
+- nav cluster: Ins/Home/PgUp and Del/End/PgDn
+- arrow cluster
+Bottom row mods: 1.25u
+Right shift: 2.75u
+*/
 const LAYOUT_TKL = [
   [
     k("Escape", "Esc"),
-    ...fRow(),
+    gap(GAP),
+    ...fRowGrouped(),
+    gap(GAP),
     k("PrintScreen", "PrtSc"),
     k("ScrollLock", "ScrLk"),
     k("Pause", "Pause"),
@@ -196,6 +249,7 @@ const LAYOUT_TKL = [
     k("Minus", "-"),
     k("Equal", "="),
     k("Backspace", "Backspace", BACKSPACE),
+    gap(GAP),
     k("Insert", "Ins"),
     k("Home", "Home"),
     k("PageUp", "PgUp"),
@@ -206,6 +260,7 @@ const LAYOUT_TKL = [
     k("BracketLeft", "["),
     k("BracketRight", "]"),
     k("Backslash", "\\", BACKSLASH),
+    gap(GAP),
     k("Delete", "Del"),
     k("End", "End"),
     k("PageDown", "PgDn"),
@@ -216,6 +271,8 @@ const LAYOUT_TKL = [
     k("Semicolon", ";"),
     k("Quote", "'"),
     k("Enter", "Enter", ENTER),
+    gap(GAP),
+    gap(3), // empty space where nav cluster doesn't exist on this row
   ],
   [
     k("ShiftLeft", "Shift", LEFT_SHIFT),
@@ -224,7 +281,10 @@ const LAYOUT_TKL = [
     k("Period", "."),
     k("Slash", "/"),
     k("ShiftRight", "Shift", 2.75),
+    gap(GAP),
+    gap(1),            // spacer before arrow block
     k("ArrowUp", "↑"),
+    gap(1),            // spacer after arrow block
   ],
   [
     k("ControlLeft", "Ctrl", MOD_125),
@@ -235,6 +295,7 @@ const LAYOUT_TKL = [
     k("MetaRight", "Meta", MOD_125),
     k("ContextMenu", "Menu", MOD_125),
     k("ControlRight", "Ctrl", MOD_125),
+    gap(GAP),
     k("ArrowLeft", "←"),
     k("ArrowDown", "↓"),
     k("ArrowRight", "→"),
@@ -242,15 +303,29 @@ const LAYOUT_TKL = [
 ];
 
 /* ---------- 100% ---------- */
+/*
+Full size ANSI:
+- TKL block + nav cluster + arrow cluster
+- numpad on the right
+Your rules:
+- Numpad0 = 2u wide
+- NumpadEnter = 2u tall
+- everything else numpad = 1u
+*/
 const LAYOUT_100 = [
   [
     k("Escape", "Esc"),
-    ...fRow(),
-    gap(1), gap(1),
+    gap(GAP),
+    ...fRowGrouped(),
+    gap(GAP),
     k("PrintScreen", "PrtSc"),
     k("ScrollLock", "ScrLk"),
     k("Pause", "Pause"),
-    gap(1), gap(1), gap(1), gap(1),
+    gap(GAP),
+    k("NumLock", "Num"),
+    k("NumpadDivide", "/"),
+    k("NumpadMultiply", "*"),
+    k("NumpadSubtract", "-"),
   ],
   [
     k("Backquote", "`"),
@@ -258,13 +333,15 @@ const LAYOUT_100 = [
     k("Minus", "-"),
     k("Equal", "="),
     k("Backspace", "Backspace", BACKSPACE),
+    gap(GAP),
     k("Insert", "Ins"),
     k("Home", "Home"),
     k("PageUp", "PgUp"),
-    k("NumLock", "Num", 1, 1),
-    k("NumpadDivide", "/", 1, 1),
-    k("NumpadMultiply", "*", 1, 1),
-    k("NumpadSubtract", "-", 1, 1),
+    gap(GAP),
+    k("Numpad7", "7"),
+    k("Numpad8", "8"),
+    k("Numpad9", "9"),
+    k("NumpadAdd", "+"),
   ],
   [
     k("Tab", "Tab", TAB),
@@ -272,13 +349,15 @@ const LAYOUT_100 = [
     k("BracketLeft", "["),
     k("BracketRight", "]"),
     k("Backslash", "\\", BACKSLASH),
+    gap(GAP),
     k("Delete", "Del"),
     k("End", "End"),
     k("PageDown", "PgDn"),
-    k("Numpad7", "7", 1, 1),
-    k("Numpad8", "8", 1, 1),
-    k("Numpad9", "9", 1, 1),
-    k("NumpadAdd", "+", 1, 1),
+    gap(GAP),
+    k("Numpad4", "4"),
+    k("Numpad5", "5"),
+    k("Numpad6", "6"),
+    gap(1),
   ],
   [
     k("CapsLock", "Caps", CAPS),
@@ -286,11 +365,13 @@ const LAYOUT_100 = [
     k("Semicolon", ";"),
     k("Quote", "'"),
     k("Enter", "Enter", ENTER),
-    gap(1), gap(1), gap(1),
-    k("Numpad4", "4"),
-    k("Numpad5", "5"),
-    k("Numpad6", "6"),
-    gap(1),
+    gap(GAP),
+    gap(3), // empty space under nav cluster
+    gap(GAP),
+    k("Numpad1", "1"),
+    k("Numpad2", "2"),
+    k("Numpad3", "3"),
+    k("NumpadEnter", "Enter", 1, 2), // 2u tall
   ],
   [
     k("ShiftLeft", "Shift", LEFT_SHIFT),
@@ -299,12 +380,13 @@ const LAYOUT_100 = [
     k("Period", "."),
     k("Slash", "/"),
     k("ShiftRight", "Shift", 2.75),
+    gap(GAP),
+    gap(1),
     k("ArrowUp", "↑"),
-    gap(1), gap(1), gap(1),
-    k("Numpad1", "1"),
-    k("Numpad2", "2"),
-    k("Numpad3", "3"),
-    k("NumpadEnter", "Enter", 1, 3), // 3u tall; pad handled in CSS
+    gap(1),
+    gap(GAP),
+    k("Numpad0", "0", 2, 1),        // 2u wide
+    k("NumpadDecimal", "."),
   ],
   [
     k("ControlLeft", "Ctrl", MOD_125),
@@ -315,11 +397,12 @@ const LAYOUT_100 = [
     k("MetaRight", "Meta", MOD_125),
     k("ContextMenu", "Menu", MOD_125),
     k("ControlRight", "Ctrl", MOD_125),
+    gap(GAP),
     k("ArrowLeft", "←"),
     k("ArrowDown", "↓"),
     k("ArrowRight", "→"),
-    k("Numpad0", "0", 2, 1),
-    k("NumpadDecimal", ".", 1),
+    gap(GAP),
+    gap(1), gap(1), gap(1), gap(1), // blank under numpad enter stack area
   ],
 ];
 
@@ -361,10 +444,12 @@ function bottomRow() {
   ];
 }
 
-function fRow() {
+function fRowGrouped() {
   return [
-    k("F1","F1",1,1), k("F2","F2",1,1), k("F3","F3",1,1), k("F4","F4",1,1),
-    k("F5","F5",1,1), k("F6","F6",1,1), k("F7","F7",1,1), k("F8","F8",1,1),
-    k("F9","F9",1,1), k("F10","F10",1,1), k("F11","F11",1,1), k("F12","F12",1,1),
+    k("F1","F1"), k("F2","F2"), k("F3","F3"), k("F4","F4"),
+    gap(GAP),
+    k("F5","F5"), k("F6","F6"), k("F7","F7"), k("F8","F8"),
+    gap(GAP),
+    k("F9","F9"), k("F10","F10"), k("F11","F11"), k("F12","F12"),
   ];
 }

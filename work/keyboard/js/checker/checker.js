@@ -1,33 +1,25 @@
 // js/checker/checker.js
-import { getExpectedKeys, getLayout } from "./layout.js";
+import { getLayout } from "./layout.js";
 
 let state = {
-  started: false,
-  finished: false,
   size: "60%",
-  os: "windows",
-  pressed: new Set(),
-  seen: new Set(),
+  pressedNow: new Set(),   // currently held down
+  pressedEver: new Set(),  // seen at least once this session
+  started: false,
   log: [],
 };
 
 const SIZE_KEY = "checker:size";
-const OS_KEY = "checker:os";
 
 const els = {
+  panel: document.getElementById("tab-checker"),
   keyboard: document.getElementById("checker-keyboard"),
   log: document.getElementById("checker-log"),
   restartBtn: document.getElementById("checker-restart"),
-
-  prompt: document.getElementById("checker-prompt"),
-  promptYes: document.getElementById("checker-prompt-yes"),
-  promptNo: document.getElementById("checker-prompt-no"),
-
-  results: document.getElementById("checker-results"),
-  missingList: document.getElementById("checker-missing-list"),
-
-  celebrate: document.getElementById("checker-celebrate"),
 };
+
+// KeyboardEvent.code -> label
+let labelMap = new Map();
 
 export function initChecker() {
   loadPersistedSelection();
@@ -35,48 +27,86 @@ export function initChecker() {
   renderKeyboard();
   resetUI();
 
-  window.addEventListener("keydown", onKeyDown);
-  window.addEventListener("keyup", onKeyUp);
+  // not passive so we can preventDefault for Space/Arrows/etc.
+  window.addEventListener("keydown", onKeyDown, { passive: false });
+  window.addEventListener("keyup", onKeyUp, { passive: false });
 }
 
-/* ---------- EVENTS ---------- */
+/* ---------- active gating ---------- */
+
+function isActive() {
+  return !!els.panel && els.panel.classList.contains("active");
+}
+
+/* ---------- events ---------- */
 
 function onKeyDown(e) {
-  if (state.finished) return;
+  if (!isActive()) return;
+
+  const code = e.code;
+  if (!code) return;
+
+  // prevent page scroll / browser actions while testing
+  // (space/arrow keys can scroll; tab can yank focus)
+  if (
+    e.key === " " ||
+    e.key === "ArrowUp" ||
+    e.key === "ArrowDown" ||
+    e.key === "ArrowLeft" ||
+    e.key === "ArrowRight" ||
+    e.key === "Tab"
+  ) {
+    e.preventDefault();
+  }
 
   if (!state.started) {
     state.started = true;
   }
 
-  const code = e.code;
-  if (!code) return;
-
-  state.pressed.add(code);
-  state.seen.add(code);
+  state.pressedNow.add(code);
+  state.pressedEver.add(code);
 
   logEvent("keydown", e);
   updateKeyVisual(code, true);
-
-  if (els.promptYes) els.promptYes.disabled = false;
 }
 
 function onKeyUp(e) {
+  if (!isActive()) return;
+
   const code = e.code;
   if (!code) return;
 
-  state.pressed.delete(code);
+  // match keydown preventDefault behavior
+  if (
+    e.key === " " ||
+    e.key === "ArrowUp" ||
+    e.key === "ArrowDown" ||
+    e.key === "ArrowLeft" ||
+    e.key === "ArrowRight" ||
+    e.key === "Tab"
+  ) {
+    e.preventDefault();
+  }
+
+  state.pressedNow.delete(code);
+
   logEvent("keyup", e);
   updateKeyVisual(code, false);
 }
 
-/* ---------- LOGGING ---------- */
+/* ---------- logging ---------- */
 
 function logEvent(type, e) {
-  const line = `[${time()}] ${type.padEnd(7)} key="${e.key}" code=${e.code}`;
-  state.log.push(line);
+  if (!els.log) return;
+
+  const lineText =
+    `[${time()}] ${type.padEnd(7)} key="${e.key}" code=${e.code}` +
+    ` repeat=${!!e.repeat} location=${e.location}`;
+
+  state.log.push(lineText);
 
   const div = document.createElement("div");
-  div.textContent = line;
+  div.textContent = lineText;
   els.log.appendChild(div);
   els.log.scrollTop = els.log.scrollHeight;
 }
@@ -85,78 +115,42 @@ function time() {
   return new Date().toLocaleTimeString();
 }
 
-/* ---------- FINISH / RESET ---------- */
-
-function finishTest() {
-  state.finished = true;
-
-  const expected = getExpectedKeys(state.size);
-  const missing = expected.filter(code => !state.seen.has(code));
-
-  if (els.prompt) els.prompt.style.display = "none";
-
-  if (missing.length === 0) {
-    showCelebrate();
-  } else {
-    showResults(missing);
-  }
-}
+/* ---------- reset / ui ---------- */
 
 function resetTest() {
   state.started = false;
-  state.finished = false;
-  state.pressed.clear();
-  state.seen.clear();
+  state.pressedNow.clear();
+  state.pressedEver.clear();
   state.log.length = 0;
 
-  els.log.innerHTML = "";
-  resetUI();
-  renderKeyboard();
-}
+  if (els.log) {
+    els.log.innerHTML = "";
+    els.log.appendChild(line("[ready]"));
+    els.log.appendChild(line("press a key to begin"));
+  }
 
-/* ---------- UI ---------- */
+  renderKeyboard();
+  resetUI();
+}
 
 function resetUI() {
-  if (els.promptYes) els.promptYes.disabled = true;
+  if (!els.keyboard) return;
 
-  if (els.prompt) els.prompt.style.display = "grid";
-  if (els.results) els.results.style.display = "none";
-  if (els.celebrate) els.celebrate.style.display = "none";
-
-  if (els.keyboard) {
-    els.keyboard.querySelectorAll(".keycap").forEach(key => {
-      key.classList.remove("pressed", "pressing", "seen");
-    });
-  }
-}
-
-function showResults(missing) {
-  if (!els.results || !els.missingList) return;
-
-  els.results.style.display = "grid";
-  els.missingList.innerHTML = "";
-
-  missing.forEach(code => {
-    const item = document.createElement("div");
-    item.className = "missingItem";
-    item.innerHTML = `
-      <div>${code}</div>
-      <div class="missingCode">${code}</div>
-    `;
-    els.missingList.appendChild(item);
+  // clear visuals
+  els.keyboard.querySelectorAll(".keycap").forEach((cap) => {
+    cap.classList.remove("pressed", "pressing", "seen");
   });
 }
 
-function showCelebrate() {
-  if (els.celebrate) els.celebrate.style.display = "grid";
-}
-
-/* ---------- KEYBOARD RENDERING ---------- */
+/* ---------- keyboard rendering ---------- */
 
 function renderKeyboard() {
+  if (!els.keyboard) return;
+
   els.keyboard.innerHTML = "";
   els.keyboard.dataset.size = state.size;
 
+  labelMap = buildLabelMap(state.size);
   const rows = getLayout(state.size);
 
   for (const row of rows) {
@@ -164,22 +158,19 @@ function renderKeyboard() {
     rowEl.className = "kbRow";
 
     for (const keyDef of row) {
-      const key = document.createElement("div");
-      key.className = "keycap" + (keyDef.gap ? " gap" : "");
-      key.style.setProperty("--w", String(keyDef.w || 1));
-      key.style.setProperty("--h", String(keyDef.h || 1));
+      const cap = document.createElement("div");
+      cap.className = "keycap" + (keyDef.gap ? " gap" : "");
+      cap.style.setProperty("--w", String(keyDef.w || 1));
+      cap.style.setProperty("--h", String(keyDef.h || 1));
 
       if (!keyDef.gap) {
-        key.dataset.code = keyDef.code;
-        key.innerHTML = `
-          <div class="keyLabel">${keyDef.label || labelFor(keyDef.code)}</div>
-          <div class="keyCode">${keyDef.code}</div>
-        `;
+        cap.dataset.code = keyDef.code;
+        cap.innerHTML = `<div class="keyLabel">${escapeHtml(keyDef.label || labelFor(keyDef.code))}</div>`;
       } else {
-        key.setAttribute("aria-hidden", "true");
+        cap.setAttribute("aria-hidden", "true");
       }
 
-      rowEl.appendChild(key);
+      rowEl.appendChild(cap);
     }
 
     els.keyboard.appendChild(rowEl);
@@ -188,68 +179,81 @@ function renderKeyboard() {
 
 function updateKeyVisual(code, isDown) {
   if (!els.keyboard) return;
-  const key = els.keyboard.querySelector(`[data-code="${code}"]`);
-  if (!key) return;
 
-  if (isDown) {
-    key.classList.add("pressing", "pressed", "seen");
-  } else {
-    key.classList.remove("pressing", "pressed");
-    key.classList.add("seen");
-  }
+  const el = els.keyboard.querySelector(`[data-code="${code}"]`);
+  if (!el) return;
+
+  // - seen: pressed at least once
+  // - pressed/pressing: currently down
+  el.classList.add("seen");
+
+  if (isDown) el.classList.add("pressing", "pressed");
+  else el.classList.remove("pressing", "pressed");
 }
 
-/* ---------- CONTROLS ---------- */
+function buildLabelMap(size) {
+  const map = new Map();
+  const rows = getLayout(size);
+  for (const row of rows) {
+    for (const k of row) {
+      if (!k || k.gap || !k.code) continue;
+      map.set(k.code, k.label || labelFor(k.code));
+    }
+  }
+  return map;
+}
+
+/* ---------- controls ---------- */
 
 function bindControls() {
   if (els.restartBtn) els.restartBtn.addEventListener("click", resetTest);
 
-  if (els.promptYes) els.promptYes.addEventListener("click", finishTest);
-  if (els.promptNo) {
-    els.promptNo.addEventListener("click", () => {
-      els.hint.textContent = "continue testing";
-    });
-  }
-
   // size chips
-  document.querySelectorAll("[data-size]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      setSize(btn.dataset.size, { reset: true });
-    });
-  });
-
-  // OS toggle (visual only for now)
-  document.querySelectorAll("[data-os]").forEach(btn => {
-    btn.addEventListener("click", () => {
-      setOS(btn.dataset.os);
-    });
+  document.querySelectorAll("[data-size]").forEach((btn) => {
+    btn.addEventListener("click", () => setSize(btn.dataset.size, { reset: true }));
   });
 }
 
 function setSize(value, { reset = false } = {}) {
+  if (!value) return;
+
   state.size = value;
-  localStorage.setItem(SIZE_KEY, value);
-  document.querySelectorAll("[data-size]").forEach(b => {
+  try { localStorage.setItem(SIZE_KEY, value); } catch {}
+
+  document.querySelectorAll("[data-size]").forEach((b) => {
     b.classList.toggle("active", b.dataset.size === value);
   });
-  if (reset) {
-    resetTest();
-  }
-}
 
-function setOS(value) {
-  state.os = value;
-  localStorage.setItem(OS_KEY, value);
-  document.querySelectorAll("[data-os]").forEach(b => {
-    b.classList.toggle("active", b.dataset.os === value);
-  });
+  if (reset) resetTest();
 }
 
 function loadPersistedSelection() {
-  const savedSize = localStorage.getItem(SIZE_KEY);
-  const savedOS = localStorage.getItem(OS_KEY);
+  let savedSize = null;
+  try { savedSize = localStorage.getItem(SIZE_KEY); } catch {}
+
   if (savedSize) state.size = savedSize;
-  if (savedOS) state.os = savedOS;
-  setSize(state.size);
-  setOS(state.os);
+  setSize(state.size, { reset: false });
+}
+
+/* ---------- helpers ---------- */
+
+function labelFor(code) {
+  if (code.startsWith("Key")) return code.slice(3);
+  if (code.startsWith("Digit")) return code.slice(5);
+  return code;
+}
+
+function line(text) {
+  const d = document.createElement("div");
+  d.textContent = text;
+  return d;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
