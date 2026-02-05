@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,54 +30,68 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/xdefiant/index.html">XDefiant</a>
-      <span>›</span>
-      <span class="current">Store</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">XDefiant: Store UX</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#store-before">Before</a>
+            <a href="#store-team-role">Team & Role</a>
+            <a href="#store-players-needs">Players & Needs</a>
+            <a href="#store-problem">Problem</a>
+            <a href="#store-approach">Approach</a>
+            <a href="#store-bundle-structure">Bundle Structure</a>
+            <a href="#store-states">States</a>
+            <a href="#store-iteration">Iteration</a>
+            <a href="#store-constraints">Constraints</a>
+            <a href="#store-impact">Impact</a>
+            <a href="#store-reflection">Reflection</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
+        </div>
+      </aside>
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>XDefiant: Store UX</h1>
-      <p class="muted">
-        I redesigned the in-game Store to support clearer navigation, stronger merchandising,
-        and a more efficient purchasing flow. The goal was to give players a clean, modern
-        interface with intuitive browsing, while simultaneously preparing the UI for
-        full localization and accessibility compliance across multiple languages.
-      </p>
-       <p><i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i></p>
-      <div class="card-tags">
-        <span class="tag">UI/UX</span>
-        <span class="tag">Gaming</span>
-        <span class="tag">Ecommerce</span>
-        <span class="tag">Accessibility</span>
-      </div>
-    </section>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/xdefiant/index.html">XDefiant</a>
+          <span>›</span>
+          <span class="current">Store</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>XDefiant: Store UX</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/xd-store.png" alt="XDefiant store UX thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I redesigned the in-game Store to support clearer navigation, stronger merchandising,
+                and a more efficient purchasing flow. The goal was to give players a clean, modern
+                interface with intuitive browsing, while simultaneously preparing the UI for
+                full localization and accessibility compliance across multiple languages.
+              </p>
+              <p><i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i></p>
+              <div class="card-tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Gaming</span>
+                <span class="tag">Ecommerce</span>
+                <span class="tag">Accessibility</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
     <!-- Section 2: Classic layout -->
 
-    <!-- PROJECT INTRO ---------------------------------------------------------->
-    <section id="store-brief">
-      <h1>XDefiant — Store & Bundle Tile Localization Redesign</h1>
-
-      <p class="muted">
-        I redesigned the XDefiant store, bundle structure, and product tiles after we started
-        seeing localization issues in Arabic and Ukrainian. The original layout had been built
-        quickly to support launch, and it struggled once strings became longer and bundles
-        more complex. This work focused on making the store more legible, localization-safe,
-        and scalable without adding heavy new logic to an already development-dense graph.
-      </p>
-
-      <div class="card-tags">
-        <span class="tag">Gaming</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Accessibility</span>
-        <span class="tag">XDefiant</span>
-      </div>
-    </section>
 
     <!-- WHAT WE STARTED WITH --------------------------------------------------->
     <section id="store-before">
@@ -510,20 +513,28 @@
     </section>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
   <div class="progress-nav bottom"> 
     <div class="progress-track"> 
       <div class="progress-bar"></div> 
     </div> 
 
     <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+      <a href="#intro">Overview</a> 
+      <a href="#store-before">Before</a> 
+      <a href="#store-team-role">Team & Role</a> 
+      <a href="#store-players-needs">Players & Needs</a> 
+      <a href="#store-problem">Problem</a> 
+      <a href="#store-approach">Approach</a> 
+      <a href="#store-bundle-structure">Bundle Structure</a> 
+      <a href="#store-states">States</a> 
+      <a href="#store-iteration">Iteration</a> 
+      <a href="#store-constraints">Constraints</a> 
+      <a href="#store-impact">Impact</a> 
+      <a href="#store-reflection">Reflection</a> 
+      <a href="#related-work">Related Work</a> 
     </nav> 
-  </div> -->
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -532,58 +543,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 
