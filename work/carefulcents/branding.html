@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -37,143 +26,161 @@
       <a class="nav-btn" href="../../index.html">Home</a>
       <a class="nav-btn" href="../../resume.html">Resume</a>
       <a class="nav-btn" href="../../work.html">Work</a>
-      <!--<a class="nav-btn active" href="../../work.html">Work</a>-->
     </nav>
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/carefulcents/index.html">Careful Cents</a>
-      <span>›</span>
-      <span class="current">Brand Bible</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1> A Style Guide for Careful Cents</h1>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Careful Cents: Branding</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
 
-      <p class="muted">
-        With a UX audit in hand, and wireframes in the making, the next step in an overhaul is of course, updated
-        branding standards. As I did not want to build new standards from scratch, I took a lot of inspiration from the
-        initial color scheme and typography styles.
-      </p>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#branding-system">Brand System</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
+        </div>
+      </aside>
 
-      <div class="card-tags">
-        <span class="tag">Fintech</span>
-        <span class="tag">Branding</span>
-        <span class="tag">Redesign</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Careful Cents</span>
+      <!-- 🔹 Project body -->
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/carefulcents/index.html">Careful Cents</a>
+          <span>›</span>
+          <span class="current">Brand Bible</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Careful Cents: Brand Bible</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/cc-branding.jpg" alt="Careful Cents branding thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                After completing the UX audit, I refreshed the Careful Cents visual system. I modernized the original
+                colors and typography, added scalable iconography, and defined layout rules to guide the redesign.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Fintech</span>
+                <span class="tag">Branding</span>
+                <span class="tag">Redesign</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Careful Cents</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Brand assets -->
+        <section class="row" id="branding-system">
+          <h2>Brand System & Explorations</h2>
+          <figure>
+            <img src="/work/carefulcents/careful-cents/branding1.png"
+              alt="Slide titled ‘Our Mission’ on a dark gray background with bold white text and a light-green underline accent."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding2.png"
+              alt="Centered block of body text on light gray describing the Careful Cents mission to democratize finance and refresh branding."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding3.png"
+              alt="Slide titled ‘Logo & Explorations’ on a green background discussing logo concepts inspired by keys, interlocking Cs, and a cents symbol."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding4.png"
+              alt="Grid of Careful Cents logo explorations showing sketches of keys, interlocking Cs, and stylized cents symbols with a refined gradient CC logo on the left."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding5.png"
+              alt="Typography slide showing header, paragraph, and hierarchy examples in the chosen brand font."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding6.png"
+              alt="Color palette slide displaying green and neutral swatches with corresponding values for the Careful Cents brand."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding7.png"
+              alt="Layout examples demonstrating the new branding across web components such as headers, typography hierarchy, and card-style content blocks."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding8.png"
+              alt="Grid of redesigned line icons representing the Careful Cents iconography system." style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding9.png"
+              alt="Mockup of a redesigned Careful Cents homepage showing hero imagery, refreshed navigation, and updated styling."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding10.png"
+              alt="Series of UI mockups for content pages illustrating article layouts, hierarchy, and the applied visual identity."
+              style="width:100%">
+            <img src="/work/carefulcents/careful-cents/branding11.png"
+              alt="Full-page mockup showing redesigned article pages with new typography, spacing, and imagery for better readability."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="grid work-grid" id="related-work" style="margin-top:60px;">
+
+          <a class="card" href="./audit.html">
+            <div class="thumb" aria-label="Careful Cents Audit"
+              style="background-image: url(/assets/thumbnails/cc-audit.jpg); background-size: cover; background-position: center;">
+            </div>
+            <h3>Careful Cents: UX Audit</h3>
+            <div class="card-tags">
+              <span class="tag">Fintech</span>
+              <span class="tag">UX Audit</span>
+              <span class="tag">Accessibility</span>
+              <span class="tag">Web Design</span>
+              <span class="tag">Careful Cents</span>
+            </div>
+          </a>
+
+          <a class="card" href="./styleguide.html">
+            <div class="thumb" aria-label="Careful Cents Style Guide"
+              style="background-image: url(/assets/thumbnails/cc-styleguide.jpg); background-size: cover; background-position: center;">
+            </div>
+            <h3>Careful Cents: Style Guide</h3>
+            <div class="card-tags">
+              <span class="tag">Fintech</span>
+              <span class="tag">UX Audit</span>
+              <span class="tag">Redesign</span>
+              <span class="tag">Web Design</span>
+              <span class="tag">Careful Cents</span>
+            </div>
+          </a>
+
+          <a class="card" href="./redesign.html">
+            <div class="thumb" aria-label="Careful Cents Web Redesign"
+              style="background-image: url(/assets/thumbnails/cc-redesign.jpg); background-size: cover; background-position: center;">
+            </div>
+            <h3>Careful Cents: Web Redesign</h3>
+            <div class="card-tags">
+              <span class="tag">Fintech</span>
+              <span class="tag">Web Design</span>
+              <span class="tag">Product Design</span>
+              <span class="tag">Careful Cents</span>
+            </div>
+          </a>
+        </section>
+
       </div>
-    </section>
-
-    <!-- Section 2: Classic layout -->
-    <section class="row">
-      <figure>
-        <img src="/work/carefulcents/careful-cents/branding1.png"
-          alt="Slide titled ‘Our Mission’ on a dark gray background with bold white text and a light-green underline accent."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding2.png"
-          alt="Centered block of body text on light gray describing the Careful Cents mission to democratize finance and refresh branding."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding3.png"
-          alt="Slide titled ‘Logo & Explorations’ on a green background discussing logo concepts inspired by keys, interlocking Cs, and a cents symbol."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding4.png"
-          alt="Grid of Careful Cents logo explorations showing sketches of keys, interlocking Cs, and stylized cents symbols with a refined gradient CC logo on the left."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding5.png"
-          alt="Typography slide showing header, paragraph, and hierarchy examples in the chosen brand font."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding6.png"
-          alt="Color palette slide displaying green and neutral swatches with corresponding values for the Careful Cents brand."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding7.png"
-          alt="Layout examples demonstrating the new branding across web components such as headers, typography hierarchy, and card-style content blocks."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding8.png"
-          alt="Grid of redesigned line icons representing the Careful Cents iconography system." style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding9.png"
-          alt="Mockup of a redesigned Careful Cents homepage showing hero imagery, refreshed navigation, and updated styling."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding10.png"
-          alt="Series of UI mockups for content pages illustrating article layouts, hierarchy, and the applied visual identity."
-          style="width:100%">
-        <img src="/work/carefulcents/careful-cents/branding11.png"
-          alt="Full-page mockup showing redesigned article pages with new typography, spacing, and imagery for better readability."
-          style="width:100%">
-
-      </figure>
-      <section class="grid work-grid" style="margin-top:60px;">
-        <a class="card" href="./audit.html">
-          <div class="thumb" aria-label="Careful Cents Audit"
-            style="background-image: url(/assets/thumbnails/cc-audit.jpg); background-size: cover; background-position: center;">
-          </div>
-          <h3>Careful Cents: UX Audit</h3>
-          <p>I conducted a UX audit of Careful Cents to identify friction points and opportunities for better retention.
-            I
-            documented issues, reorganized workflows, and set the foundation for the redesign that followed.</p>
-          <div class="card-tags">
-            <span class="tag">Fintech</span>
-            <span class="tag">UX Audit</span>
-            <span class="tag">Accessibility</span>
-            <span class="tag">Web Design</span>
-            <span class="tag">Careful Cents</span>
-          </div>
-        </a>
-
-        <a class="card" href="./styleguide.html">
-          <div class="thumb" aria-label="Careful Cents Style Guide"
-            style="background-image: url(/assets/thumbnails/cc-styleguide.jpg); background-size: cover; background-position: center;">
-          </div>
-          <h3>Careful Cents: Style Guide</h3>
-          <p>I created a detailed style guide to sit alongside the new branding and help developers understand how the
-            product should behave. I defined components, spacing rules, and interaction patterns to reduce guesswork
-            during the development process.</p>
-          <div class="card-tags">
-            <span class="tag">Fintech</span>
-            <span class="tag">UX Audit</span>
-            <span class="tag">Redesign</span>
-            <span class="tag">Web Design</span>
-            <span class="tag">Careful Cents</span>
-          </div>
-        </a>
-
-        <a class="card" href="./redesign.html">
-          <div class="thumb" aria-label="Careful Cents Web Redesign"
-            style="background-image: url(/assets/thumbnails/cc-redesign.jpg); background-size: cover; background-position: center;">
-          </div>
-          <h3>Careful Cents: Web Redesign</h3>
-          <p>I brought the audit, branding, and style guide work together into a full redesign of the Careful Cents
-            website. I reworked layouts, navigation, and page structure to make the final experience cleaner and easier
-            to
-            use.</p>
-          <div class="card-tags">
-            <span class="tag">Fintech</span>
-            <span class="tag">Web Design</span>
-            <span class="tag">Product Design</span>
-            <span class="tag">Careful Cents</span>
-          </div>
-        </a>
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#branding-system">Brand System</a>
+      <a href="#related-work">Related Work</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -182,58 +189,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 
