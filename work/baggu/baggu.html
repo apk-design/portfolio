@@ -11,85 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Intro layout: text + small thumbnail inline on desktop */
-    .intro-hero {
-      display: grid;
-      gap: 12px;
-    }
-
-    .intro-row {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .intro-hero .intro-meta { flex: 1; }
-
-    .intro-thumb {
-      flex: 0 0 220px;
-      margin: 0;
-    }
-
-    .intro-thumb img {
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      padding-top: 0;
-      margin-bottom: 0;
-    }
-
-    /* Layout: match main sidebar position on desktop; keep bottom nav on tablet/mobile */
-    .progress-nav.side {
-      display: none;
-      width: 100%;
-    }
-
-    .progress-nav.side .progress-track {
-      margin-bottom: 12px;
-    }
-
-    .progress-nav.side .nav-title {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.3;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .progress-nav.side .anchor-nav {
-      display: grid;
-      gap: 8px;
-    }
-
-    .progress-nav.bottom { display: block; }
-
-    @media (min-width: 1025px) {
-      .progress-nav.side {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .progress-nav.bottom { display: none; }
-    }
-
-    @media (max-width: 900px) {
-      .intro-thumb {
-        display: none;
-      }
-    }
   </style>
 </head>
 
@@ -108,11 +29,11 @@
     </nav>
   </header>
 
-  <main class="container mt-nav">
+  <main class="container mt-nav case-layout">
     <div class="wrap">
 
       <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
-      <aside class="sidebar">
+      <aside class="sidebar sidebar-hidden">
         <div class="progress-nav side">
           <h3 class="nav-title">Baggu: A Case Study in Retention</h3>
           <div class="progress-track">
@@ -391,65 +312,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBars = document.querySelectorAll('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      if (progressBars.length === 0 && navLinks.length === 0) return;
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
-
-        progressBars.forEach(bar => {
-          bar.style.width = `${scrollPercent}%`;
-        });
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        if (navLinks.length) {
-          navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-              link.classList.add('active');
-            }
-          });
-        }
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 

@@ -11,6 +11,17 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
+    /* Optional: small boost for fade-in smoothness on project pages */
+    .project-page section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .project-page section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 
@@ -30,58 +41,34 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav case-layout">
-    <div class="wrap">
-      <aside class="sidebar sidebar-hidden">
-        <div class="progress-nav side">
-          <h3 class="nav-title">Careful Cents: UX Audit</h3>
-          <div class="progress-track">
-            <div class="progress-bar"></div>
-          </div>
-          <nav class="anchor-nav">
-            <a href="#intro">Overview</a>
-            <a href="#findings">Findings</a>
-            <a href="#related-work">Related Work</a>
-          </nav>
-        </div>
-      </aside>
+  <main class="container mt-nav project-page">
+    <nav class="breadcrumb">
+      <a href="/work.html">Work</a>
+      <span>›</span>
+      <a href="/work/carefulcents/index.html">Careful Cents</a>
+      <span>›</span>
+      <span class="current">UX Audit</span>
+    </nav>
 
-      <div class="project-page">
-        <nav class="breadcrumb">
-          <a href="/work.html">Work</a>
-          <span>›</span>
-          <a href="/work/carefulcents/index.html">Careful Cents</a>
-          <span>›</span>
-          <span class="current">UX Audit</span>
-        </nav>
+    <!-- Section 1: Intro -->
+    <section id="intro">
+      <h1> A UX Audit for Careful Cents</h1>
 
-        <!-- Section 1: Intro -->
-        <section id="intro" class="intro-hero">
-          <h1>A UX Audit for Careful Cents</h1>
+      <p class="muted">
+        I conducted a UX Audit for Careful Cents, which aids greatly when redesigning a site for better usability and
+        retention.</p>
 
-          <div class="intro-row">
-            <figure class="intro-thumb">
-              <img src="/assets/thumbnails/cc-audit.jpg" alt="Careful Cents audit thumbnail">
-            </figure>
-            <div class="intro-meta">
-              <p class="muted">
-                I conducted a UX Audit for Careful Cents to identify friction points and opportunities for better usability and
-                retention.
-              </p>
-
-              <div class="card-tags">
-                <span class="tag">Fintech</span>
-                <span class="tag">UX Audit</span>
-                <span class="tag">Redesign</span>
-                <span class="tag">Web Design</span>
-                <span class="tag">Careful Cents</span>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div class="card-tags">
+        <span class="tag">Fintech</span>
+        <span class="tag">UX Audit</span>
+        <span class="tag">Redesign</span>
+        <span class="tag">Web Design</span>
+        <span class="tag">Careful Cents</span>
+      </div>
+    </section>
 
     <!-- Section 2: Classic layout -->
-    <section class="row" id="findings">
+    <section class="row">
       <figure>
         <img src="/work/carefulcents/careful-cents/audit1.png"
           alt="Dark slide with headings 'Problem' and 'Goals' describing IA issues on the Careful Cents site and the goal of identifying weak points across branding, IA, logos, UX, and copy."
@@ -188,6 +175,62 @@
   <footer>
     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2026
   </footer>
+
+  <!-- ✅ JS: navbar scroll + fade-in animation -->
+  <script src="../../js/script.js"></script>
+
+  <script>
+    // Add fade-in on scroll for project sections 
+    document.addEventListener('DOMContentLoaded', () => {
+      const sections = document.querySelectorAll('.project-page section');
+
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      sections.forEach(section => observer.observe(section));
+    }); 
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const progressBar = document.querySelector('.progress-bar');
+      const sections = document.querySelectorAll('main section[id]');
+      const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.body.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
+        progressBar.style.width = `${scrollPercent}%`;
+
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (scrollTop >= sectionTop) current = section.id;
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      }
+
+      window.addEventListener('scroll', updateProgress);
+      updateProgress();
+    }); 
+  </script>
+
 </body>
 
 </html>

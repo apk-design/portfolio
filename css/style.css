@@ -1348,10 +1348,12 @@ footer:hover {
   .progress-nav.bottom { display: none; }
 }
 
+.case-layout { margin-top: 80px; }
+.case-layout .wrap { gap: 16px; }
+
 @media (max-width: 1024px) {
   .sidebar.sidebar-hidden { display: none; }
-  .case-layout { margin-top: 60px; }
-  .case-layout .wrap { gap: 16px; }
+  .case-layout { margin-top: 64px; }
 }
 
 @media (max-width: 900px) {
