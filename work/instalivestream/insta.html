@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="/css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,50 +30,110 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Instagram Livestream Sprint</h1>
-      <p class="muted">
-        I did a 2 hour sprint to see what I could add to my favourite social media platform to best incorporate a
-        feature that tends to get underused. <br> Here, I focus on the integrating a user’s Instagram livestreams into
-        their main user profile.
-      <div class="card-tags">
-        <span class="tag">Social Media</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Redesign</span>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Instagram Livestream Sprint</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#problem-goals">Problem & Goals</a>
+            <a href="#homepage">Homepage Module</a>
+            <a href="#profile-tab">Profile Streams</a>
+            <a href="#grid">Streams Grid</a>
+            <a href="#playback">Playback</a>
+            <a href="#future">Future Iterations</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="project-page">
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Instagram Livestream Sprint</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/insta.png" alt="Instagram livestream sprint thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I did a 2 hour sprint to see what I could add to my favourite social media platform to best incorporate a
+                feature that tends to get underused. Here, I focus on integrating a user’s Instagram livestreams into
+                their main user profile.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Social Media</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Redesign</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row" id="problem-goals">
+          <figure>
+            <img src="/work/instalivestream/assets/insta2.png" alt="Slide with three text sections labeled Problem, Goals, and Parameters of Use describing user FOMO around missing Instagram livestreams, a curated saved-streams experience, and rules for expiration plus a new Streams tab." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="homepage">
+          <figure>
+            <img src="/work/instalivestream/assets/insta3.png" alt="MacBook mockup of Instagram homepage showing a new Livestreams module in the right sidebar underneath Stories, listing accounts like drmartensofficial, adobe, and behance. Caption notes modular placement near Stories." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="profile-tab">
+          <figure>
+            <img src="/work/instalivestream/assets/insta4.png" alt="MacBook mockup of the amberpkumar Instagram profile featuring standard tabs plus a new Streams tab aligned with high-use tabs for visibility." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="grid">
+          <figure>
+            <img src="/work/instalivestream/assets/insta5.png" alt="MacBook screenshot of the Streams tab showing a 2x3 grid of previous livestream thumbnails including concerts, dogs, and workspaces, with one pinned stream highlighted." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="playback">
+          <figure>
+            <img src="/work/instalivestream/assets/insta6.png" alt="MacBook displaying a livestream playback page with vertical video, user caption, and engagement icons, demonstrating pinned streams that prevent expiration." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="future">
+          <figure>
+            <img src="/work/instalivestream/assets/insta7.png" alt="Slide titled Future Iterations with text about sequential story-like playback, a mobile version, and refining homepage navigation." style="width:100%">
+          </figure>
+        </section>
+
       </div>
-    </section>
-
-    <section class="row">
-      <figure>
-        <img src="/work/instalivestream/assets/insta2.png" alt="Slide with three text sections labeled Problem, Goals, and Parameters of Use describing user FOMO around missing Instagram livestreams, a curated saved-streams experience, and rules for expiration plus a new Streams tab." style="width:100%">
-        <img src="/work/instalivestream/assets/insta3.png" alt="MacBook mockup of Instagram homepage showing a new Livestreams module in the right sidebar underneath Stories, listing accounts like drmartensofficial, adobe, and behance. Caption notes modular placement near Stories." style="width:100%">
-        <img src="/work/instalivestream/assets/insta4.png" alt="MacBook mockup of the amberpkumar Instagram profile featuring standard tabs plus a new Streams tab aligned with high-use tabs for visibility." style="width:100%">
-        <img src="/work/instalivestream/assets/insta5.png" alt="MacBook screenshot of the Streams tab showing a 2x3 grid of previous livestream thumbnails including concerts, dogs, and workspaces, with one pinned stream highlighted." style="width:100%">
-        <img src="/work/instalivestream/assets/insta6.png" alt="MacBook displaying a livestream playback page with vertical video, user caption, and engagement icons, demonstrating pinned streams that prevent expiration." style="width:100%">
-        <img src="/work/instalivestream/assets/insta7.png" alt="Slide titled Future Iterations with text about sequential story-like playback, a mobile version, and refining homepage navigation." style="width:100%">
-      </figure>
-    </section>
-
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#problem-goals">Problem & Goals</a>
+      <a href="#homepage">Homepage</a>
+      <a href="#profile-tab">Profile Streams</a>
+      <a href="#grid">Streams Grid</a>
+      <a href="#playback">Playback</a>
+      <a href="#future">Future Iterations</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>

@@ -22,6 +22,70 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Intro layout: title row plus thumbnail inline */
+    .intro-hero {
+      display: grid;
+      gap: 12px;
+    }
+
+    .intro-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .intro-hero .intro-meta { flex: 1; }
+
+    .intro-thumb {
+      flex: 0 0 220px;
+      margin: 0;
+    }
+
+    .intro-thumb img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Nav positioning: sidebar on desktop, bottom nav on tablet/mobile */
+    .progress-nav.side {
+      display: none;
+      width: 100%;
+    }
+
+    .progress-nav.side .progress-track { margin-bottom: 12px; }
+
+    .progress-nav.side .nav-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-nav.side .anchor-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress-nav.bottom { display: block; }
+
+    @media (min-width: 1025px) {
+      .progress-nav.side {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .progress-nav.bottom { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .intro-thumb { display: none; }
+    }
   </style>
 </head>
 
@@ -39,25 +103,55 @@
       <a class="nav-btn" href="../../work.html">Work</a>
     </nav>
   </header>
-  <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>15 Days to Make: <br>Art Checklist for ACNH</h1>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar">
+        <div class="progress-nav side">
+          <h3 class="nav-title">ACNH Art Checklist</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
 
-      <p class="muted">
-        A UX case study exploring how I created my art checklist.
-        If you want to see it in action,
-        <a href="/work/ACNH/ACNH-artchecklist.html" target="_blank" class="underline hover:text-white">click here!</a>
-      </p>
+          <nav class="anchor-nav">
+            <a href="#intro">Intro</a>
+            <a href="#background">Background</a>
+            <a href="#plan">The Plan</a>
+            <a href="#process">Design Process</a>
+            <a href="#frontend">Development Process</a>
+            <a href="#outcome">Outcome</a>
+            <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a>
+          </nav>
+        </div>
+      </aside>
 
-      <div class="card-tags">
-        <span class="tag">Gaming</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Front-End Dev</span>
-      </div>
-    </section>
+      <!-- 🔹 Main Project Content -->
+      <div class="project-page">
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>15 Days to Make: <br>Art Checklist for ACNH</h1>
+
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/acnh.JPG" alt="ACNH case study thumbnail" />
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                A UX case study exploring how I created my art checklist.
+                If you want to see it in action,
+                <a href="/work/ACNH/ACNH-artchecklist.html" target="_blank" class="underline hover:text-white">click here!</a>
+              </p>
+
+              <div class="card-tags">
+                <span class="tag">Gaming</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Front-End Dev</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
     <!-- Section 2: Classic layout -->
     <section class="row">
@@ -463,13 +557,15 @@
 
 
     </section>
-    <section>
-      <h1>Want to see how it worked out?</h1>
-      <a href="/work/ACNH/ACNH-artchecklist.html" class="btn-primary">
-        See the result!
-      </a>
-    </section>
+        <section>
+          <h1>Want to see how it worked out?</h1>
+          <a href="/work/ACNH/ACNH-artchecklist.html" class="btn-primary">
+            See the result!
+          </a>
+        </section>
 
+      </div>
+    </div>
   </main>
 
   <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
@@ -520,15 +616,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
+      const progressBars = document.querySelectorAll('.progress-bar');
       const sections = document.querySelectorAll('main section[id]');
       const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      if (progressBars.length === 0 && navLinks.length === 0) return;
 
       function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
+        const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+
+        progressBars.forEach(bar => {
+          bar.style.width = `${scrollPercent}%`;
+        });
 
         let current = '';
         sections.forEach(section => {
@@ -536,12 +637,14 @@
           if (scrollTop >= sectionTop) current = section.id;
         });
 
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
+        if (navLinks.length) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
+            }
+          });
+        }
       }
 
       window.addEventListener('scroll', updateProgress);

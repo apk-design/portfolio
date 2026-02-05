@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="../../css/style.css" />
 
     <style>
-        /* Optional: small boost for fade-in smoothness on project pages */
-        .project-page section {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .project-page section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 
@@ -41,28 +30,56 @@
     </header>
 
     <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/xdefiant/index.html">XDefiant</a>
-      <span>›</span>
-      <span class="current">Daily Login</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">XDefiant: Daily Login</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#problem-and-constraints">Problem</a>
+            <a href="#exploration-weekly">Weekly</a>
+            <a href="#exploration-monthly">Monthly</a>
+            <a href="#hybrid-solution">Hybrid</a>
+            <a href="#handoff-to-ui">Handoff</a>
+            <a href="#impact-and-learnings">Impact</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/xdefiant/index.html">XDefiant</a>
+          <span>›</span>
+          <span class="current">Daily Login</span>
+        </nav>
 
         <!-- Section 1: Intro -->
-        <section id="intro">
+        <section id="intro" class="intro-hero">
             <h1>XDefiant: Daily Login UX</h1>
-            <p class="muted">
-                I designed a new daily login experience for XDefiant in collaboration with the MTX (monetization)
-                team and the lead UI artist. Since our turnaround was only a few weeks, we had to be quick and
-                resourceful.
-            </p>
-            <p><i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i></p>
-            <div class="card-tags">
-                <span class="tag">Gaming</span>
-                <span class="tag">UI/UX</span>
-                <span class="tag">XDefiant</span>
+            <div class="intro-row">
+              <figure class="intro-thumb">
+                <img src="/assets/thumbnails/xd-dailylogin.png" alt="XDefiant daily login thumbnail">
+              </figure>
+              <div class="intro-meta">
+                <p class="muted">
+                    I designed a new daily login experience for XDefiant in collaboration with the MTX (monetization)
+                    team and the lead UI artist. Since our turnaround was only a few weeks, we had to be quick and
+                    resourceful.
+                </p>
+                <p><i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i></p>
+                <div class="card-tags">
+                    <span class="tag">Gaming</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">XDefiant</span>
+                </div>
+              </div>
             </div>
         </section>
 
@@ -204,7 +221,7 @@
         </section>
 
    
-    <section class="grid work-grid" style="margin-top:60px;">
+    <section class="grid work-grid" id="related-work" style="margin-top:60px;">
       <a class="card" href="./abilityselect.html">
         <div class="thumb" aria-label="XDefiant Ability Select"
           style="background-image: url(/assets/thumbnails/xd-asr.png); background-size: cover; background-position: center;">
@@ -266,20 +283,23 @@
     </section>
   </main>
 
-    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+    <div class="progress-nav bottom">
+      <div class="progress-track">
+        <div class="progress-bar"></div>
+      </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+      <nav class="anchor-nav">
+        <a href="#intro">Overview</a>
+        <a href="#problem-and-constraints">Problem</a>
+        <a href="#exploration-weekly">Weekly</a>
+        <a href="#exploration-monthly">Monthly</a>
+        <a href="#hybrid-solution">Hybrid</a>
+        <a href="#handoff-to-ui">Handoff</a>
+        <a href="#impact-and-learnings">Impact</a>
+        <a href="#related-work">Related Work</a>
+      </nav>
+    </div>
 
     <!-- 🔹 Footer -->
     <footer>
@@ -288,58 +308,6 @@
 
     <!-- ✅ JS: navbar scroll + fade-in animation -->
     <script src="../../js/script.js"></script>
-
-    <script>
-        // Add fade-in on scroll for project sections 
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.project-page section');
-
-            const observer = new IntersectionObserver(
-                (entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            sections.forEach(section => observer.observe(section));
-        }); 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const progressBar = document.querySelector('.progress-bar');
-            const sections = document.querySelectorAll('main section[id]');
-            const navLinks = document.querySelectorAll('.anchor-nav a');
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.body.scrollHeight - window.innerHeight;
-                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-                progressBar.style.width = `${scrollPercent}%`;
-
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (scrollTop >= sectionTop) current = section.id;
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateProgress);
-            updateProgress();
-        }); 
-    </script>
 
 </body>
 

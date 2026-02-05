@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -42,83 +31,169 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/polarpro/index.html">Polar Pro</a>
-      <span>›</span>
-      <span class="current">User Profile</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Polar Pro: User Profile</h1>
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Polar Pro — User Profile</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
 
-      <p class="muted">
-        A profile concept I designed at PolarPro, built to function seamlessly across desktop, tablet, mobile web, and
-        the mobile app.</p>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#creative-brief">Creative Brief</a>
+            <a href="#early-desktop">Early Desktop</a>
+            <a href="#v1-mobile-web">V1 Mobile Web</a>
+            <a href="#v1-desktop">V1 Desktop</a>
+            <a href="#v1-mobile-app">V1 Mobile App</a>
+            <a href="#v2-overview">V2 Overview</a>
+            <a href="#v2-mobile-web">V2 Mobile Web</a>
+            <a href="#v2-desktop">V2 Desktop</a>
+            <a href="#v2-mobile-app">V2 Mobile App</a>
+            <a href="#future">Future Iterations</a>
+          </nav>
+        </div>
+      </aside>
 
-      <div class="card-tags">
-        <span class="tag">Ecommerce</span>
-        <span class="tag">Mobile App Design</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Polar Pro</span>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/polarpro/index.html">Polar Pro</a>
+          <span>›</span>
+          <span class="current">User Profile</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Polar Pro: User Profile</h1>
+
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/pp-userprofile.jpg" alt="Polar Pro user profile thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                A profile concept I designed at PolarPro, built to function seamlessly across desktop, tablet, mobile web,
+                and the mobile app.
+              </p>
+
+              <div class="card-tags">
+                <span class="tag">Ecommerce</span>
+                <span class="tag">Mobile App Design</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Polar Pro</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row" id="creative-brief">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile001.png"
+              alt="Slide titled 'Creative Brief' describing the lack of a customizable user space, goals to design a unified profile across platforms, and parameters covering user info, orders, rewards, favorites, products, and saved media."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="early-desktop">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile002.png"
+              alt="Slide showing six early desktop mockups with text about rugged branding, high contrast, and blocky sans-serif type, plus bullet points covering user info, order tracking CTA, and reward engagement."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v1-mobile-web">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile003.png"
+              alt="Slide titled 'Version 1: Mobile Website' showing five mobile profile screens for Catelyn Stark, including My Info, Orders, Rewards, and transaction history with arrows indicating navigation."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v1-desktop">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile004.png"
+              alt="Slide titled 'Version 1: Desktop' showing six desktop mockups of profile areas like My Orders, Rewards, transaction history, and personal info with colored lines showing flow."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v1-mobile-app">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile005.png"
+              alt="Slide titled 'Version 1: Mobile App' showing five mobile screens plus Settings, covering profile header, orders, rewards, transaction history, and saved media with flow lines."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-overview">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile006.png"
+              alt="Slide titled 'Version 2' with six redesigned desktop mockups and text describing expanded guidelines including user info, orders, favorites, loyalty rewards, My Products, and Saved Media."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-mobile-web">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile007.png"
+              alt="Slide titled 'Version 2: Mobile Website' showing ten updated mobile screens covering My Info, Orders, Rewards, registered products, saved media, and transaction entries with flow lines."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-desktop">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile008.png"
+              alt="Slide titled 'Version 2: Desktop' showing ten desktop screens for My Info, Order History, Rewards, My Products, Saved Media, and detailed transaction views with connector lines."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-mobile-app">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile009.png"
+              alt="Slide titled 'Version 2: Mobile App' showing multiple mobile screens with profile, My Products, favorite items, saved media thumbnails, and transaction history with navigation flow lines."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="future">
+          <figure>
+            <img src="/work/polarpro/assets/pp-userprofile010.png"
+              alt="Slide titled 'Future Iterations' with centered text discussing integrating the profile feature into the full app, improving IA, adding beta testing, and gathering more user input."
+              style="width:100%">
+          </figure>
+        </section>
+
       </div>
-    </section>
-
-    <!-- Section 2: Classic layout -->
-    <section class="row">
-      <figure>
-        <img src="/work/polarpro/assets/pp-userprofile001.png"
-          alt="Slide titled 'Creative Brief' describing the lack of a customizable user space, goals to design a unified profile across platforms, and parameters covering user info, orders, rewards, favorites, products, and saved media."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile002.png"
-          alt="Slide showing six early desktop mockups with text about rugged branding, high contrast, and blocky sans-serif type, plus bullet points covering user info, order tracking CTA, and reward engagement."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile003.png"
-          alt="Slide titled 'Version 1: Mobile Website' showing five mobile profile screens for Catelyn Stark, including My Info, Orders, Rewards, and transaction history with arrows indicating navigation."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile004.png"
-          alt="Slide titled 'Version 1: Desktop' showing six desktop mockups of profile areas like My Orders, Rewards, transaction history, and personal info with colored lines showing flow."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile005.png"
-          alt="Slide titled 'Version 1: Mobile App' showing five mobile screens plus Settings, covering profile header, orders, rewards, transaction history, and saved media with flow lines."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile006.png"
-          alt="Slide titled 'Version 2' with six redesigned desktop mockups and text describing expanded guidelines including user info, orders, favorites, loyalty rewards, My Products, and Saved Media."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile007.png"
-          alt="Slide titled 'Version 2: Mobile Website' showing ten updated mobile screens covering My Info, Orders, Rewards, registered products, saved media, and transaction entries with flow lines."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile008.png"
-          alt="Slide titled 'Version 2: Desktop' showing ten desktop screens for My Info, Order History, Rewards, My Products, Saved Media, and detailed transaction views with connector lines."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile009.png"
-          alt="Slide titled 'Version 2: Mobile App' showing multiple mobile screens with profile, My Products, favorite items, saved media thumbnails, and transaction history with navigation flow lines."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-userprofile010.png"
-          alt="Slide titled 'Future Iterations' with centered text discussing integrating the profile feature into the full app, improving IA, adding beta testing, and gathering more user input."
-          style="width:100%">
-
-      </figure>
-
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#creative-brief">Creative Brief</a>
+      <a href="#early-desktop">Early Desktop</a>
+      <a href="#v1-mobile-web">V1 Mobile Web</a>
+      <a href="#v1-desktop">V1 Desktop</a>
+      <a href="#v1-mobile-app">V1 Mobile App</a>
+      <a href="#v2-overview">V2 Overview</a>
+      <a href="#v2-mobile-web">V2 Mobile Web</a>
+      <a href="#v2-desktop">V2 Desktop</a>
+      <a href="#v2-mobile-app">V2 Mobile App</a>
+      <a href="#future">Future Iterations</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -127,58 +202,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 

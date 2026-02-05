@@ -11,17 +11,6 @@
     <link rel="stylesheet" href="/css/style.css" />
 
     <style>
-        /* Optional: small boost for fade-in smoothness on project pages */
-        .project-page section {
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .project-page section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 
@@ -41,70 +30,182 @@
     </header>
 
     <!-- 🔹 Main Project Content -->
-    <main class="container mt-nav project-page">
+    <main class="container mt-nav case-layout">
+      <div class="wrap">
 
-        <!-- Section 1: Intro -->
-        <section id="intro">
-            <h1>Designing for Degrees</h1>
-            <p class="muted"> Redesigning Georgia Tech’s College of Computing homepage to best meet the needs outlined
-                by both a digital and physical user.</p>
-            <div class="card-tags">
-                <span class="tag">Education</span>
-                <span class="tag">UI/UX</span>
-                <span class="tag">Web Design</span>
-                <span class="tag">Redesign</span>
+        <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+        <aside class="sidebar sidebar-hidden">
+          <div class="progress-nav side">
+            <h3 class="nav-title">Georgia Tech Redesign</h3>
+            <div class="progress-track">
+              <div class="progress-bar"></div>
             </div>
-        </section>
 
-        <section class="row">
+            <nav class="anchor-nav">
+              <a href="#intro">Overview</a>
+              <a href="#problem-goals">Problem & Goals</a>
+              <a href="#ideation">Ideation</a>
+              <a href="#original">Original Audit</a>
+              <a href="#wireframe">Wireframe</a>
+              <a href="#visual">Visual Mock</a>
+              <a href="#navigation">Navigation</a>
+              <a href="#degrees">Degree Programs</a>
+              <a href="#research-career">Research & Career</a>
+              <a href="#news-events">News & Events</a>
+              <a href="#resources">Resources</a>
+              <a href="#future">Future Iterations</a>
+              <a href="#video">Video</a>
+            </nav>
+          </div>
+        </aside>
+
+        <div class="project-page">
+
+          <!-- Section 1: Intro -->
+          <section id="intro" class="intro-hero">
+            <h1>Designing for Degrees</h1>
+            <div class="intro-row">
+              <figure class="intro-thumb">
+                <img src="/assets/thumbnails/g-tech.png" alt="Georgia Tech redesign thumbnail">
+              </figure>
+              <div class="intro-meta">
+                <p class="muted"> Redesigning Georgia Tech’s College of Computing homepage to best meet the needs outlined
+                  by both a digital and physical user.</p>
+                <div class="card-tags">
+                    <span class="tag">Education</span>
+                    <span class="tag">UI/UX</span>
+                    <span class="tag">Web Design</span>
+                    <span class="tag">Redesign</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="row" id="problem-goals">
             <figure>
                 <img src="/work/georgiatech/assets/gtech1.png"
                     alt="Three-section layout titled Problem, Goals, and Parameters of Use describing confusing navigation, overwhelming colors, IA improvements, and optimized content placement for the Georgia Tech UI redesign."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="ideation">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech2.png"
                     alt="Page titled Ideation showing Georgia Tech brand colors and a navigation sketch with text about consolidating redundant links, converting dropdowns into a mega menu, and mapping old vs new IA."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="original">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech3.png"
                     alt="Annotated screenshot of the original Georgia Tech College of Computing homepage highlighting redundant links, cluttered layout, dated carousel, confusing search placement, and bright colors."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="wireframe">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech4.png"
                     alt="Wireframe redesign of the Georgia Tech homepage with annotations on simplified navigation, reorganized carousel, clearer degree programs, improved research and career sections, better news layout, chronological events, and revised footer."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="visual">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech5.png"
                     alt="Visual mockup of the redesigned Georgia Tech homepage showing updated hero carousel, reorganized degree tiles, refreshed research/career services, improved news layout, chronological events, and monochrome footer."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="navigation">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech6.png"
                     alt="Comparison of old and new Georgia Tech splash areas showing the old long dropdown and crowded navigation versus the new horizontal mega menu with cleaner hero carousel and CTA."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="degrees">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech7.png"
                     alt="Comparison of old degree programs section with short cards versus redesigned larger cards with stronger hierarchy, hover interactions, and contextual info."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="research-career">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech8.png"
                     alt="Side-by-side comparison of old and new Research and Career Services sections highlighting larger imagery, Rockwell headings, improved spacing, new hover states, and reorganized CTAs in the redesign."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="news-events">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech9.png"
                     alt="Comparison of old combined News and Events list versus redesigned layout separating Upcoming Events with a calendar view and News as horizontal tiles with author attribution."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="resources">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech10.png"
                     alt="Before-and-after comparison of the Resources section showing a flat gray panel of links versus a sticky semi-transparent overlay with reorganized categories and digital resources emphasis."
                     style="width:100%">
+            </figure>
+          </section>
+
+          <section class="row" id="future">
+            <figure>
                 <img src="/work/georgiatech/assets/gtech11.png"
                     alt="Text-only Future Iterations page describing potential work like exploring splash variations, enhancing brand unity, and considering further departures from the original layout."
                     style="width:100%">
-
-                <!-- video placement + large sizing -->
-                <div style="padding:53.13% 0 0 0;position:relative;"><iframe
-                        src="https://player.vimeo.com/video/402460113?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-                        frameborder="0"
-                        allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                        referrerpolicy="strict-origin-when-cross-origin"
-                        style="position:absolute;top:0;left:0;width:100%;height:100%;" title="georgia tech"></iframe>
-                </div>
-                <script src="https://player.vimeo.com/api/player.js"></script>
             </figure>
-        </section>
+          </section>
 
+          <section class="row" id="video">
+            <div style="padding:53.13% 0 0 0;position:relative;"><iframe
+                    src="https://player.vimeo.com/video/402460113?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                    frameborder="0"
+                    allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    style="position:absolute;top:0;left:0;width:100%;height:100%;" title="georgia tech"></iframe>
+            </div>
+            <script src="https://player.vimeo.com/api/player.js"></script>
+          </section>
+
+        </div>
+      </div>
     </main>
+
+    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+    <div class="progress-nav bottom">
+      <div class="progress-track">
+        <div class="progress-bar"></div>
+      </div>
+
+      <nav class="anchor-nav">
+        <a href="#intro">Overview</a>
+        <a href="#problem-goals">Problem & Goals</a>
+        <a href="#ideation">Ideation</a>
+        <a href="#original">Original Audit</a>
+        <a href="#wireframe">Wireframe</a>
+        <a href="#visual">Visual Mock</a>
+        <a href="#navigation">Navigation</a>
+        <a href="#degrees">Degree Programs</a>
+        <a href="#research-career">Research & Career</a>
+        <a href="#news-events">News & Events</a>
+        <a href="#resources">Resources</a>
+        <a href="#future">Future Iterations</a>
+        <a href="#video">Video</a>
+      </nav>
+    </div>
 
     <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
   <div class="progress-nav bottom"> 
@@ -128,58 +229,6 @@
 
     <!-- ✅ JS: navbar scroll + fade-in animation -->
     <script src="../../js/script.js"></script>
-
-    <script>
-        // Add fade-in on scroll for project sections 
-        document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.project-page section');
-
-            const observer = new IntersectionObserver(
-                (entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            sections.forEach(section => observer.observe(section));
-        }); 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const progressBar = document.querySelector('.progress-bar');
-            const sections = document.querySelectorAll('main section[id]');
-            const navLinks = document.querySelectorAll('.anchor-nav a');
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.body.scrollHeight - window.innerHeight;
-                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-                progressBar.style.width = `${scrollPercent}%`;
-
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (scrollTop >= sectionTop) current = section.id;
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateProgress);
-            updateProgress();
-        }); 
-    </script>
 
 </body>
 

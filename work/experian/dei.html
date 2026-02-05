@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,33 +30,56 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/experian/index.html">Experian</a>
-      <span>›</span>
-      <span class="current">DEI Site</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Experian DEI</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#section-1-ia">IA Map</a>
+            <a href="#section-2-commitment">Commitment</a>
+            <a href="#section-3-impact">Impact</a>
+            <a href="#section-4-ourpeople">Our People</a>
+          </nav>
+        </div>
+      </aside>
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Experian DEI Site – CMS Design & Information Architecture</h1>
-      <p class="muted">
-        I designed the Experian DEI site while collaborating closely with a copywriter, an engineer,
-        and a DEI subject matter expert. The project involved defining a clear information architecture,
-        customizing CMS components, and building page templates that could scale with evolving content. If you would
-        like to see a live version, please <a href="https://www.experian.com/diversity//" target="_blank"
-          class="underline hover:text-white">click here!</a>
-      </p>
-      <div class="card-tags">
-        <span class="tag">Fintech</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Experian</span>
-      </div>
-    </section>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/experian/index.html">Experian</a>
+          <span>›</span>
+          <span class="current">DEI Site</span>
+        </nav>
 
-    <!-- Section 2: Classic layout -->
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Experian DEI Site – CMS Design & Information Architecture</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/exp-dei.png" alt="Experian DEI thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I designed the Experian DEI site while collaborating closely with a copywriter, an engineer,
+                and a DEI subject matter expert. The project involved defining a clear information architecture,
+                customizing CMS components, and building page templates that could scale with evolving content. If you would
+                like to see a live version, please <a href="https://www.experian.com/diversity//" target="_blank"
+                  class="underline hover:text-white">click here!</a>
+              </p>
+              <div class="card-tags">
+                <span class="tag">Fintech</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Experian</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
 
@@ -206,22 +218,24 @@
         </div>
       </a>
     </section>
+      </div>
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
   <div class="progress-nav bottom"> 
     <div class="progress-track"> 
       <div class="progress-bar"></div> 
     </div> 
 
     <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+      <a href="#intro">Overview</a> 
+      <a href="#section-1-ia">IA Map</a> 
+      <a href="#section-2-commitment">Commitment</a> 
+      <a href="#section-3-impact">Impact</a> 
+      <a href="#section-4-ourpeople">Our People</a> 
     </nav> 
-  </div> -->
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -230,58 +244,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 

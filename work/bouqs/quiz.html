@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,36 +30,63 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/bouqs/index.html">The Bouqs</a>
-      <span>›</span>
-      <span class="current">Preference Quiz</span>
-    </nav>
-
-    <main class="container mt-nav project-page">
-
-      <!-- Intro -->
-      <section id="bouqs-quiz-hero">
-        <h1>The Bouqs: Preference Quiz</h1>
-        <p class="muted">
-          While updating The Bouqs wedding experience, I saw an opportunity to help couples navigate a big emotional
-          category in a more human way. I created this self-initiated concept for a lightweight quiz that guides them
-          through an inspiring, conversational flow instead of standard filters.
-        </p>
-
-        <div class="card-tags">
-          <span class="tag">Ecommerce</span>
-          <span class="tag">Product Design</span>
-          <span class="tag">Web Design</span>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">The Bouqs: Preference Quiz</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#bouqs-quiz-hero">Overview</a>
+            <a href="#bouqs-quiz-context">Context</a>
+            <a href="#bouqs-quiz-problem">Problem</a>
+            <a href="#bouqs-quiz-solution-overview">Solution</a>
+            <a href="#bouqs-quiz-decision-factors">Decision Factors</a>
+            <a href="#bouqs-quiz-results">Results</a>
+            <a href="#bouqs-quiz-ux-accessibility">UX & Accessibility</a>
+            <a href="#bouqs-quiz-outcomes">Outcomes</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
         </div>
+      </aside>
 
-      </section>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/bouqs/index.html">The Bouqs</a>
+          <span>›</span>
+          <span class="current">Preference Quiz</span>
+        </nav>
 
-      <!-- Context & Role -->
-      <section id="bouqs-quiz-context">
+        <!-- Intro -->
+        <section id="bouqs-quiz-hero" class="intro-hero">
+          <h1>The Bouqs: Preference Quiz</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/bouqsquiz.png" alt="Bouqs preference quiz thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                While updating The Bouqs wedding experience, I saw an opportunity to help couples navigate a big emotional
+                category in a more human way. I created this self-initiated concept for a lightweight quiz that guides them
+                through an inspiring, conversational flow instead of standard filters.
+              </p>
+
+              <div class="card-tags">
+                <span class="tag">Ecommerce</span>
+                <span class="tag">Product Design</span>
+                <span class="tag">Web Design</span>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- Context & Role -->
+        <section id="bouqs-quiz-context">
         <h3>Context and Role</h3>
 
         <p>
@@ -240,20 +256,24 @@
       </a>
 
 
-        <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+        <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
   <div class="progress-nav bottom"> 
     <div class="progress-track"> 
       <div class="progress-bar"></div> 
     </div> 
 
     <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+      <a href="#bouqs-quiz-hero">Overview</a> 
+      <a href="#bouqs-quiz-context">Context</a> 
+      <a href="#bouqs-quiz-problem">Problem</a> 
+      <a href="#bouqs-quiz-solution-overview">Solution</a> 
+      <a href="#bouqs-quiz-decision-factors">Decision Factors</a> 
+      <a href="#bouqs-quiz-results">Results</a> 
+      <a href="#bouqs-quiz-ux-accessibility">UX & Accessibility</a> 
+      <a href="#bouqs-quiz-outcomes">Outcomes</a> 
+      <a href="#related-work">Related Work</a> 
     </nav> 
-  </div> -->
+  </div>
 
         <!-- 🔹 Footer -->
         <footer>
@@ -262,58 +282,6 @@
 
         <!-- ✅ JS: navbar scroll + fade-in animation -->
         <script src="../../js/script.js"></script>
-
-        <script>
-          // Add fade-in on scroll for project sections 
-          document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.project-page section');
-
-            const observer = new IntersectionObserver(
-              (entries, obs) => {
-                entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    obs.unobserve(entry.target);
-                  }
-                });
-              },
-              { threshold: 0.1 }
-            );
-
-            sections.forEach(section => observer.observe(section));
-          }); 
-        </script>
-
-        <script>
-          document.addEventListener('DOMContentLoaded', () => {
-            const progressBar = document.querySelector('.progress-bar');
-            const sections = document.querySelectorAll('main section[id]');
-            const navLinks = document.querySelectorAll('.anchor-nav a');
-
-            function updateProgress() {
-              const scrollTop = window.scrollY;
-              const docHeight = document.body.scrollHeight - window.innerHeight;
-              const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-              progressBar.style.width = `${scrollPercent}%`;
-
-              let current = '';
-              sections.forEach(section => {
-                const sectionTop = section.offsetTop - 150;
-                if (scrollTop >= sectionTop) current = section.id;
-              });
-
-              navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${current}`) {
-                  link.classList.add('active');
-                }
-              });
-            }
-
-            window.addEventListener('scroll', updateProgress);
-            updateProgress();
-          }); 
-        </script>
 
 </body>
 

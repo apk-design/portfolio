@@ -14,7 +14,7 @@
     /* Optional: small boost for fade-in smoothness on project pages */
     .project-page section {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
@@ -41,25 +41,55 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <section id="intro">
-      <h1>El Burro: Restaurant Operations & Ordering Platform</h1>
-      <p class="muted">
-        El Burro needed one
-        clean, custom system to manage multiple locations, help employees move faster, and give customers
-        an easy way to order online. I designed the entire platform: from the admin dashboard to the POS
-        tools to the full delivery and pickup experience.
-      </p>
-      <div class="card-tags">
-        <span class="tag">Product Design</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Internal Tool</span>
-        <span class="tag">Ecommerce</span>
-        <span class="tag">Tablet App</span>
-        <span class="tag">Web Design</span>
-      </div>
-    </section>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">El Burro Platform</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#project-brief">Project Brief</a>
+            <a href="#team-role">Team & Role</a>
+            <a href="#customers-needs">Customers</a>
+            <a href="#approach">Approach</a>
+            <a href="#iteration">Iteration</a>
+            <a href="#constraints">Constraints</a>
+            <a href="#impact">Impact</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="project-page">
+
+        <section id="intro" class="intro-hero">
+          <h1>El Burro: Restaurant Operations & Ordering Platform</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/kraf-elburro.png" alt="El Burro platform thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                El Burro needed one clean, custom system to manage multiple locations, help employees move faster, and
+                give customers an easy way to order online. I designed the entire platform: from the admin dashboard to
+                the POS tools to the full delivery and pickup experience.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Product Design</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Internal Tool</span>
+                <span class="tag">Ecommerce</span>
+                <span class="tag">Tablet App</span>
+                <span class="tag">Web Design</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
     <section id="project-brief" class="cs-section">
       <h2>Project Brief</h2>
@@ -240,6 +270,28 @@
     </nav> 
   </div> -->
 
+      </div>
+    </div>
+  </main>
+
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
+
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#project-brief">Project Brief</a>
+      <a href="#team-role">Team & Role</a>
+      <a href="#customers-needs">Customers</a>
+      <a href="#approach">Approach</a>
+      <a href="#iteration">Iteration</a>
+      <a href="#constraints">Constraints</a>
+      <a href="#impact">Impact</a>
+    </nav>
+  </div>
+
   <!-- 🔹 Footer -->
   <footer>
     Designed & Developed with ❤️‍🔥 by Amber Kumar © 2026
@@ -271,32 +323,7 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
+      // Progress/anchor behavior now handled globally in script.js
     }); 
   </script>
 

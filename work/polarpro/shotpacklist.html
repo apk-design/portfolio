@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -42,69 +31,126 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/polarpro/index.html">Polar Pro</a>
-      <span>›</span>
-      <span class="current">Shot and Pack List</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Polar Pro: Shot + Pack List</h1>
-      <p class="muted">
-        While at Polar Pro, I created an addition to the mobile app to help users plan their gear and shots for trips.
-      </p>
-      <div class="card-tags">
-        <span class="tag">Ecommerce</span>
-        <span class="tag">Mobile App Design</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Polar Pro</span>
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Polar Pro — Shot + Pack List</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#pack-vs-shot">Pack vs Shot</a>
+            <a href="#v1-screens">V1 Screens</a>
+            <a href="#v1-flow">V1 Flow</a>
+            <a href="#v2-iteration">V2 Iteration</a>
+            <a href="#v2-flow">V2 Flow</a>
+            <a href="#future">Future Iterations</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/polarpro/index.html">Polar Pro</a>
+          <span>›</span>
+          <span class="current">Shot and Pack List</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Polar Pro: Shot + Pack List</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/pp-shotlist.jpg" alt="Polar Pro shot and pack list thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                While at Polar Pro, I created an addition to the mobile app to help users plan their gear and shots for trips.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Ecommerce</span>
+                <span class="tag">Mobile App Design</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Polar Pro</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row" id="pack-vs-shot">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack2.png"
+              alt="Two dark panels side-by-side labeled Pack List and Shot List describing what each feature is, what it does, and showing screen overviews for homescreens, bags, gear, locations, and shot lists."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v1-screens">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack3.png"
+              alt="Two mobile screenshots from the first iteration showing the Phoenix, USA trip: the left screen displays an empty Shot List with a prompt to create one, the right screen shows a populated Pack List with collapsible gear categories, alongside descriptive text, color palette, and Avenir font samples."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v1-flow">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack4.png"
+              alt="Large first-iteration workflow diagram mapping connected mobile screens for Pack List and Shot List, including adding trips, editing lists, viewing gear, creating shots, and navigating between modules via thin lines and arrows."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-iteration">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack5.png"
+              alt="Second-iteration page with a hand-drawn sketch of shot list arrangements on the left and two polished mobile UI screens on the right showing the ‘27 in Seattle’ trip with Pack List/Shot List tabs and a dedicated Shot List view displaying thumbnails and camera metadata."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="v2-flow">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack6.png"
+              alt="Comprehensive second-iteration app flow diagram for the ‘27 in Seattle’ trip showing screens for creating a trip, selecting cover art, viewing the overview, toggling between Pack List and Shot List, adding gear and shots, editing details, and navigating via arrows."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="future">
+          <figure>
+            <img src="/work/polarpro/assets/pp-shotpack7.png"
+              alt="Future Iterations page with a grid of hand-drawn interface sketches on a dark grid background showing ideas for reorganizing shot fields, redesigning the trip page, expanding shot views, and grouping elements, plus explanatory text about navigation refinements and additional animation."
+              style="width:100%">
+          </figure>
+        </section>
+
       </div>
-    </section>
-
-    <!-- Section 2: Classic layout -->
-    <section class="row">
-      <figure>
-        <img src="/work/polarpro/assets/pp-shotpack2.png"
-          alt="Two dark panels side-by-side labeled Pack List and Shot List describing what each feature is, what it does, and showing screen overviews for homescreens, bags, gear, locations, and shot lists."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-shotpack3.png"
-          alt="Two mobile screenshots from the first iteration showing the Phoenix, USA trip: the left screen displays an empty Shot List with a prompt to create one, the right screen shows a populated Pack List with collapsible gear categories, alongside descriptive text, color palette, and Avenir font samples."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-shotpack4.png"
-          alt="Large first-iteration workflow diagram mapping connected mobile screens for Pack List and Shot List, including adding trips, editing lists, viewing gear, creating shots, and navigating between modules via thin lines and arrows."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-shotpack5.png"
-          alt="Second-iteration page with a hand-drawn sketch of shot list arrangements on the left and two polished mobile UI screens on the right showing the ‘27 in Seattle’ trip with Pack List/Shot List tabs and a dedicated Shot List view displaying thumbnails and camera metadata."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-shotpack6.png"
-          alt="Comprehensive second-iteration app flow diagram for the ‘27 in Seattle’ trip showing screens for creating a trip, selecting cover art, viewing the overview, toggling between Pack List and Shot List, adding gear and shots, editing details, and navigating via arrows."
-          style="width:100%">
-        <img src="/work/polarpro/assets/pp-shotpack7.png"
-          alt="Future Iterations page with a grid of hand-drawn interface sketches on a dark grid background showing ideas for reorganizing shot fields, redesigning the trip page, expanding shot views, and grouping elements, plus explanatory text about navigation refinements and additional animation."
-          style="width:100%">
-
-      </figure>
-
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#pack-vs-shot">Pack vs Shot</a>
+      <a href="#v1-screens">V1 Screens</a>
+      <a href="#v1-flow">V1 Flow</a>
+      <a href="#v2-iteration">V2 Iteration</a>
+      <a href="#v2-flow">V2 Flow</a>
+      <a href="#future">Future Iterations</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -113,58 +159,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 

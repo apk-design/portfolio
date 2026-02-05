@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,47 +30,82 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/experian/index.html">Experian</a>
-      <span>›</span>
-      <span class="current">Calculator</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Experian Calculators</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#calc-problem">Problem</a>
+            <a href="#calc-design">Design</a>
+            <a href="#calc-responsive">Responsive</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
+        </div>
+      </aside>
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Experian: Financial Calculators</h1>
-      <p class="muted">
-        I created a template for financial calculators, here is an instance of the template used for a Personal Loan
-        Calculator. If you would like to see a live version, please <a
-          href="https://www.experian.com/blogs/ask-experian/personal-loan-calculator/" target="_blank"
-          class="underline hover:text-white">click here!</a>
-      </p>
-      <div class="card-tags">
-        <span class="tag">Fintech</span>
-        <span class="tag">Web Design</span>
-        <span class="tag">Experian</span>
-      </div>
-    </section>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/experian/index.html">Experian</a>
+          <span>›</span>
+          <span class="current">Calculator</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Experian: Financial Calculators</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/exp-calculator.jpg" alt="Experian calculator thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I created a template for financial calculators; this is an instance of the template used for a Personal Loan
+                Calculator. If you would like to see a live version, please <a
+                  href="https://www.experian.com/blogs/ask-experian/personal-loan-calculator/" target="_blank"
+                  class="underline hover:text-white">click here!</a>
+              </p>
+              <div class="card-tags">
+                <span class="tag">Fintech</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Experian</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
     <!-- Section 2: Classic layout -->
-    <section class="row">
+    <section class="row" id="calc-problem">
       <figure>
         <img src="/work/experian/assets/exp-calc2.png"
           alt="Slide containing three sections: Problems, Goals, and Parameters of Use. Problems describe issues with the old calculator lacking clear results, Goals emphasize showing info within a fixed viewport plus an easy-to-read graph, and Parameters call for simplicity across mobile, tablet, web, and embedded calculators."
           style="width:100%">
+      </figure>
+    </section>
+
+    <section class="row" id="calc-design">
+      <figure>
         <img src="/work/experian/assets/exp-calc3.png"
           alt="Slide explaining design decisions for clear hierarchy in a financial calculator. Below the text are two panels: the left shows the Loan Amount/Interest Rate/Term form with a blue Calculate button, and the right shows Monthly Payment/Payment Schedule tabs with a $6.64 result, details, and a purple loan vs interest pie chart. Labels note Input of Values and Output / Results Area."
           style="width:100%">
+      </figure>
+    </section>
+
+    <section class="row" id="calc-responsive">
+      <figure>
         <img src="/work/experian/assets/exp-calc4.png"
           alt="Slide describing responsive design for the calculator across mobile, tablet, and desktop. Top text mentions scalable cues; the middle row shows an iPhone and tablet with stacked input/output, and the bottom row shows a laptop mockup with side-by-side sections. Annotations explain vertical alignment for mobile/tablet and horizontal alignment for desktop."
           style="width:100%">
       </figure>
+    </section>
 
-
-      <section class="grid work-grid" style="margin-top:60px;">
+      <section class="grid work-grid" id="related-work" style="margin-top:60px;">
         <a class="card" href="./dei.html">
           <div class="thumb" aria-label="Experian DEI"
             style="background-image: url(/assets/thumbnails/exp-dei.png); background-size: cover; background-position: center;">
@@ -99,20 +123,20 @@
       </section>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
   <div class="progress-nav bottom"> 
     <div class="progress-track"> 
       <div class="progress-bar"></div> 
     </div> 
 
     <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
+      <a href="#intro">Overview</a> 
+      <a href="#calc-problem">Problem</a> 
+      <a href="#calc-design">Design</a> 
+      <a href="#calc-responsive">Responsive</a> 
+      <a href="#related-work">Related Work</a> 
     </nav> 
-  </div> -->
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -121,58 +145,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 

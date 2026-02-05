@@ -14,13 +14,84 @@
     /* Optional: small boost for fade-in smoothness on project pages */
     .project-page section {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .project-page section.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Intro layout: title row plus thumbnail inline */
+    .intro-hero {
+      display: grid;
+      gap: 12px;
+    }
+
+    .intro-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .intro-hero .intro-meta { flex: 1; }
+
+    .intro-thumb {
+      flex: 0 0 220px;
+      margin: 0;
+    }
+
+    .intro-thumb img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Nav positioning: sidebar on desktop, bottom nav on tablet/mobile */
+    .progress-nav.side {
+      display: none;
+      width: 100%;
+    }
+
+    .progress-nav.side .progress-track { margin-bottom: 12px; }
+
+    .progress-nav.side .nav-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-nav.side .anchor-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress-nav.bottom { display: block; }
+
+    @media (min-width: 1025px) {
+      .progress-nav.side {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .progress-nav.bottom { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .intro-thumb { display: none; }
+    }
+
+    /* Hide empty sidebar on mobile/tablet to remove top gap */
+    @media (max-width: 1024px) {
+      .sidebar { display: none; }
+      .nexon-layout { margin-top: 60px; }
+      .nexon-layout .wrap { gap: 16px; }
     }
   </style>
 </head>
@@ -41,87 +112,194 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav nexon-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Nexon: UX Audit</h1>
-      <p class="muted">
-        I wanted to refine Nexon’s relatively new game launcher from a UX perspective, further creating ease of use and
-        reducing friction from launch to playtime.
-      </p>
-      <div class="card-tags">
-        <span class="tag">Gaming</span>
-        <span class="tag">UX Audit</span>
-        <span class="tag">Accessibility</span>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Nexon: UX Audit</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#brief">Creative Brief</a>
+            <a href="#addressing-brief">Addressing Brief</a>
+            <a href="#goals">Goals & Assumptions</a>
+            <a href="#user">Understanding User</a>
+            <a href="#journey">User Journey</a>
+            <a href="#install">Initial Installation</a>
+            <a href="#profile">Profile Setup</a>
+            <a href="#navigation">Home Navigation</a>
+            <a href="#game-info">Game Page</a>
+            <a href="#pain-points">Pain Points</a>
+            <a href="#approach">Approach</a>
+            <a href="#success">Measuring Success</a>
+            <a href="#current-ideal">Current vs Ideal</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- 🔹 Project body -->
+      <div class="project-page">
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Nexon: UX Audit</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/nexon.jpg" alt="Nexon UX audit thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I wanted to refine Nexon’s relatively new game launcher from a UX perspective, further creating ease of
+                use and reducing friction from launch to playtime.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Gaming</span>
+                <span class="tag">UX Audit</span>
+                <span class="tag">Accessibility</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row" id="brief">
+          <figure>
+            <img src="/work/nexon/assets/nexon02.png"
+              alt="Slide titled ‘Creative Brief.’ Text reads: ‘One key goal of the Global Platform’s main mission is to maximize game installation from the Nexon Launcher. Identify three major pain points of using the Nexon Launcher for the first time and how it would impact users. – How would you approach the problem? – What kind of data would you gather to inform your design decisions? – How would you collaborate with your team and stakeholders? – How would you measure success?’"
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="addressing-brief">
+          <figure>
+            <img src="/work/nexon/assets/nexon03.png"
+              alt="Slide titled ‘Addressing the Brief.’ Text explains identifying the user first to define pain points and assumptions, and narrowing repeated issues across the experience."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="goals">
+          <figure>
+            <img src="/work/nexon/assets/nexon04.png"
+              alt="Slide titled ‘Goals & Assumptions.’ Text outlines the goal: 1) Navigate to Nexon website, 2) Create user profile, 3) Download launcher to play and learn about the game. Baseline assumptions include creating and customizing a profile, interacting with friends or peers, and accessing game information."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="user">
+          <figure>
+            <img src="/work/nexon/assets/nexon05.png"
+              alt="Slide titled ‘Understanding Our User.’ Bullet points describe the user as someone who plays video games, is tech-savvy, understands other launchers, learns from peer recommendations, and wants to reduce time troubleshooting and spend more time playing."
+              style="width:100%">
+            <img src="/work/nexon/assets/nexon06.png"
+              alt="Slide titled ‘Understanding Our User.’ Includes a user story about discovering Maplestory and wanting to try it quickly. Lists user priorities such as downloading the launcher, creating a profile, and getting key game information. Lists user pain points including troubleshooting issues, lack of game status visibility, and limited profile customization."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="journey">
+          <figure>
+            <img src="/work/nexon/assets/nexon07.png"
+              alt="Slide titled ‘User’s Journey.’ Lists an eight-step flow: learning about the game, visiting the Nexon site, downloading the launcher, creating a profile, verifying it, navigating to the game tab, reading game details, and playing the game."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="install">
+          <figure>
+            <img src="/work/nexon/assets/nexon08.png"
+              alt="Slide titled ‘Initial Installation.’ Text describes navigating Nexon’s homepage, locating the download tab, and beginning setup. Three connected screenshots show Nexon homepage, a ‘Welcome to Nexon Launcher Setup’ pop-up, an ‘Updating Nexon Launcher’ progress window, and a ‘Create Your New Account’ form with arrows showing progression."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="profile">
+          <figure>
+            <img src="/work/nexon/assets/nexon09.png"
+              alt="Slide titled ‘Profile Setup.’ Text discusses friction in profile customization and NexonTag editing. UI screenshots show the launcher game tab, account overview, NexonTag change modal, tooltip with naming rules, password/recovery settings, and a confirmation dialog, arranged with arrows indicating flow."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="navigation">
+          <figure>
+            <img src="/work/nexon/assets/nexon010.png"
+              alt="Slide titled ‘Home Navigation.’ Text critiques confusing navigation between PC and mobile games, unclear ‘N’ icons on tiles, and browser redirects. Screens include a grid of game categories, a KartRider detail page, and a Nexon Support Center search page with arrows showing navigation."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="game-info">
+          <figure>
+            <img src="/work/nexon/assets/nexon011.png"
+              alt="Slide titled ‘Game Page and Information.’ Text notes missing game title visibility, ambiguous pricing cues, and contrast issues. Screenshots show a game splash page with ‘Play Now’ CTAs, a Game Summary page, and full-screen promotional artwork with arrows illustrating steps."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="pain-points">
+          <figure>
+            <img src="/work/nexon/assets/nexon012.png"
+              alt="Slide titled ‘Identifying Pain Points.’ Bullet points highlight information architecture issues, inconsistent user validation, and broken UX patterns, noting resulting friction, discouragement, and poor retention."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="approach">
+          <figure>
+            <img src="/work/nexon/assets/nexon013.png"
+              alt="Slide titled ‘Approaching the Problem.’ Text proposes refining IA, creating a style and interaction guide, improving validation, researching demographics, comparing competitors like Steam and Battlenet, and collecting surveys/focus groups data."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="success">
+          <figure>
+            <img src="/work/nexon/assets/nexon014.png"
+              alt="Slide titled ‘Measuring Success.’ Text explains tracking usability, validation, workflow, demographic alignment, and metrics such as acquisition, activation, retention, referral, and revenue, noting post-redesign retention spikes as success signals."
+              style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="current-ideal">
+          <figure>
+            <img src="/work/nexon/assets/nexon015.png"
+              alt="Slide titled ‘Current vs Ideals.’ Diagram compares current steps (finding the launcher, downloads, profile setup, password change, navigation, play) against a streamlined ideal flow that removes non-core steps."
+              style="width:100%">
+          </figure>
+        </section>
+
       </div>
-    </section>
-
-    <!-- Section 2: Classic layout -->
-    <section class="row">
-      <figure>
-        <img src="/work/nexon/assets/nexon02.png"
-          alt="Slide titled ‘Creative Brief.’ Text reads: ‘One key goal of the Global Platform’s main mission is to maximize game installation from the Nexon Launcher. Identify three major pain points of using the Nexon Launcher for the first time and how it would impact users. – How would you approach the problem? – What kind of data would you gather to inform your design decisions? – How would you collaborate with your team and stakeholders? – How would you measure success?’"
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon03.png"
-          alt="Slide titled ‘Addressing the Brief.’ Text explains identifying the user first to define pain points and assumptions, and narrowing repeated issues across the experience."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon04.png"
-          alt="Slide titled ‘Goals & Assumptions.’ Text outlines the goal: 1) Navigate to Nexon website, 2) Create user profile, 3) Download launcher to play and learn about the game. Baseline assumptions include creating and customizing a profile, interacting with friends or peers, and accessing game information."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon05.png"
-          alt="Slide titled ‘Understanding Our User.’ Bullet points describe the user as someone who plays video games, is tech-savvy, understands other launchers, learns from peer recommendations, and wants to reduce time troubleshooting and spend more time playing."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon06.png"
-          alt="Slide titled ‘Understanding Our User.’ Includes a user story about discovering Maplestory and wanting to try it quickly. Lists user priorities such as downloading the launcher, creating a profile, and getting key game information. Lists user pain points including troubleshooting issues, lack of game status visibility, and limited profile customization."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon07.png"
-          alt="Slide titled ‘User’s Journey.’ Lists an eight-step flow: learning about the game, visiting the Nexon site, downloading the launcher, creating a profile, verifying it, navigating to the game tab, reading game details, and playing the game."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon08.png"
-          alt="Slide titled ‘Initial Installation.’ Text describes navigating Nexon’s homepage, locating the download tab, and beginning setup. Three connected screenshots show Nexon homepage, a ‘Welcome to Nexon Launcher Setup’ pop-up, an ‘Updating Nexon Launcher’ progress window, and a ‘Create Your New Account’ form with arrows showing progression."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon09.png"
-          alt="Slide titled ‘Profile Setup.’ Text discusses friction in profile customization and NexonTag editing. UI screenshots show the launcher game tab, account overview, NexonTag change modal, tooltip with naming rules, password/recovery settings, and a confirmation dialog, arranged with arrows indicating flow."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon010.png"
-          alt="Slide titled ‘Home Navigation.’ Text critiques confusing navigation between PC and mobile games, unclear ‘N’ icons on tiles, and browser redirects. Screens include a grid of game categories, a KartRider detail page, and a Nexon Support Center search page with arrows showing navigation."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon011.png"
-          alt="Slide titled ‘Game Page and Information.’ Text notes missing game title visibility, ambiguous pricing cues, and contrast issues. Screenshots show a game splash page with ‘Play Now’ CTAs, a Game Summary page, and full-screen promotional artwork with arrows illustrating steps."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon012.png"
-          alt="Slide titled ‘Identifying Pain Points.’ Bullet points highlight information architecture issues, inconsistent user validation, and broken UX patterns, noting resulting friction, discouragement, and poor retention."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon013.png"
-          alt="Slide titled ‘Approaching the Problem.’ Text proposes refining IA, creating a style and interaction guide, improving validation, researching demographics, comparing competitors like Steam and Battlenet, and collecting surveys/focus groups data."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon014.png"
-          alt="Slide titled ‘Measuring Success.’ Text explains tracking usability, validation, workflow, demographic alignment, and metrics such as acquisition, activation, retention, referral, and revenue, noting post-redesign retention spikes as success signals."
-          style="width:100%">
-        <img src="/work/nexon/assets/nexon015.png"
-          alt="Slide titled ‘Current vs Ideals.’ Diagram compares current steps (finding the launcher, downloads, profile setup, password change, navigation, play) against a streamlined ideal flow that removes non-core steps."
-          style="width:100%">
-
-      </figure>
-
+    </div>
   </main>
 
-  <!--
-🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#brief">Creative Brief</a>
+      <a href="#addressing-brief">Addressing Brief</a>
+      <a href="#goals">Goals & Assumptions</a>
+      <a href="#user">Understanding User</a>
+      <a href="#journey">User Journey</a>
+      <a href="#install">Initial Installation</a>
+      <a href="#profile">Profile Setup</a>
+      <a href="#navigation">Home Navigation</a>
+      <a href="#game-info">Game Page</a>
+      <a href="#pain-points">Pain Points</a>
+      <a href="#approach">Approach</a>
+      <a href="#success">Measuring Success</a>
+      <a href="#current-ideal">Current vs Ideal</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -154,15 +332,19 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
+      const progressBars = document.querySelectorAll('.progress-bar');
       const sections = document.querySelectorAll('main section[id]');
       const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      if (progressBars.length === 0 && navLinks.length === 0) return;
 
       function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
+        const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+        progressBars.forEach(bar => {
+          bar.style.width = `${scrollPercent}%`;
+        });
 
         let current = '';
         sections.forEach(section => {
@@ -170,12 +352,14 @@
           if (scrollTop >= sectionTop) current = section.id;
         });
 
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
+        if (navLinks.length) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
+            }
+          });
+        }
       }
 
       window.addEventListener('scroll', updateProgress);

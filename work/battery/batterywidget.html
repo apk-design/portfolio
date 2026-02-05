@@ -14,13 +14,77 @@
     /* Optional: small boost for fade-in smoothness on project pages */
     .project-page section {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .project-page section.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Intro layout: title row plus thumbnail inline */
+    .intro-hero {
+      display: grid;
+      gap: 12px;
+    }
+
+    .intro-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .intro-hero .intro-meta { flex: 1; }
+
+    .intro-thumb {
+      flex: 0 0 220px;
+      margin: 0;
+    }
+
+    .intro-thumb img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Nav positioning: sidebar on desktop, bottom nav on tablet/mobile */
+    .progress-nav.side {
+      display: none;
+      width: 100%;
+    }
+
+    .progress-nav.side .progress-track { margin-bottom: 12px; }
+
+    .progress-nav.side .nav-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-nav.side .anchor-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress-nav.bottom { display: block; }
+
+    @media (min-width: 1025px) {
+      .progress-nav.side {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .progress-nav.bottom { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .intro-thumb { display: none; }
     }
   </style>
 </head>
@@ -41,53 +105,103 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Creating a Battery Widget for MacOS</h1>
-      <p class="muted">
-        I created a battery widget for Mac OS to benefit those who have the other puzzle pieces.
-      </p>
-      <div class="card-tags">
-        <span class="tag">Operating System</span>
-        <span class="tag">UI/UX</span>
-      </div>
-    </section>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Battery Widget for macOS</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
 
-    <section class="row">
-      <figure>
-        <img src="/work/battery/assets/battery2.png" alt="Black slide titled Problems, Goals, and Parameters of Use describing the need for a MacOS battery widget, unifying device battery visibility, and designing for MacOS while honoring iOS conventions." style="width:100%">
-        <img src="/work/battery/assets/battery3.png" alt="Slide comparing an existing iOS battery widget to a redesigned MacOS version titled 'iOS vs Mac OS' with text and two widget mockups side by side." style="width:100%">
-        <img src="/work/battery/assets/battery4.png" alt="MacOS desktop mockup showing the notification center open with the redesigned battery widget listing multiple devices and battery percentages under the heading 'Execution.'" style="width:100%">
-        <img src="/work/battery/assets/battery5.png" alt="Black slide titled 'Future Iterations' describing potential expansions such as cross-device prototypes and an Apple Watch app." style="width:100%">
-
-        <!-- video placement + large sizing -->
-        <div class="video-wrapper">
-          <iframe src="https://player.vimeo.com/video/402459034" title="MacOS Widget" frameborder="0"
-            allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
-          </iframe>
+          <nav class="anchor-nav">
+            <a href="#intro">Intro</a>
+            <a href="#problems-goals">Problems & Goals</a>
+            <a href="#ios-vs-macos">iOS vs macOS</a>
+            <a href="#execution">Execution</a>
+            <a href="#future-iterations">Future Iterations</a>
+            <a href="#video">Video</a>
+          </nav>
         </div>
+      </aside>
 
-      </figure>
-    </section>
+      <!-- 🔹 Project body -->
+      <div class="project-page">
 
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Creating a Battery Widget for macOS</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/macbattery.jpg" alt="Battery widget case study thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I created a battery widget for macOS to unify battery visibility across devices and bring the iOS widget
+                utility to the desktop.
+              </p>
+              <div class="card-tags">
+                <span class="tag">Operating System</span>
+                <span class="tag">UI/UX</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="row" id="problems-goals">
+          <figure>
+            <img src="/work/battery/assets/battery2.png" alt="Black slide titled Problems, Goals, and Parameters of Use describing the need for a MacOS battery widget, unifying device battery visibility, and designing for MacOS while honoring iOS conventions." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="ios-vs-macos">
+          <figure>
+            <img src="/work/battery/assets/battery3.png" alt="Slide comparing an existing iOS battery widget to a redesigned MacOS version titled 'iOS vs Mac OS' with text and two widget mockups side by side." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="execution">
+          <figure>
+            <img src="/work/battery/assets/battery4.png" alt="MacOS desktop mockup showing the notification center open with the redesigned battery widget listing multiple devices and battery percentages under the heading 'Execution.'" style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="future-iterations">
+          <figure>
+            <img src="/work/battery/assets/battery5.png" alt="Black slide titled 'Future Iterations' describing potential expansions such as cross-device prototypes and an Apple Watch app." style="width:100%">
+          </figure>
+        </section>
+
+        <section class="row" id="video">
+          <!-- video placement + large sizing -->
+          <div class="video-wrapper">
+            <iframe src="https://player.vimeo.com/video/402459034" title="MacOS Widget" frameborder="0"
+              allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
+            </iframe>
+          </div>
+        </section>
+
+      </div>
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Intro</a>
+      <a href="#problems-goals">Problems & Goals</a>
+      <a href="#ios-vs-macos">iOS vs macOS</a>
+      <a href="#execution">Execution</a>
+      <a href="#future-iterations">Future Iterations</a>
+      <a href="#video">Video</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -120,15 +234,20 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
+      const progressBars = document.querySelectorAll('.progress-bar');
       const sections = document.querySelectorAll('main section[id]');
       const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      if (progressBars.length === 0 && navLinks.length === 0) return;
 
       function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
+        const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+
+        progressBars.forEach(bar => {
+          bar.style.width = `${scrollPercent}%`;
+        });
 
         let current = '';
         sections.forEach(section => {
@@ -136,12 +255,14 @@
           if (scrollTop >= sectionTop) current = section.id;
         });
 
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
+        if (navLinks.length) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
+            }
+          });
+        }
       }
 
       window.addEventListener('scroll', updateProgress);

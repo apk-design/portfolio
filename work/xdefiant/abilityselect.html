@@ -11,17 +11,6 @@
   <link rel="stylesheet" href="../../css/style.css" />
 
   <style>
-    /* Optional: small boost for fade-in smoothness on project pages */
-    .project-page section {
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .project-page section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
   </style>
 </head>
 
@@ -41,40 +30,76 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/xdefiant/index.html">XDefiant</a>
-      <span>›</span>
-      <span class="current">Ability Select</span>
-    </nav>
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">XDefiant: Ability Select</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#team-and-role">Team & Role</a>
+            <a href="#players-and-needs">Players</a>
+            <a href="#original-design">Original</a>
+            <a href="#stakeholder-ask">Stakeholder Ask</a>
+            <a href="#asr-evolution">Evolution</a>
+            <a href="#ux-faction-ability">UX: Faction Select</a>
+            <a href="#ui-faction-ability">UI: Faction Select</a>
+            <a href="#playtest-feedback">Feedback</a>
+            <a href="#asr-ux">ASR UX</a>
+            <a href="#asr-ui">ASR UI</a>
+            <a href="#video-demo">Video</a>
+            <a href="#future-work">Future Work</a>
+            <a href="#before-after">Before/After</a>
+            <a href="#impact-and-reflection">Impact</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
+        </div>
+      </aside>
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>XDefiant: Ability Select Restriction</h1>
-      <p class="muted">
-        In ranked modes for XDefiant, players repeatedly told us that teams
-        didn’t <em>feel</em> balanced, even when the underlying systems said they were.
-        After an internal playtest and a dedicated pro gamer review, we introduced a new
-        system: Ability Select Restriction – only one player on a team
-        can bring a given ability into a match..
-      </p>
-      <p>
-        My goal was to make this restriction feel fair, readable, and deliberate,
-        while still giving stakeholders what they wanted most from this screen:
-        big, expressive character art.
-      </p>
-      <p>
-        <i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i>
-      </p>
-      <div class="card-tags">
-        <span class="tag">Gaming</span>
-        <span class="tag">UI/UX</span>
-        <span class="tag">Feature Design</span>
-        <span class="tag">XDefiant</span>
-      </div>
-    </section>
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/xdefiant/index.html">XDefiant</a>
+          <span>›</span>
+          <span class="current">Ability Select</span>
+        </nav>
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>XDefiant: Ability Select Restriction</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/xd-asr.png" alt="XDefiant Ability Select thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                In ranked modes for XDefiant, players repeatedly told us that teams
+                didn’t <em>feel</em> balanced, even when the underlying systems said they were.
+                After an internal playtest and a dedicated pro gamer review, we introduced a new
+                system: Ability Select Restriction – only one player on a team
+                can bring a given ability into a match.
+              </p>
+              <p>
+                My goal was to make this restriction feel fair, readable, and deliberate,
+                while still giving stakeholders what they wanted most from this screen:
+                big, expressive character art.
+              </p>
+              <p>
+                <i>All behind-the-scenes content is post-sunset reconstruction and remains compliant with the NDA.</i>
+              </p>
+              <div class="card-tags">
+                <span class="tag">Gaming</span>
+                <span class="tag">UI/UX</span>
+                <span class="tag">Feature Design</span>
+                <span class="tag">XDefiant</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
     <!--BEGINNING OF CONTENT-->
@@ -476,7 +501,7 @@
 
       </article>
 
-    <section class="grid work-grid" style="margin-top:60px;">
+    <section class="grid work-grid" id="related-work" style="margin-top:60px;">
       
 
       <a class="card" href="./store.html">
@@ -539,21 +564,35 @@
     </section>
       <!--END OF CONTENT-->
 
+      </div>
+    </div>
+  </main>
 
-      <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#team-and-role">Team & Role</a>
+      <a href="#players-and-needs">Players</a>
+      <a href="#original-design">Original</a>
+      <a href="#stakeholder-ask">Stakeholder Ask</a>
+      <a href="#asr-evolution">Evolution</a>
+      <a href="#ux-faction-ability">UX: Faction Select</a>
+      <a href="#ui-faction-ability">UI: Faction Select</a>
+      <a href="#playtest-feedback">Feedback</a>
+      <a href="#asr-ux">ASR UX</a>
+      <a href="#asr-ui">ASR UI</a>
+      <a href="#video-demo">Video</a>
+      <a href="#future-work">Future Work</a>
+      <a href="#before-after">Before/After</a>
+      <a href="#impact-and-reflection">Impact</a>
+      <a href="#related-work">Related Work</a>
+    </nav>
+  </div>
 
       <!-- 🔹 Footer -->
       <footer>
@@ -562,58 +601,6 @@
 
       <!-- ✅ JS: navbar scroll + fade-in animation -->
       <script src="../../js/script.js"></script>
-
-      <script>
-        // Add fade-in on scroll for project sections 
-        document.addEventListener('DOMContentLoaded', () => {
-          const sections = document.querySelectorAll('.project-page section');
-
-          const observer = new IntersectionObserver(
-            (entries, obs) => {
-              entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add('visible');
-                  obs.unobserve(entry.target);
-                }
-              });
-            },
-            { threshold: 0.1 }
-          );
-
-          sections.forEach(section => observer.observe(section));
-        }); 
-      </script>
-
-      <script>
-        document.addEventListener('DOMContentLoaded', () => {
-          const progressBar = document.querySelector('.progress-bar');
-          const sections = document.querySelectorAll('main section[id]');
-          const navLinks = document.querySelectorAll('.anchor-nav a');
-
-          function updateProgress() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-            progressBar.style.width = `${scrollPercent}%`;
-
-            let current = '';
-            sections.forEach(section => {
-              const sectionTop = section.offsetTop - 150;
-              if (scrollTop >= sectionTop) current = section.id;
-            });
-
-            navLinks.forEach(link => {
-              link.classList.remove('active');
-              if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-              }
-            });
-          }
-
-          window.addEventListener('scroll', updateProgress);
-          updateProgress();
-        }); 
-      </script>
 
 </body>
 

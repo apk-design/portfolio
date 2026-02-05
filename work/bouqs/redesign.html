@@ -14,13 +14,84 @@
     /* Optional: small boost for fade-in smoothness on project pages */
     .project-page section {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
     .project-page section.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* Intro layout: title row plus thumbnail inline */
+    .intro-hero {
+      display: grid;
+      gap: 12px;
+    }
+
+    .intro-row {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .intro-hero .intro-meta { flex: 1; }
+
+    .intro-thumb {
+      flex: 0 0 220px;
+      margin: 0;
+    }
+
+    .intro-thumb img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      padding-top: 0;
+      margin-bottom: 0;
+    }
+
+    /* Nav positioning: sidebar on desktop, bottom nav on tablet/mobile */
+    .progress-nav.side {
+      display: none;
+      width: 100%;
+    }
+
+    .progress-nav.side .progress-track { margin-bottom: 12px; }
+
+    .progress-nav.side .nav-title {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.3;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-nav.side .anchor-nav {
+      display: grid;
+      gap: 8px;
+    }
+
+    .progress-nav.bottom { display: block; }
+
+    @media (min-width: 1025px) {
+      .progress-nav.side {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .progress-nav.bottom { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      .intro-thumb { display: none; }
+    }
+
+    /* Hide empty sidebar on mobile/tablet to remove top gap */
+    @media (max-width: 1024px) {
+      .sidebar { display: none; }
+      .bouqs-layout { margin-top: 60px; }
+      .bouqs-layout .wrap { gap: 16px; }
     }
   </style>
 </head>
@@ -40,212 +111,243 @@
     </nav>
   </header>
 
-   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
-    <nav class="breadcrumb">
-      <a href="/work.html">Work</a>
-      <span>›</span>
-      <a href="/work/bouqs/index.html">The Bouqs</a>
-      <span>›</span>
-      <span class="current">Site Redesign</span>
-    </nav>
+  <!-- 🔹 Main Project Content -->
+  <main class="container mt-nav bouqs-layout">
+    <div class="wrap">
 
-  <main class="container mt-nav project-page">
-    <section id="bouqs-redesign">
-      <header>
-        <h1>The Bouqs – E-commerce Site Redesign</h1>
-        <p>
-          I redesigned The Bouqs wedding shopping experience to modernize the brand, simplify browsing,
-          and improve accessibility while keeping the focus on lush floral photography and the couple's user experience.
-        </p>
-        <div class="card-tags">
-          <span class="tag">UI/UX</span>
-          <span class="tag">Web Design</span>
-          <span class="tag">Ecommerce</span>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar">
+        <div class="progress-nav side">
+          <h3 class="nav-title">The Bouqs — Site Redesign</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#bouqs-redesign">Overview</a>
+            <a href="#bouqs-happypath">Happy Path</a>
+            <a href="#bouqs-context">Context</a>
+            <a href="#bouqs-problem-goals">Problem & Goals</a>
+            <a href="#bouqs-homepage">Homepage</a>
+            <a href="#bouqs-collection-page">Collection Page</a>
+            <a href="#bouqs-detail-page">Detail Page</a>
+            <a href="#bouqs-quickview">Quickview</a>
+            <a href="#bouqs-key-changes">Key Changes</a>
+            <a href="#related-work">Related Work</a>
+          </nav>
         </div>
-      </header>
-      </section>
+      </aside>
 
-      <!-- Section 8: Happy Path -->
-      <section id="bouqs-happypath">
-        <h2>Happy Path Journey</h2>
+      <!-- 🔹 Project body -->
+      <div class="project-page">
+        <nav class="breadcrumb">
+          <a href="/work.html">Work</a>
+          <span>›</span>
+          <a href="/work/bouqs/index.html">The Bouqs</a>
+          <span>›</span>
+          <span class="current">Site Redesign</span>
+        </nav>
 
-        <figure>
-          <img src="/work/bouqs/assets/bouqs-rd-happypath.png"
-            alt="Diagram of the ideal wedding shopping journey for The Bouqs." />
-          <figcaption>The ideal customer flow from homepage to checkout.</figcaption>
-        </figure>
+        <section id="bouqs-redesign" class="intro-hero">
+          <h1>The Bouqs – E-commerce Site Redesign</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/bouqssite.png" alt="Bouqs site redesign thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I redesigned The Bouqs wedding shopping experience to modernize the brand, simplify browsing, and improve
+                accessibility while keeping the focus on lush floral photography and the couple's user experience.
+              </p>
+              <div class="card-tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Web Design</span>
+                <span class="tag">Ecommerce</span>
+              </div>
+            </div>
+          </div>
+        </section>
 
-        <p>
-          I mapped the ideal wedding shopping journey to understand where structure was needed and where
-          inspiration should play a stronger role. This path guided layout decisions throughout the redesign
-          and ensured each page supported a clear and confident flow toward checkout.
-        </p>
-        <p>Both versions match this UX mapping.</p>
-      </section>
+        <!-- Section 8: Happy Path -->
+        <section id="bouqs-happypath">
+          <h2>Happy Path Journey</h2>
 
+          <figure>
+            <img src="/work/bouqs/assets/bouqs-rd-happypath.png"
+              alt="Diagram of the ideal wedding shopping journey for The Bouqs." />
+            <figcaption>The ideal customer flow from homepage to checkout.</figcaption>
+          </figure>
 
-    </section>
+          <p>
+            I mapped the ideal wedding shopping journey to understand where structure was needed and where
+            inspiration should play a stronger role. This path guided layout decisions throughout the redesign
+            and ensured each page supported a clear and confident flow toward checkout.
+          </p>
+          <p>Both versions match this UX mapping.</p>
+        </section>
 
-    <!-- Section 2: Context -->
-    <section id="bouqs-context">
-      <h2>Context & Role</h2>
-      <p>
-        I was asked to explore a full-site refresh for The Bouqs wedding category. The existing experience
-        felt busy and dated, with inconsistent hierarchy and heavy use of mixed photography styles. My work
-        covered UX, visual design, and interaction design from early exploration through high fidelity concepts.
-      </p>
-    </section>
+        <!-- Section 2: Context -->
+        <section id="bouqs-context">
+          <h2>Context & Role</h2>
+          <p>
+            I was asked to explore a full-site refresh for The Bouqs wedding category. The existing experience
+            felt busy and dated, with inconsistent hierarchy and heavy use of mixed photography styles. My work
+            covered UX, visual design, and interaction design from early exploration through high fidelity concepts.
+          </p>
+        </section>
 
-    <!-- Section 3: Problem & Goals -->
-    <section id="bouqs-problem-goals">
-      <h2>Problem & Goals</h2>
-      <p>
-        Shoppers loved the floral photography but often struggled to scan large collections, compare options,
-        or understand what they were buying for meaningful events like weddings and parties. The site needed
-        stronger structure, clearer shopping paths, and more accessible design choices.
-      </p>
-      <ul>
-        <li>Improve page hierarchy to help shoppers find relevant collections quickly.</li>
-        <li>Make product cards and detail pages easier to compare at a glance.</li>
-        <li>Create a calmer, more wedding-friendly visual language.</li>
-        <li>Raise accessibility through contrast, type scale, and layout consistency.</li>
-      </ul>
-    </section>
+        <!-- Section 3: Problem & Goals -->
+        <section id="bouqs-problem-goals">
+          <h2>Problem & Goals</h2>
+          <p>
+            Shoppers loved the floral photography but often struggled to scan large collections, compare options,
+            or understand what they were buying for meaningful events like weddings and parties. The site needed
+            stronger structure, clearer shopping paths, and more accessible design choices.
+          </p>
+          <ul>
+            <li>Improve page hierarchy to help shoppers find relevant collections quickly.</li>
+            <li>Make product cards and detail pages easier to compare at a glance.</li>
+            <li>Create a calmer, more wedding-friendly visual language.</li>
+            <li>Raise accessibility through contrast, type scale, and layout consistency.</li>
+          </ul>
+        </section>
 
-    <!-- Section 4: Homepage Evolution -->
-    <section id="bouqs-homepage">
-      <h2>Homepage – Original to V1 and V2</h2>
+        <!-- Section 4: Homepage Evolution -->
+        <section id="bouqs-homepage">
+          <h2>Homepage – Original to V1 and V2</h2>
 
-      <figure>
-        <img src="/work/bouqs/assets/bouqs-rd-homepage.png"
-          alt="Original, V1, and V2 homepage designs for The Bouqs wedding experience." />
-        <figcaption>Homepage progression from original to V1 exploration to V2 final direction.</figcaption>
-      </figure>
+          <figure>
+            <img src="/work/bouqs/assets/bouqs-rd-homepage.png"
+              alt="Original, V1, and V2 homepage designs for The Bouqs wedding experience." />
+            <figcaption>Homepage progression from original to V1 exploration to V2 final direction.</figcaption>
+          </figure>
 
-      <p>
-        The original homepage felt cluttered, with competing modules and promotional blocks that made it
-        hard to understand the wedding offering. V1 introduced a calmer editorial layout with featured
-        collections and storytelling through photography. V2 pushed this further, using a more immersive hero,
-        clearer actions, and structured sections that highlight collections, values, and inspiration.
-      </p>
-    </section>
+          <p>
+            The original homepage felt cluttered, with competing modules and promotional blocks that made it
+            hard to understand the wedding offering. V1 introduced a calmer editorial layout with featured
+            collections and storytelling through photography. V2 pushed this further, using a more immersive hero,
+            clearer actions, and structured sections that highlight collections, values, and inspiration.
+          </p>
+        </section>
 
-    <!-- Section 5: Collection Page Evolution -->
-    <section id="bouqs-collection-page">
-      <h2>Collection Page – Original to V1 and V2</h2>
+        <!-- Section 5: Collection Page Evolution -->
+        <section id="bouqs-collection-page">
+          <h2>Collection Page – Original to V1 and V2</h2>
 
-      <figure>
-        <img src="/work/bouqs/assets/bouqs-rd-collectionpage.png"
-          alt="Original, V1, and V2 collection page designs for The Bouqs wedding category." />
-        <figcaption>The evolution of the collection page, moving from long unstructured grids to curated, filterable
-          layouts.</figcaption>
-      </figure>
+          <figure>
+            <img src="/work/bouqs/assets/bouqs-rd-collectionpage.png"
+              alt="Original, V1, and V2 collection page designs for The Bouqs wedding category." />
+            <figcaption>The evolution of the collection page, moving from long unstructured grids to curated, filterable
+              layouts.</figcaption>
+          </figure>
 
-      <p>
-        The original collection page was extremely long and hard to scan, with inconsistent image ratios and
-        very little hierarchy. V1 focused on adding structure, spacing, and more consistent card design.
-        V2 reorganized the experience around curated collections with brief descriptions and a clean sidebar
-        filter. The result feels calmer and more purposeful, which supports decision making for weddings.
-      </p>
-    </section>
+          <p>
+            The original collection page was extremely long and hard to scan, with inconsistent image ratios and
+            very little hierarchy. V1 focused on adding structure, spacing, and more consistent card design.
+            V2 reorganized the experience around curated collections with brief descriptions and a clean sidebar
+            filter. The result feels calmer and more purposeful, which supports decision making for weddings.
+          </p>
+        </section>
 
-    <!-- Section 6: Detail Page Evolution -->
-    <section id="bouqs-detail-page">
-      <h2>Detail Page – Original to V1 and V2</h2>
+        <!-- Section 6: Detail Page Evolution -->
+        <section id="bouqs-detail-page">
+          <h2>Detail Page – Original to V1 and V2</h2>
 
-      <figure>
-        <img src="/work/bouqs/assets/bouqs-rd-detailpage.png"
-          alt="Original, V1, and V2 product detail page designs for The Bouqs." />
-        <figcaption>Detail page improvements focusing on clarity, hierarchy, and inspiration.</figcaption>
-      </figure>
+          <figure>
+            <img src="/work/bouqs/assets/bouqs-rd-detailpage.png"
+              alt="Original, V1, and V2 product detail page designs for The Bouqs." />
+            <figcaption>Detail page improvements focusing on clarity, hierarchy, and inspiration.</figcaption>
+          </figure>
 
-      <p>
-        The original detail page hid important information below the fold and made the main photo feel secondary.
-        V1 reorganized the structure so the hero image, description, and key actions live together at the top.
-        V2 refined the layout further with an immersive photo, simplified info hierarchy, and lifestyle imagery
-        that helps shoppers picture the arrangements in real weddings.
-      </p>
-    </section>
+          <p>
+            The original detail page hid important information below the fold and made the main photo feel secondary.
+            V1 reorganized the structure so the hero image, description, and key actions live together at the top.
+            V2 refined the layout further with an immersive photo, simplified info hierarchy, and lifestyle imagery
+            that helps shoppers picture the arrangements in real weddings.
+          </p>
+        </section>
 
-    <!-- Section 7: Quickview -->
-    <section id="bouqs-quickview">
-      <h2>Quickview – V1 and V2</h2>
+        <!-- Section 7: Quickview -->
+        <section id="bouqs-quickview">
+          <h2>Quickview – V1 and V2</h2>
 
-      <figure>
-        <img src="/work/bouqs/assets/bouqs-rd-quickview.png"
-          alt="Comparison of V1 and V2 quickview designs for The Bouqs wedding experience." />
-        <figcaption>Quickview redesign that supports fast decisions without losing context.</figcaption>
-      </figure>
+          <figure>
+            <img src="/work/bouqs/assets/bouqs-rd-quickview.png"
+              alt="Comparison of V1 and V2 quickview designs for The Bouqs wedding experience." />
+            <figcaption>Quickview redesign that supports fast decisions without losing context.</figcaption>
+          </figure>
 
-      <p>
-        The first quickview concept displayed the whole collection but lacked clarity around what the shopper
-        could purchase. The updated version mirrors the simplicity of the detail page, with a clear hero image,
-        concise options, and a straightforward add to cart flow.
-      </p>
-    </section>
+          <p>
+            The first quickview concept displayed the whole collection but lacked clarity around what the shopper
+            could purchase. The updated version mirrors the simplicity of the detail page, with a clear hero image,
+            concise options, and a straightforward add to cart flow.
+          </p>
+        </section>
 
-    <section id="bouqs-key-changes">
-      <h2>Key UX &amp; Visual Changes from V1 to V2</h2>
-      <p>
-        Between the first and second concept, I systematically refined the experience to be more accessible, modern, and
-        task-focused:
-      </p>
-      <ul>
-        <li><strong>Stronger hierarchy:</strong> Headings, subheads, and cards now feel distinct, making scan paths more
-          predictable.</li>
-        <li><strong>Purposeful color:</strong> Richer greens highlight CTAs and section headers with better contrast.
-        </li>
-        <li><strong>Improved card design:</strong> Consistent imagery, precise typography, and more breathing room
-          reduce noise.</li>
-        <li><strong>Accessibility upgrades:</strong> Raised contrast, increased base font sizes, and simplified overlays
-          on photography.</li>
-        <li><strong>Clear CTAs:</strong> Prominent “Shop the Collection” and “Build Your Own Bouquet” buttons guide the
-          next step.</li>
-        <li><strong>Journey separation:</strong> Inspiration content is distinct from shopping tasks to keep the flow
-          simple but delightful.</li>
-      </ul>
-    </section>
+        <section id="bouqs-key-changes">
+          <h2>Key UX &amp; Visual Changes from V1 to V2</h2>
+          <p>
+            Between the first and second concept, I systematically refined the experience to be more accessible, modern, and
+            task-focused:
+          </p>
+          <ul>
+            <li><strong>Stronger hierarchy:</strong> Headings, subheads, and cards now feel distinct, making scan paths more
+              predictable.</li>
+            <li><strong>Purposeful color:</strong> Richer greens highlight CTAs and section headers with better contrast.
+            </li>
+            <li><strong>Improved card design:</strong> Consistent imagery, precise typography, and more breathing room
+              reduce noise.</li>
+            <li><strong>Accessibility upgrades:</strong> Raised contrast, increased base font sizes, and simplified overlays
+              on photography.</li>
+            <li><strong>Clear CTAs:</strong> Prominent “Shop the Collection” and “Build Your Own Bouquet” buttons guide the
+              next step.</li>
+            <li><strong>Journey separation:</strong> Inspiration content is distinct from shopping tasks to keep the flow
+              simple but delightful.</li>
+          </ul>
+        </section>
 
+        <section class="grid work-grid" id="related-work" style="margin-top:60px;">
 
-    <section class="grid work-grid" style="margin-top:60px;">
+          <a href="/work/bouqs/quiz.html" class="card">
+            <div class="thumb" aria-label="Project 1"
+              style="background-image: url(/assets/thumbnails/bouqsquiz.png); background-size: cover; background-position: center;">
+            </div>
+            <h3>The Bouqs: Preference Quiz</h3>
+            <p>I introduced a style quiz to support the redesign of The Bouqs wedding experience. I designed a guided
+              questionnaire that captures a couple's aesthetic and turns it into a more intuitive and personalized shopping
+              journey.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Ecommerce</span>
+              <span class="tag">Product Design</span>
+              <span class="tag">Web Design</span>
+            </div>
+          </a>
+        </section>
 
-      <a href="/work/bouqs/quiz.html" class="card">
-        <div class="thumb" aria-label="Project 1"
-          style="background-image: url(/assets/thumbnails/bouqsquiz.png); background-size: cover; background-position: center;">
-        </div>
-        <h3>The Bouqs: Preference Quiz</h3>
-        <p>I introduced a style quiz to support the redesign of The Bouqs wedding experience. I designed a guided
-          questionnaire that captures a couple's aesthetic and turns it into a more intuitive and personalized shopping
-          journey.
-        </p>
-        <div class="card-tags">
-          <span class="tag">Ecommerce</span>
-          <span class="tag">Product Design</span>
-          <span class="tag">Web Design</span>
-        </div>
-      </a>
-    </section>
-
-
-
-
+      </div>
+    </div>
   </main>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#bouqs-redesign">Overview</a>
+      <a href="#bouqs-happypath">Happy Path</a>
+      <a href="#bouqs-context">Context</a>
+      <a href="#bouqs-problem-goals">Problem & Goals</a>
+      <a href="#bouqs-homepage">Homepage</a>
+      <a href="#bouqs-collection-page">Collection Page</a>
+      <a href="#bouqs-detail-page">Detail Page</a>
+      <a href="#bouqs-quickview">Quickview</a>
+      <a href="#bouqs-key-changes">Key Changes</a>
+      <a href="#related-work">Related Work</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -278,15 +380,19 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
+      const progressBars = document.querySelectorAll('.progress-bar');
       const sections = document.querySelectorAll('main section[id]');
       const navLinks = document.querySelectorAll('.anchor-nav a');
+
+      if (progressBars.length === 0 && navLinks.length === 0) return;
 
       function updateProgress() {
         const scrollTop = window.scrollY;
         const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
+        const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+        progressBars.forEach(bar => {
+          bar.style.width = `${scrollPercent}%`;
+        });
 
         let current = '';
         sections.forEach(section => {
@@ -294,12 +400,14 @@
           if (scrollTop >= sectionTop) current = section.id;
         });
 
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
+        if (navLinks.length) {
+          navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+              link.classList.add('active');
+            }
+          });
+        }
       }
 
       window.addEventListener('scroll', updateProgress);

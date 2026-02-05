@@ -227,6 +227,55 @@ const observer = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.card').forEach(el=>observer.observe(el));
 
 // ---------------------------------------------------------------------------
+// Project page fade-in + progress/anchor nav
+// ---------------------------------------------------------------------------
+const initProjectEffects = () => {
+  const projectSections = document.querySelectorAll('.project-page section');
+  if (projectSections.length) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    projectSections.forEach(sec => io.observe(sec));
+  }
+
+  const progressBars = document.querySelectorAll('.progress-bar');
+  const navLinks = document.querySelectorAll('.anchor-nav a');
+  if (progressBars.length === 0 && navLinks.length === 0) return;
+
+  const sectionsWithId = document.querySelectorAll('main section[id]');
+
+  const updateProgress = () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const scrollPercent = docHeight > 0 ? Math.min((scrollTop / docHeight) * 100, 100) : 0;
+    progressBars.forEach(bar => { bar.style.width = `${scrollPercent}%`; });
+
+    let current = '';
+    sectionsWithId.forEach(section => {
+      const sectionTop = section.offsetTop - 150;
+      if (scrollTop >= sectionTop) current = section.id;
+    });
+
+    if (navLinks.length) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }
+  };
+
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+};
+
+// ---------------------------------------------------------------------------
 // Before/After Slider
 // ---------------------------------------------------------------------------
 
@@ -314,4 +363,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initTranslatePlacement();
   initGoogleTranslate();
+  initProjectEffects();
 });

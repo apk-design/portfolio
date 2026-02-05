@@ -14,7 +14,7 @@
     /* Optional: small boost for fade-in smoothness on project pages */
     .project-page section {
       opacity: 0;
-      transform: translateY(10px);
+      transform: translateY(30px);
       transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
@@ -41,25 +41,63 @@
   </header>
 
   <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav project-page">
+  <main class="container mt-nav case-layout">
+    <div class="wrap">
 
-    <!-- Section 1: Intro -->
-    <section id="intro">
-      <h1>Designing an On-Site Job Application & Safety Assessment Platform</h1>
-      <p class="muted">
-        I designed and built an internal hiring system for a venture capital firm’s portfolio companies, where frontline
-        roles see constant foot traffic. I wanted walk-in candidates to have a simple, fast way to apply on-site, so I
-        created a streamlined application flow and incorporated a required safety quiz.
-      </p>
-      <div class="card-tags">
-        <span class="tag">UI/UX</span>
-        <span class="tag">Product Design</span>
-        <span class="tag">Tablet App</span>
-      </div>
-    </section>
+      <!-- 🔹 Sticky Side Progress + Anchor Navigation (desktop) -->
+      <aside class="sidebar sidebar-hidden">
+        <div class="progress-nav side">
+          <h3 class="nav-title">Olliboard</h3>
+          <div class="progress-track">
+            <div class="progress-bar"></div>
+          </div>
+
+          <nav class="anchor-nav">
+            <a href="#intro">Overview</a>
+            <a href="#hero">Hero</a>
+            <a href="#project-brief">Project Brief</a>
+            <a href="#team-role">Team & Role</a>
+            <a href="#personas">Personas</a>
+            <a href="#overview">Overview Flow</a>
+            <a href="#signin">Sign-in</a>
+            <a href="#locations">Locations</a>
+            <a href="#personal-info">Personal Info</a>
+            <a href="#education">Education</a>
+            <a href="#availability">Availability</a>
+            <a href="#experience">Experience</a>
+            <a href="#safety-video">Safety Video</a>
+            <a href="#safety-quiz">Safety Quiz</a>
+            <a href="#outcomes">Outcomes</a>
+            <a href="#impact">Impact</a>
+            <a href="#reflection">Reflection</a>
+          </nav>
+        </div>
+      </aside>
+
+      <div class="project-page">
+
+        <!-- Section 1: Intro -->
+        <section id="intro" class="intro-hero">
+          <h1>Designing an On-Site Job Application & Safety Assessment Platform</h1>
+          <div class="intro-row">
+            <figure class="intro-thumb">
+              <img src="/assets/thumbnails/kraf-olliboard.png" alt="Olliboard case study thumbnail">
+            </figure>
+            <div class="intro-meta">
+              <p class="muted">
+                I designed and built an internal hiring system for a venture capital firm’s portfolio companies, where
+                frontline roles see constant foot traffic. I wanted walk-in candidates to have a simple, fast way to
+                apply on-site, so I created a streamlined application flow and incorporated a required safety quiz.
+              </p>
+              <div class="card-tags">
+                <span class="tag">UI/UX</span>
+                <span class="tag">Product Design</span>
+                <span class="tag">Tablet App</span>
+              </div>
+            </div>
+          </div>
+        </section>
     <article class="case-study-ollliboard">
-
-      <article class="case-study-ollliboard">
 
         <!-- 1. HERO / WELCOME -->
         <section id="hero">
@@ -237,24 +275,36 @@
 
       </article>
 
+      </div>
+    </div>
   </main>
 
-  </main>
+  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+  <div class="progress-nav bottom">
+    <div class="progress-track">
+      <div class="progress-bar"></div>
+    </div>
 
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation 
-  <div class="progress-nav bottom"> 
-    <div class="progress-track"> 
-      <div class="progress-bar"></div> 
-    </div> 
-
-    <nav class="anchor-nav"> 
-      <a href="#intro">Intro</a> 
-      <a href="#background">Background</a> 
-      <a href="#plan">The Plan</a> 
-      <a href="#process">Design Process</a> 
-      <a href="/portfolio/work/ACNH/ACNH-artchecklist.html">Art Checklist Site</a> 
-    </nav> 
-  </div> -->
+    <nav class="anchor-nav">
+      <a href="#intro">Overview</a>
+      <a href="#hero">Hero</a>
+      <a href="#project-brief">Project Brief</a>
+      <a href="#team-role">Team & Role</a>
+      <a href="#personas">Personas</a>
+      <a href="#overview">Overview Flow</a>
+      <a href="#signin">Sign-in</a>
+      <a href="#locations">Locations</a>
+      <a href="#personal-info">Personal Info</a>
+      <a href="#education">Education</a>
+      <a href="#availability">Availability</a>
+      <a href="#experience">Experience</a>
+      <a href="#safety-video">Safety Video</a>
+      <a href="#safety-quiz">Safety Quiz</a>
+      <a href="#outcomes">Outcomes</a>
+      <a href="#impact">Impact</a>
+      <a href="#reflection">Reflection</a>
+    </nav>
+  </div>
 
   <!-- 🔹 Footer -->
   <footer>
@@ -263,58 +313,6 @@
 
   <!-- ✅ JS: navbar scroll + fade-in animation -->
   <script src="../../js/script.js"></script>
-
-  <script>
-    // Add fade-in on scroll for project sections 
-    document.addEventListener('DOMContentLoaded', () => {
-      const sections = document.querySelectorAll('.project-page section');
-
-      const observer = new IntersectionObserver(
-        (entries, obs) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('visible');
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1 }
-      );
-
-      sections.forEach(section => observer.observe(section));
-    }); 
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const progressBar = document.querySelector('.progress-bar');
-      const sections = document.querySelectorAll('main section[id]');
-      const navLinks = document.querySelectorAll('.anchor-nav a');
-
-      function updateProgress() {
-        const scrollTop = window.scrollY;
-        const docHeight = document.body.scrollHeight - window.innerHeight;
-        const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-        progressBar.style.width = `${scrollPercent}%`;
-
-        let current = '';
-        sections.forEach(section => {
-          const sectionTop = section.offsetTop - 150;
-          if (scrollTop >= sectionTop) current = section.id;
-        });
-
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-          }
-        });
-      }
-
-      window.addEventListener('scroll', updateProgress);
-      updateProgress();
-    }); 
-  </script>
 
 </body>
 
