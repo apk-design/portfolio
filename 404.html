@@ -73,19 +73,19 @@
     <!-- 🔹 Navbar (matches main site) -->
     <header class="navbar">
         <div class="left">
-            <a href="../../index.html">
-                <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+            <a href="/index.html">
+                <img src="/assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
             </a>
         </div>
         <nav class="center">
-            <a class="nav-btn" href="../../index.html">Home</a>
-            <a class="nav-btn" href="../../resume.html">Resume</a>
-            <a class="nav-btn" href="../../work.html">Work</a>
+            <a class="nav-btn" href="/index.html">Home</a>
+            <a class="nav-btn" href="/resume.html">Resume</a>
+            <a class="nav-btn" href="/work.html">Work</a>
         </nav>
     </header>
 
     <!-- 🔹 Main Project Content -->
-    <main class="container mt-nav project-page">
+    <main class="container mt-nav">
         <section class="lost-panel">
             <h1>Hmmm. This doesn't seem right...</h1>
           <figure class="lost-figure">
@@ -105,7 +105,7 @@
     </footer>
 
     <!-- ✅ JS: navbar scroll + fade-in animation -->
-    <script src="../../js/script.js"></script> 
+    <script src="/js/script.js"></script> 
 
     <script>
       const hoverImg = document.querySelector('.hover-image');
@@ -125,55 +125,11 @@
     </script>
 
     <script>
-        // Add fade-in on scroll for project sections 
+        // Simple hover swap for the illustration and button
         document.addEventListener('DOMContentLoaded', () => {
-            const sections = document.querySelectorAll('.project-page section');
-
-            const observer = new IntersectionObserver(
-                (entries, obs) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            obs.unobserve(entry.target);
-                        }
-                    });
-                },
-                { threshold: 0.1 }
-            );
-
-            sections.forEach(section => observer.observe(section));
-        }); 
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const progressBar = document.querySelector('.progress-bar');
-            const sections = document.querySelectorAll('main section[id]');
-            const navLinks = document.querySelectorAll('.anchor-nav a');
-
-            function updateProgress() {
-                const scrollTop = window.scrollY;
-                const docHeight = document.body.scrollHeight - window.innerHeight;
-                const scrollPercent = Math.min((scrollTop / docHeight) * 100, 100);
-                progressBar.style.width = `${scrollPercent}%`;
-
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (scrollTop >= sectionTop) current = section.id;
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${current}`) {
-                        link.classList.add('active');
-                    }
-                });
-            }
-
-            window.addEventListener('scroll', updateProgress);
-            updateProgress();
-        }); 
+            const sections = document.querySelectorAll('.lost-panel');
+            if (sections.length) sections.forEach(s => s.classList.add('visible'));
+        });
     </script>
 
 </body>
