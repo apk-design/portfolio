@@ -2,236 +2,410 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>North Star Wellness Resources | Amber Kumar</title>
-  <link rel="icon" type="image/png" href="../../assets/amber-logo.png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>North Star Wellness Resources | Amber Kumar</title>
+    <link rel="icon" type="image/png" href="../../assets/amber-logo.png">
 
-  <!-- ✅ Main site styles -->
-  <link rel="stylesheet" href="../../css/style.css" />
+    <!-- ✅ Main site styles -->
+    <link rel="stylesheet" href="../../css/style.css" />
 
-  <style>
-  </style>
+    <style>
+        /* Page-specific: simple lightbox for all images */
+        .lightbox-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            padding: 24px;
+        }
+
+        .lightbox-backdrop.active {
+            display: flex;
+        }
+
+        .lightbox-backdrop img {
+            max-width: 90vw;
+            max-height: 90vh;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+    
+        .video-wrapper iframe,
+        .video-wrapper video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+        }
+    </style>
 </head>
 
 <body>
-  <!-- 🔹 Navbar (matches main site) -->
-  <header class="navbar">
-    <div class="left">
-      <a href="../../index.html">
-        <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
-      </a>
-    </div>
-    <nav class="center">
-      <a class="nav-btn" href="../../index.html">Home</a>
-      <a class="nav-btn" href="../../resume.html">Resume</a>
-      <a class="nav-btn" href="../../work.html">Work</a>
-    </nav>
-  </header>
+    <!-- 🔹 Navbar (matches main site) -->
+    <header class="navbar">
+        <div class="left">
+            <a href="../../index.html">
+                <img src="../../assets/logo_amberkumar.svg" alt="Amber Kumar Logo" class="logo" />
+            </a>
+        </div>
+        <nav class="center">
+            <a class="nav-btn" href="../../index.html">Home</a>
+            <a class="nav-btn" href="../../resume.html">Resume</a>
+            <a class="nav-btn" href="../../work.html">Work</a>
+        </nav>
+    </header>
 
-  <!-- 🔹 Main Project Content -->
-  <main class="container mt-nav case-layout">
-    <div class="wrap">
-      <aside class="sidebar sidebar-hidden">
-        <div class="progress-nav side">
-          <h3 class="nav-title">North Star Wellness</h3>
-          <div class="progress-track">
+    <!-- 🔹 Main Project Content -->
+    <main class="container mt-nav case-layout">
+        <div class="wrap">
+            <aside class="sidebar sidebar-hidden">
+                <div class="progress-nav side">
+                    <h3 class="nav-title">North Star Wellness</h3>
+                    <div class="progress-track">
+                        <div class="progress-bar"></div>
+                    </div>
+                    <nav class="anchor-nav">
+                        <a href="#intro">Overview</a>
+                        <a href="#research">Research</a>
+                        <a href="#approach">Approach</a>
+                        <a href="#branding">Branding & Visuals</a>
+                        <a href="#dark-mode">Why Dark Mode</a>
+                        <a href="#outcome">Outcome</a>
+                        <a href="#mistakes">My Mistakes</a>
+                        <a href="#redemption">Redeeming Myself</a>
+                    </nav>
+                </div>
+            </aside>
+
+            <div class="project-page">
+                <nav class="breadcrumb">
+                    <a href="/work.html">Work</a>
+                    <span>›</span>
+                    <span class="current">North Star Wellness Resources</span>
+                </nav>
+
+                <!-- Intro -->
+                <section id="intro" class="intro-hero">
+                    <h1>North Star Wellness Resources</h1>
+                    <div class="intro-row">
+                        <figure class="intro-thumb">
+                            <img src="/assets/thumbnails/northstar-thumbnail.png" alt="North Star Wellness thumbnail">
+                        </figure>
+                        <div class="intro-meta">
+                            <p class="muted">
+                                A 24-hour design exercise for an interview brief: create a responsible, empathetic
+                                experience for people
+                                seeking mental health or substance-use resources. The challenge was to prioritize what
+                                truly matters when
+                                time and information are limited.
+                            </p>
+                            <div class="card-tags">
+                                <span class="tag">Healthcare</span>
+                                <span class="tag">UX</span>
+                                <span class="tag">Branding</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="research">
+                    <h2>Research</h2>
+                    <p>Though I did not get many resources for this project, I was very kindly given 4 comparison sites
+                        for this field. So naturally, I began with what I know - doing a qualitative analysis!</p>
+
+
+                    <figure>
+                        <img src="/work/northstar/assets/ypm-logoassessments.png"
+                            alt="Logo Assessments of the sites provided" style="width:100%">
+                        <figcaption>As I was asked to create a logo and branding for my fictional site, I worked on trying to understand how these brands were curated.
+                        </figcaption>
+                    </figure>
+                    <figure>
+                        <img src="/work/northstar/assets/ypm-SiteAssessments.png" alt="Massive site assessment"
+                            style="width:100%">
+                        <figcaption>This is a massive site assessment of the four sites that I was provided as reference. I
+                            wanted to see what worked and what didn't, and how I could improve my own work.
+                        </figcaption>
+                    </figure>
+
+                    <figure>
+                        <img src="/work/northstar/assets/ypm-site-content analysis.png"
+                            alt="Site content audit showing volume of existing wellness content"
+                            style="width:100%">
+                        <figcaption>Quick content audit to understand the placement of content in existing wellness resources.
+                        </figcaption>
+                    </figure>
+                    <figure>
+                        <img src="/work/northstar/assets/homepage-analysis-chart.png"
+                            alt="Dark-mode design analysis showing hierarchy" style="width:100%">
+                        <figcaption>A color-coded chart (don't worry, it's colorblind friendly!) to have a 'vibe map' of
+                            the reference sites.</figcaption>
+                    </figure>
+
+
+
+                </section>
+                <section id="approach">
+                    <h2>Approach</h2>
+                    <p>
+                        Looking for help with mental health or substance use is rarely neutral. It usually comes with
+                        fear,
+                        hesitation, and a lot of social baggage. As I reviewed existing treatment websites, I noticed a
+                        pattern of
+                        bright visuals, urgency-heavy copy, and constant pressure to “act now.”
+                    </p>
+                    <p>
+                        That approach might work for conversions, but it can also make an already stressful moment feel
+                        louder and
+                        more overwhelming. I wanted to see what it would look like to do the opposite.
+                    </p>
+
+                </section>
+
+                <section id="branding">
+                    <h2>Branding, Visual Direction, and the Birth of <i>North Star Wellness Resources</i></h2>
+                    <p>While brainstorming for this project, I was between a few different names. Phoenix,
+                        <i>Kintsugi</i>, Anchor, Lighthouse - with the implication being changing your life or
+                        providing stability if you're knee deep in chaos.</p>
+                    <p>
+                        I ended up settling on 'North Star', as the concept and function of the titular term is
+                        built around orientation, not transformation. The brand doesn’t promise clarity or change.
+                        It’s meant to feel like a steady reference point for people who aren’t sure what their
+                        next step is yet. I chose Wellness Resources as it had the propensity to cover a lot of
+                        different problem areas.
+                    </p>
+                    <div class="video-wrapper">
+                        <iframe src="https://player.vimeo.com/video/1163233860?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="logo-evolution"></iframe>
+                    </div>
+                    <figure>
+                        <img src="/work/northstar/assets/northstar-logo-process.png"
+                            alt="The evolution of a single square into the North Star logo tile." style="width:100%">
+                    </figure>
+                    <p>
+                        That idea shaped everything from the name and logo to the overall visual language. I kept
+                        the branding calm, aiming for something that felt approachable without being performative.
+                    </p>
+
+                    <figure>
+                        <img src="/work/northstar/assets/northstar-styleguide.png"
+                            alt="North Star style guide showing logos, typography, colors, and components"
+                            style="width:100%">
+                        <figcaption>Style guide covering logos, text treatments, colors, and core components. Garfield and Snoopy are present for the purpose of fun and for better understanding of component usage.
+                        </figcaption>
+                    </figure>
+
+                </section>
+
+                <section id="dark-mode">
+                    <h2>Dark Mode, my Personal ☆ North Star ☆</h2>
+                    <p>
+                        The site uses a predominantly dark interface on purpose. For a lot of people, especially those
+                        dealing with
+                        stigma or fear around needing help, visibility itself can feel uncomfortable.
+                    </p>
+                    <p>
+                        The darker UI:
+                    </p>
+                    <ul>
+                        <li>Feels more private and contained</li>
+                        <li>Works better for late-night or discreet browsing</li>
+                    </ul>
+                    <p>
+                        This was as much of an aesthetic choice as much as an emotional one. The goal was to lower
+                        friction and make it
+                        easier for someone to stay on the site long enough to actually absorb the information. I did
+                        want to ensure that for those who were browsing in front of others, that it remained an intimate
+                        and optimistic experience.
+                    </p>
+                    <figure>
+                        <img src="/work/northstar/assets/northstarhomepage.png"
+                            alt="North Star Wellness homepage concept" style="width:100%">
+                        <figcaption>Extremely basic homepage concept: restrained palette, calm typography, and clear
+                            hierarchy for late-night browsing.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="outcome">
+                    <h2>The 24-hour Outcome</h2>
+                    <p>
+                        Within the 24-hour constraint, this concept focuses on emotional safety, clear hierarchy, and
+                        user autonomy.
+                        Though this is not a real site, even in an imaginary context, I would rather help a vulnerable
+                        individual
+                        feel oriented enough to decide what they want to do next, when they’re ready. That being said, I
+                        ran into some issues while on this project, that I will go into in the next section.
+                    </p>
+                </section>
+
+                <section id="video" class="row">
+                    <h2>Video Demo for Desktop</h2>
+                    <div class="video-wrapper">
+                        <iframe src="https://player.vimeo.com/video/1163234893?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                            frameborder="0"
+                            allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            title="North Star desktop walkthrough"></iframe>
+                        <p>This shows the walkthrough and small animations I had made for the desktop view of what I had
+                            accomplished during the given time limit of this project.</p>
+                    </div>
+                </section>
+
+                <section><h2>Attention!</h2>
+<p>Everything past this point was created after the time limit for this assignment had ended.</p></section>
+
+                <section id="mistakes">
+                    <h2>Technical Difficulties + My Mistakes</h2>
+                    <p>Or, the tale of how I put too many eggs in a single basket, and how sometimes, the basket is me.
+                        Weird analogy, but I promise it will make sense if you read further.
+                    </p>
+                    <figure>
+                        <img src="/work/northstar/assets/figmawhy.png" alt="figma has crashed " style="width:100%">
+                        <figcaption>I am not even joking, this happened <i>4 different times</i> in the span of 10
+                            minutes.</figcaption>
+                    </figure>
+                    <h3>Figma Makes Me Eat My Words</h3>
+                    <p>My first mistake was to rest far too much on Figma as my main graphics program. While I do
+                        think I am pretty talented in Figma, there are two major things I would typically <i>not</i>
+                        use it for - those being graphic / logo creation, and typesetting.</p>
+                    <p>Arguably, the most important thing I was not aware of whatsoever is that Figma will start to slow
+                        down if you use more than 2GB on a free plan. For some context, I have created branding and UX +
+                        UI flows for a start up, very literally ~1000 screens of work for local companies, not to
+                        mention all the various kanban boards, personal sprints, art ideas, and so much more content on
+                        my free figma plan. </p>
+                    <p>Foolishly, even as the program got slower, I carried on, knowing that a crash was coming, just
+                        not knowing when. And then it did, 4 consecutive times. And then again, to the point where I was
+                        having to cmd + opt + esc Figma every 15 minutes or so. Pasting a group took a whopping 30
+                        seconds. In my own hubris to use the program to the fullest, I ended up impairing its usefulness
+                        entirely. </p>
+                    <figure>
+                        <img src="/work/northstar/assets/figmaruinsmylife.png"
+                            alt="bunny figma runs piledriver through kitty me " style="width:100%">
+                        <figcaption>This is what the last couple hours felt like. </figcaption>
+
+
+                        <h3>The Time Limit Somehow Gets Further Limited</h3>
+                        <p>When the wonderful HR person spoke to me regarding the time limit, she emphasized that I
+                            should make sure that I have enough time to work on this. While on the phone, I assured her
+                            that I totally had enough time, and I thought I was correct until my calender decided to
+                            finally make time for high prio stuff.</p>
+                        <p>"Look, the Doctor finally got back to you, and wow, she has a slot for tomorrow now - the
+                            next time you can see her is in April! Look, Mom called you in the middle of the day to
+                            discuss something important! Look, the one interview you had scheduled for next week
+                            actually won't happen unless you take the 2 hour call today!"</p>
+                        <p>My 24 hour time limit became 22, 20, 18, and then 16, not counting the 8 I generally
+                            (optimistically) should have for sleep.</p>
+                        <p>My previously clear Friday became dense with activity, and of course, with Figma moving at a
+                            snail's pace, my window was shrinking.</p>
+                        <p>Just to emphasize, I am not asking for sympathy here, more so acknowledging the mistake that
+                            I made. In an effort to be seen as reliable by everyone, I had inadvertently spread myself
+                            far too thin. And sadly, I didn't feel like I was there for any of it.</p>
+                        <p>I forgot to ask my Doctor questions, I didn't reassure my mom's fears, I was nervous during
+                            my interview, and while ultimately, I am happy about what I made with a few hours, it does
+                            not contain everything I would have done had I had enough time. </p>
+
+                        <h3>Miscommunication Breakdown</h3>
+                        <p>I think the worst thing that I did is not being forthright about not having enough time. It
+                            was probably the main thing I had felt that I had control over, but, I didn't wish to make
+                            excuses on the day of as to why it wasn't in, so I tried to roll with the punches.</p>
+                            <img src="/work/northstar/assets/githubfailsme.png"
+                            alt="github error message " style="width:100%">
+                        <figcaption>Seemingly, Github takes the opportunity to kick me while I am down.</figcaption>
+                        <p>While struggling to send everything over neatly, Gmail began giving me its typical, 'ah,
+                            these files are too big, better luck next time 'error message, around 10 minutes before the
+                            due date. I began to panic, and made a Google Drive folder and tossed everything I thought I
+                            had ready into it, and emailed it over at 4:59 - phew. I caught my breath for a few minutes,
+                            and checked back to see that I received a reply - yay!
+                        </p>
+                        <p>Oh wait, no yay. Oh my gosh, I locked it and sent it over? Okay, I will unlock it, but let me
+                            see if everything pushed to the website. Seems like everything but the videos? Okay cool,
+                            let me confirm with the HR lead that she saw the website. Yay, she sent me an email saying
+                            she saw what was in the screenshot I sent her. Oh wait, she actually did not say that at
+                            all, she said that she just saw the screenshot itself that I had attached. Oh. My. God. </p>
+                        <div class="video-wrapper">
+                            <iframe src="https://player.vimeo.com/video/1163234642?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                                frameborder="0"
+                                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                title="proof clip"></iframe>
+                        </div>
+        
+                            <p>The worst part was that I had all the files. Everything that was mandatory were
+                                    things I had already had, I just couldn't get it to export correctly and have Figma
+                                    stay open for long enough.</p>
+                        
+                        <h3>I began to crave redemption.</h3>   
+                        <p>The very kind HR professional had emphasized that she wanted to ensure that I would have
+                            enough time to make:
+                        <ul>- Logo and Branding</ul>
+                        <ul>- Desktop Mockup</ul>
+                        <ul>- Rationale</ul>
+                        And while on paper, I did deliver, I really did believe I could do better.
+                        </p>
+                        <p>And so, feeling like I had it in me, and that I like to make sure I am able to put out work that I feel proud of, I gave myself 4 hours to improve what I could offer. </p>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
+    <div class="progress-nav bottom">
+        <div class="progress-track">
             <div class="progress-bar"></div>
-          </div>
-          <nav class="anchor-nav">
+        </div>
+
+        <nav class="anchor-nav">
             <a href="#intro">Overview</a>
             <a href="#approach">Approach</a>
             <a href="#branding">Branding & Visuals</a>
             <a href="#dark-mode">Why Dark Mode</a>
             <a href="#outcome">Outcome</a>
-          </nav>
-        </div>
-      </aside>
-
-      <div class="project-page">
-        <nav class="breadcrumb">
-          <a href="/work.html">Work</a>
-          <span>›</span>
-          <span class="current">North Star Wellness Resources</span>
+            <a href="#mistakes">My Mistakes</a>
+            <a href="#redemption">Redeeming Myself</a>
         </nav>
-
-        <!-- Intro -->
-        <section id="intro" class="intro-hero">
-          <h1>North Star Wellness Resources</h1>
-          <div class="intro-row">
-            <figure class="intro-thumb">
-              <img src="/assets/thumbnails/northstar-thumbnail.png" alt="North Star Wellness thumbnail">
-            </figure>
-            <div class="intro-meta">
-              <p class="muted">
-                A 24-hour design exercise for an interview brief: create a responsible, empathetic experience for people
-                seeking mental health or substance-use resources. The challenge was to prioritize what truly matters when
-                time and information are limited.
-              </p>
-              <div class="card-tags">
-                <span class="tag">Healthcare</span>
-                <span class="tag">UX</span>
-                <span class="tag">Branding</span>
-              </div>
-            </div>
-          </div>
-        </section>
- <section id="research">
-          <h2>Research</h2>
-          <p>Though I did not get many resources for this project, I was very kindly given comparison sites for this field. So naturally, I began with what I know - doing a qualitative analysis!</p>
-          
-        
-          <figure>
-            <img src="/work/northstar/assets/ypm-logoassessments.png" alt="Logo Assessments of the sites provided" style="width:100%">
-            <figcaption>Quick content audit to understand gaps and tone in existing wellness resources.</figcaption>
-          </figure>
-          <figure>
-            <img src="/work/northstar/assets/ypm-SiteAssessments.png" alt="Massive site assessment" style="width:100%">
-            <figcaption>Quick content audit to understand gaps and tone in existing wellness resources.</figcaption>
-          </figure>
-          
-            <figure>
-            <img src="/work/northstar/assets/ypm-site-content analysis.png" alt="Site content audit showing volume and tone of existing wellness content" style="width:100%">
-            <figcaption>Quick content audit to understand gaps and tone in existing wellness resources.</figcaption>
-          </figure>
-          <figure>
-            <img src="/work/northstar/assets/homepage-analysis-chart.png" alt="Dark-mode design analysis showing hierarchy and calming palette" style="width:100%">
-            <figcaption>A color-coded chart (don't worry, it's colorblind friendly!) to have a 'vibe map' of the reference sites.</figcaption>
-          </figure>
-          
-          
-
- </section>
-        <section id="approach">
-          <h2>Approach</h2>
-          <p>
-            Looking for help with mental health or substance use is rarely neutral. It usually comes with fear,
-            hesitation, and a lot of social baggage. As I reviewed existing treatment websites, I noticed a pattern of
-            bright visuals, urgency-heavy copy, and constant pressure to “act now.”
-          </p>
-          <p>
-            That approach might work for conversions, but it can also make an already stressful moment feel louder and
-            more overwhelming. I wanted to see what it would look like to do the opposite.
-          </p>
-          
-        </section>
-
-        <section id="branding">
-          <h2>Branding, Visual Direction, and the Birth of <i>North Star Wellness Resources</i></h2>
-          <p>While brainstorming for this project, I was between a few different names. Phoenix, <i>Kintsugi</i>, Anchor, Lighthouse - with the implication being changing your life or providing stability if you're knee deep in chaos. </p>
-          <p>
-            I ended up settling on 'North Star', as the concept and function of the titular term is built around orientation, not transformation. The brand doesn’t promise
-            clarity or change. It’s meant to feel like a steady reference point for people who aren’t sure what their
-            next step is yet. I chose Wellness Resources as it had the propensity to cover a lot of different problem areas. 
-          </p>
-          <p>
-            That idea shaped everything from the name and logo to the overall visual language. I kept the branding calm, aiming for something that felt credible without being performative.
-          </p>
-          <div class="inline-pair">
-            <figure class="inline-pair__media">
-              <img src="/work/northstar/assets/northstar-logo-black.png" alt="North Star logo on dark background" style="width:100%">
-            </figure>
-            <figure class="inline-pair__media">
-              <img src="/work/northstar/assets/northstar-logo-solo-bw.png" alt="North Star logo on dark background" style="width:100%">
-            </figure>
-            <div class="video-wrapper">
-            <video controls playsinline preload="metadata">
-              <source src="/work/northstar/Logo-evolution.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-            <figure class="inline-pair__media">
-              <img src="/work/northstar/assets/northstar-logo-process.png" alt="The evolution of a single square to this wonderful, geometric tile." style="width:100%">
-            </figure>
-            <figure>
-            <img src="/work/northstar/assets/northstar-styleguide.png" alt="The style guide" style="width:100%">
-            <figcaption>Here is a massive style guide that goes through the logos, text treatments, colors, and components that I used on the site. </figcaption>
-          </figure>
-          </div>
-          
-        </section>
-
-        <section id="dark-mode">
-          <h2>Why Dark Mode</h2>
-          <p>
-            The site uses a predominantly dark interface on purpose. For a lot of people, especially those dealing with
-            stigma or fear around needing help, visibility itself can feel uncomfortable.
-          </p>
-          <p>
-            The darker UI:
-          </p>
-          <ul>
-            <li>Feels more private and contained</li>
-            <li>Works better for late-night or discreet browsing</li>
-          </ul>
-          <p>
-            This was as much of an aesthetic choice as much as an emotional one. The goal was to lower friction and make it
-            easier for someone to stay on the site long enough to actually absorb the information. I did want to ensure that for those who were browsing in front of others, that it remained an intimate and optimistic experience.
-          </p>
-          <figure>
-            <img src="/work/northstar/assets/northstarhomepage.png" alt="North Star Wellness homepage concept" style="width:100%">
-            <figcaption>Extremely basic homepage concept: restrained palette, calm typography, and clear hierarchy for late-night browsing.</figcaption>
-          </figure>
-        </section>
-
-        <section id="outcome">
-          <h2>Outcome</h2>
-          <p>
-            Within the 24-hour constraint, this concept focuses on emotional safety, clear hierarchy, and user autonomy.
-            Though this is not a real site, even in an imaginary context, I would rather help a vulnerable individual
-            feel oriented enough to decide what they want to do next, when they’re ready.
-          </p>
-        </section>
-
-        <section id="video" class="row">
-          <h2>Video Demo</h2>
-          <div class="video-wrapper">
-            <video controls playsinline preload="metadata">
-              <source src="/work/northstar/walkthrough.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-          </div>
-        </section>
-
-        <section id="technical-difficulties">
-          <h2>Technical Difficulties </h2>
-          <p>
-           In what world did I ever believe that I would miss the Adobe Suite? This one, I guess. 
-          </p>
-          <figure>
-            <img src="/work/northstar/assets/figmawhy.png" alt="figma has crashed " style="width:100%">
-            <figcaption>I am not even joking, this happened <i>4 different times</i> in the span of 10 minutes.</figcaption>
-          </figure>
-        </section>
-
-      </div>
-    </div>
-  </main>
-
-  <!-- 🔹 Sticky Bottom Progress + Anchor Navigation -->
-  <div class="progress-nav bottom">
-    <div class="progress-track">
-      <div class="progress-bar"></div>
     </div>
 
-    <nav class="anchor-nav">
-      <a href="#intro">Overview</a>
-      <a href="#approach">Approach</a>
-      <a href="#branding">Branding & Visuals</a>
-      <a href="#dark-mode">Why Dark Mode</a>
-      <a href="#outcome">Outcome</a>
-      <a href="#video">Video</a>
-      <a href="#technical-difficulties">Technical Difficulties</a>
-    </nav>
-  </div>
+    <!-- 🔹 Footer -->
+    <footer>
+        Designed & Developed with ❤️‍🔥 by Amber Kumar © 2026
+    </footer>
 
-  <!-- 🔹 Footer -->
-  <footer>
-    Designed & Developed with ❤️‍🔥 by Amber Kumar © 2026
-  </footer>
+    <!-- ✅ JS: navbar scroll + fade-in animation -->
+    <script src="../../js/script.js"></script>
+    <script>
+        // Lightweight lightbox for all project images
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.project-page img');
+            if (!images.length) return;
 
-  <!-- ✅ JS: navbar scroll + fade-in animation -->
-  <script src="../../js/script.js"></script>
+            const overlay = document.createElement('div');
+            overlay.className = 'lightbox-backdrop';
+            overlay.innerHTML = '<img alt=""><span class="sr-only">Close</span>';
+            document.body.appendChild(overlay);
+            const overlayImg = overlay.querySelector('img');
+
+            const close = () => overlay.classList.remove('active');
+            overlay.addEventListener('click', close);
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+
+            images.forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', e => {
+                    e.preventDefault();
+                    overlayImg.src = img.src;
+                    overlayImg.alt = img.alt || '';
+                    overlay.classList.add('active');
+                });
+            });
+        });
+    </script>
 
 </body>
 
